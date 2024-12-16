@@ -12,14 +12,14 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = this.speed;
-        agent.acceleration = this.acceleration;
+        agent.speed = speed;
+        agent.acceleration = acceleration;
     }
     protected virtual void Update()
     {
         Move();
     }
-
+    public abstract void Move();
     public void TakeDamage(float damage)
     {
         health -= damage;
@@ -28,13 +28,12 @@ public abstract class Enemy : MonoBehaviour
             Die();
         }
     }
-
     public virtual void Die()
     {
         Destroy(gameObject);
     }
-
-    public abstract void Move();
-
-    public abstract Enemy Clone();
+    public virtual Enemy Clone()
+    {
+        return (Enemy)MemberwiseClone();
+    }
 }
