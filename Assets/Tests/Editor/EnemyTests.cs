@@ -2,7 +2,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyTestsTest
+public class EnemyTests
 {
     private class TestEnemy : Enemy
     {
