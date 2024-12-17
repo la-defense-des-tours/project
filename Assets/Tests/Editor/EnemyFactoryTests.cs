@@ -7,9 +7,9 @@ public class EnemyFactoryTests
     readonly EnemyFactory tankFactory = new TankEnemyFactory();
     readonly EnemyFactory walkingFactory = new WalkingEnemyFactory();
 
-    public Enemy Creator(EnemyFactory factory)
+    public Enemy Creator(EnemyFactory enemyFactory)
     {
-        return factory.CreateEnemy();
+        return enemyFactory.CreateEnemy();
     }
 
     [Test]
