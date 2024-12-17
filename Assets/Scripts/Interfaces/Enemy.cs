@@ -31,7 +31,8 @@ public abstract class Enemy : MonoBehaviour
     }
     public virtual void Die()
     {
-        Destroy(gameObject);
+        // Play death animation
+        DestroyImmediate(gameObject);
     }
     public virtual Enemy Clone()
     {

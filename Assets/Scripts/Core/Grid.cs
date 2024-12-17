@@ -26,7 +26,6 @@ public class Grid : MonoBehaviour
 
     void Update()
     {
-        // Update logic for the grid can be added here
     }
 
     public void InitializeGrid()
