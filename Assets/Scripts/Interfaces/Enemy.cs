@@ -7,7 +7,7 @@ public abstract class Enemy : MonoBehaviour
     protected float speed;
     protected float acceleration;
     protected float armor;
-    public Transform target;
+    protected Transform target;
     protected NavMeshAgent agent;
 
     protected virtual void Start()
@@ -37,4 +37,5 @@ public abstract class Enemy : MonoBehaviour
     {
         return (Enemy)MemberwiseClone();
     }
+
 }

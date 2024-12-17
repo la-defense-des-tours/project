@@ -1,12 +1,13 @@
 using UnityEngine;
 
-public class FlyingEnemyFactory : EnemyFactory
+public class TankEnemyFactory : EnemyFactory
 {
-    public override Enemy CreateEnemy()
+    public Enemy CreateEnemy()
     {
-        return new FlyingEnemy();
+        Notify();
+        return new TankEnemy();
     }
-    public override void Notify()
+    public void Notify()
     {
         Debug.Log("Flying enemy created!");
     }

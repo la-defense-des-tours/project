@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class FlyingEnemyFactory : EnemyFactory
 {
-    public override Enemy CreateEnemy()
+    public Enemy CreateEnemy()
     {
+        Notify();
         return new FlyingEnemy();
     }
-    public override void Notify()
+    public void Notify()
     {
         Debug.Log("Flying enemy created!");
     }

@@ -4,6 +4,7 @@ public class WalkingEnemyFactory : EnemyFactory
 {
     public Enemy CreateEnemy()
     {
+        Notify();
         return new WalkingEnemy();
     }
     public void Notify()

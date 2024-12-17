@@ -535,11 +535,6 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: f8ab3acb2bc3af144adc55bfd68c541b, type: 2}
   m_BuildHeightMesh: 0
---- !u!4 &1657155759 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8747789932801024964, guid: 159a346122ab51e4398e8ad1a80cab78, type: 3}
-  m_PrefabInstance: {fileID: 2053772358180418602}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &421080278490144528
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -592,12 +587,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlyingEnemy
       objectReference: {fileID: 0}
-    - target: {fileID: 7531774776525595099, guid: e37b72c349f9a8743bbca0aae3cc08db, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 1657155759}
-    m_RemovedComponents:
-    - {fileID: 7531774776525595099, guid: e37b72c349f9a8743bbca0aae3cc08db, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
