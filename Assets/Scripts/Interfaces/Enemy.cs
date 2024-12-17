@@ -6,6 +6,7 @@ public abstract class Enemy : MonoBehaviour
     protected float health;
     protected float speed;
     protected float acceleration;
+    protected float armor;
     public Transform target;
     protected NavMeshAgent agent;
 

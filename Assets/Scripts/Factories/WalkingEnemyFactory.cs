@@ -6,4 +6,8 @@ public class WalkingEnemyFactory : EnemyFactory
     {
         return new WalkingEnemy();
     }
+    public void Notify()
+    {
+        Debug.Log("Walking enemy created!");
+    }
 }

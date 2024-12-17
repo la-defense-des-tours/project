@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class WalkingEnemy : Enemy
+public class FlyingEnemy : Enemy
 {
-    public WalkingEnemy()
+    public FlyingEnemy()
     {
-        health = 100;
-        speed = 5;
-        acceleration = 8;
-        armor = 10f;
+        health = 50;
+        speed = 10;
+        acceleration = 16;
+        armor = 0f;
     }
     public override void Move()
     {
