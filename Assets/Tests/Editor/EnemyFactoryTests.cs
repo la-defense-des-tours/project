@@ -13,21 +13,21 @@ public class EnemyFactoryTests
     }
 
     [Test]
-    public void FlyingFactory_CreateEnemy_CreatesFlyingEnemy()
+    public void FlyingFactory_CreatesFlyingEnemy()
     {
         Enemy enemy = Creator(flyingFactory);
         Assert.IsInstanceOf<FlyingEnemy>(enemy);
     }
 
     [Test]
-    public void TankFactory_CreateEnemy_CreatesTankEnemy()
+    public void TankFactory_CreatesTankEnemy()
     {
         Enemy enemy = Creator(tankFactory);
         Assert.IsInstanceOf<TankEnemy>(enemy);
     }
 
     [Test]
-    public void WalkingFactory_CreateEnemy_CreatesWalkingEnemy()
+    public void WalkingFactory_CreatesWalkingEnemy()
     {
         Enemy enemy = Creator(walkingFactory);
         Assert.IsInstanceOf<WalkingEnemy>(enemy);

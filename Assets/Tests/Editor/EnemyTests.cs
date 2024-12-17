@@ -45,14 +45,14 @@ public class EnemyTests
     }
 
     [Test]
-    public void TakeDamage_HealthBelowZero_CallsDie()
+    public void HealthBelowZero_CallsDie()
     {
         enemy.TakeDamage(110f);
         Assert.IsTrue(enemy.isDead);
     }
 
     [Test]
-    public void TakeDamage_HealthZero_CallsDie()
+    public void HealthZero_CallsDie()
     {
         enemy.TakeDamage(100f);
         Assert.IsTrue(enemy.isDead);
