@@ -6,9 +6,9 @@ public class WalkingEnemy : Enemy
     public WalkingEnemy()
     {
         health = 100;
-        speed = 5;
+        speed = 4;
         acceleration = 8;
-        armor = 10f;
+        armor = 10;
     }
     public override void Move()
     {

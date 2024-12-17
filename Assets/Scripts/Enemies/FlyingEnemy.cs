@@ -6,9 +6,9 @@ public class FlyingEnemy : Enemy
     public FlyingEnemy()
     {
         health = 50;
-        speed = 10;
-        acceleration = 16;
-        armor = 0f;
+        speed = 7;
+        acceleration = 14;
+        armor = 0;
     }
     public override void Move()
     {

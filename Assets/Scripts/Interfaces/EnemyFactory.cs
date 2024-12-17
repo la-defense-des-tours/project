@@ -2,6 +2,6 @@ using UnityEngine;
 
 public interface EnemyFactory
 {
-    Enemy CreateEnemy();
-    void Notify();
+    public Enemy CreateEnemy();
+    public void Notify();
 }

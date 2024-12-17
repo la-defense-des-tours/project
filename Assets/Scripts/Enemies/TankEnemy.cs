@@ -5,10 +5,10 @@ public class TankEnemy : Enemy
 {
     public TankEnemy()
     {
-        health = 200;
-        speed = 3;
+        health = 300;
+        speed = 2;
         acceleration = 4;
-        armor = 50f;
+        armor = 30;
     }
     public override void Move()
     {
