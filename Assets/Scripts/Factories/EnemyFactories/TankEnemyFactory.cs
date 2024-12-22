@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TankEnemyFactory : EnemyFactory
+public class TankEnemyFactory : MonoBehaviour, EnemyFactory
 {
     public Enemy CreateEnemy()
     {

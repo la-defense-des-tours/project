@@ -1,17 +1,29 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class TankEnemy : Enemy
+public class TankEnemy : MonoBehaviour, Enemy
 {
-    public TankEnemy()
+    private NavMeshAgent agent;
+
+    public void Awake()
     {
-        health = 300;
-        speed = 2;
-        acceleration = 4;
-        armor = 30;
+        agent = gameObject.AddComponent<NavMeshAgent>();
+        agent.speed = 2;
+        agent.acceleration = 4;
     }
-    public override void Move()
+    public void Move(Vector3 destination)
     {
-        agent.SetDestination(target.position);
+        agent.SetDestination(destination);
+    }
+    public Enemy Clone()
+    {
+        return (Enemy)MemberwiseClone();
+    }
+    public void TakeDamage(int damage)
+    {
+    }
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 }

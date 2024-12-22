@@ -1,17 +1,34 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class WalkingEnemy : Enemy
+public class WalkingEnemy : MonoBehaviour, Enemy
 {
-    public WalkingEnemy()
+    private NavMeshAgent agent;
+    private float health = 200f;
+    public void Awake()
     {
-        health = 100;
-        speed = 4;
-        acceleration = 8;
-        armor = 10;
+        agent = gameObject.AddComponent<NavMeshAgent>();
+        agent.speed = 4;
+        agent.acceleration = 8;
     }
-    public override void Move()
+    public void Move(Vector3 destination)
     {
-        agent.SetDestination(target.position);
+        agent.SetDestination(destination);
+    }
+    public Enemy Clone()
+    {
+        return (Enemy)MemberwiseClone();
+    }
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 }

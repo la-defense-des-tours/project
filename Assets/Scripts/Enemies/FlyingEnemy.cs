@@ -1,17 +1,29 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FlyingEnemy : Enemy
+public class FlyingEnemy : MonoBehaviour, Enemy
 {
-    public FlyingEnemy()
+    private NavMeshAgent agent;
+
+    public void Awake()
     {
-        health = 50;
-        speed = 7;
-        acceleration = 14;
-        armor = 0;
+        agent = gameObject.AddComponent<NavMeshAgent>();
+        agent.speed = 6;
+        agent.acceleration = 12;
     }
-    public override void Move()
+    public void Move(Vector3 destination)
     {
-        agent.SetDestination(target.position);
+        agent.SetDestination(destination);
+    }
+    public Enemy Clone()
+    {
+        return (Enemy)MemberwiseClone();
+    }
+    public void TakeDamage(int damage)
+    {
+    }
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 }
