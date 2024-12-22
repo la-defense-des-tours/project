@@ -6,6 +6,9 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private EnemyFactory flyingEnemyFactory;
     [SerializeField] private EnemyFactory tankEnemyFactory;
     [SerializeField] private Transform target;
+    private Enemy walkingEnemy;
+    private Enemy flyingEnemy;
+    private Enemy tankEnemy;
 
     public void Start()
     {
@@ -13,20 +16,16 @@ public class EnemyManager : MonoBehaviour
     }
     public void SpawnEnemy()
     {
-        Enemy walkingEnemy = walkingEnemyFactory.CreateEnemy();
-        Enemy flyingEnemy = flyingEnemyFactory.CreateEnemy();
-        Enemy tankEnemy = tankEnemyFactory.CreateEnemy();
-
+        walkingEnemy = walkingEnemyFactory.CreateEnemy();
         walkingEnemy.Move(target.position);
-        flyingEnemy.Move(target.position);
-        tankEnemy.Move(target.position);
     }
 
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SpawnEnemy();
+            Enemy walkingClone = walkingEnemy.Clone();
+            walkingClone.Move(target.position);
         }
     }
 }

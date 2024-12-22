@@ -5,8 +5,14 @@ public class WalkingEnemy : MonoBehaviour, Enemy
 {
     private NavMeshAgent agent;
     private float health = 200f;
-    
+    private float speed = 4f;
+    private float acceleration = 8f;
+
     public void Awake()
+    {
+        SetupNavMeshAgent();
+    }
+    public void SetupNavMeshAgent()
     {
         if (gameObject.GetComponent<NavMeshAgent>() == null)
         {
@@ -16,16 +22,8 @@ public class WalkingEnemy : MonoBehaviour, Enemy
         {
             agent = gameObject.GetComponent<NavMeshAgent>();
         }
-        agent.speed = 4;
-        agent.acceleration = 8;
-    }
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Move(new Vector3(-37, 0, 37));
-            // Clone();
-        }
+        agent.speed = speed;
+        agent.acceleration = acceleration;
     }
     public void Move(Vector3 destination)
     {
@@ -33,10 +31,11 @@ public class WalkingEnemy : MonoBehaviour, Enemy
     }
     public Enemy Clone() // Voir au niveau FPS, ou rajouter un check pour ne cloner (ATTENTION: chaque clone)
     {
-        Enemy enemyClone = Instantiate(this);
-        return enemyClone;
+        Enemy clone = Instantiate(this, Vector3.zero, Quaternion.identity); // A voir ici, par defaut il spawn a la position par defaut du prefab (tester)
+        clone.SetupNavMeshAgent();
+        return clone;
     }
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
         if (health <= 0)

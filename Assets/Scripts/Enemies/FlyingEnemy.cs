@@ -4,8 +4,15 @@ using UnityEngine.AI;
 public class FlyingEnemy : MonoBehaviour, Enemy
 {
     private NavMeshAgent agent;
+    private float health = 100;
+    private float speed = 6;
+    private float acceleration = 12;
 
     public void Awake()
+    {
+        SetupNavMeshAgent();
+    }
+    public void SetupNavMeshAgent()
     {
         if (gameObject.GetComponent<NavMeshAgent>() == null)
         {
@@ -15,8 +22,8 @@ public class FlyingEnemy : MonoBehaviour, Enemy
         {
             agent = gameObject.GetComponent<NavMeshAgent>();
         }
-        agent.speed = 6;
-        agent.acceleration = 12;
+        agent.speed = speed;
+        agent.acceleration = acceleration;
     }
     public void Move(Vector3 destination)
     {
@@ -24,10 +31,17 @@ public class FlyingEnemy : MonoBehaviour, Enemy
     }
     public Enemy Clone()
     {
-        return (Enemy)MemberwiseClone();
+        Enemy clone = Instantiate(this, Vector3.zero, Quaternion.identity);
+        clone.SetupNavMeshAgent();
+        return clone;
     }
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
+        health -= damage;
+        if (health <= 0)
+        {
+            Die();
+        }
     }
     public void Die()
     {
