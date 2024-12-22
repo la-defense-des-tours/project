@@ -5,6 +5,7 @@ public class WalkingEnemy : MonoBehaviour, Enemy
 {
     private NavMeshAgent agent;
     private float health = 200f;
+    
     public void Awake()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
@@ -15,7 +16,8 @@ public class WalkingEnemy : MonoBehaviour, Enemy
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Clone();
+            Move(new Vector3(-37, 0, 37));
+            // Clone();
         }
     }
     public void Move(Vector3 destination)

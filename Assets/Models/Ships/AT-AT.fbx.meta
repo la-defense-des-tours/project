@@ -96,7 +96,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.5
+    globalScale: 0.35
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -161,572 +161,572 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Body
       parentName: Root
-      position: {x: 0.0000000015100181, y: -0.007076616, z: 0.09755407}
+      position: {x: 1.0570126e-11, y: -0.00004953631, z: 0.0006828784}
       rotation: {x: 0.008726535, y: -0, z: -0, w: 0.9999619}
       scale: {x: 1, y: 1, z: 1}
     - name: NeckLower
       parentName: Body
-      position: {x: 0.0000000032923073, y: -0.03319082, z: 0.004221932}
+      position: {x: 2.3046148e-11, y: -0.00023233572, z: 0.000029553521}
       rotation: {x: -0.00000004087025, y: 0.54134244, z: 0.84080225, w: -0.00000011223842}
       scale: {x: 1, y: 1, z: 1}
     - name: NeckUpper
       parentName: NeckLower
-      position: {x: -2.664535e-16, y: 0.0054145143, z: -0.000000011101365}
+      position: {x: -1.8651744e-18, y: 0.000037901595, z: -7.770955e-11}
       rotation: {x: -0.02592957, y: -0.0000000042492303, z: 0.0000000055191425, w: 0.99966383}
       scale: {x: 1, y: 1, z: 1}
     - name: Head
       parentName: NeckUpper
-      position: {x: 1.0658141e-16, y: 0.0053712437, z: -0.000000004172325}
+      position: {x: 7.460698e-19, y: 0.000037598704, z: -2.9206276e-11}
       rotation: {x: -7.4246165e-16, y: 1.731948e-14, z: -0.000000075497866, w: 1}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: HeavyCannon.L
       parentName: Head
-      position: {x: 0.0056266314, y: 0.021784171, z: -0.010967437}
+      position: {x: 0.000039386417, y: 0.00015248917, z: -0.00007677204}
       rotation: {x: 0.0000000037252903, y: 7.771561e-16, z: 1.7763568e-15, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: HeavyCannon.L_end
       parentName: HeavyCannon.L
-      position: {x: -4.630567e-10, y: 0.015204832, z: -0.0000000036872159}
+      position: {x: -3.2413965e-12, y: 0.0001064338, z: -2.5810505e-11}
       rotation: {x: 0.0000000037252903, y: 1.110223e-16, z: -7.21645e-15, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: HeavyCannon.R
       parentName: Head
-      position: {x: -0.005626587, y: 0.021784162, z: -0.010967437}
+      position: {x: -0.00003938611, y: 0.00015248911, z: -0.00007677204}
       rotation: {x: 0.0000000037252903, y: 7.771561e-16, z: 1.7763568e-15, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: HeavyCannon.R_end
       parentName: HeavyCannon.R
-      position: {x: -4.630567e-10, y: 0.015204832, z: -0.0000000034653422}
+      position: {x: -3.2413965e-12, y: 0.0001064338, z: -2.4257391e-11}
       rotation: {x: 0.0000000037252903, y: 1.110223e-16, z: -7.21645e-15, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: LightCannons
       parentName: Head
-      position: {x: 0.0000000040929744, y: 0.019091235, z: -0.0042977585}
+      position: {x: 2.8650821e-11, y: 0.00013363863, z: -0.000030084306}
       rotation: {x: 0.0000000037252903, y: -1.11022296e-16, z: 1.7208457e-15, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: LightCannons_end
       parentName: LightCannons
-      position: {x: 4.973799e-16, y: 0.0093954485, z: -0.0000000047683715}
+      position: {x: 3.4816594e-18, y: 0.00006576813, z: -3.33786e-11}
       rotation: {x: 0.0000000037252903, y: 2.2204459e-16, z: -1.831868e-15, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: head_look
       parentName: Body
-      position: {x: 0.0000000036978252, y: -0.098565556, z: -0.00295894}
+      position: {x: 2.5884772e-11, y: -0.00068995886, z: -0.00002071258}
       rotation: {x: 0.7071069, y: 0, z: -0, w: 0.7071067}
       scale: {x: 1, y: 1, z: 1}
     - name: head_look_end
       parentName: head_look
-      position: {x: -0, y: 0.0043146964, z: 0.0000000019371509}
+      position: {x: -0, y: 0.000030202875, z: 1.3560055e-11}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: HipFront.L
       parentName: Body
-      position: {x: -0.0043316777, y: -0.00009448707, z: -0.001805591}
+      position: {x: -0.000030321738, y: -0.0000006614095, z: -0.000012639136}
       rotation: {x: 0.5, y: -0.49999997, z: 0.50000006, w: -0.5}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: HipFront1.L
       parentName: HipFront.L
-      position: {x: 2.6901395e-10, y: 0.0040480914, z: 3.454396e-10}
+      position: {x: 1.8830974e-12, y: 0.000028336635, z: 2.4180766e-12}
       rotation: {x: 0.000000021898703, y: 0.000000021898709, z: -0.000000044237826, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: HipFront2.L
       parentName: HipFront1.L
-      position: {x: -3.404974e-10, y: 0.0054613207, z: -0.004059102}
+      position: {x: -2.3834816e-12, y: 0.000038229242, z: -0.000028413711}
       rotation: {x: 0.46438926, y: 0.5332378, z: -0.4643889, w: 0.53323823}
       scale: {x: 1, y: 0.99999994, z: 0.99999994}
     - name: UpperLegFront.L
       parentName: HipFront2.L
-      position: {x: 0.002627774, y: 0.020576365, z: 0.000000010405453}
+      position: {x: 0.000018394414, y: 0.00014403455, z: 7.2838166e-11}
       rotation: {x: -0.7323386, y: -0.00000012627244, z: 0.00000022552409, w: 0.6809407}
       scale: {x: 1, y: 0.99999994, z: 0.99999946}
     - name: LowerLegFront.L
       parentName: UpperLegFront.L
-      position: {x: 1.7159778e-10, y: 0.029450916, z: 0.0000000011997405}
+      position: {x: 1.2011843e-12, y: 0.00020615639, z: 8.398183e-12}
       rotation: {x: -0.076558664, y: 0.00000031805718, z: 0.00000024127908, w: 0.99706507}
       scale: {x: 1, y: 0.9999998, z: 1.0000002}
     - name: AnkleFront.L
       parentName: LowerLegFront.L
-      position: {x: 0.00022633358, y: 0.027380401, z: -0.000000001346467}
+      position: {x: 0.0000015843349, y: 0.0001916628, z: -9.425269e-12}
       rotation: {x: -0.0000008280376, y: -0.19035651, z: 0.981715, w: -0.00000023746223}
       scale: {x: 1, y: 1.0000002, z: 0.9999998}
     - name: FootFront1.L
       parentName: AnkleFront.L
-      position: {x: -0.0000000054626583, y: -0.0014256963, z: 0.0000000071340347}
+      position: {x: -3.82386e-11, y: -0.0000099798735, z: 4.9938245e-11}
       rotation: {x: 1, y: -0.00000067527935, z: 0.00000045421797, w: 0.000024036566}
       scale: {x: 1, y: 0.99999994, z: 1.0000001}
     - name: FootFront2.L
       parentName: FootFront1.L
-      position: {x: -0.0000000017090956, y: 0.006556894, z: 0.00000008264749}
+      position: {x: -1.1963669e-11, y: 0.000045898254, z: 5.785324e-10}
       rotation: {x: 0.000005706538, y: 0.000000025442311, z: -0.00000023664141, w: 1}
       scale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
     - name: FootFrontToe2.L
       parentName: FootFront2.L
-      position: {x: -0.008145995, y: 0.0025933809, z: -0.000000067440965}
+      position: {x: -0.000057021956, y: 0.000018153663, z: -4.7208676e-10}
       rotation: {x: -0.67559004, y: 0.7372775, z: 0.0000134291695, w: 0.000012858557}
       scale: {x: 1.0000001, y: 0.99999994, z: 1.0000001}
     - name: FootFrontToe2.L_end
       parentName: FootFrontToe2.L
-      position: {x: 2.525894e-11, y: 0.004314709, z: 3.8146286e-10}
+      position: {x: 1.7681257e-13, y: 0.00003020296, z: 2.6702397e-12}
       rotation: {x: 2.7755576e-12, y: 0.000000044363134, z: 0.00000002607677, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FootFrontToe3.L
       parentName: FootFront2.L
-      position: {x: 0.0000000017633646, y: 0.0025932523, z: 0.008145917}
+      position: {x: 1.2343551e-11, y: 0.000018152765, z: 0.000057021414}
       rotation: {x: 0.6755949, y: -0.00000033482735, z: -0.00000011942483, w: 0.7372731}
       scale: {x: 1.0000001, y: 1, z: 1}
     - name: FootFrontToe3.L_end
       parentName: FootFrontToe3.L
-      position: {x: -0.0000000011828967, y: 0.0043147015, z: -2.6122961e-11}
+      position: {x: -8.280277e-12, y: 0.000030202902, z: -1.828607e-13}
       rotation: {x: 0.000000020489088, y: 1.2434498e-13, z: 1.5987212e-14, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FootFrontToe4.L
       parentName: FootFront2.L
-      position: {x: 0.008145989, y: 0.002593348, z: -0.00000006604194}
+      position: {x: 0.000057021916, y: 0.000018153436, z: -4.6229356e-10}
       rotation: {x: 0.6755894, y: 0.7372781, z: 0.00001389787, w: -0.000012590763}
       scale: {x: 1, y: 0.99999994, z: 1.0000001}
     - name: FootFrontToe4.L_end
       parentName: FootFrontToe4.L
-      position: {x: -6.417906e-11, y: 0.0043147015, z: -5.782395e-10}
+      position: {x: -4.492534e-13, y: 0.000030202902, z: -4.0476767e-12}
       rotation: {x: -8.5265134e-13, y: -0.00000002758745, z: 0.000000054016773, w: 1}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: FootFrontToe1.L
       parentName: FootFront2.L
-      position: {x: 1.252199e-10, y: 0.0025934505, z: -0.0081460485}
+      position: {x: 8.765392e-13, y: 0.00001815415, z: -0.00005702233}
       rotation: {x: -0.67558455, y: 0.0000013980834, z: -0.0000014684769, w: 0.7372825}
       scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
     - name: FootFrontToe1.L_end
       parentName: FootFrontToe1.L
-      position: {x: 8.1262924e-10, y: 0.004314701, z: 8.60382e-11}
+      position: {x: 5.688404e-12, y: 0.000030202902, z: 6.022673e-13}
       rotation: {x: 0.0000000074505433, y: -2.8219205e-11, z: 1.7053026e-13, w: 1}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: FootFrontPistonLower.L
       parentName: FootFront2.L
-      position: {x: 0.008890657, y: -0.0037664617, z: -0.00000006096588}
+      position: {x: 0.00006223459, y: -0.000026365233, z: -4.2676113e-10}
       rotation: {x: 0.98651963, y: -0.09425405, z: 0.010825908, w: -0.13333414}
       scale: {x: 0.99999857, y: 1, z: 1.0000002}
     - name: FootFrontPistonLower.L_end
       parentName: FootFrontPistonLower.L
-      position: {x: 4.1909514e-11, y: 0.0043023797, z: -9.220093e-10}
+      position: {x: 2.933666e-13, y: 0.000030116653, z: -6.454065e-12}
       rotation: {x: -0.0000000055879354, y: 0.000000055646524, z: -0.000000026862836, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FootFrontPistonPivotPoint.L
       parentName: LowerLegFront.L
-      position: {x: -0.0054278974, y: 0.017119858, z: -0.000000012869837}
+      position: {x: -0.000037995273, y: 0.00011983898, z: -9.0088846e-11}
       rotation: {x: -0.0007746668, y: 0.00071706454, z: 0.7613329, w: 0.6483603}
       scale: {x: 1.0000001, y: 1, z: 0.9999998}
     - name: FootFrontPistonUpper.L
       parentName: FootFrontPistonPivotPoint.L
-      position: {x: 7.4505804e-11, y: 0.0005715767, z: -5.260517e-10}
+      position: {x: 5.215406e-13, y: 0.000004001036, z: -3.6823617e-12}
       rotation: {x: 0.4661067, y: 0.5322172, z: 0.5213164, w: -0.47719866}
       scale: {x: 0.99999994, y: 0.9999999, z: 1.0000002}
     - name: FootFrontPistonUpper.L_end
       parentName: FootFrontPistonUpper.L
-      position: {x: 3.7718564e-10, y: 0.008203565, z: -3.7252902e-11}
+      position: {x: 2.6402994e-12, y: 0.000057424953, z: -2.607703e-13}
       rotation: {x: 0.000000020954758, y: 0.000000038184226, z: 0.00000042648753, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: HipBack.L
       parentName: Body
-      position: {x: -0.0043316777, y: 0.014247188, z: -0.0018055914}
+      position: {x: -0.000030321738, y: 0.000099730314, z: -0.000012639138}
       rotation: {x: 0.5, y: -0.49999997, z: 0.50000006, w: -0.5}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: HipBack1.L
       parentName: HipBack.L
-      position: {x: 4.1802556e-10, y: 0.004048092, z: 5.3413635e-10}
+      position: {x: 2.9261788e-12, y: 0.000028336637, z: 3.738954e-12}
       rotation: {x: 0.13543768, y: -0.024547225, z: -0.44359627, w: 0.8855939}
       scale: {x: 1, y: 1, z: 1}
     - name: HipBack2.L
       parentName: HipBack1.L
-      position: {x: 3.2031957e-11, y: 0.005461323, z: -0.004059103}
+      position: {x: 2.2422366e-13, y: 0.00003822926, z: -0.000028413717}
       rotation: {x: 0.45376283, y: -0.5423092, z: 0.4537628, w: 0.5423093}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: UpperLegBack.L
       parentName: HipBack2.L
-      position: {x: -0.0026277744, y: 0.020576367, z: 0.000000007859112}
+      position: {x: -0.00001839442, y: 0.00014403455, z: 5.5013778e-11}
       rotation: {x: -0.07411223, y: 0.93511957, z: -0.3437285, w: -0.043698672}
       scale: {x: 1, y: 0.9999996, z: 0.9999995}
     - name: LowerLegBack.L
       parentName: UpperLegBack.L
-      position: {x: 9.2954106e-10, y: 0.029450905, z: -0.0000000036608965}
+      position: {x: 6.5067864e-12, y: 0.00020615631, z: -2.562627e-11}
       rotation: {x: -0.09603113, y: 0.0000002796001, z: 0.00000027303545, w: 0.9953784}
       scale: {x: 1, y: 0.9999998, z: 1.0000002}
     - name: AnkleBack.L
       parentName: LowerLegBack.L
-      position: {x: 0.00022633231, y: 0.027380403, z: 0.000000006376165}
+      position: {x: 0.0000015843261, y: 0.00019166282, z: 4.463315e-11}
       rotation: {x: 0.046379548, y: 0.014884361, z: 0.99824977, w: 0.03354108}
       scale: {x: 1, y: 1, z: 0.9999998}
     - name: FootBack1.L
       parentName: AnkleBack.L
-      position: {x: -5.1657933e-10, y: -0.0014256957, z: 0.0000000028868112}
+      position: {x: -3.616055e-12, y: -0.00000997987, z: 2.0207678e-11}
       rotation: {x: 1, y: -0.00000075395843, z: 0.00000025719467, w: -0.000024155774}
       scale: {x: 1, y: 0.99999976, z: 0.9999999}
     - name: FootBack1.L_end
       parentName: FootBack1.L
-      position: {x: -0.0000000017034278, y: 0.003958358, z: -0.0000000016513161}
+      position: {x: -1.1923994e-11, y: 0.000027708506, z: -1.155921e-11}
       rotation: {x: -0.000012098924, y: 0.000000059429333, z: -0.0000002629054, w: 1}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: FootBack2.L
       parentName: AnkleBack.L
-      position: {x: -0.0000000033647358, y: -0.007982594, z: 0.00000016082932}
+      position: {x: -2.3553149e-11, y: -0.00005587815, z: 0.000000001125805}
       rotation: {x: 1, y: -0.0000010694639, z: 0.00000055233494, w: -0.00007327}
       scale: {x: 1, y: 1, z: 1}
     - name: FootBackToe2.L
       parentName: FootBack2.L
-      position: {x: -0.008145999, y: 0.0025933918, z: 0.0000005038553}
+      position: {x: -0.000057021985, y: 0.00001815374, z: 0.0000000035269867}
       rotation: {x: -0.6755895, y: 0.73727804, z: -0.000053284744, w: -0.00004974426}
       scale: {x: 0.9999998, y: 0.9999997, z: 1}
     - name: FootBackToe2.L_end
       parentName: FootBackToe2.L
-      position: {x: -2.944671e-10, y: 0.0043147053, z: 0.0000000020539093}
+      position: {x: -2.0612696e-12, y: 0.000030202935, z: 1.4377362e-11}
       rotation: {x: 5.558221e-12, y: -0.000000008530073, z: -0.000000018626249, w: 1}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: FootBackToe3.L
       parentName: FootBack2.L
-      position: {x: -0.000000002338696, y: 0.002592356, z: -0.008145471}
+      position: {x: -1.6370872e-11, y: 0.00001814649, z: -0.000057018293}
       rotation: {x: -0.6763262, y: -0.0000015100767, z: 0.0000013926309, w: 0.7366023}
       scale: {x: 1, y: 0.9999999, z: 0.99999994}
     - name: FootBackToe3.L_end
       parentName: FootBackToe3.L
-      position: {x: -3.5815076e-10, y: 0.0043147, z: -3.08396e-10}
+      position: {x: -2.507055e-12, y: 0.000030202898, z: -2.158772e-12}
       rotation: {x: 0.00000008195635, y: 2.9778846e-11, z: -2.9842795e-13, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FootBackToe4.L
       parentName: FootBack2.L
-      position: {x: 0.008145983, y: 0.0025933324, z: 0.0000005109068}
+      position: {x: 0.00005702188, y: 0.000018153323, z: 0.0000000035763472}
       rotation: {x: 0.67559004, y: 0.7372775, z: -0.000053584245, w: 0.000049469803}
       scale: {x: 0.99999994, y: 1, z: 1}
     - name: FootBackToe4.L_end
       parentName: FootBackToe4.L
-      position: {x: -1.8244463e-11, y: 0.0043147015, z: 0.0000000058368133}
+      position: {x: -1.2771122e-13, y: 0.000030202902, z: 4.085769e-11}
       rotation: {x: -5.1993965e-12, y: 0.000000037913818, z: -0.000000035390293, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FootBackToe1.L
       parentName: FootBack2.L
-      position: {x: -0.0000000041675614, y: 0.0025943394, z: 0.008146497}
+      position: {x: -2.9172928e-11, y: 0.000018160374, z: 0.000057025467}
       rotation: {x: 0.6755443, y: -0.0000017112919, z: -0.0000017699443, w: 0.73731947}
       scale: {x: 1, y: 1, z: 1}
     - name: FootBackToe1.L_end
       parentName: FootBackToe1.L
-      position: {x: -2.3883728e-10, y: 0.004314708, z: -3.1978287e-10}
+      position: {x: -1.6718608e-12, y: 0.000030202955, z: -2.2384798e-12}
       rotation: {x: 0.000000035390286, y: 4.316547e-13, z: -1.9895198e-13, w: 1}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: FootBackPistonLower.L
       parentName: FootBack2.L
-      position: {x: 0.008890639, y: -0.0037664773, z: 0.0000012004705}
+      position: {x: 0.00006223447, y: -0.00002636534, z: 0.000000008403292}
       rotation: {x: 0.9861084, y: -0.09441135, z: 0.0111559965, w: -0.13620633}
       scale: {x: 0.99999624, y: 0.9999996, z: 0.99999994}
     - name: FootBackPistonLower.L_end
       parentName: FootBackPistonLower.L
-      position: {x: 9.313225e-11, y: 0.0043023834, z: -0.0000000014528632}
+      position: {x: 6.519257e-13, y: 0.000030116684, z: -1.0170042e-11}
       rotation: {x: -0.0000000018626451, y: 0.000000038649887, z: 0.000000098982134, w: 1}
       scale: {x: 0.99999994, y: 1, z: 1}
     - name: FootBackPistonPivotPoint.L
       parentName: LowerLegBack.L
-      position: {x: -0.005427899, y: 0.017119864, z: 0.00000001627633}
+      position: {x: -0.000037995287, y: 0.00011983903, z: 1.13934306e-10}
       rotation: {x: -0.0008314156, y: 0.0006502663, z: 0.76133335, w: 0.6483599}
       scale: {x: 0.9999998, y: 0.99999994, z: 0.99999994}
     - name: FootBackPistonUpper.L
       parentName: FootBackPistonPivotPoint.L
-      position: {x: -0.0000000017136335, y: 0.0005715777, z: -0.000000006700429}
+      position: {x: -1.19954316e-11, y: 0.0000040010436, z: -4.6903002e-11}
       rotation: {x: 0.46379203, y: 0.534452, z: 0.5208181, w: -0.47750026}
       scale: {x: 0.99999994, y: 1.0000001, z: 1}
     - name: FootBackPistonUpper.L_end
       parentName: FootBackPistonUpper.L
-      position: {x: 0.0000000074040143, y: 0.008203568, z: -1.4901161e-10}
+      position: {x: 5.1828097e-11, y: 0.00005742497, z: -1.0430812e-12}
       rotation: {x: -0.000000010244548, y: -0.000000014901161, z: -0.0000000056461427, w: 1}
       scale: {x: 0.99999994, y: 1, z: 1}
     - name: HipFront.R
       parentName: Body
-      position: {x: 0.0043316777, y: -0.00009448707, z: -0.001805591}
+      position: {x: 0.000030321738, y: -0.0000006614095, z: -0.000012639136}
       rotation: {x: -0.5, y: -0.49999997, z: 0.50000006, w: 0.5}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: HipFront1.R
       parentName: HipFront.R
-      position: {x: -2.6901395e-10, y: 0.0040480914, z: 3.454396e-10}
+      position: {x: -1.8830974e-12, y: 0.000028336635, z: 2.4180766e-12}
       rotation: {x: 0.000000021898703, y: -0.000000021898709, z: 0.000000044237826, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: HipFront2.R
       parentName: HipFront1.R
-      position: {x: 3.404974e-10, y: 0.0054613207, z: -0.004059102}
+      position: {x: 2.3834816e-12, y: 0.000038229242, z: -0.000028413711}
       rotation: {x: 0.4677756, y: -0.53026974, z: 0.46777534, w: 0.53027004}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: UpperLegFront.R
       parentName: HipFront2.R
-      position: {x: -0.0026277693, y: 0.020576367, z: -0.000000013719847}
+      position: {x: -0.000018394383, y: 0.00014403455, z: -9.603892e-11}
       rotation: {x: -0.4949546, y: 0.0000000036789645, z: -0.00000017000565, w: 0.86891884}
       scale: {x: 1, y: 0.9999998, z: 0.9999997}
     - name: LowerLegFront.R
       parentName: UpperLegFront.R
-      position: {x: 6.540745e-11, y: 0.029450916, z: -0.000000001898013}
+      position: {x: 4.5785207e-13, y: 0.00020615639, z: -1.328609e-11}
       rotation: {x: -0.15521884, y: -0.00000029796675, z: -0.0000002656911, w: 0.9878801}
       scale: {x: 1, y: 0.9999998, z: 1.0000001}
     - name: AnkleFront.R
       parentName: LowerLegFront.R
-      position: {x: -0.00022633115, y: 0.0273804, z: -0.0000000119798775}
+      position: {x: -0.0000015843178, y: 0.00019166277, z: -8.3859135e-11}
       rotation: {x: 0.000000860519, y: 0.042146754, z: 0.9991115, w: 0.000000039264716}
       scale: {x: 1, y: 1.0000001, z: 0.9999999}
     - name: FootFront1.R
       parentName: AnkleFront.R
-      position: {x: 0.0000000037473487, y: -0.0014256958, z: 0.000000004524532}
+      position: {x: 2.6231437e-11, y: -0.00000997987, z: 3.1671724e-11}
       rotation: {x: 1, y: 0.00000053739865, z: -0.000000572731, w: 0.000024036566}
       scale: {x: 1, y: 0.99999994, z: 1.0000001}
     - name: FootFront2.R
       parentName: FootFront1.R
-      position: {x: 0.000000001541691, y: 0.006556894, z: 0.00000008427482}
+      position: {x: 1.0791836e-11, y: 0.000045898254, z: 5.899237e-10}
       rotation: {x: 0.000005706544, y: -0.000000025442361, z: 0.00000023664141, w: 1}
       scale: {x: 0.9999999, y: 0.99999994, z: 0.9999999}
     - name: FootFrontToe2.R
       parentName: FootFront2.R
-      position: {x: 0.008145997, y: 0.0025933809, z: -0.00000006819106}
+      position: {x: 0.000057021974, y: 0.000018153663, z: -4.773374e-10}
       rotation: {x: 0.6755901, y: 0.73727745, z: 0.000012875283, w: -0.000013366101}
       scale: {x: 1.0000001, y: 1, z: 1.0000001}
     - name: FootFrontToe2.R_end
       parentName: FootFrontToe2.R
-      position: {x: -4.16685e-11, y: 0.004314707, z: 0.0000000023632651}
+      position: {x: -2.916795e-13, y: 0.000030202948, z: 1.6542852e-11}
       rotation: {x: 2.2986058e-12, y: -0.000000044363155, z: -0.000000026076918, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FootFrontToe3.R
       parentName: FootFront2.R
-      position: {x: -7.808995e-10, y: 0.0025932523, z: 0.008145916}
+      position: {x: -5.4662963e-12, y: 0.000018152765, z: 0.0000570214}
       rotation: {x: 0.6755949, y: 0.00000033482735, z: 0.0000001194249, w: 0.7372731}
       scale: {x: 1.0000001, y: 0.99999994, z: 1}
     - name: FootFrontToe3.R_end
       parentName: FootFrontToe3.R
-      position: {x: -4.282067e-10, y: 0.0043147, z: 2.5901272e-11}
+      position: {x: -2.9974463e-12, y: 0.000030202898, z: 1.8130888e-13}
       rotation: {x: 0.000000022351735, y: -8.7041485e-14, z: 1.7763568e-15, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FootFrontToe4.R
       parentName: FootFront2.R
-      position: {x: -0.00814599, y: 0.0025933476, z: -0.00000007016556}
+      position: {x: -0.000057021927, y: 0.00001815343, z: -4.9115884e-10}
       rotation: {x: -0.6755894, y: 0.7372781, z: 0.000013343356, w: 0.000013098881}
       scale: {x: 1, y: 1, z: 1.0000001}
     - name: FootFrontToe4.R_end
       parentName: FootFrontToe4.R
-      position: {x: 2.9492637e-11, y: 0.0043147015, z: 0.0000000028548433}
+      position: {x: 2.0644847e-13, y: 0.000030202902, z: 1.9983898e-11}
       rotation: {x: -8.6153307e-13, y: 0.000000027587419, z: -0.00000005401673, w: 1}
       scale: {x: 1, y: 0.99999994, z: 1.0000001}
     - name: FootFrontToe1.R
       parentName: FootFront2.R
-      position: {x: -5.375568e-10, y: 0.0025934502, z: -0.008146048}
+      position: {x: -3.7628967e-12, y: 0.00001815415, z: -0.000057022324}
       rotation: {x: -0.6755846, y: -0.0000013980838, z: 0.000001468477, w: 0.73728245}
       scale: {x: 1.0000001, y: 1, z: 1}
     - name: FootFrontToe1.R_end
       parentName: FootFrontToe1.R
-      position: {x: -3.5037884e-10, y: 0.0043146983, z: -6.179789e-10}
+      position: {x: -2.4526516e-12, y: 0.000030202888, z: -4.3258517e-12}
       rotation: {x: 0.000000007450544, y: 2.8169467e-11, z: -1.8474111e-13, w: 1}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: FootFrontPistonLower.R
       parentName: FootFront2.R
-      position: {x: -0.008890657, y: -0.0037664627, z: -0.00000006088083}
+      position: {x: -0.00006223459, y: -0.000026365235, z: -4.2616582e-10}
       rotation: {x: 0.99554235, y: 0.090584256, z: 0.0021069015, w: 0.026183333}
       scale: {x: 0.9999986, y: 1, z: 1.0000001}
     - name: FootFrontPistonLower.R_end
       parentName: FootFrontPistonLower.R
-      position: {x: -1.816079e-10, y: 0.00430238, z: -0.0000000031292438}
+      position: {x: -1.2712552e-12, y: 0.000030116658, z: -2.1904705e-11}
       rotation: {x: 0.0000000011059456, y: -0.000000055049895, z: 0.000000023972461, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FootFrontPistonPivotPoint.R
       parentName: LowerLegFront.R
-      position: {x: 0.0054278993, y: 0.017119858, z: -0.000000012012517}
+      position: {x: 0.00003799529, y: 0.00011983898, z: -8.408761e-11}
       rotation: {x: -0.00077468, y: -0.0007170774, z: -0.7613329, w: 0.6483603}
       scale: {x: 1.0000001, y: 1, z: 0.99999976}
     - name: FootFrontPistonUpper.R
       parentName: FootFrontPistonPivotPoint.R
-      position: {x: 7.4505804e-11, y: 0.0005715773, z: 3.0893715e-10}
+      position: {x: 5.215406e-13, y: 0.0000040010405, z: 2.16256e-12}
       rotation: {x: -0.5000277, y: 0.49996135, z: 0.4906997, w: 0.50914115}
       scale: {x: 0.9999999, y: 0.99999994, z: 1}
     - name: FootFrontPistonUpper.R_end
       parentName: FootFrontPistonUpper.R
-      position: {x: 0.0000000019290018, y: 0.008203565, z: -5.587935e-10}
+      position: {x: 1.3503011e-11, y: 0.000057424953, z: -3.9115542e-12}
       rotation: {x: 0.000000028740029, y: -0.000000040861778, z: -0.00000043631005, w: 1}
       scale: {x: 1, y: 1.0000001, z: 1.0000001}
     - name: HipBack.R
       parentName: Body
-      position: {x: 0.0043316777, y: 0.014247188, z: -0.0018055914}
+      position: {x: 0.000030321738, y: 0.000099730314, z: -0.000012639138}
       rotation: {x: -0.5, y: -0.49999997, z: 0.50000006, w: 0.5}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: HipBack1.R
       parentName: HipBack.R
-      position: {x: -4.1802556e-10, y: 0.004048092, z: 5.3413635e-10}
+      position: {x: -2.9261788e-12, y: 0.000028336637, z: 3.738954e-12}
       rotation: {x: 0.1360834, y: 0.024663571, z: 0.4456994, w: 0.88443494}
       scale: {x: 1, y: 1, z: 1}
     - name: HipBack2.R
       parentName: HipBack1.R
-      position: {x: -3.2031957e-11, y: 0.005461323, z: -0.004059103}
+      position: {x: -2.2422366e-13, y: 0.00003822926, z: -0.000028413717}
       rotation: {x: 0.45524967, y: 0.5410617, z: -0.45524964, w: 0.5410617}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: UpperLegBack.R
       parentName: HipBack2.R
-      position: {x: 0.0026277744, y: 0.020576367, z: 0.000000007859112}
+      position: {x: 0.00001839442, y: 0.00014403455, z: 5.5013778e-11}
       rotation: {x: -0.087884374, y: -0.93549395, z: 0.32830867, w: -0.09664823}
       scale: {x: 1, y: 0.9999994, z: 0.9999996}
     - name: LowerLegBack.R
       parentName: UpperLegBack.R
-      position: {x: -4.652091e-10, y: 0.02945091, z: -9.918932e-10}
+      position: {x: -3.256463e-12, y: 0.00020615636, z: -6.943253e-12}
       rotation: {x: -0.07057103, y: -0.00000028648404, z: -0.0000002658034, w: 0.9975068}
       scale: {x: 1, y: 0.99999994, z: 1.0000002}
     - name: AnkleBack.R
       parentName: LowerLegBack.R
-      position: {x: -0.00022633417, y: 0.027380414, z: 0.000000004187834}
+      position: {x: -0.0000015843391, y: 0.00019166288, z: 2.9314835e-11}
       rotation: {x: 0.0017230959, y: 0.02748073, z: 0.9995616, w: -0.010884632}
       scale: {x: 1, y: 1, z: 1.0000001}
     - name: FootBack1.R
       parentName: AnkleBack.R
-      position: {x: 0.0000000035499426, y: -0.0014256948, z: -0.000000007801695}
+      position: {x: 2.4849596e-11, y: -0.0000099798635, z: -5.4611864e-11}
       rotation: {x: 1, y: 0.00000047525208, z: -0.00000036817414, w: -0.000024155774}
       scale: {x: 1, y: 0.9999998, z: 0.9999999}
     - name: FootBack1.R_end
       parentName: FootBack1.R
-      position: {x: -6.498924e-10, y: 0.003958359, z: -4.465574e-10}
+      position: {x: -4.5492473e-12, y: 0.000027708511, z: -3.1259017e-12}
       rotation: {x: -0.000012098924, y: -0.000000059429333, z: 0.00000026290536, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FootBack2.R
       parentName: AnkleBack.R
-      position: {x: 0.0000000061128773, y: -0.007982596, z: 0.00000015369746}
+      position: {x: 4.2790133e-11, y: -0.00005587816, z: 0.0000000010758822}
       rotation: {x: 1, y: 0.0000010694639, z: -0.00000055233505, w: -0.00007327}
       scale: {x: 1, y: 1, z: 1}
     - name: FootBackToe2.R
       parentName: FootBack2.R
-      position: {x: 0.008146002, y: 0.002593392, z: 0.0000005190824}
+      position: {x: 0.000057022007, y: 0.000018153742, z: 0.0000000036335768}
       rotation: {x: 0.6755895, y: 0.73727804, z: -0.00005327751, w: 0.000049750888}
       scale: {x: 0.99999994, y: 0.9999997, z: 1}
     - name: FootBackToe2.R_end
       parentName: FootBackToe2.R
-      position: {x: 1.4965848e-10, y: 0.004314704, z: 0.0000000013564141}
+      position: {x: 1.0476093e-12, y: 0.000030202926, z: 9.494897e-12}
       rotation: {x: 5.6079585e-12, y: 0.000000008530094, z: 0.000000026077226, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FootBackToe3.R
       parentName: FootBack2.R
-      position: {x: 0.000000003928922, y: 0.002592356, z: -0.008145464}
+      position: {x: 2.7502452e-11, y: 0.00001814649, z: -0.00005701824}
       rotation: {x: -0.6756353, y: 0.0000015087704, z: -0.0000013940461, w: 0.737236}
       scale: {x: 1, y: 0.99999994, z: 0.9999999}
     - name: FootBackToe3.R_end
       parentName: FootBackToe3.R
-      position: {x: -0.0000000013603941, y: 0.0043147043, z: -6.552e-11}
+      position: {x: -9.5227584e-12, y: 0.000030202928, z: -4.5863996e-13}
       rotation: {x: 0.000000083818996, y: -2.9706793e-11, z: 2.8599345e-13, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FootBackToe4.R
       parentName: FootBack2.R
-      position: {x: -0.0081459815, y: 0.0025933327, z: 0.0000005191249}
+      position: {x: -0.000057021865, y: 0.000018153327, z: 0.0000000036338739}
       rotation: {x: -0.67559004, y: 0.7372775, z: -0.00005357706, w: -0.000049476388}
       scale: {x: 1, y: 1, z: 1}
     - name: FootBackToe4.R_end
       parentName: FootBackToe4.R
-      position: {x: -6.223786e-12, y: 0.0043147025, z: 4.1939102e-10}
+      position: {x: -4.35665e-14, y: 0.00003020291, z: 2.9357367e-12}
       rotation: {x: -5.2384763e-12, y: -0.000000037913843, z: 0.00000003352747, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FootBackToe1.R
       parentName: FootBack2.R
-      position: {x: 0.0000000070936648, y: 0.00259434, z: 0.008146502}
+      position: {x: 4.9655648e-11, y: 0.00001816038, z: 0.000057025507}
       rotation: {x: 0.6755443, y: 0.0000017112917, z: 0.0000017699446, w: 0.73731947}
       scale: {x: 1, y: 1, z: 1.0000001}
     - name: FootBackToe1.R_end
       parentName: FootBackToe1.R
-      position: {x: -2.9809924e-10, y: 0.0043147085, z: 5.5438248e-11}
+      position: {x: -2.0866945e-12, y: 0.00003020296, z: 3.8806767e-13}
       rotation: {x: 0.00000003352764, y: -4.405365e-13, z: 1.7053027e-13, w: 1}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: FootBackPistonLower.R
       parentName: FootBack2.R
-      position: {x: -0.008890638, y: -0.0037664778, z: 0.000001211781}
+      position: {x: -0.00006223446, y: -0.00002636534, z: 0.000000008482466}
       rotation: {x: 0.992533, y: 0.09193467, z: 0.0065547526, w: 0.07989525}
       scale: {x: 0.9999963, y: 0.99999976, z: 1}
     - name: FootBackPistonLower.R_end
       parentName: FootBackPistonLower.R
-      position: {x: 2.188608e-10, y: 0.0043023825, z: -8.1956386e-10}
+      position: {x: 1.5320256e-12, y: 0.000030116676, z: -5.736947e-12}
       rotation: {x: -0.0000000023283067, y: -0.00000003832975, z: -0.00000009455108, w: 1}
       scale: {x: 0.99999994, y: 0.99999994, z: 0.9999999}
     - name: FootBackPistonPivotPoint.R
       parentName: LowerLegBack.R
-      position: {x: 0.005427899, y: 0.017119871, z: 0.000000009665656}
+      position: {x: 0.000037995287, y: 0.00011983908, z: 6.765958e-11}
       rotation: {x: -0.00083139975, y: -0.0006502545, z: -0.76133335, w: 0.6483599}
       scale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
     - name: FootBackPistonUpper.R
       parentName: FootBackPistonPivotPoint.R
-      position: {x: -7.4505804e-11, y: 0.00057157816, z: -0.0000000012833333}
+      position: {x: -5.215406e-13, y: 0.000004001047, z: -8.983332e-12}
       rotation: {x: -0.5090658, y: 0.49030504, z: 0.47743937, w: 0.5220198}
       scale: {x: 1.0000001, y: 0.99999994, z: 1}
     - name: FootBackPistonUpper.R_end
       parentName: FootBackPistonUpper.R
-      position: {x: -2.3515895e-10, y: 0.008203567, z: -2.2351741e-10}
+      position: {x: -1.6461126e-12, y: 0.000057424957, z: -1.5646218e-12}
       rotation: {x: -0.000000017345883, y: 0.00000001071021, z: 0.0000000091968095, w: 1}
       scale: {x: 1, y: 1.0000001, z: 1}
     - name: FrontLeg_IK.L
       parentName: Root
-      position: {x: -0.01101855, y: -0.013668832, z: 0.019790828}
+      position: {x: -0.00007712984, y: -0.000095681826, z: 0.00013853578}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FrontLeg_IK.L_end
       parentName: FrontLeg_IK.L
-      position: {x: -0, y: 0.021702036, z: 0}
+      position: {x: -0, y: 0.00015191424, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: KneeFront_IK.L
       parentName: Root
-      position: {x: -0.01101855, y: -0.0361769, z: 0.019790828}
+      position: {x: -0.00007712984, y: -0.00025323825, z: 0.00013853578}
       rotation: {x: 0, y: 0, z: 1, w: 0.0000000754979}
       scale: {x: 1, y: 1, z: 1}
     - name: KneeFront_IK.L_end
       parentName: KneeFront_IK.L
-      position: {x: 8.377475e-10, y: 0.0087842, z: 0}
+      position: {x: 5.864232e-12, y: 0.000061489394, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: BackLeg_IK.L
       parentName: Root
-      position: {x: -0.01101855, y: 0.04023205, z: 0.019731624}
+      position: {x: -0.00007712984, y: 0.00028162438, z: 0.00013812137}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: BackLeg_IK.L_end
       parentName: BackLeg_IK.L
-      position: {x: -0, y: 0.022587514, z: 0}
+      position: {x: -0, y: 0.00015811258, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: KneeBack_IK.L
       parentName: Root
-      position: {x: -0.01101855, y: 0.019269895, z: 0.019731624}
+      position: {x: -0.00007712984, y: 0.00013488924, z: 0.00013812137}
       rotation: {x: 0, y: 0, z: 1, w: 0.0000000754979}
       scale: {x: 1, y: 1, z: 1}
     - name: KneeBack_IK.L_end
       parentName: KneeBack_IK.L
-      position: {x: 9.136373e-10, y: 0.008784198, z: 0}
+      position: {x: 6.3954597e-12, y: 0.00006148939, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: FrontLeg_IK.R
       parentName: Root
-      position: {x: 0.01101855, y: -0.040193737, z: 0.020325128}
+      position: {x: 0.00007712984, y: -0.00028135613, z: 0.0001422759}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FrontLeg_IK.R_end
       parentName: FrontLeg_IK.R
-      position: {x: -0, y: 0.021702036, z: 0}
+      position: {x: -0, y: 0.00015191424, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: KneeFront_IK.R
       parentName: Root
-      position: {x: 0.01101855, y: -0.06263846, z: 0.020325128}
+      position: {x: 0.00007712984, y: -0.00043846917, z: 0.0001422759}
       rotation: {x: 0, y: 0, z: 1, w: 0.0000000754979}
       scale: {x: 1, y: 1, z: 1}
     - name: KneeFront_IK.R_end
       parentName: KneeFront_IK.R
-      position: {x: 8.9578805e-10, y: 0.008784197, z: 0}
+      position: {x: 6.2705162e-12, y: 0.00006148937, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: BackLeg_IK.R
       parentName: Root
-      position: {x: 0.01101855, y: 0.013323166, z: 0.020200493}
+      position: {x: 0.00007712984, y: 0.00009326216, z: 0.00014140342}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: BackLeg_IK.R_end
       parentName: BackLeg_IK.R
-      position: {x: -0, y: 0.022587514, z: 0}
+      position: {x: -0, y: 0.00015811258, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: KneeBack_IK.R
       parentName: Root
-      position: {x: 0.01101855, y: -0.007592873, z: 0.020200493}
+      position: {x: 0.00007712984, y: -0.000053150103, z: 0.00014140342}
       rotation: {x: 0, y: 0, z: 1, w: 0.0000000754979}
       scale: {x: 1, y: 1, z: 1}
     - name: KneeBack_IK.R_end
       parentName: KneeBack_IK.R
-      position: {x: 9.518697e-10, y: 0.008784198, z: 0}
+      position: {x: 6.663087e-12, y: 0.00006148939, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: Greeble_Mirrored
@@ -736,7 +736,7 @@ ModelImporter:
       scale: {x: 100, y: 100, z: 100}
     - name: RearDetail
       parentName: AT-AT(Clone)
-      position: {x: -0, y: -0.13640581, z: -0.1424136}
+      position: {x: -0, y: -0.00095484057, z: -0.000996895}
       rotation: {x: -0.7009093, y: 0.000000031177166, z: 0.00000003063772, w: 0.7132504}
       scale: {x: 100, y: 100, z: 100}
     - name: LightCannons
@@ -791,7 +791,7 @@ ModelImporter:
       scale: {x: 100, y: 100, z: 100}
     - name: Rear
       parentName: AT-AT(Clone)
-      position: {x: -0, y: -0.13640581, z: -0.1424136}
+      position: {x: -0, y: -0.00095484057, z: -0.000996895}
       rotation: {x: -0.7009093, y: 0.000000031177166, z: 0.00000003063772, w: 0.7132504}
       scale: {x: 100, y: 100, z: 100}
     - name: NeckCollar
@@ -816,7 +816,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.5
+    globalScale: 0.0034999999
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 1
