@@ -1,19 +1,15 @@
 using UnityEngine;
 
-public class WalkingEnemyFactory : MonoBehaviour, EnemyFactory
+public class WalkingEnemyFactory : EnemyFactory
 {
     [SerializeField] private WalkingEnemy walkingEnemy;
-    public void Start()
-    {
-        CreateEnemy();
-    }
-    public Enemy CreateEnemy()
+    public override Enemy CreateEnemy()
     {
         Notify();
         GameObject instance = Instantiate(walkingEnemy.gameObject);
         return instance.GetComponent<WalkingEnemy>();
     }
-    public void Notify()
+    public override void Notify()
     {
         Debug.Log("Walking enemy created!");
     }

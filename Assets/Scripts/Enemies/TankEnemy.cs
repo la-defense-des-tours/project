@@ -7,7 +7,14 @@ public class TankEnemy : MonoBehaviour, Enemy
 
     public void Awake()
     {
-        agent = gameObject.AddComponent<NavMeshAgent>();
+        if (gameObject.GetComponent<NavMeshAgent>() == null)
+        {
+            agent = gameObject.AddComponent<NavMeshAgent>();
+        }
+        else
+        {
+            agent = gameObject.GetComponent<NavMeshAgent>();
+        }
         agent.speed = 2;
         agent.acceleration = 4;
     }

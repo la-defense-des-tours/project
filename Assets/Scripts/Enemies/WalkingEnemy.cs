@@ -8,7 +8,14 @@ public class WalkingEnemy : MonoBehaviour, Enemy
     
     public void Awake()
     {
-        agent = gameObject.GetComponent<NavMeshAgent>();
+        if (gameObject.GetComponent<NavMeshAgent>() == null)
+        {
+            agent = gameObject.AddComponent<NavMeshAgent>();
+        }
+        else
+        {
+            agent = gameObject.GetComponent<NavMeshAgent>();
+        }
         agent.speed = 4;
         agent.acceleration = 8;
     }

@@ -7,7 +7,14 @@ public class FlyingEnemy : MonoBehaviour, Enemy
 
     public void Awake()
     {
-        agent = gameObject.GetComponent<NavMeshAgent>();
+        if (gameObject.GetComponent<NavMeshAgent>() == null)
+        {
+            agent = gameObject.AddComponent<NavMeshAgent>();
+        }
+        else
+        {
+            agent = gameObject.GetComponent<NavMeshAgent>();
+        }
         agent.speed = 6;
         agent.acceleration = 12;
     }
