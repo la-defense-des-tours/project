@@ -17,7 +17,12 @@ public class EnemyManager : MonoBehaviour
     public void SpawnEnemy()
     {
         walkingEnemy = walkingEnemyFactory.CreateEnemy();
+        flyingEnemy = flyingEnemyFactory.CreateEnemy();
+        tankEnemy = tankEnemyFactory.CreateEnemy();
+
         walkingEnemy.Move(target.position);
+        flyingEnemy.Move(target.position);
+        tankEnemy.Move(target.position);
     }
 
     public void Update()
@@ -25,7 +30,12 @@ public class EnemyManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Enemy walkingClone = walkingEnemy.Clone();
+            Enemy flyingClone = flyingEnemy.Clone();
+            Enemy tankClone = tankEnemy.Clone();
+
             walkingClone.Move(target.position);
+            flyingClone.Move(target.position);
+            tankClone.Move(target.position);
         }
     }
 }

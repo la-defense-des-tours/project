@@ -514,7 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5f65ea5912d14d4f955060302b6eaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tankEnemy: {fileID: -8616048330536252923, guid: b8c97be805766c946bb58bbc4babb7c6, type: 3}
+  tankEnemy: {fileID: 2171581326271498670, guid: 6eec3aef036bb3743a3ab1e0c9140bf3, type: 3}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
