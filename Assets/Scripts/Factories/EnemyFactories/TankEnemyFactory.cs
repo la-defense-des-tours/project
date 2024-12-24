@@ -3,6 +3,7 @@ using UnityEngine;
 public class TankEnemyFactory : EnemyFactory
 {
     [SerializeField] private TankEnemy tankEnemy;
+    
     public override Enemy CreateEnemy()
     {
         Notify();
@@ -11,6 +12,6 @@ public class TankEnemyFactory : EnemyFactory
     }
     public override void Notify()
     {
-        Debug.Log("Flying enemy created!");
+        Debug.Log("Tank enemy created!");
     }
 }

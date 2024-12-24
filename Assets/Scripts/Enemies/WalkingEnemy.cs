@@ -5,8 +5,8 @@ public class WalkingEnemy : MonoBehaviour, Enemy
 {
     private NavMeshAgent agent;
     private float health = 200f;
-    private float speed = 4f;
-    private float acceleration = 8f;
+    private float speed = 3f;
+    private float acceleration = 6f;
 
     public void Awake()
     {

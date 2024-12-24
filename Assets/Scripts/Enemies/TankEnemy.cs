@@ -5,8 +5,8 @@ public class TankEnemy : MonoBehaviour, Enemy
 {
     private NavMeshAgent agent;
     private float health = 350;
-    private float speed = 2;
-    private float acceleration = 4;
+    private float speed = 1.5f;
+    private float acceleration = 2.5f;
 
     public void Awake()
     {
