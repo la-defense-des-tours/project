@@ -6,7 +6,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
 {
     public class CanonTower : Tower
     {
-        internal GameObject gameObject;
         public float areaOfEffect { get; set; }
         public override void Upgrade()
         {

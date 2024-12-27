@@ -6,7 +6,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
 {
     public class MachineGunTower : Tower
     {
-        internal GameObject gameObject;
         public float attackPerSecond { get; set; }
         public override void Upgrade()
         {

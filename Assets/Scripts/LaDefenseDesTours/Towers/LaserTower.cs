@@ -6,8 +6,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
 {
     public class LaserTower : Tower
     {
-        internal GameObject gameObject;
-
         public float damageOverTime { get; set; }
         public override void Upgrade()
         {

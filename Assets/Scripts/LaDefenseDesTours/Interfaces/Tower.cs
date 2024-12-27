@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
-    public abstract class Tower
+    public abstract class Tower : MonoBehaviour
     {
         public int level { get; set; }
         public float health { get; set; }
