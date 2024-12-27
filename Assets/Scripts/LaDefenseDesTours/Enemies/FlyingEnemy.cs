@@ -10,7 +10,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
 
         public void Awake()
         {
-            agent = gameObject.AddComponent<NavMeshAgent>();
+            agent = gameObject.GetComponent<NavMeshAgent>();
             agent.speed = 6;
             agent.acceleration = 12;
         }
