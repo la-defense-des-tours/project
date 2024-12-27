@@ -5,12 +5,14 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
 {
     public class FlyingEnemyFactory : EnemyFactory
     {
-        public Enemy CreateEnemy()
+        [SerializeField] private FlyingEnemy flyingEnemy;
+        public override Enemy CreateEnemy()
         {
             Notify();
-            return new FlyingEnemy();
+            GameObject instance = Instantiate(flyingEnemy.gameObject);
+            return instance.GetComponent<FlyingEnemy>();
         }
-        public void Notify()
+        public override void Notify()
         {
             Debug.Log("Flying enemy created!");
         }

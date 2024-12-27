@@ -3,16 +3,19 @@ using Assets.Scripts.LaDefenseDesTours.Interfaces;
 
 namespace Assets.Scripts.LaDefenseDesTours.Enemies
 {
-    public class TankEnemyFactory : MonoBehaviour, EnemyFactory
+    public class TankEnemyFactory : EnemyFactory
     {
-        public Enemy CreateEnemy()
+        [SerializeField] private TankEnemy tankEnemy;
+
+        public override Enemy CreateEnemy()
         {
             Notify();
-            return new TankEnemy();
+            GameObject instance = Instantiate(tankEnemy.gameObject);
+            return instance.GetComponent<TankEnemy>();
         }
-        public void Notify()
+        public override void Notify()
         {
-            Debug.Log("Flying enemy created!");
+            Debug.Log("Tank enemy created!");
         }
     }
 }

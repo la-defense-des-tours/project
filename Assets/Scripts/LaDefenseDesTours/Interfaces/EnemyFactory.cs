@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.LaDefenseDesTours.Interfaces {
 
-    public interface EnemyFactory
+    public abstract class EnemyFactory : MonoBehaviour
     {
         public abstract Enemy CreateEnemy();
         public abstract void Notify();

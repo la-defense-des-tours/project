@@ -1,41 +1,45 @@
+using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour
-{
-    [SerializeField] private EnemyFactory walkingEnemyFactory;
-    [SerializeField] private EnemyFactory flyingEnemyFactory;
-    [SerializeField] private EnemyFactory tankEnemyFactory;
-    [SerializeField] private Transform target;
-    private Enemy walkingEnemy;
-    private Enemy flyingEnemy;
-    private Enemy tankEnemy;
 
-    public void Start()
+namespace Assets.Scripts.LaDefenseDesTours.Enemies { 
+    public class EnemyManager : MonoBehaviour
     {
-        SpawnEnemy();
-    }
-    public void SpawnEnemy()
-    {
-        walkingEnemy = walkingEnemyFactory.CreateEnemy();
-        flyingEnemy = flyingEnemyFactory.CreateEnemy();
-        tankEnemy = tankEnemyFactory.CreateEnemy();
+        [SerializeField] private EnemyFactory walkingEnemyFactory;
+        [SerializeField] private EnemyFactory flyingEnemyFactory;
+        [SerializeField] private EnemyFactory tankEnemyFactory;
+        [SerializeField] private Transform target;
+        private Enemy walkingEnemy;
+        private Enemy flyingEnemy;
+        private Enemy tankEnemy;
 
-        walkingEnemy.Move(target.position);
-        flyingEnemy.Move(target.position);
-        tankEnemy.Move(target.position);
-    }
-
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+        public void Start()
         {
-            Enemy walkingClone = walkingEnemy.Clone();
-            Enemy flyingClone = flyingEnemy.Clone();
-            Enemy tankClone = tankEnemy.Clone();
+            SpawnEnemy();
+        }
+        public void SpawnEnemy()
+        {
+            walkingEnemy = walkingEnemyFactory.CreateEnemy();
+            flyingEnemy = flyingEnemyFactory.CreateEnemy();
+            tankEnemy = tankEnemyFactory.CreateEnemy();
 
-            walkingClone.Move(target.position);
-            flyingClone.Move(target.position);
-            tankClone.Move(target.position);
+            walkingEnemy.Move(target.position);
+            flyingEnemy.Move(target.position);
+            tankEnemy.Move(target.position);
+        }
+
+        public void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Enemy walkingClone = walkingEnemy.Clone();
+                Enemy flyingClone = flyingEnemy.Clone();
+                Enemy tankClone = tankEnemy.Clone();
+
+                walkingClone.Move(target.position);
+                flyingClone.Move(target.position);
+                tankClone.Move(target.position);
+            }
         }
     }
 }
