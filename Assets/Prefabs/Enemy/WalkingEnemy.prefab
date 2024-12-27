@@ -1295,7 +1295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5695175603747775041}
   m_Layer: 0
-  m_Name: trooper
+  m_Name: Stormtrooper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2282,7 +2282,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: f7a88efa49bea5146b6a1df362126332, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
