@@ -2,16 +2,19 @@ using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using UnityEngine;
 
 
-namespace Assets.Scripts.LaDefenseDesTours.Enemies { 
+namespace Assets.Scripts.LaDefenseDesTours.Enemies 
+{ 
     public class EnemyManager : MonoBehaviour
     {
         [SerializeField] private EnemyFactory walkingEnemyFactory;
         [SerializeField] private EnemyFactory flyingEnemyFactory;
         [SerializeField] private EnemyFactory tankEnemyFactory;
+        [SerializeField] private EnemyFactory bossEnemyFactory;
         [SerializeField] private Transform target;
         private Enemy walkingEnemy;
         private Enemy flyingEnemy;
         private Enemy tankEnemy;
+        private Enemy bossEnemy;
 
         public void Start()
         {
@@ -22,10 +25,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies {
             walkingEnemy = walkingEnemyFactory.CreateEnemy();
             flyingEnemy = flyingEnemyFactory.CreateEnemy();
             tankEnemy = tankEnemyFactory.CreateEnemy();
+            bossEnemy = bossEnemyFactory.CreateEnemy();
 
             walkingEnemy.Move(target.position);
             flyingEnemy.Move(target.position);
             tankEnemy.Move(target.position);
+            bossEnemy.Move(target.position);
         }
 
         public void Update()
@@ -35,10 +40,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies {
                 Enemy walkingClone = walkingEnemy.Clone();
                 Enemy flyingClone = flyingEnemy.Clone();
                 Enemy tankClone = tankEnemy.Clone();
+                Enemy bossClone = bossEnemy.Clone();
 
                 walkingClone.Move(target.position);
                 flyingClone.Move(target.position);
                 tankClone.Move(target.position);
+                bossClone.Move(target.position);
             }
         }
     }
