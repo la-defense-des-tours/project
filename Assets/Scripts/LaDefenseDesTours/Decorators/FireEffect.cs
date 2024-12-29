@@ -6,15 +6,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
     {
         public FireEffect(Tower tower) : base(tower) { }
 
-        public override void Attack()
+        public new void Attack()
         {
             base.Attack();
             Debug.Log("Fire effect is attacking");
-        }
-
-        public override void Upgrade()
-        {
-            tower.Upgrade();
         }
     }
 }
