@@ -16,7 +16,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             this.tower = tower;
         }
 
-        public override void Attack()
+        public void Attack()
         {
             if (tower != null)
             {
@@ -26,6 +26,21 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             {
                 Debug.Log("No tower to attack");
             }
+        }
+
+        public void Upgrade()
+        {
+            Debug.Log("Upgrading tower");
+        }
+
+        public void SetupNavMeshAgent()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Tower Clone()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

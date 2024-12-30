@@ -2,12 +2,12 @@ using UnityEngine;
 
 namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
-    public abstract class Tower
+    public interface Tower
     {
-        public int level { get; set; }
-        public float health { get; set; }
-        public int price { get; set; }
-        public abstract void Upgrade();
-        public abstract void Attack();
+        public void SetupNavMeshAgent();
+        // public void Move(Vector3 destination);
+        public Tower Clone();
+        public void Upgrade();
+        public void Attack();
     }
 }

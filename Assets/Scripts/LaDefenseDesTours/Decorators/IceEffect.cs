@@ -6,14 +6,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
     {
         public IceEffect(Tower tower) : base(tower) { }
 
-        public override void Attack()
+        public new void Attack()
         {
             base.Attack();
             Debug.Log("Ice effect is attacking");
-        }
-        public override void Upgrade()
-        {
-            tower.Upgrade();
         }
     }
 }

@@ -6,14 +6,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
     {
         public LightningEffect(Tower tower) : base(tower) { }
 
-        public override void Attack()
+        public new void Attack()
         {
             base.Attack();
             Debug.Log("Lightning effect is attacking");
-        }
-        public override void Upgrade()
-        {
-            tower.Upgrade();
         }
     }
 }
