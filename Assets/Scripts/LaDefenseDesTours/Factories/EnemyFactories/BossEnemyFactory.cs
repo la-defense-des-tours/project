@@ -1,18 +1,21 @@
 ﻿using UnityEngine;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Enemies;
 
-
-public class BossEnemyFactory : EnemyFactory
+namespace Assets.Scripts.LaDefenseDesTours.Factories
 {
-    [SerializeField] private BossEnemy bossEnemy;
-    public override Enemy CreateEnemy()
+    public class BossEnemyFactory : EnemyFactory
     {
-        Notify();
-        GameObject instance = Instantiate(bossEnemy.gameObject);
-        return instance.GetComponent<BossEnemy>();
-    }
-    public override void Notify()
-    {
-        Debug.Log("Boss enemy created!");
+        [SerializeField] private BossEnemy bossEnemy;
+        public override Enemy CreateEnemy()
+        {
+            Notify();
+            GameObject instance = Instantiate(bossEnemy.gameObject);
+            return instance.GetComponent<BossEnemy>();
+        }
+        public override void Notify()
+        {
+            Debug.Log("Boss enemy created!");
+        }
     }
 }

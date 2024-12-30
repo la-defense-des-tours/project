@@ -2,57 +2,60 @@
 using UnityEngine.AI;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
 
-public class BossEnemy : MonoBehaviour, Enemy
+namespace Assets.Scripts.LaDefenseDesTours.Enemies
 {
-    private NavMeshAgent agent;
-    private float health = 1000;
-    private float speed = 1;
-    private float acceleration = 3;
-
-    // TODO: implement attack behavior of the boss enemy
-
-    public void Awake()
+    public class BossEnemy : MonoBehaviour, Enemy
     {
-        SetupNavMeshAgent();
-    }
+        private NavMeshAgent agent;
+        private float health = 1000;
+        private float speed = 1;
+        private float acceleration = 3;
 
-    public void SetupNavMeshAgent()
-    {
-        if (gameObject.GetComponent<NavMeshAgent>() == null)
+        // TODO: implement attack behavior of the boss enemy
+
+        public void Awake()
         {
-            agent = gameObject.AddComponent<NavMeshAgent>();
+            SetupNavMeshAgent();
         }
-        else
+
+        public void SetupNavMeshAgent()
         {
-            agent = gameObject.GetComponent<NavMeshAgent>();
+            if (gameObject.GetComponent<NavMeshAgent>() == null)
+            {
+                agent = gameObject.AddComponent<NavMeshAgent>();
+            }
+            else
+            {
+                agent = gameObject.GetComponent<NavMeshAgent>();
+            }
+            agent.speed = speed;
+            agent.acceleration = acceleration;
         }
-        agent.speed = speed;
-        agent.acceleration = acceleration;
-    }
 
-    public void Move(Vector3 destination)
-    {
-        agent.SetDestination(destination);
-    }
-
-    public Enemy Clone()
-    {
-        Enemy clone = Instantiate(this, Vector3.zero, Quaternion.identity);
-        clone.SetupNavMeshAgent();
-        return clone;
-    }
-
-    public void TakeDamage(float damage)
-    {
-        health -= damage;
-        if (health <= 0)
+        public void Move(Vector3 destination)
         {
-            Die();
+            agent.SetDestination(destination);
         }
-    }
 
-    public void Die()
-    {
-        Destroy(gameObject);
+        public Enemy Clone()
+        {
+            Enemy clone = Instantiate(this, Vector3.zero, Quaternion.identity);
+            clone.SetupNavMeshAgent();
+            return clone;
+        }
+
+        public void TakeDamage(float damage)
+        {
+            health -= damage;
+            if (health <= 0)
+            {
+                Die();
+            }
+        }
+
+        public void Die()
+        {
+            Destroy(gameObject);
+        }
     }
 }
