@@ -187,7 +187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8aeb65765c0b2c8469f0e1dd9024ab9e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8aeb65765c0b2c8469f0e1dd9024ab9e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -672,7 +672,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dfa865793ff19f4791c567cd5947b0a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5273273
+      value: 1.207
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dfa865793ff19f4791c567cd5947b0a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -809,11 +809,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8aeb65765c0b2c8469f0e1dd9024ab9e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8aeb65765c0b2c8469f0e1dd9024ab9e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -19.5
+      value: -20.42
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8aeb65765c0b2c8469f0e1dd9024ab9e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -857,7 +857,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8aeb65765c0b2c8469f0e1dd9024ab9e, type: 3}
       propertyPath: m_Name
-      value: Satellite (2)
+      value: Satellite
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -920,11 +920,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8aeb65765c0b2c8469f0e1dd9024ab9e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -3.34
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8aeb65765c0b2c8469f0e1dd9024ab9e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 22.80727
+      value: 24.807259
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8aeb65765c0b2c8469f0e1dd9024ab9e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -968,7 +968,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8aeb65765c0b2c8469f0e1dd9024ab9e, type: 3}
       propertyPath: m_Name
-      value: Satellite (1)
+      value: Satellite
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
