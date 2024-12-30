@@ -32,5 +32,15 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         {
             Debug.Log("Upgrading tower");
         }
+
+        public void SetupNavMeshAgent()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Tower Clone()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
