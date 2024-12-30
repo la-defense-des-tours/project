@@ -1,7 +1,8 @@
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using UnityEngine;
+using Assets.Scripts.LaDefenseDesTours.Enemies;
 
-namespace Assets.Scripts.LaDefenseDesTours.Enemies
+namespace Assets.Scripts.LaDefenseDesTours.Factories
 {
     public class WalkingEnemyFactory : EnemyFactory
     {
