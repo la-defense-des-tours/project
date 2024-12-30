@@ -399,6 +399,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6997524312584748344, guid: e0123180cf553de43a582138e4c8d353, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 27.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 6997524312584748344, guid: e0123180cf553de43a582138e4c8d353, type: 3}
+      propertyPath: ShapeModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6997524312584748344, guid: e0123180cf553de43a582138e4c8d353, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8276825245287970385, guid: e0123180cf553de43a582138e4c8d353, type: 3}
       propertyPath: m_Name
       value: FlyingEnemy
@@ -1142,7 +1154,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -1580535799172915004, guid: 61842d62124633048b402b7e93f264e2, type: 3}
+  - {fileID: 2100000, guid: 9799b9e4cf286e74992a33dc343f2356, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3051,7 +3063,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.4, y: 1}
-  m_AnchoredPosition: {x: 15, y: 0}
+  m_AnchoredPosition: {x: 14.999985, y: 0}
   m_SizeDelta: {x: 7.5, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1210324904
