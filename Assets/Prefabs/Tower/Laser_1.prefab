@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5009231269964063888
+--- !u!1 &258438580327352335
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5009231269963970736}
-  - component: {fileID: 5009231269961103506}
-  - component: {fileID: 5009231269962070610}
-  - component: {fileID: 5009231269954705232}
+  - component: {fileID: 258438580327453743}
+  - component: {fileID: 258438580326159375}
+  - component: {fileID: 258438580325160655}
+  - component: {fileID: 258438580319976399}
   m_Layer: 0
-  m_Name: Base_MachineGun_L01
+  m_Name: LaserTower_TURRET_L01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5009231269963970736
+--- !u!4 &258438580327453743
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5009231269964063888}
+  m_GameObject: {fileID: 258438580327352335}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.399803, z: 0}
+  m_LocalPosition: {x: -0.0145375775, y: 1.2603645, z: 0.00014760075}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3119963224667280803}
+  m_Father: {fileID: 8382995077123680558}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5009231269961103506
+--- !u!33 &258438580326159375
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5009231269964063888}
-  m_Mesh: {fileID: 4300002, guid: dd040609d7aef419b9c85fc5bfa91345, type: 3}
---- !u!23 &5009231269962070610
+  m_GameObject: {fileID: 258438580327352335}
+  m_Mesh: {fileID: 4300002, guid: d158cd1ed36df4fed93c13f4cbf91f99, type: 3}
+--- !u!23 &258438580325160655
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5009231269964063888}
+  m_GameObject: {fileID: 258438580327352335}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b5a1f51f368e8be49b5397013a6954c0, type: 2}
+  - {fileID: 2100000, guid: 5c78a1355b241204fa3f2a53d493d2e9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -87,16 +87,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &5009231269954705232
+--- !u!95 &258438580319976399
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5009231269964063888}
+  m_GameObject: {fileID: 258438580327352335}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: dd040609d7aef419b9c85fc5bfa91345, type: 3}
+  m_Avatar: {fileID: 9000000, guid: d158cd1ed36df4fed93c13f4cbf91f99, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -109,7 +109,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1 &5692223279559666455
+--- !u!1 &7924116607087550494
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,47 +117,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5692223279559571255}
-  - component: {fileID: 5692223279560865559}
-  - component: {fileID: 5692223279561864663}
-  - component: {fileID: 5692223279567050967}
+  - component: {fileID: 7924116607087787070}
+  - component: {fileID: 7924116607084395548}
+  - component: {fileID: 7924116607085362908}
+  - component: {fileID: 7924116607094969310}
   m_Layer: 0
-  m_Name: Turret_MachineGun_L01
+  m_Name: LaserTower_BASE_L01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5692223279559571255
+--- !u!4 &7924116607087787070
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5692223279559666455}
+  m_GameObject: {fileID: 7924116607087550494}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7930937, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3119963224667280803}
+  m_Father: {fileID: 8382995077123680558}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5692223279560865559
+--- !u!33 &7924116607084395548
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5692223279559666455}
-  m_Mesh: {fileID: 4300002, guid: ca1b398fbc1a64abaaf160449dab6c93, type: 3}
---- !u!23 &5692223279561864663
+  m_GameObject: {fileID: 7924116607087550494}
+  m_Mesh: {fileID: 4300002, guid: b033c863a55c94b0faefde576ffd460a, type: 3}
+--- !u!23 &7924116607085362908
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5692223279559666455}
+  m_GameObject: {fileID: 7924116607087550494}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -174,7 +174,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b5a1f51f368e8be49b5397013a6954c0, type: 2}
+  - {fileID: 2100000, guid: 5c78a1355b241204fa3f2a53d493d2e9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -196,16 +196,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &5692223279567050967
+--- !u!95 &7924116607094969310
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5692223279559666455}
+  m_GameObject: {fileID: 7924116607087550494}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: ca1b398fbc1a64abaaf160449dab6c93, type: 3}
+  m_Avatar: {fileID: 9000000, guid: b033c863a55c94b0faefde576ffd460a, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -218,7 +218,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1 &7129850076736660284
+--- !u!1 &8951942140004569536
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -226,28 +226,28 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3119963224667280803}
+  - component: {fileID: 8382995077123680558}
   m_Layer: 0
-  m_Name: MachineGun_1
+  m_Name: Laser_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3119963224667280803
+--- !u!4 &8382995077123680558
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7129850076736660284}
+  m_GameObject: {fileID: 8951942140004569536}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 5.926528}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5009231269963970736}
-  - {fileID: 5692223279559571255}
+  - {fileID: 7924116607087787070}
+  - {fileID: 258438580327453743}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
