@@ -9,5 +9,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public Tower Clone();
         public void Upgrade();
         public void Attack();
+        public void SetPosition(Vector3 position);
     }
 }
