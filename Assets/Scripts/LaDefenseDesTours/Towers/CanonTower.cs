@@ -43,12 +43,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
                 agent = gameObject.GetComponent<NavMeshAgent>();
             }
         }
-        public Tower Clone()
-        {
-            Tower clone = Instantiate(this, Vector3.zero, Quaternion.identity);
-            clone.SetupNavMeshAgent();
-            return clone;
-        }
         public void Attack()
         {
             Debug.Log("Canon Tower is attacking");

@@ -38,11 +38,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             throw new System.NotImplementedException();
         }
 
-        public Tower Clone()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public void SetPosition(Vector3 position)
         {
             throw new System.NotImplementedException();
