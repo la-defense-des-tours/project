@@ -32,9 +32,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         {
             agent.SetDestination(destination);
         }
-        public Enemy Clone() // Voir au niveau FPS, ou rajouter un check pour ne cloner (ATTENTION: chaque clone)
+        public Enemy Clone(Transform spawnPoint) // Voir au niveau FPS, ou rajouter un check pour ne cloner (ATTENTION: chaque clone)
         {
-            Enemy clone = Instantiate(this, Vector3.zero, Quaternion.identity); // A voir ici, par defaut il spawn a la position par defaut du prefab (tester)
+            Enemy clone = Instantiate(this, spawnPoint.position, Quaternion.identity); // A voir ici, par defaut il spawn a la position par defaut du prefab (tester)
             clone.SetupNavMeshAgent();
             return clone;
         }

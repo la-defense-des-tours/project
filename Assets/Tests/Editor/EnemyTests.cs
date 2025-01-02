@@ -23,7 +23,7 @@ public class EnemyTests
         {
             // Implement interface method
         }
-        public Enemy Clone()
+        public Enemy Clone(Transform spawnPoint)
         {
             return (Enemy)this.MemberwiseClone();
         }

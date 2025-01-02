@@ -31,9 +31,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         {
             agent.SetDestination(destination);
         }
-        public Enemy Clone()
+        public Enemy Clone(Transform spawnPoint)
         {
-            Enemy clone = Instantiate(this, Vector3.zero, Quaternion.identity);
+            Enemy clone = Instantiate(this, spawnPoint.position, Quaternion.identity);
             clone.SetupNavMeshAgent();
             return clone;
         }
