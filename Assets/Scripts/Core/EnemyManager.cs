@@ -11,7 +11,6 @@ namespace Assets.Scripts.Core
         [SerializeField] private EnemyFactory tankEnemyFactory;
         [SerializeField] private EnemyFactory bossEnemyFactory;
         [SerializeField] private Transform target;
-        [SerializeField] private Transform spawnPoint;
         private Enemy walkingEnemy;
         private Enemy flyingEnemy;
         private Enemy tankEnemy;
@@ -38,10 +37,10 @@ namespace Assets.Scripts.Core
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Enemy walkingClone = walkingEnemy.Clone(spawnPoint);
-                Enemy flyingClone = flyingEnemy.Clone(spawnPoint);
-                Enemy tankClone = tankEnemy.Clone(spawnPoint);
-                Enemy bossClone = bossEnemy.Clone(spawnPoint);
+                Enemy walkingClone = walkingEnemy.Clone(transform);
+                Enemy flyingClone = flyingEnemy.Clone(transform);
+                Enemy tankClone = tankEnemy.Clone(transform);
+                Enemy bossClone = bossEnemy.Clone(transform);
 
                 walkingClone.Move(target.position);
                 flyingClone.Move(target.position);

@@ -150,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 61114136}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 44, y: 0, z: 0}
+  m_LocalPosition: {x: 30, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -173,7 +173,6 @@ MonoBehaviour:
   tankEnemyFactory: {fileID: 761798558}
   bossEnemyFactory: {fileID: 1517010045}
   target: {fileID: 7130800125884514735}
-  spawnPoint: {fileID: 1632604152}
 --- !u!1001 &170398013
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1324,11 +1323,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8aeb65765c0b2c8469f0e1dd9024ab9e, type: 3}
   m_PrefabInstance: {fileID: 1562395183}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1632604152 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2958287732051450615, guid: a6cb4125b9d50d244841d65a25295d88, type: 3}
-  m_PrefabInstance: {fileID: 5613255057236737548}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1682936185 stripped
 GameObject:
