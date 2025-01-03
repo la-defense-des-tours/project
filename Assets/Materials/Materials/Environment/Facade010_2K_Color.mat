@@ -61,7 +61,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Parallax: 0.005
-    - _Smoothness: 0.319
+    - _Smoothness: 0.25
     m_Colors:
     - _BaseColor: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 0, g: 0, b: 0, a: 1}

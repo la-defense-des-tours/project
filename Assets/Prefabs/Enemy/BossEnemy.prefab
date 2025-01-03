@@ -5030,7 +5030,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d88d8a4c65dc740b439090447baed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 0}
 --- !u!1 &6924587865213834010
 GameObject:
   m_ObjectHideFlags: 0
@@ -6262,7 +6261,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
