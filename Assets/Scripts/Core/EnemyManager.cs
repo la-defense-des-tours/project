@@ -1,7 +1,6 @@
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using UnityEngine;
 
-
 namespace Assets.Scripts.Core
 { 
     public class EnemyManager : MonoBehaviour
