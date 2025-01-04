@@ -6,12 +6,14 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
     public class TankEnemy : MonoBehaviour, Enemy
     {
         private NavMeshAgent agent;
+        private Animator animator;
         private float health = 350;
         private float speed = 1.5f;
         private float acceleration = 2.5f;
 
         public void Awake()
         {
+            animator = GetComponent<Animator>();
             SetupNavMeshAgent();
         }
         public void SetupNavMeshAgent()
@@ -29,6 +31,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         }
         public void Move(Vector3 destination)
         {
+            animator.speed = speed;
             agent.SetDestination(destination);
         }
         public Enemy Clone(Transform spawnPoint)

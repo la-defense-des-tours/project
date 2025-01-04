@@ -7,6 +7,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
     public class BossEnemy : MonoBehaviour, Enemy
     {
         private NavMeshAgent agent;
+        private Animator animator;
         private float health = 1000;
         private float speed = 1;
         private float acceleration = 3;
@@ -15,6 +16,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
 
         public void Awake()
         {
+            animator = GetComponent<Animator>();
             SetupNavMeshAgent();
         }
 
@@ -34,6 +36,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
 
         public void Move(Vector3 destination)
         {
+            animator.speed = speed;
             agent.SetDestination(destination);
         }
 

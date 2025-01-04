@@ -7,12 +7,14 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
     public class WalkingEnemy : MonoBehaviour, Enemy
     {
         private NavMeshAgent agent;
+        private Animator animator;
         private float health = 200f;
-        private float speed = 3f;
-        private float acceleration = 6f;
+        private float speed = 2.5f;
+        private float acceleration = 5f;
 
-        public void Awake()
+        void Awake()
         {
+            animator = GetComponent<Animator>();
             SetupNavMeshAgent();
         }
         public void SetupNavMeshAgent()
@@ -30,6 +32,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         }
         public void Move(Vector3 destination)
         {
+            animator.speed = speed / 2;
             agent.SetDestination(destination);
         }
         public Enemy Clone(Transform spawnPoint) // Voir au niveau FPS, ou rajouter un check pour ne cloner (ATTENTION: chaque clone)
