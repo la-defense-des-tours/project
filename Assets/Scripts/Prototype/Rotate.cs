@@ -12,7 +12,13 @@ public class Rotate : MonoBehaviour
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
+
     void Update()
+    {
+        RotateTurret();
+    }
+    
+    void RotateTurret()
     {
         if (target == null)
         {
@@ -23,13 +29,7 @@ public class Rotate : MonoBehaviour
         Vector3 rotation = Quaternion.Lerp(rotatingPart.rotation, lookRotation, Time.deltaTime * rotatingSpeed).eulerAngles;
         rotatingPart.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
-    void RotateTurret(Vector3 target)
-    {
-        if (target == null)
-        {
-            return;
-        }
-    }
+
     void UpdateTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
@@ -55,6 +55,7 @@ public class Rotate : MonoBehaviour
             target = null;
         }
     }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
