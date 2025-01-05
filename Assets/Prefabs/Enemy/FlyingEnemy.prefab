@@ -35090,7 +35090,7 @@ GameObject:
   - component: {fileID: 7985152958352722929}
   m_Layer: 0
   m_Name: FlyingEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35123,7 +35123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2b73347be3ec1c4b920ee110e2e406e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 0}
 --- !u!195 &7985152958352722929
 NavMeshAgent:
   m_ObjectHideFlags: 0
