@@ -8,7 +8,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
     {
         private NavMeshAgent agent;
         private float health = 100;
-        private float speed = 5;
+        private float speed = 4;
         private float acceleration = 8;
 
         public void Awake()

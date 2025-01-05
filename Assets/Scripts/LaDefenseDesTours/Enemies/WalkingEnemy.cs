@@ -10,7 +10,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         private Animator animator;
         private float health = 200f;
         private float speed = 2.5f;
-        private float acceleration = 5f;
+        private float acceleration = 5;
 
         void Awake()
         {
