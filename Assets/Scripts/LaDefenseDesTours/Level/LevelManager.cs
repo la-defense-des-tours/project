@@ -1,5 +1,7 @@
 ﻿using System;
 using Assets.Scripts.Core.Utilities;
+using Assets.Scripts.LaDefenseDesTours.Towers.Data;
+
 //using Core.Economy;
 //using Core.Health;
 //using Core.Utilities;
@@ -29,7 +31,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		///// <summary>
 		///// The tower library for this level
 		///// </summary>
-		//public TowerLibrary towerLibrary;
+		public TowerLibrary towerLibrary;
 
 		/// <summary>
 		/// The currency that the player starts with

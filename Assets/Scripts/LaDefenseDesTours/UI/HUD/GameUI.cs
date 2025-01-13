@@ -1,7 +1,10 @@
 using System;
 using Assets.Scripts.Core.Utilities;
+using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Level;
 using Core.Input;
 using JetBrains.Annotations;
+using TowerDefense.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -71,7 +74,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 			/// The game is over and the level was failed/completed
 			/// </summary>
 			GameOver,
-			
+
 			/// <summary>
 			/// The game is in 'build mode' and the player is dragging the ghost tower
 			/// </summary>
@@ -108,12 +111,12 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <summary>
 		/// Component that manages the radius visualizers of ghosts and towers
 		/// </summary>
-		// public RadiusVisualizerController radiusVisualizerController;
+		public RadiusVisualizerController radiusVisualizerController;
 
 		/// <summary>
 		/// The UI controller for displaying individual tower data
 		/// </summary>
-		// public TowerUI towerUI;
+		public TowerUI towerUI;
 
 		/// <summary>
 		/// The UI controller for displaying tower information
@@ -135,18 +138,18 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <summary>
 		/// Fires when a tower is selected/deselected
 		/// </summary>
-		// public event Action<Tower> selectionChanged;
+		public event Action<Tower> selectionChanged;
 
 		/// <summary>
 		/// Placement area ghost tower is currently on
 		/// </summary>
 
-		// IPlacementArea m_CurrentArea;
+		IPlacementArea m_CurrentArea;
 
 		/// <summary>
 		/// Grid position ghost tower in on
 		/// </summary>
-		// IntVector2 m_GridPosition;
+		IntVector2 m_GridPosition;
 
 		/// <summary>
 		/// Our cached camera reference
@@ -156,7 +159,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <summary>
 		/// Current tower placeholder. Will be null if not in the <see cref="State.Building" /> state.
 		/// </summary>
-		// TowerPlacementGhost m_CurrentTower;
+		TowerPlacementGhost m_CurrentTower;
 
 		/// <summary>
 		/// Tracks if the ghost is in a valid location and the player can afford it
@@ -166,15 +169,15 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <summary>
 		/// Gets the current selected tower
 		/// </summary>
-		//public Tower currentSelectedTower { get; private set; }
+		public Tower currentSelectedTower { get; private set; }
 
 		/// <summary>
 		/// Gets whether a tower has been selected
 		/// </summary>
-		//public bool isTowerSelected
-		//{
-		//	get { return currentSelectedTower != null; }
-		//}
+		public bool isTowerSelected
+		{
+			get { return currentSelectedTower != null; }
+		}
 
 		/// <summary>
 		/// Gets whether certain build operations are valid
@@ -190,22 +193,22 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <summary>
 		/// Cancel placing the ghost
 		/// </summary>
-		//public void CancelGhostPlacement()
-		//{
-		//	if (!isBuilding)
-		//	{
-		//		throw new InvalidOperationException("Can't cancel out of ghost placement when not in the building state.");
-		//	}
+		public void CancelGhostPlacement()
+		{
+			if (!isBuilding)
+			{
+				throw new InvalidOperationException("Can't cancel out of ghost placement when not in the building state.");
+			}
 
-		//	if (buildInfoUI != null)
-		//	{
-		//		buildInfoUI.Hide();
-		//	}
-		//	Destroy(m_CurrentTower.gameObject);
-		//	m_CurrentTower = null;
-		//	SetState(State.Normal);
-		//	DeselectTower();
-		//}
+			if (buildInfoUI != null)
+			{
+				buildInfoUI.Hide();
+			}
+			Destroy(m_CurrentTower.gameObject);
+			m_CurrentTower = null;
+			SetState(State.Normal);
+			DeselectTower();
+		}
 
 		/// <summary>
 		/// Returns the GameUI to dragging mode with the curent tower
@@ -237,7 +240,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 			SetState(State.Building);
 		}
 
-		
+
 		/// <summary>
 		/// Changes the state and fires <see cref="stateChanged"/>
 		/// </summary>
@@ -304,7 +307,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		{
 			SetState(State.Normal);
 		}
-		
+
 		/// <summary>
 		/// Changes the mode to drag
 		/// </summary>
@@ -314,21 +317,21 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <exception cref="InvalidOperationException">
 		/// Throws exception when trying to change to Drag mode when not in Normal Mode
 		/// </exception>
-		//public void SetToDragMode([NotNull] Tower towerToBuild)
-		//{
-		//	if (state != State.Normal)
-		//	{
-		//		throw new InvalidOperationException("Trying to enter drag mode when not in Normal mode");	
-		//	}
-			
-		//	if (m_CurrentTower != null)
-		//	{
-		//		// Destroy current ghost
-		//		CancelGhostPlacement();
-		//	}
-		//	SetUpGhostTower(towerToBuild);
-		//	SetState(State.BuildingWithDrag);
-		//}
+		public void SetToDragMode([NotNull] Tower towerToBuild)
+		{
+			if (state != State.Normal)
+			{
+				throw new InvalidOperationException("Trying to enter drag mode when not in Normal mode");
+			}
+
+			if (m_CurrentTower != null)
+			{
+				// Destroy current ghost
+				CancelGhostPlacement();
+			}
+			//SetUpGhostTower(towerToBuild);
+			SetState(State.BuildingWithDrag);
+		}
 
 		/// <summary>
 		/// Sets the UI into a build state for a given tower
@@ -339,74 +342,74 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <exception cref="InvalidOperationException">
 		/// Throws exception trying to enter Build Mode when not in Normal Mode
 		/// </exception>
-		//public void SetToBuildMode([NotNull] Tower towerToBuild)
-		//{
-		//	if (state != State.Normal)
-		//	{
-		//		throw new InvalidOperationException("Trying to enter Build mode when not in Normal mode");
-		//	}
-			
-		//	if (m_CurrentTower != null)
-		//	{
-		//		// Destroy current ghost
-		//		CancelGhostPlacement();
-		//	}
-		//	SetUpGhostTower(towerToBuild);
-		//	SetState(State.Building);
-		//}
+		public void SetToBuildMode([NotNull] Tower towerToBuild)
+		{
+			if (state != State.Normal)
+			{
+				throw new InvalidOperationException("Trying to enter Build mode when not in Normal mode");
+			}
+
+			if (m_CurrentTower != null)
+			{
+				// Destroy current ghost
+				CancelGhostPlacement();
+			}
+			//SetUpGhostTower(towerToBuild);
+			SetState(State.Building);
+		}
 
 		/// <summary>
 		/// Attempt to position a tower at the given location
 		/// </summary>
 		/// <param name="pointerInfo">The pointer we're using to position the tower</param>
-		//public void TryPlaceTower(PointerInfo pointerInfo)
-		//{
-		//	UIPointer pointer = WrapPointer(pointerInfo);
+		public void TryPlaceTower(PointerInfo pointerInfo)
+		{
+			UIPointer pointer = WrapPointer(pointerInfo);
 
-		//	// Do nothing if we're over UI
-		//	if (pointer.overUI)
-		//	{
-		//		return;
-		//	}
-		//	BuyTower(pointer);
-		//}
+			// Do nothing if we're over UI
+			if (pointer.overUI)
+			{
+				return;
+			}
+			BuyTower(pointer);
+		}
 
 		/// <summary>
 		/// Position the ghost tower at the given pointer
 		/// </summary>
 		/// <param name="pointerInfo">The pointer we're using to position the tower</param>
 		/// <param name="hideWhenInvalid">Optional parameter for configuring if the ghost is hidden when in an invalid location</param>
-		//public void TryMoveGhost(PointerInfo pointerInfo, bool hideWhenInvalid = true)
-		//{
-		//	if (m_CurrentTower == null)
-		//	{
-		//		throw new InvalidOperationException("Trying to move the tower ghost when we don't have one");
-		//	}
+		public void TryMoveGhost(PointerInfo pointerInfo, bool hideWhenInvalid = true)
+		{
+			if (m_CurrentTower == null)
+			{
+				throw new InvalidOperationException("Trying to move the tower ghost when we don't have one");
+			}
 
-		//	UIPointer pointer = WrapPointer(pointerInfo);
-		//	// Do nothing if we're over UI
-		//	if (pointer.overUI && hideWhenInvalid)
-		//	{
-		//		m_CurrentTower.Hide();
-		//		return;
-		//	}
-		//	MoveGhost(pointer, hideWhenInvalid);
-		//}
+			UIPointer pointer = WrapPointer(pointerInfo);
+			// Do nothing if we're over UI
+			if (pointer.overUI && hideWhenInvalid)
+			{
+				m_CurrentTower.Hide();
+				return;
+			}
+			MoveGhost(pointer, hideWhenInvalid);
+		}
 
 		/// <summary>
 		/// Sets up the radius visualizer for a tower or ghost tower
 		/// </summary>
-		//public void SetupRadiusVisualizer(Tower tower, Transform ghost = null)
-		//{
-		//	radiusVisualizerController.SetupRadiusVisualizers(tower, ghost);
-		//}
+		public void SetupRadiusVisualizer(Tower tower, Transform ghost = null)
+		{
+			radiusVisualizerController.SetupRadiusVisualizers(tower, ghost);
+		}
 
 		/// <summary>
 		/// Hides the radius visualizer
 		/// </summary>
 		public void HideRadiusVisualizer()
 		{
-			// radiusVisualizerController.HideRadiusVisualizers();
+			radiusVisualizerController.HideRadiusVisualizers();
 		}
 
 		/// <summary>
@@ -418,25 +421,25 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <exception cref="InvalidOperationException">
 		/// Throws exception when selecting tower when <see cref="State" /> does not equal <see cref="State.Normal" />
 		/// </exception>
-		//public void SelectTower(Tower tower)
-		//{
-		//	if (state != State.Normal)
-		//	{
-		//		throw new InvalidOperationException("Trying to select whilst not in a normal state");
-		//	}
-		//	DeselectTower();
-		//	currentSelectedTower = tower;
-		//	if (currentSelectedTower != null)
-		//	{
-		//		currentSelectedTower.removed += OnTowerDied;
-		//	}
-		//	radiusVisualizerController.SetupRadiusVisualizers(tower);
+		public void SelectTower(Tower tower)
+		{
+			if (state != State.Normal)
+			{
+				throw new InvalidOperationException("Trying to select whilst not in a normal state");
+			}
+			DeselectTower();
+			currentSelectedTower = tower;
+			if (currentSelectedTower != null)
+			{
+				//currentSelectedTower.removed += OnTowerDied;
+			}
+			radiusVisualizerController.SetupRadiusVisualizers(tower);
 
-		//	if (selectionChanged != null)
-		//	{
-		//		selectionChanged(tower);
-		//	}
-		//}
+			if (selectionChanged != null)
+			{
+				selectionChanged(tower);
+			}
+		}
 
 		/// <summary>
 		/// Upgrades <see cref="currentSelectedTower" />, if possible
@@ -445,29 +448,29 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// Throws exception when selecting tower when <see cref="State" /> does not equal <see cref="State.Normal" />
 		/// or <see cref="currentSelectedTower" /> is null
 		/// </exception>
-		//public void UpgradeSelectedTower()
-		//{
-		//	if (state != State.Normal)
-		//	{
-		//		throw new InvalidOperationException("Trying to upgrade whilst not in Normal state");
-		//	}
-		//	if (currentSelectedTower == null)
-		//	{
-		//		throw new InvalidOperationException("Selected Tower is null");
-		//	}
-		//	if (currentSelectedTower.isAtMaxLevel)
-		//	{
-		//		return;
-		//	}
-		//	int upgradeCost = currentSelectedTower.GetCostForNextLevel();
-		//	bool successfulUpgrade = LevelManager.instance.currency.TryPurchase(upgradeCost);
-		//	if (successfulUpgrade)
-		//	{
-		//		currentSelectedTower.UpgradeTower();
-		//	}
-		//	towerUI.Hide();
-		//	DeselectTower();
-		//}
+		public void UpgradeSelectedTower()
+		{
+			if (state != State.Normal)
+			{
+				throw new InvalidOperationException("Trying to upgrade whilst not in Normal state");
+			}
+			if (currentSelectedTower == null)
+			{
+				throw new InvalidOperationException("Selected Tower is null");
+			}
+			//if (currentSelectedTower.isAtMaxLevel)
+			//{
+			//	return;
+			//}
+			//int upgradeCost = currentSelectedTower.GetCostForNextLevel();
+			//bool successfulUpgrade = LevelManager.instance.currency.TryPurchase(upgradeCost);
+			//if (successfulUpgrade)
+			//{
+			//	currentSelectedTower.UpgradeTower();
+			//}
+			towerUI.Hide();
+			DeselectTower();
+		}
 
 		/// <summary>
 		/// Sells <see cref="currentSelectedTower" /> if possible
@@ -476,24 +479,24 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// Throws exception when selecting tower when <see cref="State" /> does not equal <see cref="State.Normal" />
 		/// or <see cref="currentSelectedTower" /> is null
 		/// </exception>
-		//public void SellSelectedTower()
-		//{
-		//	if (state != State.Normal)
-		//	{
-		//		throw new InvalidOperationException("Trying to sell tower whilst not in Normal state");
-		//	}
-		//	if (currentSelectedTower == null)
-		//	{
-		//		throw new InvalidOperationException("Selected Tower is null");
-		//	}
-		//	int sellValue = currentSelectedTower.GetSellLevel();
-		//	if (LevelManager.instanceExists && sellValue > 0)
-		//	{
-		//		LevelManager.instance.currency.AddCurrency(sellValue);
-		//		currentSelectedTower.Sell();
-		//	}
-		//	DeselectTower();
-		//}
+		public void SellSelectedTower()
+		{
+			if (state != State.Normal)
+			{
+				throw new InvalidOperationException("Trying to sell tower whilst not in Normal state");
+			}
+			if (currentSelectedTower == null)
+			{
+				throw new InvalidOperationException("Selected Tower is null");
+			}
+			//int sellValue = currentSelectedTower.GetSellLevel();
+			//if (LevelManager.instanceExists && sellValue > 0)
+			//{
+			//	//LevelManager.instance.currency.AddCurrency(sellValue);
+			//	//currentSelectedTower.Sell();
+			//}
+			DeselectTower();
+		}
 
 		/// <summary>
 		/// Buys the tower and places it in the place that it currently is
@@ -501,23 +504,23 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <exception cref="InvalidOperationException">
 		/// Throws exception if trying to buy towers in Build Mode
 		/// </exception>
-		//public void BuyTower()
-		//{
-		//	if (!isBuilding)
-		//	{
-		//		throw new InvalidOperationException("Trying to buy towers when not in Build Mode");
-		//	}
-		//	if (m_CurrentTower == null || !IsGhostAtValidPosition())
-		//	{
-		//		return;
-		//	}
-		//	int cost = m_CurrentTower.controller.purchaseCost;
-		//	bool successfulPurchase = LevelManager.instance.currency.TryPurchase(cost);
-		//	if (successfulPurchase)
-		//	{
-		//		PlaceTower();
-		//	}
-		//}
+		public void BuyTower()
+		{
+			if (!isBuilding)
+			{
+				throw new InvalidOperationException("Trying to buy towers when not in Build Mode");
+			}
+			if (m_CurrentTower == null || !IsGhostAtValidPosition())
+			{
+				return;
+			}
+			//int cost = m_CurrentTower.controller.purchaseCost;
+			//bool successfulPurchase = LevelManager.instance.currency.TryPurchase(cost);
+			//if (successfulPurchase)
+			//{
+			//	PlaceTower();
+			//}
+		}
 
 		/// <summary>
 		/// Used to buy the tower during the build phase
@@ -526,51 +529,51 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// Throws exception when not in a build mode or when tower is not a valid position
 		/// </exception>
 		/// </summary>
-		//public void BuyTower(UIPointer pointer)
-		//{
-		//	if (!isBuilding)
-		//	{
-		//		throw new InvalidOperationException("Trying to buy towers when not in a Build Mode");
-		//	}
-		//	if (m_CurrentTower == null || !IsGhostAtValidPosition())
-		//	{
-		//		return;
-		//	}
-		//	PlacementAreaRaycast(ref pointer);
-		//	if (!pointer.raycast.HasValue || pointer.raycast.Value.collider == null)
-		//	{
-		//		CancelGhostPlacement();
-		//		return;
-		//	}
-		//	int cost = m_CurrentTower.controller.purchaseCost;
-		//	bool successfulPurchase = LevelManager.instance.currency.TryPurchase(cost);
-		//	if (successfulPurchase)
-		//	{
-		//		PlaceGhost(pointer);
-		//	}
-		//}
+		public void BuyTower(UIPointer pointer)
+		{
+			if (!isBuilding)
+			{
+				throw new InvalidOperationException("Trying to buy towers when not in a Build Mode");
+			}
+			if (m_CurrentTower == null || !IsGhostAtValidPosition())
+			{
+				return;
+			}
+			PlacementAreaRaycast(ref pointer);
+			if (!pointer.raycast.HasValue || pointer.raycast.Value.collider == null)
+			{
+				CancelGhostPlacement();
+				return;
+			}
+			//int cost = m_CurrentTower.controller.purchaseCost;
+			//bool successfulPurchase = LevelManager.instance.currency.TryPurchase(cost);
+			//if (successfulPurchase)
+			//{
+			//	PlaceGhost(pointer);
+			//}
+		}
 
 		/// <summary>
 		/// Deselect the current tower and hides the UI
 		/// </summary>
-		//public void DeselectTower()
-		//{
-		//	if (state != State.Normal)
-		//	{
-		//		throw new InvalidOperationException("Trying to deselect tower whilst not in Normal state");
-		//	}
-		//	if (currentSelectedTower != null)
-		//	{
-		//		currentSelectedTower.removed -= OnTowerDied;
-		//	}
+		public void DeselectTower()
+		{
+			if (state != State.Normal)
+			{
+				throw new InvalidOperationException("Trying to deselect tower whilst not in Normal state");
+			}
+			if (currentSelectedTower != null)
+			{
+				//currentSelectedTower.removed -= OnTowerDied;
+			}
 
-		//	currentSelectedTower = null;
+			currentSelectedTower = null;
 
-		//	if (selectionChanged != null)
-		//	{
-		//		selectionChanged(null);
-		//	}
-		//}
+			if (selectionChanged != null)
+			{
+				selectionChanged(null);
+			}
+		}
 
 		/// <summary>
 		/// Checks the position of the <see cref="m_CurrentTower"/> 
@@ -582,23 +585,24 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <exception cref="InvalidOperationException">
 		/// Throws exception if the check is done in <see cref="State.Normal"/> state
 		/// </exception>
-		//public bool IsGhostAtValidPosition()
-		//{
-		//	if (!isBuilding)
-		//	{
-		//		throw new InvalidOperationException("Trying to check ghost position when not in a build mode");
-		//	}
-		//	if (m_CurrentTower == null)
-		//	{
-		//		return false;
-		//	}
-		//	if (m_CurrentArea == null)
-		//	{
-		//		return false;
-		//	}
-		//	TowerFitStatus fits = m_CurrentArea.Fits(m_GridPosition, m_CurrentTower.controller.dimensions);
-		//	return fits == TowerFitStatus.Fits;
-		//}
+		public bool IsGhostAtValidPosition()
+		{
+			if (!isBuilding)
+			{
+				throw new InvalidOperationException("Trying to check ghost position when not in a build mode");
+			}
+			if (m_CurrentTower == null)
+			{
+				return false;
+			}
+			if (m_CurrentArea == null)
+			{
+				return false;
+			}
+			//TowerFitStatus fits = m_CurrentArea.Fits(m_GridPosition, m_CurrentTower.controller.dimensions);
+			//return fits == TowerFitStatus.Fits;
+			return true;
+		}
 
 		/// <summary>
 		/// Checks if buying the ghost tower is possible
@@ -609,22 +613,23 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <exception cref="InvalidOperationException">
 		/// Throws exception if not in Build Mode or Build With Dragging mode
 		/// </exception>
-		//public bool IsValidPurchase()
-		//{
-		//	if (!isBuilding)
-		//	{
-		//		throw new InvalidOperationException("Trying to check ghost position when not in a build mode");
-		//	}
-		//	if (m_CurrentTower == null)
-		//	{
-		//		return false;
-		//	}
-		//	if (m_CurrentArea == null)
-		//	{
-		//		return false;
-		//	}
-		//	return LevelManager.instance.currency.CanAfford(m_CurrentTower.controller.purchaseCost);
-		//}
+		public bool IsValidPurchase()
+		{
+			if (!isBuilding)
+			{
+				throw new InvalidOperationException("Trying to check ghost position when not in a build mode");
+			}
+			if (m_CurrentTower == null)
+			{
+				return false;
+			}
+			if (m_CurrentArea == null)
+			{
+				return false;
+			}
+			//return LevelManager.instance.currency.CanAfford(m_CurrentTower.controller.purchaseCost);
+			return true;
+		}
 
 		/// <summary>
 		/// Places a tower where the ghost tower is
@@ -632,25 +637,25 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <exception cref="InvalidOperationException">
 		/// Throws exception if not in Build State or <see cref="m_CurrentTower"/> is not at a valid position
 		/// </exception>
-		//public void PlaceTower()
-		//{
-		//	if ( !isBuilding )
-		//	{
-		//		throw new InvalidOperationException("Trying to place tower when not in a Build Mode");
-		//	}
-		//	if (!IsGhostAtValidPosition())
-		//	{
-		//		throw new InvalidOperationException("Trying to place tower on an invalid area");
-		//	}
-		//	if (m_CurrentArea == null)
-		//	{
-		//		return;
-		//	}
-		//	Tower createdTower = Instantiate(m_CurrentTower.controller);
-		//	createdTower.Initialize(m_CurrentArea, m_GridPosition);
+		public void PlaceTower()
+		{
+			if (!isBuilding)
+			{
+				throw new InvalidOperationException("Trying to place tower when not in a Build Mode");
+			}
+			if (!IsGhostAtValidPosition())
+			{
+				throw new InvalidOperationException("Trying to place tower on an invalid area");
+			}
+			if (m_CurrentArea == null)
+			{
+				return;
+			}
+			//Tower createdTower = Instantiate(m_CurrentTower.controller);
+			//createdTower.Initialize(m_CurrentArea, m_GridPosition);
 
-		//	CancelGhostPlacement();
-		//}
+			CancelGhostPlacement();
+		}
 
 		/// <summary>
 		/// Calculates whether the given pointer is over the current tower ghost
@@ -661,16 +666,16 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <exception cref="InvalidOperationException">
 		/// Throws an exception if not in Build Mode
 		/// </exception>
-		//public bool IsPointerOverGhost(PointerInfo pointerInfo)
-		//{
-		//	if (state != State.Building)
-		//	{
-		//		throw new InvalidOperationException("Trying to tap on ghost tower when not in Build Mode");
-		//	}
-		//	UIPointer uiPointer = WrapPointer(pointerInfo);
-		//	RaycastHit hit;
-		//	return m_CurrentTower.ghostCollider.Raycast(uiPointer.ray, out hit, float.MaxValue);
-		//}
+		public bool IsPointerOverGhost(PointerInfo pointerInfo)
+		{
+			if (state != State.Building)
+			{
+				throw new InvalidOperationException("Trying to tap on ghost tower when not in Build Mode");
+			}
+			UIPointer uiPointer = WrapPointer(pointerInfo);
+			RaycastHit hit;
+			return m_CurrentTower.ghostCollider.Raycast(uiPointer.ray, out hit, float.MaxValue);
+		}
 
 		/// <summary>
 		/// Selects a tower beneath the given pointer if there is one
@@ -681,25 +686,25 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <exception cref="InvalidOperationException">
 		/// Throws an exception when not in <see cref="State.Normal"/>
 		/// </exception>
-		//public void TrySelectTower(PointerInfo info)
-		//{
-		//	if (state != State.Normal)
-		//	{
-		//		throw new InvalidOperationException("Trying to select towers outside of Normal state");
-		//	}
-		//	UIPointer uiPointer = WrapPointer(info);
-		//	RaycastHit output;
-		//	bool hasHit = Physics.Raycast(uiPointer.ray, out output, float.MaxValue, towerSelectionLayer);
-		//	if (!hasHit || uiPointer.overUI)
-		//	{
-		//		return;
-		//	}
-		//	var controller = output.collider.GetComponent<Tower>();
-		//	if (controller != null)
-		//	{
-		//		SelectTower(controller);
-		//	}
-		//}
+		public void TrySelectTower(PointerInfo info)
+		{
+			if (state != State.Normal)
+			{
+				throw new InvalidOperationException("Trying to select towers outside of Normal state");
+			}
+			UIPointer uiPointer = WrapPointer(info);
+			RaycastHit output;
+			bool hasHit = Physics.Raycast(uiPointer.ray, out output, float.MaxValue, towerSelectionLayer);
+			if (!hasHit || uiPointer.overUI)
+			{
+				return;
+			}
+			var controller = output.collider.GetComponent<Tower>();
+			if (controller != null)
+			{
+				SelectTower(controller);
+			}
+		}
 
 		/// <summary>
 		/// Gets the world position of the ghost tower
@@ -708,18 +713,18 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// Throws an exception when not in the Build Mode or
 		/// When a ghost tower does not exist
 		/// </exception>
-		//public Vector3 GetGhostPosition()
-		//{
-		//	if (!isBuilding)
-		//	{
-		//		throw new InvalidOperationException("Trying to get ghost position when not in a Build Mode");
-		//	}
-		//	if (m_CurrentTower == null)
-		//	{
-		//		throw new InvalidOperationException("Trying to get ghost position for an object that does not exist");
-		//	}
-		//	return m_CurrentTower.transform.position;
-		//}
+		public Vector3 GetGhostPosition()
+		{
+			if (!isBuilding)
+			{
+				throw new InvalidOperationException("Trying to get ghost position when not in a Build Mode");
+			}
+			if (m_CurrentTower == null)
+			{
+				throw new InvalidOperationException("Trying to get ghost position for an object that does not exist");
+			}
+			return m_CurrentTower.transform.position;
+		}
 
 		/// <summary>
 		/// Moves the ghost to the center of the screen
@@ -772,24 +777,24 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <summary>
 		/// Subscribe to the level manager
 		/// </summary>
-		//protected virtual void OnEnable()
-		//{
-		//	if (LevelManager.instanceExists)
-		//	{
-		//		LevelManager.instance.currency.currencyChanged += OnCurrencyChanged;
-		//	}
-		//}
+		protected virtual void OnEnable()
+		{
+			if (LevelManager.instanceExists)
+			{
+				//LevelManager.instance.currency.currencyChanged += OnCurrencyChanged;
+			}
+		}
 
 		/// <summary>
 		/// Unsubscribe from the level manager
 		/// </summary>
-		//protected virtual void OnDisable()
-		//{
-		//	if (LevelManager.instanceExists)
-		//	{
-		//		LevelManager.instance.currency.currencyChanged -= OnCurrencyChanged;
-		//	}
-		//}
+		protected virtual void OnDisable()
+		{
+			if (LevelManager.instanceExists)
+			{
+				//LevelManager.instance.currency.currencyChanged -= OnCurrencyChanged;
+			}
+		}
 
 		/// <summary>
 		/// Creates a new UIPointer holding data object for the given pointer position
@@ -846,109 +851,109 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <param name="pointer">The pointer to place the ghost at</param>
 		/// <param name="hideWhenInvalid">Optional parameter for whether the ghost should be hidden or not</param>
 		/// <exception cref="InvalidOperationException">If we're not in the correct state</exception>
-		//protected void MoveGhost(UIPointer pointer, bool hideWhenInvalid = true)
-		//{
-		//	if (m_CurrentTower == null || !isBuilding)
-		//	{
-		//		throw new InvalidOperationException(
-		//			"Trying to position a tower ghost while the UI is not currently in the building state.");
-		//	}
+		protected void MoveGhost(UIPointer pointer, bool hideWhenInvalid = true)
+		{
+			if (m_CurrentTower == null || !isBuilding)
+			{
+				throw new InvalidOperationException(
+					"Trying to position a tower ghost while the UI is not currently in the building state.");
+			}
 
-		//	// Raycast onto placement layer
-		//	PlacementAreaRaycast(ref pointer);
+			// Raycast onto placement layer
+			PlacementAreaRaycast(ref pointer);
 
-		//	if (pointer.raycast != null)
-		//	{
-		//		MoveGhostWithRaycastHit(pointer.raycast.Value);
-		//	}
-		//	else
-		//	{
-		//		MoveGhostOntoWorld(pointer.ray, hideWhenInvalid);
-		//	}
-		//}
+			if (pointer.raycast != null)
+			{
+				MoveGhostWithRaycastHit(pointer.raycast.Value);
+			}
+			else
+			{
+				MoveGhostOntoWorld(pointer.ray, hideWhenInvalid);
+			}
+		}
 
 
 		/// <summary>
 		/// Move ghost with successful raycastHit onto m_PlacementAreaMask
 		/// </summary>
-		//protected virtual void MoveGhostWithRaycastHit(RaycastHit raycast)
-		//{
-		//	// We successfully hit one of our placement areas
-		//	// Try and get a placement area on the object we hit
-		//	m_CurrentArea = raycast.collider.GetComponent<IPlacementArea>();
+		protected virtual void MoveGhostWithRaycastHit(RaycastHit raycast)
+		{
+			// We successfully hit one of our placement areas
+			// Try and get a placement area on the object we hit
+			//m_CurrentArea = raycast.collider.GetComponent<IPlacementArea>();
 
-		//	if (m_CurrentArea == null)
-		//	{
-		//		Debug.LogError("There is not an IPlacementArea attached to the collider found on the m_PlacementAreaMask");
-		//		return;
-		//	}
-		//	m_GridPosition = m_CurrentArea.WorldToGrid(raycast.point, m_CurrentTower.controller.dimensions);
-		//	TowerFitStatus fits = m_CurrentArea.Fits(m_GridPosition, m_CurrentTower.controller.dimensions);
+			if (m_CurrentArea == null)
+			{
+				Debug.LogError("There is not an IPlacementArea attached to the collider found on the m_PlacementAreaMask");
+				return;
+			}
+			//m_GridPosition = m_CurrentArea.WorldToGrid(raycast.point, m_CurrentTower.controller.dimensions);
+			//TowerFitStatus fits = m_CurrentArea.Fits(m_GridPosition, m_CurrentTower.controller.dimensions);
 
-		//	m_CurrentTower.Show();
-		//	m_GhostPlacementPossible = fits == TowerFitStatus.Fits && IsValidPurchase();
-		//	m_CurrentTower.Move(m_CurrentArea.GridToWorld(m_GridPosition, m_CurrentTower.controller.dimensions),
-		//						m_CurrentArea.transform.rotation,
-		//						m_GhostPlacementPossible);
-		//}
+			m_CurrentTower.Show();
+			//m_GhostPlacementPossible = fits == TowerFitStatus.Fits && IsValidPurchase();
+			//m_CurrentTower.Move(m_CurrentArea.GridToWorld(m_GridPosition, m_CurrentTower.controller.dimensions),
+			//					m_CurrentArea.transform.rotation,
+			//					m_GhostPlacementPossible);
+		}
 
 
 		/// <summary>
 		/// Move ghost with the given ray
 		/// </summary>
-		//protected virtual void MoveGhostOntoWorld(Ray ray, bool hideWhenInvalid)
-		//{
-		//	m_CurrentArea = null;
+		protected virtual void MoveGhostOntoWorld(Ray ray, bool hideWhenInvalid)
+		{
+			m_CurrentArea = null;
 
-		//	if (!hideWhenInvalid)
-		//	{
-		//		RaycastHit hit;
-		//		// check against all layers that the ghost can be on
-		//		Physics.SphereCast(ray, sphereCastRadius, out hit, float.MaxValue, ghostWorldPlacementMask);
-		//		if (hit.collider == null)
-		//		{
-		//			return;
-		//		}
-		//		m_CurrentTower.Show();
-		//		m_CurrentTower.Move(hit.point, hit.collider.transform.rotation, false);
-		//	}
-		//	else
-		//	{
-		//		m_CurrentTower.Hide();
-		//	}
-		//}
+			if (!hideWhenInvalid)
+			{
+				RaycastHit hit;
+				// check against all layers that the ghost can be on
+				Physics.SphereCast(ray, sphereCastRadius, out hit, float.MaxValue, ghostWorldPlacementMask);
+				if (hit.collider == null)
+				{
+					return;
+				}
+				m_CurrentTower.Show();
+				m_CurrentTower.Move(hit.point, hit.collider.transform.rotation, false);
+			}
+			else
+			{
+				m_CurrentTower.Hide();
+			}
+		}
 
 		/// <summary>
 		/// Place the ghost at the pointer's position
 		/// </summary>
 		/// <param name="pointer">The pointer to place the ghost at</param>
 		/// <exception cref="InvalidOperationException">If we're not in the correct state</exception>
-		//protected void PlaceGhost(UIPointer pointer)
-		//{
-		//	if (m_CurrentTower == null || !isBuilding)
-		//	{
-		//		throw new InvalidOperationException(
-		//			"Trying to position a tower ghost while the UI is not currently in a building state.");
-		//	}
+		protected void PlaceGhost(UIPointer pointer)
+		{
+			if (m_CurrentTower == null || !isBuilding)
+			{
+				throw new InvalidOperationException(
+					"Trying to position a tower ghost while the UI is not currently in a building state.");
+			}
 
-		//	MoveGhost(pointer);
+			MoveGhost(pointer);
 
-		//	if (m_CurrentArea != null)
-		//	{
-		//		TowerFitStatus fits = m_CurrentArea.Fits(m_GridPosition, m_CurrentTower.controller.dimensions);
+			if (m_CurrentArea != null)
+			{
+				//TowerFitStatus fits = m_CurrentArea.Fits(m_GridPosition, m_CurrentTower.controller.dimensions);
 
-		//		if (fits == TowerFitStatus.Fits)
-		//		{
-		//			// Place the ghost
-		//			Tower controller = m_CurrentTower.controller;
+				//if (fits == TowerFitStatus.Fits)
+				//{
+				//	// Place the ghost
+				//	Tower controller = m_CurrentTower.controller;
 
-		//			Tower createdTower = Instantiate(controller);
-		//			createdTower.Initialize(m_CurrentArea, m_GridPosition);
+				//	Tower createdTower = Instantiate(controller);
+				//	createdTower.Initialize(m_CurrentArea, m_GridPosition);
 
-		//			CancelGhostPlacement();
-		//		}
-		//	}
-		//}
+				//	CancelGhostPlacement();
+				//}
+			}
+		}
 
 		/// <summary>
 		/// Raycast onto tower placement areas
@@ -984,8 +989,8 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		//	TowerFitStatus fits = m_CurrentArea.Fits(m_GridPosition, m_CurrentTower.controller.dimensions);
 		//	bool valid = fits == TowerFitStatus.Fits && IsValidPurchase();
 		//	m_CurrentTower.Move(m_CurrentArea.GridToWorld(m_GridPosition, m_CurrentTower.controller.dimensions),
-		//	                    m_CurrentArea.transform.rotation,
-		//	                    valid);
+		//						m_CurrentArea.transform.rotation,
+		//						valid);
 		//	if (valid && !m_GhostPlacementPossible && ghostBecameValid != null)
 		//	{
 		//		m_GhostPlacementPossible = true;
@@ -1002,29 +1007,30 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		//	radiusVisualizerController.HideRadiusVisualizers();
 		//	DeselectTower();
 		//}
-		
+
 		///// <summary>
 		///// Creates and hides the tower and shows the buildInfoUI
 		///// </summary>
 		///// <exception cref="ArgumentNullException">
 		///// Throws exception if the <paramref name="towerToBuild"/> is null
 		///// </exception>
-		//void SetUpGhostTower([NotNull] Tower towerToBuild)
-		//{
-		//	if (towerToBuild == null)
-		//	{
-		//		throw new ArgumentNullException("towerToBuild");
-		//	}
+		void SetUpGhostTower([NotNull] Tower towerToBuild)
+		{
+			if (towerToBuild == null)
+			{
+				throw new ArgumentNullException("towerToBuild");
+			}
 
-		//	m_CurrentTower = Instantiate(towerToBuild.towerGhostPrefab);
-		//	m_CurrentTower.Initialize(towerToBuild);
-		//	m_CurrentTower.Hide();
+			//m_CurrentTower = Instantiate(towerToBuild.towerGhostPrefab);
+			//m_CurrentTower.Initialize(towerToBuild);
+			//m_CurrentTower.Hide();
 
-		//	//activate build info
-		//	if (buildInfoUI != null)
-		//	{
-		//		buildInfoUI.Show(towerToBuild);
-		//	}
-		//}
+			////activate build info
+			//if (buildInfoUI != null)
+			//{
+			//	buildInfoUI.Show(towerToBuild);
+			//}
+		}
+
 	}
 }

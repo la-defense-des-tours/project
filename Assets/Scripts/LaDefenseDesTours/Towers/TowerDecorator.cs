@@ -5,6 +5,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
     public abstract class TowerDecorator : Tower
     {
         protected Tower tower;
+        public string towerName => tower.towerName;
 
         public TowerDecorator(Tower tower)
         {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace TowerDefense.UI
@@ -26,36 +27,37 @@ namespace TowerDefense.UI
 		/// The tower to get the data from
 		/// </param>
 		/// <param name="ghost">Transform of ghost to parent the visualiser to.</param>
-		//public void SetupRadiusVisualizers(Tower tower, Transform ghost = null)
-		//{
-		//	// Create necessary affector radius visualizations
-		//	List<ITowerRadiusProvider> providers =
-		//		tower.levels[tower.currentLevel].GetRadiusVisualizers();
 
-		//	int length = providers.Count;
-		//	for (int i = 0; i < length; i++)
-		//	{
-		//		if (m_RadiusVisualizers.Count < i + 1)
-		//		{
-		//			m_RadiusVisualizers.Add(Instantiate(radiusVisualizerPrefab));
-		//		}
+		public void SetupRadiusVisualizers(Tower tower, Transform ghost = null)
+		{
+			// Create necessary affector radius visualizations
+			//List<ITowerRadiusProvider> providers =
+			//	tower.levels[tower.currentLevel].GetRadiusVisualizers();
 
-		//		ITowerRadiusProvider provider = providers[i];
+			//int length = providers.Count;
+			//for (int i = 0; i < length; i++)
+			//{
+			//	if (m_RadiusVisualizers.Count < i + 1)
+			//	{
+			//		m_RadiusVisualizers.Add(Instantiate(radiusVisualizerPrefab));
+			//	}
 
-		//		GameObject radiusVisualizer = m_RadiusVisualizers[i];
-		//		radiusVisualizer.SetActive(true);
-		//		radiusVisualizer.transform.SetParent(ghost == null ? tower.transform : ghost);
-		//		radiusVisualizer.transform.localPosition = new Vector3(0, radiusVisualizerHeight, 0);
-		//		radiusVisualizer.transform.localScale = Vector3.one * provider.effectRadius * 2.0f;
-		//		radiusVisualizer.transform.localRotation = new Quaternion {eulerAngles = localEuler};
+			//	//ITowerRadiusProvider provider = providers[i];
 
-		//		var visualizerRenderer = radiusVisualizer.GetComponent<Renderer>();
-		//		if (visualizerRenderer != null)
-		//		{
-		//			visualizerRenderer.material.color = provider.effectColor;
-		//		}
-		//	}
-		//}
+			//	GameObject radiusVisualizer = m_RadiusVisualizers[i];
+			//	radiusVisualizer.SetActive(true);
+			//	//radiusVisualizer.transform.SetParent(ghost == null ? tower.transform : ghost);
+			//	radiusVisualizer.transform.localPosition = new Vector3(0, radiusVisualizerHeight, 0);
+			//	radiusVisualizer.transform.localScale = Vector3.one * provider.effectRadius * 2.0f;
+			//	radiusVisualizer.transform.localRotation = new Quaternion { eulerAngles = localEuler };
+
+			//	var visualizerRenderer = radiusVisualizer.GetComponent<Renderer>();
+			//	if (visualizerRenderer != null)
+			//	{
+			//		//visualizerRenderer.material.color = provider.effectColor;
+			//	}
+			//}
+		}
 
 		/// <summary>
 		/// Hides the radius visualizers
