@@ -6,6 +6,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
 {
     public class BossEnemy : MonoBehaviour, Enemy
     {
+        private State currentState;
         private NavMeshAgent agent;
         private Animator animator;
         private float health = 1000;
@@ -36,8 +37,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
 
         public void Move(Vector3 destination)
         {
+            if (currentState is not Paralyzed)
+            {
             animator.speed = speed;
             agent.SetDestination(destination);
+            }
+
         }
 
         public Enemy Clone(Transform spawnPoint)
@@ -52,13 +57,22 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
             health -= damage;
             if (health <= 0)
             {
-                Die();
+                TransitionTo(new Dead());
             }
         }
 
         public void Die()
         {
             Destroy(gameObject);
+        }
+        public void TransitionTo(State state)
+        {
+            currentState = state;
+            currentState.SetContext(this);
+        }
+        public void UpdateState()
+        {
+            currentState?.ApplyEffect();
         }
     }
 }

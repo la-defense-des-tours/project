@@ -6,6 +6,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
 {
     public class FlyingEnemy : MonoBehaviour, Enemy
     {
+        private State currentState;
         private NavMeshAgent agent;
         private float health = 100;
         private float speed = 4;
@@ -30,7 +31,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         }
         public void Move(Vector3 destination)
         {
-            agent.SetDestination(destination);
+            if (currentState is not Paralyzed)
+            {
+                agent.SetDestination(destination);
+            }
         }
         public Enemy Clone(Transform spawnPoint)
         {
@@ -43,12 +47,21 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
             health -= damage;
             if (health <= 0)
             {
-                Die();
+                TransitionTo(new Dead());
             }
         }
         public void Die()
         {
             Destroy(gameObject);
+        }
+        public void TransitionTo(State state)
+        {
+            currentState = state;
+            currentState.SetContext(this);
+        }
+        public void UpdateState()
+        {
+            currentState?.ApplyEffect();
         }
     }
 }

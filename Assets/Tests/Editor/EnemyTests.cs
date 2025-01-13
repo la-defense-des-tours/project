@@ -7,6 +7,7 @@ public class EnemyTests
 {
     private class TestEnemy : MonoBehaviour, Enemy
     {
+        private State currentState;
         public bool isDead = false;
         public float health = 100f;
 
@@ -33,6 +34,21 @@ public class EnemyTests
             if (health <= 0)
             {
                 Die();
+            }
+        }
+        public void TransitionTo(State state)
+        {
+            if (state is Slowed)
+            {
+                Debug.Log("Enemy is slowed.");
+            }
+        }
+
+        public void UpdateState()
+        {
+            if (currentState != null)
+            {
+                currentState.ApplyEffect();
             }
         }
     }

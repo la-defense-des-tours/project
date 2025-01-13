@@ -6,6 +6,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
 {
     public class WalkingEnemy : MonoBehaviour, Enemy
     {
+        private State currentState;
         private NavMeshAgent agent;
         private Animator animator;
         private float health = 200f;
@@ -32,8 +33,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         }
         public void Move(Vector3 destination)
         {
+            if (currentState is not Paralyzed)
+            {
             animator.speed = speed / 2;
             agent.SetDestination(destination);
+            }
         }
         public Enemy Clone(Transform spawnPoint) // Voir au niveau FPS, ou rajouter un check pour ne cloner (ATTENTION: chaque clone)
         {
@@ -46,12 +50,21 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
             health -= damage;
             if (health <= 0)
             {
-                Die();
+                TransitionTo(new Dead());
             }
         }
         public void Die()
         {
             Destroy(gameObject);
+        }
+        public void TransitionTo(State state)
+        {
+            currentState = state;
+            currentState.SetContext(this);
+        }
+        public void UpdateState()
+        {
+            currentState?.ApplyEffect();
         }
     }
 }
