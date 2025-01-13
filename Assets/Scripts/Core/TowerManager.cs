@@ -31,9 +31,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers {
         }
         private void HandleTowerSelection()
         {
-            // Touches G, L et C pour sélectionner les tours
+            // Touches M, L et C pour sélectionner les tours
             // Il faudra par la suite changer la sélection par des boutons dans l'UI qui seront liés à des événements monnaie
-            if (Input.GetKeyDown(KeyCode.G))
+            if (Input.GetKeyDown(KeyCode.M))
             {
                 selectedFactory = machineGunFactory;
                 Debug.Log("Selected Tower: Machine Gun");
