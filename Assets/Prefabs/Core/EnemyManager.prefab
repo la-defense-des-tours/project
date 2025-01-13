@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6921844472571895503}
-  - component: {fileID: 2379230391544324054}
+  - component: {fileID: 1895617998949637736}
   m_Layer: 0
   m_Name: EnemyManager
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2379230391544324054
+--- !u!114 &1895617998949637736
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6536179397371552184}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 714eb826cd34fe540b8c9e87d7264514, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c4178a76d0a8e941a60c0cae24e4bec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   walkingEnemyFactory: {fileID: 0}
