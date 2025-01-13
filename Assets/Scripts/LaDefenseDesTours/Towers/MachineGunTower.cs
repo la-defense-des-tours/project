@@ -7,6 +7,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
     public class MachineGunTower : MonoBehaviour, Tower
     {
         private NavMeshAgent agent;
+
+        public string towerName { get; set; } = "Machine Gun Tower";
         private float range { get; set; }
         private int currentLevel { get; set; }
         private float damage { get; set; }

@@ -7,6 +7,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
     public class LaserTower : MonoBehaviour, Tower
     {
         private NavMeshAgent agent;
+
+        public string towerName { get; set; } = "Laser Tower";
         private float range { get; set; }
         private int currentLevel { get; set; }
         private float damage { get; set; }
