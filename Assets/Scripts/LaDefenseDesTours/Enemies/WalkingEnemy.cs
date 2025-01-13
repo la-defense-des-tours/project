@@ -6,13 +6,16 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
 {
     public class WalkingEnemy : MonoBehaviour, Enemy
     {
+        private State currentState;
         private NavMeshAgent agent;
+        private Animator animator;
         private float health = 200f;
-        private float speed = 3f;
-        private float acceleration = 6f;
+        private float speed = 2.5f;
+        private float acceleration = 5;
 
-        public void Awake()
+        void Awake()
         {
+            animator = GetComponent<Animator>();
             SetupNavMeshAgent();
         }
         public void SetupNavMeshAgent()
@@ -30,11 +33,15 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         }
         public void Move(Vector3 destination)
         {
+            if (currentState is not Paralyzed)
+            {
+            animator.speed = speed / 2;
             agent.SetDestination(destination);
+            }
         }
-        public Enemy Clone() // Voir au niveau FPS, ou rajouter un check pour ne cloner (ATTENTION: chaque clone)
+        public Enemy Clone(Transform spawnPoint) // Voir au niveau FPS, ou rajouter un check pour ne cloner (ATTENTION: chaque clone)
         {
-            Enemy clone = Instantiate(this, Vector3.zero, Quaternion.identity); // A voir ici, par defaut il spawn a la position par defaut du prefab (tester)
+            Enemy clone = Instantiate(this, spawnPoint.position, Quaternion.identity); // A voir ici, par defaut il spawn a la position par defaut du prefab (tester)
             clone.SetupNavMeshAgent();
             return clone;
         }
@@ -43,12 +50,21 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
             health -= damage;
             if (health <= 0)
             {
-                Die();
+                TransitionTo(new Dead());
             }
         }
         public void Die()
         {
             Destroy(gameObject);
+        }
+        public void TransitionTo(State state)
+        {
+            currentState = state;
+            currentState.SetContext(this);
+        }
+        public void UpdateState()
+        {
+            currentState?.ApplyEffect();
         }
     }
 }

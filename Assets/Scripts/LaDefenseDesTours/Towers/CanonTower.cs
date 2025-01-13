@@ -6,7 +6,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
 {
     public class CanonTower : MonoBehaviour, Tower
     {
+
         private NavMeshAgent agent;
+        public string towerName { get; set; } = "Canon Tower";
+
         private float range { get; set; }
         private int currentLevel { get; set; }
         private float damage { get; set; }
@@ -27,7 +30,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             cost += 25;
             areaOfEffect += 0.5f;
         }
-                //     public void Move(Vector3 destination)
+
+        //     public void Move(Vector3 destination)
         // {
         //     agent.SetDestination(destination);
         // }
@@ -41,18 +45,16 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             {
                 agent = gameObject.GetComponent<NavMeshAgent>();
             }
-            // agent.speed = speed;
-            // agent.acceleration = acceleration;
-        }
-        public Tower Clone() // Voir au niveau FPS, ou rajouter un check pour ne cloner (ATTENTION: chaque clone)
-        {
-            Tower clone = Instantiate(this, Vector3.zero, Quaternion.identity); // A voir ici, par defaut il spawn a la position par defaut du prefab (tester)
-            clone.SetupNavMeshAgent();
-            return clone;
         }
         public void Attack()
         {
             Debug.Log("Canon Tower is attacking");
+        }
+        void Tower.SetPosition(Vector3 position)
+        {
+            position.x = Mathf.Round(position.x);
+            position.z = Mathf.Round(position.z);
+            transform.position = position;
         }
     }
 

@@ -1,7 +1,6 @@
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using UnityEngine;
 
-
 namespace Assets.Scripts.Core
 { 
     public class EnemyManager : MonoBehaviour
@@ -37,10 +36,10 @@ namespace Assets.Scripts.Core
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Enemy walkingClone = walkingEnemy.Clone();
-                Enemy flyingClone = flyingEnemy.Clone();
-                Enemy tankClone = tankEnemy.Clone();
-                Enemy bossClone = bossEnemy.Clone();
+                Enemy walkingClone = walkingEnemy.Clone(transform);
+                Enemy flyingClone = flyingEnemy.Clone(transform);
+                Enemy tankClone = tankEnemy.Clone(transform);
+                Enemy bossClone = bossEnemy.Clone(transform);
 
                 walkingClone.Move(target.position);
                 flyingClone.Move(target.position);
