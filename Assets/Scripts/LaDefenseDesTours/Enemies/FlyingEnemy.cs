@@ -9,7 +9,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         private State currentState;
         private NavMeshAgent agent;
         private float health = 100;
-        private float speed = 5;
+        private float speed = 4;
         private float acceleration = 8;
 
         public void Awake()
@@ -36,9 +36,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
                 agent.SetDestination(destination);
             }
         }
-        public Enemy Clone()
+        public Enemy Clone(Transform spawnPoint)
         {
-            Enemy clone = Instantiate(this, Vector3.zero, Quaternion.identity);
+            Enemy clone = Instantiate(this, spawnPoint.position, Quaternion.identity);
             clone.SetupNavMeshAgent();
             return clone;
         }

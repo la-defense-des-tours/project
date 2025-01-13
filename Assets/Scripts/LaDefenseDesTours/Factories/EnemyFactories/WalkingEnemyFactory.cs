@@ -10,7 +10,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Factories
         public override Enemy CreateEnemy()
         {
             Notify();
-            GameObject instance = Instantiate(walkingEnemy.gameObject);
+            GameObject instance = Instantiate(walkingEnemy.gameObject, transform.position, Quaternion.identity);
             return instance.GetComponent<WalkingEnemy>();
         }
         public override void Notify()

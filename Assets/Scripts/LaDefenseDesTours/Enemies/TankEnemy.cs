@@ -7,12 +7,14 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
     {
         private State currentState;
         private NavMeshAgent agent;
+        private Animator animator;
         private float health = 350;
         private float speed = 1.5f;
         private float acceleration = 2.5f;
 
         public void Awake()
         {
+            animator = GetComponent<Animator>();
             SetupNavMeshAgent();
         }
         public void SetupNavMeshAgent()
@@ -32,12 +34,14 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         {
             if (currentState is not Paralyzed)
             {
-                agent.SetDestination(destination);
+            animator.speed = speed;
+            agent.SetDestination(destination);
             }
+
         }
-        public Enemy Clone()
+        public Enemy Clone(Transform spawnPoint)
         {
-            Enemy clone = Instantiate(this, Vector3.zero, Quaternion.identity);
+            Enemy clone = Instantiate(this, spawnPoint.position, Quaternion.identity);
             clone.SetupNavMeshAgent();
             return clone;
         }
