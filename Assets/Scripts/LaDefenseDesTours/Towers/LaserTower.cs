@@ -41,18 +41,17 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             {
                 agent = gameObject.GetComponent<NavMeshAgent>();
             }
-            // agent.speed = speed;
-            // agent.acceleration = acceleration;
-        }
-        public Tower Clone() // Voir au niveau FPS, ou rajouter un check pour ne cloner (ATTENTION: chaque clone)
-        {
-            Tower clone = Instantiate(this, Vector3.zero, Quaternion.identity); // A voir ici, par defaut il spawn a la position par defaut du prefab (tester)
-            clone.SetupNavMeshAgent();
-            return clone;
         }
         public void Attack()
         {
             Debug.Log("Laser Tower is attacking");
+        }
+
+        void Tower.SetPosition(Vector3 position)
+        {
+            position.x = Mathf.Round(position.x);
+            position.z = Mathf.Round(position.z);
+            transform.position = position;
         }
     }
 }
