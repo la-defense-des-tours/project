@@ -1,7 +1,7 @@
+using UnityEngine;
+using System.Collections.Generic;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using Assets.Scripts.LaDefenseDesTours.Waves;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace Assets.Scripts.Core
 {
@@ -22,33 +22,33 @@ namespace Assets.Scripts.Core
 
         private void SetupWaves()
         {
-            // Initialization des vagues
-            var wave1 = new Wave_1(walkingEnemyFactory, flyingEnemyFactory, tankEnemyFactory);
-            var wave2 = new Wave_2(walkingEnemyFactory, flyingEnemyFactory, tankEnemyFactory);
-            var wave3 = new Wave_3(walkingEnemyFactory, flyingEnemyFactory, tankEnemyFactory);
-            var wave4 = new Wave_4(walkingEnemyFactory, flyingEnemyFactory, tankEnemyFactory, bossEnemyFactory);
+            Wave wave1 = new Wave_1(walkingEnemyFactory, flyingEnemyFactory, tankEnemyFactory, this);
+            Wave wave2 = new Wave_2(walkingEnemyFactory, flyingEnemyFactory, tankEnemyFactory, this);
+            Wave wave3 = new Wave_3(walkingEnemyFactory, flyingEnemyFactory, tankEnemyFactory, this);
+            Wave wave4 = new Wave_4(walkingEnemyFactory, flyingEnemyFactory, tankEnemyFactory, bossEnemyFactory, this);
+
+            wave1.SetNext(wave2);
+            wave2.SetNext(wave3);
+            wave3.SetNext(wave4);
+            wave4.SetNext(wave1);
 
             waveKeyBindings = new Dictionary<KeyCode, Wave>
             {
-                { KeyCode.G, wave1 },
-                { KeyCode.H, wave2 },
-                { KeyCode.J, wave3 },
-                { KeyCode.K, wave4 }
+                { KeyCode.Alpha1, wave1 },
+                { KeyCode.Alpha2, wave2 },
+                { KeyCode.Alpha3, wave3 },
+                { KeyCode.Alpha4, wave4 }
             };
         }
 
         private void Update()
         {
-            HandleWaveInput();
-        }
-        private void HandleWaveInput()
-        {
-            foreach (var keyWavePair in waveKeyBindings)
+            foreach (var binding in waveKeyBindings)
             {
-                if (Input.GetKeyDown(keyWavePair.Key))
+                if (Input.GetKeyDown(binding.Key))
                 {
-                    Debug.Log($"Starting wave triggered by {keyWavePair.Key}");
-                    keyWavePair.Value.GenerateWave(target.position);
+                    binding.Value.GenerateWave(target.position);
+                    Debug.Log($"Starting wave {binding.Key}");
                 }
             }
         }

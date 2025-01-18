@@ -1,56 +1,71 @@
+using System.Collections;
 using UnityEngine;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
-using Assets.Scripts.LaDefenseDesTours.Enemies;
 
 namespace Assets.Scripts.LaDefenseDesTours.Waves
 {
-public class Wave_4 : BaseWave
+    public class Wave_4 : BaseWave
     {
         private readonly EnemyFactory walkingEnemyFactory;
         private readonly EnemyFactory flyingEnemyFactory;
         private readonly EnemyFactory tankEnemyFactory;
         private readonly EnemyFactory bossEnemyFactory;
 
-        public Wave_4(EnemyFactory walkingEnemyFactory, EnemyFactory flyingEnemyFactory, EnemyFactory tankEnemyFactory, EnemyFactory bossEnemyFactory)
+        public Wave_4(EnemyFactory walkingEnemyFactory, EnemyFactory flyingEnemyFactory,
+                     EnemyFactory tankEnemyFactory, EnemyFactory bossEnemyFactory, 
+                     MonoBehaviour coroutineRunner)
         {
             difficulty = 4;
             this.walkingEnemyFactory = walkingEnemyFactory;
             this.flyingEnemyFactory = flyingEnemyFactory;
             this.tankEnemyFactory = tankEnemyFactory;
             this.bossEnemyFactory = bossEnemyFactory;
+            this.coroutineRunner = coroutineRunner;
         }
 
         public override void SpawnEnemies(Vector3 targetPosition)
         {
-            int walkingEnemyCount = 8 * difficulty;
-            int tankEnemyCount = 8 * difficulty;
-            int flyingEnemyCount = 8 * difficulty;
-
-            for (int i = 0; i < walkingEnemyCount; i++)
+            if (!isSpawning)
             {
-                var enemy = this.walkingEnemyFactory.CreateEnemy();
+                isSpawning = true;
+                coroutineRunner.StartCoroutine(SpawnWaveRoutine(targetPosition));
+            }
+        }
+
+        private IEnumerator SpawnWaveRoutine(Vector3 targetPosition)
+        {
+            totalEnemies = 24 * difficulty;
+            int enemiesSpawned = 0;
+
+            while (enemiesSpawned < totalEnemies)
+            {
+                float random = Random.Range(0f, 1f);
+                Enemy enemy;
+
+                if (random < 0.5f)
+                    enemy = walkingEnemyFactory.CreateEnemy();
+                else if (random < 0.85f)
+                    enemy = flyingEnemyFactory.CreateEnemy();
+                else
+                    enemy = tankEnemyFactory.CreateEnemy();
+
                 enemy.Move(targetPosition);
-                Debug.Log($"Wave 4: Spawned WalkingEnemy {i + 1}/{walkingEnemyCount}.");
+                spawnedEnemies.Add(enemy);
+                enemiesSpawned++;
+
+                Debug.Log($"Wave 4: Spawned enemy {enemiesSpawned}/{totalEnemies}");
+                yield return new WaitForSeconds(timeBetweenSpawns);
             }
 
-            for (int i = 0; i < tankEnemyCount; i++)
-            {
-                var enemy = this.tankEnemyFactory.CreateEnemy();
-                enemy.Move(targetPosition);
-                Debug.Log($"Wave 4: Spawned TankEnemy {i + 1}/{tankEnemyCount}.");
-            }
-
-            for (int i = 0; i < flyingEnemyCount; i++)
-            {
-                var enemy = this.flyingEnemyFactory.CreateEnemy();
-                enemy.Move(targetPosition);
-                Debug.Log($"Wave 4: Spawned FlyingEnemy {i + 1}/{flyingEnemyCount}.");
-            }
-
-            // Spawn le boss
-            var boss = this.bossEnemyFactory.CreateEnemy();
+            // Spawn boss at the end
+            var boss = bossEnemyFactory.CreateEnemy();
             boss.Move(targetPosition);
-            Debug.Log($"Wave 4: Spawned Boss.");
+            spawnedEnemies.Add(boss as Enemy);
+            Debug.Log("Wave 4: Spawned Boss");
+            yield return new WaitForSeconds(timeBetweenSpawns);
+
+            isSpawning = false;
+            OnWaveCompleted();
         }
     }
 }

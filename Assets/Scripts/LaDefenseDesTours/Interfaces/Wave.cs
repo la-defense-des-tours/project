@@ -7,5 +7,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
     {
         Wave SetNext(Wave nextWave);
         public void GenerateWave(Vector3 targetPosition);
+        public void SpawnEnemies(Vector3 targetPosition);
     }
 }

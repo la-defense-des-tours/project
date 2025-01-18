@@ -1,15 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
     public abstract class BaseWave : Wave
     {
-        private Wave nextWave;
-        public static int count = 0; // Static pour que chaque instance de wave ait un id unique
-        public int difficulty;
-
+        protected MonoBehaviour coroutineRunner;
+        protected Wave nextWave;
+        protected int difficulty;
+        protected bool isSpawning = false;
+        protected int totalEnemies;
+        protected float timeBetweenSpawns = 1.5f;
+        protected float timeBetweenWave = 5f;
+        protected Vector3 targetPosition;
         public List<Enemy> spawnedEnemies = new List<Enemy>();
 
         public Wave SetNext(Wave nextWave)
@@ -20,12 +23,20 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         public virtual void GenerateWave(Vector3 targetPosition)
         {
+            this.targetPosition = targetPosition;
             Debug.Log($"Wave {GetType().Name} started with difficulty {difficulty}.");
             SpawnEnemies(targetPosition);
-
-            nextWave?.GenerateWave(targetPosition);
         }
 
         public abstract void SpawnEnemies(Vector3 targetPosition);
+
+        protected virtual void OnWaveCompleted()
+        {
+            Debug.Log($"Wave {GetType().Name} completed!");
+            if (nextWave != null)
+            {
+                nextWave.GenerateWave(targetPosition);
+            }
+        }
     }
 }
