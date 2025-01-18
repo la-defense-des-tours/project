@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,8 +36,15 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             Debug.Log($"Wave {GetType().Name} completed!");
             if (nextWave != null)
             {
-                nextWave.GenerateWave(targetPosition);
+                coroutineRunner.StartCoroutine(WaitForNextWave());
             }
+        }
+
+        private IEnumerator WaitForNextWave()
+        {
+            Debug.Log($"Waiting {timeBetweenWave} seconds for next wave...");
+            yield return new WaitForSeconds(timeBetweenWave);
+            nextWave.GenerateWave(targetPosition);
         }
     }
 }

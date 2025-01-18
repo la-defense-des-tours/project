@@ -35,8 +35,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         {
             if (currentState is not Paralyzed)
             {
-            animator.speed = speed / 2;
-            agent.SetDestination(destination);
+                animator.speed = speed / 2;
+                agent.SetDestination(destination);
             }
         }
         public Enemy Clone(Transform spawnPoint) // Voir au niveau FPS, ou rajouter un check pour ne cloner (ATTENTION: chaque clone)

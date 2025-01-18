@@ -34,7 +34,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
 
         private IEnumerator SpawnWaveRoutine(Vector3 targetPosition)
         {
-            totalEnemies = 24 * difficulty;
+            totalEnemies = 1 * difficulty;
             int enemiesSpawned = 0;
 
             while (enemiesSpawned < totalEnemies)
@@ -57,10 +57,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
                 yield return new WaitForSeconds(timeBetweenSpawns);
             }
 
-            // Spawn boss at the end
-            var boss = bossEnemyFactory.CreateEnemy();
+            Enemy boss = bossEnemyFactory.CreateEnemy();
             boss.Move(targetPosition);
-            spawnedEnemies.Add(boss as Enemy);
+            spawnedEnemies.Add(boss);
             Debug.Log("Wave 4: Spawned Boss");
             yield return new WaitForSeconds(timeBetweenSpawns);
 

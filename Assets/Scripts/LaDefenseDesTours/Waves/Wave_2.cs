@@ -30,7 +30,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
 
         private IEnumerator SpawnWaveRoutine(Vector3 targetPosition)
         {
-            totalEnemies = 9 * difficulty;
+            totalEnemies = 6 * difficulty;
             int enemiesSpawned = 0;
 
             while (enemiesSpawned < totalEnemies)
