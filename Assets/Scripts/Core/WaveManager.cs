@@ -12,45 +12,30 @@ namespace Assets.Scripts.Core
         [SerializeField] private EnemyFactory tankEnemyFactory;
         [SerializeField] private EnemyFactory bossEnemyFactory;
         [SerializeField] private Transform target;
-
-        private Dictionary<KeyCode, Wave> waveKeyBindings;
+        private Wave wave1, wave2, wave3, wave4;
 
         private void Start()
         {
             SetupWaves();
+            StartWave(wave1);
         }
 
         private void SetupWaves()
         {
-            Wave wave1 = new Wave_1(walkingEnemyFactory, flyingEnemyFactory, tankEnemyFactory, this);
-            Wave wave2 = new Wave_2(walkingEnemyFactory, flyingEnemyFactory, tankEnemyFactory, this);
-            Wave wave3 = new Wave_3(walkingEnemyFactory, flyingEnemyFactory, tankEnemyFactory, this);
-            Wave wave4 = new Wave_4(walkingEnemyFactory, flyingEnemyFactory, tankEnemyFactory, bossEnemyFactory, this);
+            wave1 = new Wave_1(walkingEnemyFactory, flyingEnemyFactory, tankEnemyFactory, this);
+            wave2 = new Wave_2(walkingEnemyFactory, flyingEnemyFactory, tankEnemyFactory, this);
+            wave3 = new Wave_3(walkingEnemyFactory, flyingEnemyFactory, tankEnemyFactory, this);
+            wave4 = new Wave_4(walkingEnemyFactory, flyingEnemyFactory, tankEnemyFactory, bossEnemyFactory, this);
 
             wave1.SetNext(wave2);
             wave2.SetNext(wave3);
             wave3.SetNext(wave4);
             wave4.SetNext(wave1);
-
-            waveKeyBindings = new Dictionary<KeyCode, Wave>
-            {
-                { KeyCode.Alpha1, wave1 },
-                { KeyCode.Alpha2, wave2 },
-                { KeyCode.Alpha3, wave3 },
-                { KeyCode.Alpha4, wave4 }
-            };
         }
 
-        private void Update()
+        public void StartWave(Wave wave)
         {
-            foreach (var binding in waveKeyBindings)
-            {
-                if (Input.GetKeyDown(binding.Key))
-                {
-                    binding.Value.GenerateWave(target.position);
-                    Debug.Log($"Starting wave {binding.Key}");
-                }
-            }
+            wave.GenerateWave(target.position);
         }
     }
 }

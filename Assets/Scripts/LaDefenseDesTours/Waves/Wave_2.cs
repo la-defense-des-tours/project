@@ -12,7 +12,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
 
         public Wave_2(EnemyFactory walkingEnemyFactory, EnemyFactory flyingEnemyFactory, EnemyFactory tankEnemyFactory, MonoBehaviour coroutineRunner)
         {
-            difficulty = 2;
+            difficulty = 1;
             this.walkingEnemyFactory = walkingEnemyFactory;
             this.flyingEnemyFactory = flyingEnemyFactory;
             this.tankEnemyFactory = tankEnemyFactory;
@@ -30,7 +30,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
 
         private IEnumerator SpawnWaveRoutine(Vector3 targetPosition)
         {
-            totalEnemies = 6 * difficulty;
+            totalEnemies = 4 * difficulty;
             int enemiesSpawned = 0;
 
             while (enemiesSpawned < totalEnemies)
@@ -54,6 +54,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
             }
 
             isSpawning = false;
+            difficulty++;
             OnWaveCompleted();
         }
     }

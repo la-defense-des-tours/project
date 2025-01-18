@@ -15,7 +15,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
                      EnemyFactory tankEnemyFactory, EnemyFactory bossEnemyFactory, 
                      MonoBehaviour coroutineRunner)
         {
-            difficulty = 4;
+            difficulty = 1;
             this.walkingEnemyFactory = walkingEnemyFactory;
             this.flyingEnemyFactory = flyingEnemyFactory;
             this.tankEnemyFactory = tankEnemyFactory;
@@ -34,7 +34,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
 
         private IEnumerator SpawnWaveRoutine(Vector3 targetPosition)
         {
-            totalEnemies = 1 * difficulty;
+            totalEnemies = 8 * difficulty;
             int enemiesSpawned = 0;
 
             while (enemiesSpawned < totalEnemies)
@@ -64,6 +64,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
             yield return new WaitForSeconds(timeBetweenSpawns);
 
             isSpawning = false;
+            difficulty++;
             OnWaveCompleted();
         }
     }
