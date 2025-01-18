@@ -1,12 +1,16 @@
 using UnityEngine;
 
-public class Rotate : MonoBehaviour
+public class Shooter : MonoBehaviour
 {
     [SerializeField] private float rotatingSpeed = 7f;
     [SerializeField] private Transform rotatingPart;
+    [SerializeField] private float fireRate = 1f;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform firePoint;
     private Transform target;
     private float range = 20f;
     private string enemyTag = "Enemy";
+    private float fireCountdown = 0f;
 
     void Start()
     {
@@ -17,7 +21,7 @@ public class Rotate : MonoBehaviour
     {
         RotateTurret();
     }
-    
+
     void RotateTurret()
     {
         if (target == null)
@@ -28,6 +32,14 @@ public class Rotate : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         Vector3 rotation = Quaternion.Lerp(rotatingPart.rotation, lookRotation, Time.deltaTime * rotatingSpeed).eulerAngles;
         rotatingPart.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+
+        if (fireCountdown <= 0f)
+        {
+            Shoot();
+            fireCountdown = 1f / fireRate;
+        }
+
+        fireCountdown -= Time.deltaTime;
     }
 
     void UpdateTarget()
@@ -53,6 +65,17 @@ public class Rotate : MonoBehaviour
         else
         {
             target = null;
+        }
+    }
+
+    void Shoot()
+    {
+        GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, firePoint.position, bulletPrefab.transform.rotation);
+        Bullet bullet = bulletGO.GetComponent<Bullet>();
+
+        if (bullet != null)
+        {
+            bullet.Seek(target);
         }
     }
 
