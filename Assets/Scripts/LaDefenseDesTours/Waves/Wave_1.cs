@@ -45,6 +45,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
                 else
                     enemy = tankEnemyFactory.CreateEnemy();
 
+                targetPosition.z = Random.Range(-3, 3);
+                Debug.Log("Target position: " + targetPosition);
                 enemy.Move(targetPosition);
                 spawnedEnemies.Add(enemy);
                 enemiesSpawned++;

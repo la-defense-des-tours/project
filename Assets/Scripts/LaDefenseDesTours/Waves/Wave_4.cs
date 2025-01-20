@@ -11,9 +11,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
         private readonly EnemyFactory tankEnemyFactory;
         private readonly EnemyFactory bossEnemyFactory;
 
-        public Wave_4(EnemyFactory walkingEnemyFactory, EnemyFactory flyingEnemyFactory,
-                     EnemyFactory tankEnemyFactory, EnemyFactory bossEnemyFactory, 
-                     MonoBehaviour coroutineRunner)
+        public Wave_4(EnemyFactory walkingEnemyFactory, EnemyFactory flyingEnemyFactory,EnemyFactory tankEnemyFactory, EnemyFactory bossEnemyFactory, MonoBehaviour coroutineRunner)
         {
             difficulty = 1;
             this.walkingEnemyFactory = walkingEnemyFactory;
@@ -49,6 +47,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
                 else
                     enemy = tankEnemyFactory.CreateEnemy();
 
+                targetPosition.z = Random.Range(-3, 3);
+                Debug.Log("Target position: " + targetPosition);
                 enemy.Move(targetPosition);
                 spawnedEnemies.Add(enemy);
                 enemiesSpawned++;
