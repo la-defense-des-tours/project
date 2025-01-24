@@ -11,6 +11,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public void Move(Vector3 destination);
         public Enemy Clone(Transform spawnPoint);
         public void TakeDamage(float damage);
+        public float GetSpeed();
+        public void SetSpeed(float speed);
         public void Die();
     }
 }

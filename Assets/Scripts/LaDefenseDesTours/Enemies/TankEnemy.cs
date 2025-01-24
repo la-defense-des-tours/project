@@ -34,8 +34,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         {
             if (currentState is not Paralyzed)
             {
-            animator.speed = speed;
-            agent.SetDestination(destination);
+                animator.speed = speed;
+                agent.SetDestination(destination);
             }
 
         }
@@ -65,6 +65,15 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         public void UpdateState()
         {
             currentState?.ApplyEffect();
+        }
+
+        public float GetSpeed()
+        {
+            return speed;
+        }
+        public void SetSpeed(float speed)
+        {
+            this.speed = speed;
         }
     }
 }
