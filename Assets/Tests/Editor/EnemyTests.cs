@@ -10,6 +10,7 @@ public class EnemyTests
         private State currentState;
         public bool isDead = false;
         public float health = 100f;
+        public float speed = 5f;
 
         public void Die()
         {
@@ -50,6 +51,16 @@ public class EnemyTests
             {
                 currentState.ApplyEffect();
             }
+        }
+
+        public float GetSpeed()
+        {
+            return speed;
+        }
+
+        public void SetSpeed(float speed)
+        {
+            this.speed = speed;
         }
     }
 
