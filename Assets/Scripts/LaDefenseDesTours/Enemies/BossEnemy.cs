@@ -20,47 +20,38 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
             animator = GetComponent<Animator>();
             SetupNavMeshAgent();
         }
-
         public void SetupNavMeshAgent()
         {
             if (gameObject.GetComponent<NavMeshAgent>() == null)
-            {
                 agent = gameObject.AddComponent<NavMeshAgent>();
-            }
             else
-            {
                 agent = gameObject.GetComponent<NavMeshAgent>();
-            }
-            agent.speed = speed;
-            agent.acceleration = acceleration;
-        }
 
+            SetupSpeed();
+        }
         public void Move(Vector3 destination)
         {
             if (currentState is not Paralyzed)
-            {
-                animator.speed = speed;
                 agent.SetDestination(destination);
-            }
-
         }
-
         public Enemy Clone(Transform spawnPoint)
         {
             Enemy clone = Instantiate(this, spawnPoint.position, Quaternion.identity);
             clone.SetupNavMeshAgent();
             return clone;
         }
-
+        public void SetupSpeed()
+        {
+            agent.speed = speed;
+            agent.acceleration = acceleration;
+            animator.speed = speed;
+        }
         public void TakeDamage(float damage)
         {
             health -= damage;
             if (health <= 0)
-            {
                 TransitionTo(new Dead());
-            }
         }
-
         public void Die()
         {
             Destroy(gameObject);
@@ -69,7 +60,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         {
             currentState = state;
             currentState.SetContext(this);
-            currentState.ApplyEffect();
+        }
+        public void UpdateState()
+        {
+            currentState?.ApplyEffect();
         }
         public float GetSpeed()
         {

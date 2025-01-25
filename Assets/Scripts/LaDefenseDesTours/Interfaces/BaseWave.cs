@@ -25,7 +25,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual void GenerateWave(Vector3 targetPosition)
         {
             this.targetPosition = targetPosition;
-            Debug.Log($"Wave {GetType().Name} started with difficulty {difficulty}.");
             SpawnEnemies(targetPosition);
         }
 
@@ -42,7 +41,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         private IEnumerator WaitForNextWave()
         {
-            Debug.Log($"Waiting {timeBetweenWave} seconds for next wave...");
             yield return new WaitForSeconds(timeBetweenWave);
             nextWave.GenerateWave(targetPosition);
         }

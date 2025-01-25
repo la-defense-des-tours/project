@@ -18,46 +18,36 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
             animator = GetComponent<Animator>();
             SetupNavMeshAgent();
         }
-
         void Update()
-        {            
+        {
             switch (Input.inputString)
             {
-                case "S":
+                case "s":
                     TransitionTo(new Slowed());
                     break;
-                case "P":
+                case "p":
                     TransitionTo(new Paralyzed());
                     break;
-                case "D":
+                case "d":
                     TransitionTo(new Dead());
                     break;
-                case "B":
+                case "b":
                     TransitionTo(new Burned());
                     break;
             }
         }
-
         public void SetupNavMeshAgent()
         {
             if (gameObject.GetComponent<NavMeshAgent>() == null)
-            {
                 agent = gameObject.AddComponent<NavMeshAgent>();
-            }
             else
-            {
                 agent = gameObject.GetComponent<NavMeshAgent>();
-            }
-            agent.speed = speed;
-            agent.acceleration = acceleration;
-            animator.speed = speed / 2;
+            SetupSpeed();
         }
         public void Move(Vector3 destination)
         {
             if (currentState is not Paralyzed)
-            {
                 agent.SetDestination(destination);
-            }
         }
         public Enemy Clone(Transform spawnPoint)
         {
@@ -65,13 +55,17 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
             clone.SetupNavMeshAgent();
             return clone;
         }
+        public void SetupSpeed()
+        {
+            agent.speed = speed;
+            agent.acceleration = acceleration;
+            animator.speed = speed / 2;
+        }
         public void TakeDamage(float damage)
         {
             health -= damage;
             if (health <= 0)
-            {
                 TransitionTo(new Dead());
-            }
         }
         public void Die()
         {
@@ -81,7 +75,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         {
             currentState = state;
             currentState.SetContext(this);
-            currentState.ApplyEffect();
+        }
+        public void UpdateState()
+        {
+            currentState?.ApplyEffect();
         }
         public float GetSpeed()
         {

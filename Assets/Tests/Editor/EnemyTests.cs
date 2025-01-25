@@ -19,11 +19,9 @@ public class EnemyTests
         }
         public void SetupNavMeshAgent()
         {
-            // Implement interface method
         }
         public void Move(Vector3 destination)
         {
-            // Implement interface method
         }
         public Enemy Clone(Transform spawnPoint)
         {
@@ -44,20 +42,14 @@ public class EnemyTests
                 Debug.Log("Enemy is slowed.");
             }
         }
-
         public void UpdateState()
         {
-            if (currentState != null)
-            {
-                currentState.ApplyEffect();
-            }
+            currentState?.ApplyEffect();
         }
-
         public float GetSpeed()
         {
             return speed;
         }
-
         public void SetSpeed(float speed)
         {
             this.speed = speed;

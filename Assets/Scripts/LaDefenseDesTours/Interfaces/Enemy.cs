@@ -6,6 +6,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
     public interface Enemy
     {
         public void TransitionTo(State state);
+        public void UpdateState();
         public void SetupNavMeshAgent();
         public void Move(Vector3 destination);
         public Enemy Clone(Transform spawnPoint);
