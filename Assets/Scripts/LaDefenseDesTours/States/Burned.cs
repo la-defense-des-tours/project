@@ -4,7 +4,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
     public class Burned : State
     {
-        private float damageOverTime = 5f;
+        private float damageMultiplier = 10f;
         private float duration = 5f;
 
         public override void ApplyEffect()
@@ -16,7 +16,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
             if (duration > 0)
             {
-                enemy.TakeDamage(damageOverTime * Time.deltaTime);
+                enemy.TakeDamage(damageMultiplier * Time.deltaTime);
             }
             else
             {

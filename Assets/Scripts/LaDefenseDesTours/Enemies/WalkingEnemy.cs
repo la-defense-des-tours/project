@@ -20,6 +20,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         }
         void Update()
         {
+            UpdateState();
             switch (Input.inputString)
             {
                 case "s":
