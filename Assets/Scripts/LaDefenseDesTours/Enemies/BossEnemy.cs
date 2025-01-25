@@ -10,8 +10,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         private NavMeshAgent agent;
         private Animator animator;
         private float health = 1000;
-        private float speed = 1;
-        private float acceleration = 3;
+        private readonly float speed = 1;
+        private readonly float acceleration = 3;
 
         // TODO: implement attack behavior of the boss enemy
 
@@ -67,11 +67,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         }
         public float GetSpeed()
         {
-            return speed;
+            return agent.speed;
         }
-        public void SetSpeed(float speed)
+        public void SetSpeed(float _speed)
         {
-            this.speed = speed;
+            agent.speed = _speed;
         }
     }
 }

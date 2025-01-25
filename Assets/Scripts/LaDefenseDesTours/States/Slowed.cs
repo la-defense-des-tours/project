@@ -6,7 +6,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
     {
         private float duration = 5f;
         private float slowFactor = 0.5f;
-        private float originalSpeed;
+        private float currentSpeed;
         private bool isApplied = false;
         public override void ApplyEffect()
         {
@@ -15,16 +15,14 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
             if (!isApplied)
             {
-                originalSpeed = enemy.GetSpeed();
-                enemy.SetSpeed(originalSpeed * slowFactor);
-                enemy.SetupNavMeshAgent();
+                currentSpeed = enemy.GetSpeed();
+                enemy.SetSpeed(currentSpeed * slowFactor);
                 isApplied = true;
             }
 
             duration -= Time.deltaTime;
             if (duration <= 0)
             {
-                enemy.SetSpeed(originalSpeed);
                 enemy.SetupNavMeshAgent();
                 isApplied = false;
             }

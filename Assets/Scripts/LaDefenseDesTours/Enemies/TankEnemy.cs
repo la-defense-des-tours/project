@@ -9,8 +9,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         private NavMeshAgent agent;
         private Animator animator;
         private float health = 350;
-        private float speed = 1.5f;
-        private float acceleration = 2.5f;
+        private readonly float speed = 1.5f;
+        private readonly float acceleration = 2.5f;
 
         public void Awake()
         {
@@ -64,11 +64,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         }
         public float GetSpeed()
         {
-            return speed;
+            return agent.speed;
         }
-        public void SetSpeed(float speed)
+        public void SetSpeed(float _speed)
         {
-            this.speed = speed;
+            agent.speed = _speed;
         }
     }
 }

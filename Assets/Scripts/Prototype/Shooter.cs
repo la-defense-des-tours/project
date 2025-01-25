@@ -25,9 +25,8 @@ public class Shooter : MonoBehaviour
     void RotateTurret()
     {
         if (target == null)
-        {
             return;
-        }
+
         Vector3 direction = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         Vector3 rotation = Quaternion.Lerp(rotatingPart.rotation, lookRotation, Time.deltaTime * rotatingSpeed).eulerAngles;
@@ -59,13 +58,9 @@ public class Shooter : MonoBehaviour
         }
 
         if (nearestEnemy != null && shortestDistance <= range)
-        {
             target = nearestEnemy.transform;
-        }
         else
-        {
             target = null;
-        }
     }
 
     void Shoot()
@@ -74,9 +69,7 @@ public class Shooter : MonoBehaviour
         Bullet bullet = bulletGO.GetComponent<Bullet>();
 
         if (bullet != null)
-        {
             bullet.Seek(target);
-        }
     }
 
     void OnDrawGizmosSelected()

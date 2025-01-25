@@ -70,20 +70,27 @@ public class EnemyTests
     public void TakeDamage_ReducesHealth()
     {
         enemy.TakeDamage(10f);
-        Assert.AreEqual(90f, enemy.health);
+        float expected = 90f;
+        float result = enemy.health;
+        Assert.AreEqual(expected, result);
     }
 
     [Test]
     public void HealthBelowZero_CallsDie()
     {
         enemy.TakeDamage(110f);
-        Assert.IsTrue(enemy.isDead);
+        bool expected = true;
+        bool result = enemy.isDead;
+        Assert.AreEqual(expected, result);
     }
 
     [Test]
     public void HealthZero_CallsDie()
     {
         enemy.TakeDamage(100f);
-        Assert.IsTrue(enemy.isDead);
+        bool expected = true;
+        bool result = enemy.isDead;
+        Assert.AreEqual(expected, result);
     }
+
 }
