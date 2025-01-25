@@ -16,15 +16,15 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         protected Vector3 targetPosition;
         public List<Enemy> spawnedEnemies = new List<Enemy>();
 
-        public Wave SetNext(Wave _nextWave)
+        public Wave SetNext(Wave nextWave)
         {
-            this.nextWave = _nextWave;
+            this.nextWave = nextWave;
             return nextWave;
         }
 
-        public virtual void GenerateWave(Vector3 _targetPosition)
+        public virtual void GenerateWave(Vector3 targetPosition)
         {
-            this.targetPosition = _targetPosition;
+            this.targetPosition = targetPosition;
             SpawnEnemies(targetPosition);
         }
 
@@ -34,9 +34,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         {
             Debug.Log($"Wave {GetType().Name} completed!");
             if (nextWave != null)
-            {
                 coroutineRunner.StartCoroutine(WaitForNextWave());
-            }
         }
 
         private IEnumerator WaitForNextWave()
