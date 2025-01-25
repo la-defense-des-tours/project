@@ -15,13 +15,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             duration -= Time.deltaTime;
 
             if (duration > 0)
-            {
                 enemy.TakeDamage(damageMultiplier * Time.deltaTime);
-            }
             else
-            {
                 Debug.Log("Burned effect ended.");
-            }
         }
     }
 }

@@ -4,8 +4,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
     public class Slowed : State
     {
-        private float slowFactor = 0.5f;
         private float duration = 5f;
+        private float slowFactor = 0.5f;
         private float originalSpeed;
         private bool isApplied = false;
         public override void ApplyEffect()

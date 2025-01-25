@@ -11,7 +11,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
                 return;
 
             enemy.Die();
-            Debug.Log("Enemy is dead.");
         }
     }
 }

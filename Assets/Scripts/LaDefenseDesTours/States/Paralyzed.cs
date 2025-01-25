@@ -13,13 +13,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
             duration -= Time.deltaTime;
             if (duration > 0)
-            {
                 Debug.Log("Enemy is paralyzed and cannot move.");
-            }
             else
-            {
                 Debug.Log("Paralyzed effect ended.");
-            }
         }
     }
 }
