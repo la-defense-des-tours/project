@@ -20,6 +20,25 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
             animator = GetComponent<Animator>();
             SetupNavMeshAgent();
         }
+        void Update() // Tests pour les effets
+        {
+            UpdateState();
+            switch (Input.inputString)
+            {
+                case "s":
+                    TransitionTo(new Slowed());
+                    break;
+                case "p":
+                    TransitionTo(new Paralyzed());
+                    break;
+                case "d":
+                    TransitionTo(new Dead());
+                    break;
+                case "b":
+                    TransitionTo(new Burned());
+                    break;
+            }
+        }
         public void SetupNavMeshAgent()
         {
             if (gameObject.GetComponent<NavMeshAgent>() == null)

@@ -18,7 +18,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
             animator = GetComponent<Animator>();
             SetupNavMeshAgent();
         }
-        void Update()
+        void Update() // Tests pour les effets
         {
             UpdateState();
             switch (Input.inputString)

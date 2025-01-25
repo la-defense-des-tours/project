@@ -16,19 +16,19 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         protected Vector3 targetPosition;
         public List<Enemy> spawnedEnemies = new List<Enemy>();
 
-        public Wave SetNext(Wave nextWave)
+        public Wave SetNext(Wave _nextWave)
         {
-            this.nextWave = nextWave;
+            this.nextWave = _nextWave;
             return nextWave;
         }
 
-        public virtual void GenerateWave(Vector3 targetPosition)
+        public virtual void GenerateWave(Vector3 _targetPosition)
         {
-            this.targetPosition = targetPosition;
+            this.targetPosition = _targetPosition;
             SpawnEnemies(targetPosition);
         }
 
-        public abstract void SpawnEnemies(Vector3 targetPosition);
+        public abstract void SpawnEnemies(Vector3 _targetPosition);
 
         protected virtual void OnWaveCompleted()
         {
