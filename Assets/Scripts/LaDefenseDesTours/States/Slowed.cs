@@ -7,20 +7,23 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         private float slowFactor = 0.5f;
         private float duration = 4f;
         private float timer = 0f;
+        private float originalSpeed;
 
         public override void ApplyEffect()
         {
-            if (enemy == null) return;
+            if (enemy == null)
+                return;
+
+            originalSpeed = enemy.GetSpeed();
 
             timer += Time.deltaTime;
             if (timer <= duration)
             {
-                Debug.Log("Enemy is slowed.");
-                enemy.SetupNavMeshAgent(); 
+                enemy.SetSpeed(originalSpeed * slowFactor);
             }
             else
             {
-                Debug.Log("Slowed effect ended.");
+                enemy.SetSpeed(originalSpeed);
             }
         }
     }
