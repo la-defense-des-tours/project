@@ -4,15 +4,15 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
     public class Paralyzed : State
     {
-        private float duration = 2f;
-        private float timer = 0f;
+        private float duration = 5f;
 
         public override void ApplyEffect()
         {
-            if (enemy == null) return;
+            if (enemy == null)
+                return;
 
-            timer += Time.deltaTime;
-            if (timer <= duration)
+            duration -= Time.deltaTime;
+            if (duration > 0)
             {
                 Debug.Log("Enemy is paralyzed and cannot move.");
             }

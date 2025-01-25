@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.LaDefenseDesTours.Interfaces
@@ -6,7 +7,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
     {
         public override void ApplyEffect()
         {
-            if (enemy == null) return;
+            if (enemy == null)
+                return;
 
             enemy.Die();
             Debug.Log("Enemy is dead.");

@@ -61,12 +61,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         {
             currentState = state;
             currentState.SetContext(this);
+            currentState.ApplyEffect();
         }
-        public void UpdateState()
-        {
-            currentState?.ApplyEffect();
-        }
-
         public float GetSpeed()
         {
             return speed;

@@ -18,6 +18,26 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
             animator = GetComponent<Animator>();
             SetupNavMeshAgent();
         }
+
+        void Update()
+        {            
+            switch (Input.inputString)
+            {
+                case "S":
+                    TransitionTo(new Slowed());
+                    break;
+                case "P":
+                    TransitionTo(new Paralyzed());
+                    break;
+                case "D":
+                    TransitionTo(new Dead());
+                    break;
+                case "B":
+                    TransitionTo(new Burned());
+                    break;
+            }
+        }
+
         public void SetupNavMeshAgent()
         {
             if (gameObject.GetComponent<NavMeshAgent>() == null)
@@ -30,18 +50,18 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
             }
             agent.speed = speed;
             agent.acceleration = acceleration;
+            animator.speed = speed / 2;
         }
         public void Move(Vector3 destination)
         {
             if (currentState is not Paralyzed)
             {
-                animator.speed = speed / 2;
                 agent.SetDestination(destination);
             }
         }
-        public Enemy Clone(Transform spawnPoint) // Voir au niveau FPS, ou rajouter un check pour ne cloner (ATTENTION: chaque clone)
+        public Enemy Clone(Transform spawnPoint)
         {
-            Enemy clone = Instantiate(this, spawnPoint.position, Quaternion.identity); // A voir ici, par defaut il spawn a la position par defaut du prefab (tester)
+            Enemy clone = Instantiate(this, spawnPoint.position, Quaternion.identity);
             clone.SetupNavMeshAgent();
             return clone;
         }
@@ -61,12 +81,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         {
             currentState = state;
             currentState.SetContext(this);
+            currentState.ApplyEffect();
         }
-        public void UpdateState()
-        {
-            currentState?.ApplyEffect();
-        }
-
         public float GetSpeed()
         {
             return speed;

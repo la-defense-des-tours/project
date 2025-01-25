@@ -5,8 +5,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
     public class Slowed : State
     {
         private float slowFactor = 0.5f;
-        private float duration = 4f;
-        private float timer = 0f;
+        private float duration = 5f;
         private float originalSpeed;
 
         public override void ApplyEffect()
@@ -15,15 +14,17 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
                 return;
 
             originalSpeed = enemy.GetSpeed();
+            duration -= Time.deltaTime;
 
-            timer += Time.deltaTime;
-            if (timer <= duration)
+            if (duration > 0)
             {
                 enemy.SetSpeed(originalSpeed * slowFactor);
+                enemy.SetupNavMeshAgent();
             }
             else
             {
                 enemy.SetSpeed(originalSpeed);
+                enemy.SetupNavMeshAgent();
             }
         }
     }
