@@ -5,8 +5,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float panSpeed = 30f;
     [SerializeField] private float panBorder = 10f;
     [SerializeField] private float scrollSpeed = 5f;
-    [SerializeField] private float minY = 20f;
-    [SerializeField] private float maxY = 60f;
+    [SerializeField] private float minY = 35f;
+    [SerializeField] private float maxY = 75f;
 
     private readonly Vector3 moveForward = new Vector3(1, 0, 0);
     private readonly Vector3 moveBackward = new Vector3(-1, 0, 0);
@@ -52,6 +52,7 @@ public class CameraController : MonoBehaviour
         Vector3 pos = transform.position;
 
         pos.y -= scroll * 1000 * scrollSpeed * Time.deltaTime;
+        pos.y = Mathf.Clamp(pos.y, minY, maxY);
         transform.position = pos;
     }
 
