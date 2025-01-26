@@ -8,10 +8,10 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float minY = 35f;
     [SerializeField] private float maxY = 75f;
 
-    private readonly Vector3 moveForward = new Vector3(1, 0, 0);
-    private readonly Vector3 moveBackward = new Vector3(-1, 0, 0);
-    private readonly Vector3 moveLeft = new Vector3(0, 0, 1);
-    private readonly Vector3 moveRight = new Vector3(0, 0, -1);
+    private readonly Vector3 moveForward = new(1, 0, 0);
+    private readonly Vector3 moveBackward = new(-1, 0, 0);
+    private readonly Vector3 moveLeft = new(0, 0, 1);
+    private readonly Vector3 moveRight = new(0, 0, -1);
     private bool doMovement = true;
     
     void Update()
@@ -31,7 +31,7 @@ public class CameraController : MonoBehaviour
 
     void MoveCamera(Vector3 direction)
     {
-        transform.Translate(direction * panSpeed * Time.deltaTime, Space.World);
+        transform.Translate(panSpeed * Time.deltaTime * direction, Space.World);
     }
 
     void HandleCameraMovement()

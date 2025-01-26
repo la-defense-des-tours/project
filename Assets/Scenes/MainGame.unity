@@ -408,8 +408,8 @@ MonoBehaviour:
   panSpeed: 30
   panBorder: 10
   scrollSpeed: 5
-  minY: 20
-  maxY: 60
+  minY: 35
+  maxY: 75
 --- !u!114 &356157892 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5705146549942910845, guid: a6cb4125b9d50d244841d65a25295d88, type: 3}
