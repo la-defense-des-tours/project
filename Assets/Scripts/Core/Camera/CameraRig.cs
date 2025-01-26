@@ -22,12 +22,12 @@ namespace Core.Camera
 		/// <summary>
 		/// Nearest zoom level - can go a bit further than this on touch, for springiness
 		/// </summary>
-		public float nearestZoom = 15;
+		public float nearestZoom = 35;
 
 		/// <summary>
 		/// Furthest zoom level - can go a bit further than this on touch, for springiness
 		/// </summary>
-		public float furthestZoom = 40;
+		public float furthestZoom = 50;
 
 		/// <summary>
 		/// True maximum zoom level
