@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public float panSpeed = 30f;
-    public float panBorder = 10f;
-    public float scrollSpeed = 5f;
+    [SerializeField] private float panSpeed = 30f;
+    [SerializeField] private float panBorder = 10f;
+    [SerializeField] private float scrollSpeed = 5f;
+    [SerializeField] private float minY = 20f;
+    [SerializeField] private float maxY = 60f;
+
     private readonly Vector3 moveForward = new Vector3(1, 0, 0);
     private readonly Vector3 moveBackward = new Vector3(-1, 0, 0);
     private readonly Vector3 moveLeft = new Vector3(0, 0, 1);
@@ -23,6 +26,7 @@ public class CameraController : MonoBehaviour
             return;
 
         HandleCameraMovement();
+        HandleCameraZoom();
     }
 
     void MoveCamera(Vector3 direction)
@@ -40,7 +44,10 @@ public class CameraController : MonoBehaviour
             MoveCamera(moveLeft);
         if (Input.GetKey(KeyCode.RightArrow) || Input.mousePosition.x >= Screen.width - panBorder)
             MoveCamera(moveRight);
+    }
 
+    void HandleCameraZoom()
+    {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         Vector3 pos = transform.position;
 
