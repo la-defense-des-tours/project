@@ -24,7 +24,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers {
         {
             HandleTowerSelection();
 
-            if (Input.GetMouseButtonDown(0)) // Bouton gauche de la souris
+            if (Input.GetMouseButtonDown(1)) // Bouton gauche de la souris
             {
                 TryPlaceTower();
             }

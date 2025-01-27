@@ -13,13 +13,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
             duration -= Time.deltaTime;
             if (duration > 0)
-            {
-                Debug.Log("Paralyzed effect applied");
-            }
+                enemy.SetSpeed(0); 
             else
-            {
-                Debug.Log("Paralyzed effect removed");
-            }
+                enemy.SetupNavMeshAgent();
         }
     }
 }

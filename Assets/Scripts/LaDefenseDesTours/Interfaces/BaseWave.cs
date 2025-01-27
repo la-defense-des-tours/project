@@ -16,6 +16,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         protected Vector3 targetPosition;
         public List<Enemy> spawnedEnemies = new List<Enemy>();
 
+        // Chaine de responsabilité
         public Wave SetNext(Wave nextWave)
         {
             this.nextWave = nextWave;

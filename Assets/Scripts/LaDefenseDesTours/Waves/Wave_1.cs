@@ -38,13 +38,14 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
                 float random = Random.Range(0f, 1f);
                 Enemy enemy;
 
+                // Add clone of enemy, and do not destroy the original enemy
+                // 
                 if (random < 0.5f)
                     enemy = walkingEnemyFactory.CreateEnemy();
                 else if (random < 0.85f)
                     enemy = flyingEnemyFactory.CreateEnemy();
                 else
                     enemy = tankEnemyFactory.CreateEnemy();
-                // enemy = walkingEnemyFactory.CreateEnemy();
 
                 targetPosition.z = Random.Range(-3, 3);
                 enemy.Move(targetPosition);

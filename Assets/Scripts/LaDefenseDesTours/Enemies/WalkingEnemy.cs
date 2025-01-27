@@ -50,6 +50,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
             if (currentState is not Paralyzed)
                 agent.SetDestination(destination);
         }
+        // Clone garde-t-il les mêmes états que l'original ? Propriété à l'instant T
         public Enemy Clone(Transform spawnPoint)
         {
             Enemy clone = Instantiate(this, spawnPoint.position, Quaternion.identity);
