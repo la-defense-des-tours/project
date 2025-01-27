@@ -4,23 +4,27 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
     public class Slowed : State
     {
+        private float duration = 5f;
         private float slowFactor = 0.5f;
-        private float duration = 4f;
-        private float timer = 0f;
-
+        private float currentSpeed;
+        private bool isApplied = false;
         public override void ApplyEffect()
         {
-            if (enemy == null) return;
+            if (enemy == null)
+                return;
 
-            timer += Time.deltaTime;
-            if (timer <= duration)
+            if (!isApplied)
             {
-                Debug.Log("Enemy is slowed.");
-                enemy.SetupNavMeshAgent(); 
+                currentSpeed = enemy.GetSpeed();
+                enemy.SetSpeed(currentSpeed * slowFactor);
+                isApplied = true;
             }
-            else
+
+            duration -= Time.deltaTime;
+            if (duration <= 0)
             {
-                Debug.Log("Slowed effect ended.");
+                enemy.SetupNavMeshAgent();
+                isApplied = false;
             }
         }
     }

@@ -30,8 +30,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI
 
 		public Text titleText;
 		
-		public Text descriptionText;
-
 		/// <summary>
 		/// The buttons present in the pause menu
 		/// </summary>
@@ -77,10 +75,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI
 			{
 				titleText.text = level.name;
 			}
-			if (descriptionText != null)
-			{
-				descriptionText.text = level.description;
-			}
+
 
 			m_State = State.Open;
 		}

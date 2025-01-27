@@ -10,8 +10,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         private NavMeshAgent agent;
         private Animator animator;
         private float health = 1000;
-        private float speed = 1;
-        private float acceleration = 3;
+        private readonly float speed = 1;
+        private readonly float acceleration = 3;
 
         // TODO: implement attack behavior of the boss enemy
 
@@ -20,47 +20,57 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
             animator = GetComponent<Animator>();
             SetupNavMeshAgent();
         }
-
+        void Update() // Tests pour les effets
+        {
+            UpdateState();
+            switch (Input.inputString)
+            {
+                case "s":
+                    TransitionTo(new Slowed());
+                    break;
+                case "p":
+                    TransitionTo(new Paralyzed());
+                    break;
+                case "d":
+                    TransitionTo(new Dead());
+                    break;
+                case "b":
+                    TransitionTo(new Burned());
+                    break;
+            }
+        }
         public void SetupNavMeshAgent()
         {
             if (gameObject.GetComponent<NavMeshAgent>() == null)
-            {
                 agent = gameObject.AddComponent<NavMeshAgent>();
-            }
             else
-            {
                 agent = gameObject.GetComponent<NavMeshAgent>();
-            }
-            agent.speed = speed;
-            agent.acceleration = acceleration;
-        }
 
+            SetupSpeed();
+        }
         public void Move(Vector3 destination)
         {
             if (currentState is not Paralyzed)
-            {
-            animator.speed = speed;
-            agent.SetDestination(destination);
-            }
-
+                agent.SetDestination(destination);
         }
-
         public Enemy Clone(Transform spawnPoint)
         {
             Enemy clone = Instantiate(this, spawnPoint.position, Quaternion.identity);
             clone.SetupNavMeshAgent();
             return clone;
         }
-
+        public void SetupSpeed()
+        {
+            agent.speed = speed;
+            agent.acceleration = acceleration;
+            animator.speed = speed;
+        }
         public void TakeDamage(float damage)
         {
             health -= damage;
             if (health <= 0)
-            {
                 TransitionTo(new Dead());
-            }
         }
-
         public void Die()
         {
             Destroy(gameObject);
@@ -73,6 +83,14 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         public void UpdateState()
         {
             currentState?.ApplyEffect();
+        }
+        public float GetSpeed()
+        {
+            return agent.speed;
+        }
+        public void SetSpeed(float _speed)
+        {
+            agent.speed = _speed;
         }
     }
 }

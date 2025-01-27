@@ -1,6 +1,6 @@
 using UnityEngine;
+using System.Collections;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
-using Assets.Scripts.LaDefenseDesTours.Enemies;
 
 namespace Assets.Scripts.LaDefenseDesTours.Waves
 {
@@ -10,41 +10,55 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
         private readonly EnemyFactory flyingEnemyFactory;
         private readonly EnemyFactory tankEnemyFactory;
 
-        public Wave_1(EnemyFactory walkingEnemyFactory, EnemyFactory flyingEnemyFactory, EnemyFactory tankEnemyFactory)
+        public Wave_1(EnemyFactory walkingEnemyFactory, EnemyFactory flyingEnemyFactory, EnemyFactory tankEnemyFactory, MonoBehaviour coroutineRunner)
         {
             difficulty = 1;
             this.walkingEnemyFactory = walkingEnemyFactory;
             this.flyingEnemyFactory = flyingEnemyFactory;
             this.tankEnemyFactory = tankEnemyFactory;
-
+            this.coroutineRunner = coroutineRunner;
         }
 
         public override void SpawnEnemies(Vector3 targetPosition)
         {
-            int walkingEnemyCount = 2 * difficulty;
-            int tankEnemyCount = 2 * difficulty;
-            int flyingEnemyCount = 2 * difficulty;
-
-            for (int i = 0; i < walkingEnemyCount; i++)
+            if (!isSpawning)
             {
-                var enemy = this.walkingEnemyFactory.CreateEnemy();
+                isSpawning = true;
+                coroutineRunner.StartCoroutine(SpawnWaveRoutine(targetPosition));
+            }
+        }
+
+        private IEnumerator SpawnWaveRoutine(Vector3 targetPosition)
+        {
+            totalEnemies = 2 * difficulty;
+            int enemiesSpawned = 0;
+
+            while (enemiesSpawned < totalEnemies)
+            {
+                float random = Random.Range(0f, 1f);
+                Enemy enemy;
+
+                // Add clone of enemy, and do not destroy the original enemy
+                // 
+                if (random < 0.5f)
+                    enemy = walkingEnemyFactory.CreateEnemy();
+                else if (random < 0.85f)
+                    enemy = flyingEnemyFactory.CreateEnemy();
+                else
+                    enemy = tankEnemyFactory.CreateEnemy();
+
+                targetPosition.z = Random.Range(-3, 3);
                 enemy.Move(targetPosition);
-                Debug.Log($"Wave 1: Spawned WalkingEnemy {i + 1}/{walkingEnemyCount}.");
+                spawnedEnemies.Add(enemy);
+                enemiesSpawned++;
+
+                Debug.Log($"Wave 1: Spawned enemy {enemiesSpawned}/{totalEnemies}");
+                yield return new WaitForSeconds(timeBetweenSpawns);
             }
 
-            for (int i = 0; i < tankEnemyCount; i++)
-            {
-                var enemy = this.tankEnemyFactory.CreateEnemy();
-                enemy.Move(targetPosition);
-                Debug.Log($"Wave 1: Spawned TankEnemy {i + 1}/{tankEnemyCount}.");
-            }
-
-            for (int i = 0; i < flyingEnemyCount; i++)
-            {
-                var enemy = this.flyingEnemyFactory.CreateEnemy();
-                enemy.Move(targetPosition);
-                Debug.Log($"Wave 1: Spawned FlyingEnemy {i + 1}/{flyingEnemyCount}.");
-            }
+            isSpawning = false;
+            difficulty++;
+            OnWaveCompleted();
         }
     }
 }
