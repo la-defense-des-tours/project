@@ -507,11 +507,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a475548f6baf3745ae2f876896e678e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableMovement: 0
   panSpeed: 30
-  panBorder: 10
   scrollSpeed: 5
   minY: 35
   maxY: 75
+  mapObject: {fileID: 84892760}
 --- !u!114 &330585549
 MonoBehaviour:
   m_ObjectHideFlags: 0
