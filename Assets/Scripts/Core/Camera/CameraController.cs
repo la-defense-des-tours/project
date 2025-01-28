@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField] private bool disableMovement = false;
     [SerializeField] private float panSpeed = 30f;
     [SerializeField] private float panBorder = 10f;
     [SerializeField] private float scrollSpeed = 5f;
@@ -16,6 +17,9 @@ public class CameraController : MonoBehaviour
     
     void Update()
     {
+        if (disableMovement)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             DebugCameraInfo();
