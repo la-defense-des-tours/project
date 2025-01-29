@@ -45,7 +45,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Scale: 1
-    - _Speed_divider: 75
+    - _Speed_divider: 65
     m_Colors:
     - _Teint_Color: {r: 0.9528302, g: 0.85170436, b: 0.7505785, a: 0}
   m_BuildTextureStacks: []
