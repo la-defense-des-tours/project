@@ -1,3 +1,4 @@
+using TreeEditor;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -10,6 +11,7 @@ public class CameraController : MonoBehaviour
     private Camera cam;
     private Bounds mapBounds;
     private bool doMovement = true;
+    private float targetZoom;
     private readonly float minZoom = 35f;
     private readonly float maxZoom = 75f;
     private readonly Vector3 forward = new(1, 0, 0);
@@ -24,6 +26,8 @@ public class CameraController : MonoBehaviour
             mapBounds = collider.bounds;
         else
             Debug.LogError("Map Object must have a Collider to calculate boundaries.");
+
+        targetZoom = transform.position.y;
     }
 
     void Update()
@@ -84,12 +88,12 @@ public class CameraController : MonoBehaviour
     void HandleCameraZoom()
     {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
-        if (Mathf.Abs(scroll) > 0.01f)
-        {
-            Vector3 pos = transform.position;
-            pos.y = Mathf.Clamp(pos.y - scroll * 1000 * scrollSpeed * Time.deltaTime, minZoom, maxZoom);
-            transform.position = ClampCameraPosition(pos);
-        }
+        Vector3 pos = transform.position;
+
+        pos.y -= scroll * 1000 * scrollSpeed * Time.deltaTime;
+        pos.y = Mathf.Clamp(pos.y, minZoom, maxZoom);
+
+        transform.position = ClampCameraPosition(pos);
     }
     void DebugCameraInfo()
     {
