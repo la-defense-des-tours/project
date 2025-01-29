@@ -27,7 +27,7 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Map Object must have a Renderer or Collider to calculate boundaries.");
+            Debug.LogError("Map Object must have a Collider to calculate boundaries.");
         }
     }
 

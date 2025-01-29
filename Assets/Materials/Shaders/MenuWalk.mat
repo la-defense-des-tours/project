@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_GroundShader
+  m_Name: MenuWalk
   m_Shader: {fileID: -6465566751694194690, guid: 8301ae431ca4c604b9b0f1242314a357, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -44,10 +44,10 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scale: 1
-    - _Speed_divider: 75
+    - _Scale: 0.75
+    - _Speed_divider: 60
     m_Colors:
-    - _Teint_Color: {r: 0.9528302, g: 0.85170436, b: 0.7505785, a: 0}
+    - _Teint_Color: {r: 0.9150943, g: 0.8286643, b: 0.7381185, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &7040291499287807813
