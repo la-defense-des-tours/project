@@ -11,8 +11,7 @@ public class CameraController : MonoBehaviour
     private Camera cam;
     private Bounds mapBounds;
     private bool doMovement = true;
-    private float targetZoom;
-    private readonly float minZoom = 35f;
+   private readonly float minZoom = 35f;
     private readonly float maxZoom = 75f;
     private readonly Vector3 forward = new(1, 0, 0);
     private readonly Vector3 back = new(-1, 0, 0);
@@ -26,8 +25,6 @@ public class CameraController : MonoBehaviour
             mapBounds = collider.bounds;
         else
             Debug.LogError("Map Object must have a Collider to calculate boundaries.");
-
-        targetZoom = transform.position.y;
     }
 
     void Update()
