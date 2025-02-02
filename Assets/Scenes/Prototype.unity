@@ -139,7 +139,7 @@ MonoBehaviour:
   rotatingSpeed: 15
   rotatingPart: {fileID: 7159678}
   fireRate: 1
-  bulletPrefab: {fileID: 3214091868723183827, guid: 150347120cd0a844d9447e17d199a3dc, type: 3}
+  bulletPrefab: {fileID: 7094944031050453007, guid: 81ca8f34f4795244faea059045c57917, type: 3}
   firePoint: {fileID: 1704680563}
 --- !u!4 &7159678 stripped
 Transform:
@@ -791,11 +791,11 @@ PrefabInstance:
     - target: {fileID: 1895617998949637736, guid: 07b73b0beff9cb5428732f77aeaa6988, type: 3}
       propertyPath: bossEnemyFactory
       value: 
-      objectReference: {fileID: 1289531280}
+      objectReference: {fileID: 1289531282}
     - target: {fileID: 1895617998949637736, guid: 07b73b0beff9cb5428732f77aeaa6988, type: 3}
       propertyPath: tankEnemyFactory
       value: 
-      objectReference: {fileID: 1289531281}
+      objectReference: {fileID: 1289531282}
     - target: {fileID: 1895617998949637736, guid: 07b73b0beff9cb5428732f77aeaa6988, type: 3}
       propertyPath: flyingEnemyFactory
       value: 
@@ -803,7 +803,7 @@ PrefabInstance:
     - target: {fileID: 1895617998949637736, guid: 07b73b0beff9cb5428732f77aeaa6988, type: 3}
       propertyPath: walkingEnemyFactory
       value: 
-      objectReference: {fileID: 1289531283}
+      objectReference: {fileID: 1289531282}
     - target: {fileID: 2379230391544324054, guid: 07b73b0beff9cb5428732f77aeaa6988, type: 3}
       propertyPath: target
       value: 
