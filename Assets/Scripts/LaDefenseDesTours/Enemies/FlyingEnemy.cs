@@ -66,6 +66,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
             if (health <= 0)
                 TransitionTo(new Dead());
         }
+        public void DealDamage(double damage)
+        {
+            Player.GetInstance().TakeDamage(damage); 
+        }
         public void Die()
         {
             Destroy(gameObject);

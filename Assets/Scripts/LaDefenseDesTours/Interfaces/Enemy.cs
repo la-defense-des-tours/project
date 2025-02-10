@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
@@ -11,6 +10,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public void Move(Vector3 destination);
         public Enemy Clone(Transform spawnPoint);
         public void TakeDamage(float damage);
+        public void DealDamage(double damage);
         public float GetSpeed();
         public void SetSpeed(float speed);
         public void Die();

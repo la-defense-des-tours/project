@@ -35,6 +35,10 @@ public class EnemyTests
                 Die();
             }
         }
+        public void DealDamage(double damage)
+        {
+            Player.GetInstance().TakeDamage(damage);
+        }
         public void TransitionTo(State state)
         {
             if (state is Slowed)
@@ -91,6 +95,40 @@ public class EnemyTests
         bool expected = true;
         bool result = enemy.isDead;
         Assert.AreEqual(expected, result);
+    }
+
+    [Test]
+    public void TransitionTo_SlowsEnemy()
+    {
+        enemy.TransitionTo(new Slowed());
+        Assert.Pass();
+    }
+
+    [Test]
+    public void GetSpeed_ReturnsSpeed()
+    {
+        float expected = 5f;
+        float result = enemy.GetSpeed();
+        Assert.AreEqual(expected, result);
+    }
+
+    [Test]
+    public void SetSpeed_ChangesSpeed()
+    {
+        enemy.SetSpeed(10f);
+        float expected = 10f;
+        float result = enemy.GetSpeed();
+        Assert.AreEqual(expected, result);
+    }
+
+    [Test]
+    public void DealDamage_CallsPlayerTakeDamage()
+    {
+        enemy.DealDamage(100f);
+        double expectedPlayerHealth = 900;
+        double resultPlayerHealth = Player.GetInstance().health;
+
+        Assert.AreEqual(expectedPlayerHealth, resultPlayerHealth);
     }
 
 }

@@ -1,31 +1,41 @@
 using UnityEngine;
-using UnityEngine.AI;
 
-namespace Assets.Scripts.LaDefenseDesTours.Player
+public sealed class Player : MonoBehaviour
 {
-    public sealed class Player : MonoBehaviour
+    public static Player Instance { get; private set; }
+    public string Name { get; set; }
+    public double health { get; set; }
+    public double score { get; set; }
+    public double currency { get; set; }
+
+    private Player()
     {
-        private static Player instance;
+        Name = "Han Solo";
+        health = 1000;
+        score = 0;
+        currency = 0;
+        Debug.Log($"Player created: {Name} - {health} - {score} - {currency}");
+    }
+    private void Update()
+    {
+        CheckHeatlh();
+    }
+    public static Player GetInstance()
+    {
+        if (Instance == null)
+            Instance = new Player();
 
-        public string name { get; private set; }
-        public double health { get; private set; }
-        public double score { get; private set; }
-        public double currency { get; private set; }
+        return Instance;
+    }
 
-        private Player()
-        {
-            name = "DefaultPlayer";
-            health = 100.0;
-            score = 0.0;
-            currency = 0.0;
-            Debug.Log("Player name is: " + name + " with health: " + health + " score: " + score + " currency: " + currency);
-        }
+    public void TakeDamage(double damage)
+    {
+        health -= damage;
+    }
 
-        public static Player GetInstance()
-        {
-            instance ??= new Player();
-            return instance;
-        }
-
+    private void CheckHeatlh()
+    {
+        if (health <= 0)
+            Destroy(gameObject);
     }
 }

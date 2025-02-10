@@ -50,7 +50,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
             if (currentState is not Paralyzed)
                 agent.SetDestination(destination);
         }
-        // Clone garde-t-il les mêmes états que l'original ? Propriété à l'instant T
         public Enemy Clone(Transform spawnPoint)
         {
             Enemy clone = Instantiate(this, spawnPoint.position, Quaternion.identity);
@@ -69,6 +68,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
             if (health <= 0)
                 TransitionTo(new Dead());
         }
+        public void DealDamage(double damage)
+        {
+            Player.GetInstance().TakeDamage(damage); 
+        }
         public void Die()
         {
             Destroy(gameObject);
@@ -86,7 +89,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         {
             return agent.speed;
         }
-
         public void SetSpeed(float _speed)
         {
             agent.speed = _speed;
