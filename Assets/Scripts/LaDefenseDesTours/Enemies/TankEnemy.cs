@@ -21,7 +21,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         {
             UpdateState();
             CheckArrival();
-            
+
             switch (Input.inputString)
             {
                 case "s":
@@ -70,9 +70,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
             if (health <= 0)
                 TransitionTo(new Dead());
         }
-        public void DealDamage(float damage)
+        public void DealDamage(float _damage)
         {
-            Player.GetInstance().TakeDamage(damage);
+            Player.GetInstance().TakeDamage(_damage);
+            Debug.Log($"Player took {_damage} damage. Player health: {Player.GetInstance().health}");
         }
         public void Die()
         {

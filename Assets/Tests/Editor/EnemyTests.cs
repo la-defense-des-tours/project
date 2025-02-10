@@ -124,24 +124,24 @@ public class EnemyTests
         Assert.AreEqual(expected, result);
     }
 
-    // [Test]
-    // public void DealDamage_CallsPlayerTakeDamage()
-    // {
-    //     enemy.DealDamage(100f);
-    //     double expectedPlayerHealth = 900;
-    //     double resultPlayerHealth = Player.GetInstance().health;
+    [Test]
+    public void DealDamage_CallsPlayerTakeDamage()
+    {
+        enemy.DealDamage(100f);
+        double expectedPlayerHealth = 900;
+        double resultPlayerHealth = Player.GetInstance().health;
 
-    //     Assert.AreEqual(expectedPlayerHealth, resultPlayerHealth);
-    // }
+        Assert.AreEqual(expectedPlayerHealth, resultPlayerHealth);
+    }
 
-    // [Test]
-    // public void DealDamage_CallsPlayerTakeDamageWithCorrectValue()
-    // {
-    //     enemy.DealDamage(200f);
-    //     double expectedPlayerHealth = 700;
-    //     double resultPlayerHealth = Player.GetInstance().health;
+    [Test]
+    public void DealDamage_CallsPlayerTakeDamageWithCorrectValue()
+    {
+        enemy.DealDamage(200f);
+        double expectedPlayerHealth = 700;
+        double resultPlayerHealth = Player.GetInstance().health;
 
-    //     Assert.AreEqual(expectedPlayerHealth, resultPlayerHealth);
-    // }
+        Assert.AreEqual(expectedPlayerHealth, resultPlayerHealth);
+    }
 
 }

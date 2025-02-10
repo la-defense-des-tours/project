@@ -1,12 +1,13 @@
 using UnityEngine;
+using Assets.Scripts.LaDefenseDesTours.Interfaces;
 
 public sealed class Player : MonoBehaviour
 {
     private static Player Instance { get; set; }
     public string Name { get; set; } = "Han Solo";
-    public double health { get; set; } = 1000;
-    public double score { get; set; } = 0;
-    public double currency { get; set; } = 2000;
+    public float health { get; set; } = 1000;
+    public float score { get; set; } = 0;
+    public float currency { get; set; } = 2000;
     public bool isDead { get; set; } = false;
 
     private void Awake()
@@ -22,21 +23,22 @@ public sealed class Player : MonoBehaviour
 
     public static Player GetInstance()
     {
-        if (Instance == null)
-            Debug.LogError("Player instance should not be null");
+        // Singleton pattern - useful for testing
+        if (Instance != null)
+            Instance = FindFirstObjectByType<Player>();
+        else
+            Instance = new GameObject("Player").AddComponent<Player>();
 
         return Instance;
     }
-
-    public void TakeDamage(double damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
         CheckHeatlh();
     }
-
     private void CheckHeatlh()
     {
         if (health <= 0)
-            Destroy(gameObject);
+            Debug.Log("Player is dead");
     }
 }
