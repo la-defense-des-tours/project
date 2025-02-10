@@ -2924,6 +2924,7 @@ GameObject:
   - component: {fileID: 4398129056526121436}
   - component: {fileID: -7399765117045230806}
   - component: {fileID: 2171581326271498670}
+  - component: {fileID: 3468875969396368458}
   m_Layer: 0
   m_Name: TankEnemy
   m_TagString: Enemy
@@ -3003,6 +3004,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2cb876b3b0f0b6468f16fc5b21933da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &3468875969396368458
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3957816332764046245}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.960632, y: 3.523063, z: 7.654947}
+  m_Center: {x: -0.02999964, y: 1.723757, z: 0.6197681}
 --- !u!1 &3991709103495678657
 GameObject:
   m_ObjectHideFlags: 0

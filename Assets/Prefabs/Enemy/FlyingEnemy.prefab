@@ -35088,6 +35088,7 @@ GameObject:
   - component: {fileID: 1023016178183179716}
   - component: {fileID: -2597181822718089466}
   - component: {fileID: 7985152958352722929}
+  - component: {fileID: 7459241576225373022}
   m_Layer: 0
   m_Name: FlyingEnemy
   m_TagString: Enemy
@@ -35145,6 +35146,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &7459241576225373022
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8276825245287970385}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 2, z: 3}
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!1 &8677312531047991441
 GameObject:
   m_ObjectHideFlags: 0

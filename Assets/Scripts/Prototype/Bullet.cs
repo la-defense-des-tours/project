@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float speed = 70f;
     private Transform target;
+    private Collider targetCollider;
     // Update is called once per frame
     void Update()
     {
@@ -13,7 +15,8 @@ public class Bullet : MonoBehaviour
             return;
         }
 
-        Vector3 direction = target.position - transform.position;
+        Vector3 targetCenter = targetCollider.bounds.center;
+        Vector3 direction = targetCenter - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;
 
         if (direction.magnitude <= distanceThisFrame)
@@ -27,6 +30,7 @@ public class Bullet : MonoBehaviour
     public void Seek(Transform _target)
     {
         target = _target;
+        targetCollider = _target.GetComponent<Collider>();
     }
 
     void HitTarget()
