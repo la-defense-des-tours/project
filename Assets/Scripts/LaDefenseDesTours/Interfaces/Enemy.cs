@@ -8,9 +8,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public void UpdateState();
         public void SetupNavMeshAgent();
         public void Move(Vector3 destination);
+        public void CheckArrival();
         public Enemy Clone(Transform spawnPoint);
         public void TakeDamage(float damage);
-        public void DealDamage(double damage);
+        public void DealDamage(float damage);
         public float GetSpeed();
         public void SetSpeed(float speed);
         public void Die();

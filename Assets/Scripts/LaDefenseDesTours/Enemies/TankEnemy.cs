@@ -20,6 +20,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         void Update() // Tests pour les effets
         {
             UpdateState();
+            CheckArrival();
+            
             switch (Input.inputString)
             {
                 case "s":
@@ -68,9 +70,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
             if (health <= 0)
                 TransitionTo(new Dead());
         }
-        public void DealDamage(double damage)
+        public void DealDamage(float damage)
         {
-            Player.GetInstance().TakeDamage(damage); 
+            Player.GetInstance().TakeDamage(damage);
         }
         public void Die()
         {
@@ -92,6 +94,18 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         public void SetSpeed(float _speed)
         {
             agent.speed = _speed;
+        }
+
+        public void CheckArrival()
+        {
+            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+            {
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    DealDamage(health);
+                    Die();
+                }
+            }
         }
     }
 }

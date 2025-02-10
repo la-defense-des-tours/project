@@ -2,28 +2,28 @@ using UnityEngine;
 
 public sealed class Player : MonoBehaviour
 {
-    public static Player Instance { get; private set; }
-    public string Name { get; set; }
-    public double health { get; set; }
-    public double score { get; set; }
-    public double currency { get; set; }
+    private static Player Instance { get; set; }
+    public string Name { get; set; } = "Han Solo";
+    public double health { get; set; } = 1000;
+    public double score { get; set; } = 0;
+    public double currency { get; set; } = 2000;
+    public bool isDead { get; set; } = false;
 
-    private Player()
+    private void Awake()
     {
-        Name = "Han Solo";
-        health = 1000;
-        score = 0;
-        currency = 0;
-        Debug.Log($"Player created: {Name} - {health} - {score} - {currency}");
+        // Unity Singleton pattern
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
     }
-    private void Update()
-    {
-        CheckHeatlh();
-    }
+
     public static Player GetInstance()
     {
         if (Instance == null)
-            Instance = new Player();
+            Debug.LogError("Player instance should not be null");
 
         return Instance;
     }
@@ -31,6 +31,7 @@ public sealed class Player : MonoBehaviour
     public void TakeDamage(double damage)
     {
         health -= damage;
+        CheckHeatlh();
     }
 
     private void CheckHeatlh()

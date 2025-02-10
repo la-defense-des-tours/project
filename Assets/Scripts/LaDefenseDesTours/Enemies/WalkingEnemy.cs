@@ -21,6 +21,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         void Update() // Tests pour les effets
         {
             UpdateState();
+            CheckArrival();
+
             switch (Input.inputString)
             {
                 case "s":
@@ -62,15 +64,16 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
             agent.acceleration = acceleration;
             animator.speed = speed / 2;
         }
-        public void TakeDamage(float damage)
+        public void TakeDamage(float _damage)
         {
-            health -= damage;
+            health -= _damage;
             if (health <= 0)
                 TransitionTo(new Dead());
         }
-        public void DealDamage(double damage)
+        public void DealDamage(float _damage)
         {
-            Player.GetInstance().TakeDamage(damage); 
+            Player.GetInstance().TakeDamage(_damage);
+            Debug.Log($"Player took {_damage} damage. Player health: {Player.GetInstance().health}");
         }
         public void Die()
         {
@@ -93,6 +96,18 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         {
             agent.speed = _speed;
             animator.speed = _speed / 2;
+        }
+
+        public void CheckArrival()
+        {
+            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+            {
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    DealDamage(health);
+                    Die();
+                }
+            }
         }
     }
 }
