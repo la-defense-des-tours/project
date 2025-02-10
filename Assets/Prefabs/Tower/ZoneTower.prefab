@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7896950583757279022}
   - component: {fileID: 3265745161012397053}
   m_Layer: 3
-  m_Name: TowerPlacement
+  m_Name: ZoneTower
   m_TagString: TowerZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -33.65, y: 0.6, z: 43.74}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

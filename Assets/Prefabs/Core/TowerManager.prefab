@@ -51,3 +51,7 @@ MonoBehaviour:
   placementZoneLayer:
     serializedVersion: 2
     m_Bits: 8
+  gridManager: {fileID: 184147756340080889, guid: db960d29839c9724aaf99e25bf40b47b, type: 3}
+  machineGunButton: {fileID: 0}
+  laserButton: {fileID: 0}
+  canonButton: {fileID: 0}
