@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using GameUIState = Assets.Scripts.LaDefenseDesTours.UI.HUD.GameUI.State;
 using Assets.Scripts.LaDefenseDesTours.Level;
 using Assets.Scripts.LaDefenseDesTours.UI.HUD;
+using System;
 
 namespace Assets.Scripts.LaDefenseDesTours.UI
 {
@@ -58,33 +59,35 @@ namespace Assets.Scripts.LaDefenseDesTours.UI
 		/// </summary>
 		bool m_MenuChangedThisFrame;
 
-		/// <summary>
-		/// Open the pause menu
-		/// </summary>
-		public void OpenPauseMenu()
-		{
-			SetPauseMenuCanvas(true);
+        /// <summary>
+        /// Open the pause menu
+        /// </summary>
+        public void OpenPauseMenu()
+        {
+            SetPauseMenuCanvas(true);
 
-			LevelItem level = GetAllInfo();
+            LevelItem level = GetAllInfo();
 
-			if (level == null)
-			{
-				return;
-			}
-			if (titleText != null)
-			{
-				titleText.text = level.name;
-			}
+            if (level == null)
+            {
+                Debug.LogWarning("No level info found, skipping title update.");
+                return;
+            }
 
+            if (titleText != null)
+            {
+                titleText.text = level.name;
+            }
 
-			m_State = State.Open;
-		}
+            // Mettre à jour l'état
+            m_State = State.Open;
+        }
 
-    /// <summary>
-    /// Récupère les informations du niveau actuel
-    /// </summary>
-    /// <returns>Un objet LevelItem contenant les informations du niveau</returns>
-    private LevelItem GetAllInfo()
+        /// <summary>
+        /// Récupère les informations du niveau actuel
+        /// </summary>
+        /// <returns>Un objet LevelItem contenant les informations du niveau</returns>
+        private LevelItem GetAllInfo()
     {
         // Remplacez cela par la logique spécifique à votre jeu
         // Exemple : Si le gestionnaire de niveau est accessible globalement
@@ -123,29 +126,76 @@ namespace Assets.Scripts.LaDefenseDesTours.UI
 	/// </summary>
 	public void LevelSelectPressed()
 	{
-		bool open = m_State == State.Open;
-		restartButton.interactable = !open;
-		topPanel.color = open ? topPanelDisabledColor : Color.white;
-		levelSelectConfirmButton.gameObject.SetActive(open);
-		m_State = open ? State.LevelSelectPressed : State.Open;
-	}
+            // Vérifie l'état actuel et bascule correctement
+            if (m_State == State.LevelSelectPressed)
+            {
+                // Retourner à l'état 'Open'
+                m_State = State.Open;
 
-	/// <summary>
-	/// Restart button pressed, display/hide confirmation button
-	/// </summary>
-	public void RestartPressed()
-	{
-		bool open = m_State == State.Open;
-		levelSelectButton.interactable = !open;
-		topPanel.color = open ? topPanelDisabledColor : Color.white;
-		restartConfirmButton.gameObject.SetActive(open);
-		m_State = open ? State.RestartPressed : State.Open;
-	}
+                // Réactiver le bouton 'Restart'
+                restartButton.interactable = true;
 
-		/// <summary>
-		/// Close the pause menu
-		/// </summary>
-		public void ClosePauseMenu()
+                // Restaurer la couleur du topPanel
+                topPanel.color = Color.white;
+
+                // Désactiver le bouton de confirmation pour la sélection de niveau
+                levelSelectConfirmButton.gameObject.SetActive(false);
+
+                Debug.Log("Level Select button pressed: Confirmation hidden");
+            }
+            else
+            {
+                // Passer à l'état 'LevelSelectPressed'
+                m_State = State.LevelSelectPressed;
+
+                // Désactiver le bouton 'Restart'
+                restartButton.interactable = false;
+
+                // Changer la couleur du topPanel
+                topPanel.color = topPanelDisabledColor;
+
+                // Activer le bouton de confirmation pour la sélection de niveau
+                levelSelectConfirmButton.gameObject.SetActive(true);
+
+                Debug.Log("Level Select button pressed: Confirmation shown");
+            }
+
+        }
+
+        /// <summary>
+        /// Restart button pressed, display/hide confirmation button
+        /// </summary>
+        /// <summary>
+        /// Restart button pressed, display/hide confirmation button
+        /// </summary>
+        public void RestartPressed()
+        {
+     
+             if (m_State == State.RestartPressed) 
+            {
+                m_State = State.Open;
+                levelSelectButton.interactable = true;
+                topPanel.color = Color.white;
+                restartConfirmButton.gameObject.SetActive(false);
+
+                Debug.Log("Restart button pressed: Confirmation hidden");
+            }
+			 else
+			{
+                m_State = State.RestartPressed;
+                levelSelectButton.interactable = false;
+                topPanel.color = topPanelDisabledColor;
+                restartConfirmButton.gameObject.SetActive(true);
+
+                Debug.Log("Restart button pressed: Confirmation shown");
+            }
+        }
+
+
+        /// <summary>
+        /// Close the pause menu
+        /// </summary>
+        public void ClosePauseMenu()
 		{
 			SetPauseMenuCanvas(false);
 
@@ -158,19 +208,19 @@ namespace Assets.Scripts.LaDefenseDesTours.UI
 			m_State = State.Closed;
 		}
 
-		/// <summary>
-		/// Hide the pause menu on awake
-		/// </summary>
-		protected void Awake()
-		{
-			SetPauseMenuCanvas(false);
-			m_State = State.Closed;
-		}
+        /// <summary>
+        /// Hide the pause menu on awake
+        /// </summary>
+        protected void Awake()
+        {
+            SetPauseMenuCanvas(false);
+            m_State = State.Closed; // Initialisation correcte
+        }
 
-		/// <summary>
-		/// Subscribe to GameUI's stateChanged event
-		/// </summary>
-		protected void Start()
+        /// <summary>
+        /// Subscribe to GameUI's stateChanged event
+        /// </summary>
+        protected void Start()
 		{
 			if (GameUI.instanceExists)
 			{

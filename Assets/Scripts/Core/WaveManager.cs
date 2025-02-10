@@ -27,6 +27,7 @@ namespace Assets.Scripts.Core
             wave3 = new Wave_3(walkingEnemyFactory, flyingEnemyFactory, tankEnemyFactory, this);
             wave4 = new Wave_4(walkingEnemyFactory, flyingEnemyFactory, tankEnemyFactory, bossEnemyFactory, this);
 
+            // Chain of responsibility pattern : wave1 -> wave2 -> wave3 -> wave4 -> wave1
             wave1.SetNext(wave2);
             wave2.SetNext(wave3);
             wave3.SetNext(wave4);

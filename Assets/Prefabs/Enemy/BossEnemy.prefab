@@ -8589,6 +8589,7 @@ GameObject:
   - component: {fileID: 260913484696261430}
   - component: {fileID: 9148210904242197121}
   - component: {fileID: 3796063480595896589}
+  - component: {fileID: 8427761963086662326}
   m_Layer: 0
   m_Name: BossEnemy
   m_TagString: Enemy
@@ -8668,6 +8669,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &8427761963086662326
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6196234860825081660}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4, y: 10, z: 10}
+  m_Center: {x: 0, y: 5, z: 1}
 --- !u!1 &6252625923909561537
 GameObject:
   m_ObjectHideFlags: 0
