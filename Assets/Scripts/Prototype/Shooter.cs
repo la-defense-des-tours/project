@@ -4,7 +4,7 @@ public class Shooter : MonoBehaviour
 {
     [SerializeField] private float rotatingSpeed = 7f;
     [SerializeField] private Transform rotatingPart;
-    [SerializeField] private float fireRate = 1f;
+    [SerializeField] private float fireRate = 1.5f;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
     private Transform target;
