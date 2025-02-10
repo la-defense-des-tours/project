@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1859314423797376618}
   - component: {fileID: 7807329685703462301}
-  - component: {fileID: -5488445914603243450}
   m_Layer: 0
   m_Name: GridManager
   m_TagString: Untagged
@@ -49,24 +48,3 @@ MonoBehaviour:
   height: 10
   cellSize: 5
   gridTilePrefab: {fileID: 8251087855543554309, guid: e8754b222c473704b8c02196e01aa529, type: 3}
---- !u!65 &-5488445914603243450
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4991300991417818667}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
