@@ -72,7 +72,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.green;
+            Gizmos.color = Color.cyan;
              Vector3 gridOrigin = transform.position;
 
             for (int x = 0; x < width; x++)
