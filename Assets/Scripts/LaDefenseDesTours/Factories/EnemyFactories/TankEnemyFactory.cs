@@ -11,7 +11,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Factories
         public override Enemy CreateEnemy()
         {
             Notify();
-            GameObject instance = Instantiate(tankEnemy.gameObject, transform.position, Quaternion.identity);
+            GameObject instance = Instantiate(tankEnemy.gameObject, transform.position, Quaternion.Euler(0, -90, 0));
             return instance.GetComponent<TankEnemy>();
         }
         public override void Notify()
