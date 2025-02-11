@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7896950583757279022}
   - component: {fileID: 3265745161012397053}
+  - component: {fileID: 2286293309350812262}
   m_Layer: 3
   m_Name: Cell
   m_TagString: TowerZone
@@ -53,3 +54,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4, y: 1, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2286293309350812262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8251087855543554309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63eedd8c5abd8fe49aa6cb183e8da169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverColor: {r: 1, g: 0, b: 0, a: 0}
