@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float speed = 70f;
+    [SerializeField] private float speed = 75f;
     private Transform target;
     private Collider targetCollider;
-    // Update is called once per frame
+
     void Update()
     {
         if (target == null)

@@ -43,5 +43,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         {
             throw new System.NotImplementedException();
         }
+        public float GetTowerRange()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
         private NavMeshAgent agent;
 
         public string towerName { get; set; } = "Machine Gun Tower";
-        private float range { get; set; }
+        private float range { get; set; } = 100f;
         private int currentLevel { get; set; }
         private float damage { get; set; }
         private float fireRate { get; set; }
@@ -29,10 +29,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             cost += 10;
             attackPerSecond += 0.5f;
         }
-        //     public void Move(Vector3 destination)
-        // {
-        //     agent.SetDestination(destination);
-        // }
         public void SetupNavMeshAgent()
         {
             if (gameObject.GetComponent<NavMeshAgent>() == null)
@@ -55,6 +51,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             position.x = Mathf.Round(position.x);
             position.z = Mathf.Round(position.z);
             transform.position = position;
+        }
+
+        public float GetTowerRange()
+        {
+            return range;
         }
     }
 }

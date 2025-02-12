@@ -55,5 +55,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             position.z = Mathf.Round(position.z);
             transform.position = position;
         }
+        public float GetTowerRange()
+        {
+            return range;
+        }
     }
 }
