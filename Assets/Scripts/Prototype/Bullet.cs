@@ -8,6 +8,23 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
+        HandleTrajectory();
+    }
+
+    public void Seek(Transform _target)
+    {
+        target = _target;
+        targetCollider = _target.GetComponent<Collider>();
+    }
+
+    private void HitTarget()
+    {
+        Destroy(gameObject);
+        // Add damage to target
+    }
+
+    private void HandleTrajectory()
+    {
         if (target == null)
         {
             Destroy(gameObject);
@@ -24,16 +41,5 @@ public class Bullet : MonoBehaviour
             return;
         }
         transform.Translate(direction.normalized * distanceThisFrame, Space.World);
-    }
-
-    public void Seek(Transform _target)
-    {
-        target = _target;
-        targetCollider = _target.GetComponent<Collider>();
-    }
-
-    void HitTarget()
-    {
-        Destroy(gameObject);
     }
 }

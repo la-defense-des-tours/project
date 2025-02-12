@@ -7,8 +7,11 @@ public class Shooter : MonoBehaviour
     [SerializeField] private Transform rotatingPart;
     [SerializeField] private float fireRate;
     [SerializeField] private float fireCountdown;
+    
+    [Header("Bullet Attributes")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
+
     private Transform target;
     private float range; 
     private string enemyTag = "Enemy";
@@ -67,8 +70,8 @@ public class Shooter : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bulletGO = Instantiate(bulletPrefab, firePoint.position, bulletPrefab.transform.rotation);
-        Bullet bullet = bulletGO.GetComponent<Bullet>();
+        GameObject bulletObject = Instantiate(bulletPrefab, firePoint.position, bulletPrefab.transform.rotation);
+        Bullet bullet = bulletObject.GetComponent<Bullet>();
 
         if (bullet != null)
             bullet.Seek(target);

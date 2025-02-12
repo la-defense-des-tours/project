@@ -9,7 +9,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
         private NavMeshAgent agent;
 
         public string towerName { get; set; } = "Machine Gun Tower";
-        private float range { get; set; } = 100f;
+        private float range { get; set; } = 50f;
         private int currentLevel { get; set; }
         private float damage { get; set; }
         private float fireRate { get; set; }
