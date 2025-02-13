@@ -2714,6 +2714,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1859314423797376618, guid: bf153303ae916364a9990f77d1f1d63d, type: 3}
   m_PrefabInstance: {fileID: 1794402659}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1794402661 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7807329685703462301, guid: bf153303ae916364a9990f77d1f1d63d, type: 3}
+  m_PrefabInstance: {fileID: 1794402659}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6a3ff0038413d74a90001511e51c658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1808401462 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2125444469714331958, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
@@ -3377,11 +3388,11 @@ PrefabInstance:
     - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
       propertyPath: 'gridManagers.Array.data[0]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 651441621}
     - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
       propertyPath: 'gridManagers.Array.data[1]'
       value: 
-      objectReference: {fileID: 651441621}
+      objectReference: {fileID: 1794402661}
     - target: {fileID: 2125444469714331958, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
       propertyPath: m_Name
       value: TowerManager

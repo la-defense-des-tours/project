@@ -6,11 +6,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
     public class MachineGunFactory : TowerFactory
     {
         [SerializeField] private MachineGunTower machineGunTower;
-        public override Tower CreateTower()
+        public override GameObject CreateTower()
         {
             Notify();
             GameObject instance = Instantiate(machineGunTower.gameObject);
-            return instance.GetComponent<MachineGunTower>();
+            return instance;
         }
         public override void Notify()
         {

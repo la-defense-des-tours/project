@@ -8,76 +8,69 @@ public class Grid : MonoBehaviour
     [SerializeField] private float cellSize = 1f;
     [SerializeField] private GameObject gridTilePrefab;
 
-    private bool[,] gridData;
+    private bool[,] occupiedCells;
     private GameObject[,] gridTiles;
 
     private void Awake()
     {
-        gridData = new bool[width, height];
+        occupiedCells = new bool[width, height];
         gridTiles = new GameObject[width, height];
         CreateGrid();
     }
 
     private void CreateGrid()
     {
-        Vector3 gridOrigin = transform.position;
+        Vector3 origin = transform.position;
         for (int x = 0; x < width; x++)
         {
             for (int z = 0; z < height; z++)
             {
-                Vector3 tilePosition = gridOrigin + new Vector3(x * cellSize, 0, z * cellSize);
-
-                // Instantiate and store grid tile
+                Vector3 tilePosition = origin + new Vector3(x * cellSize, 0, z * cellSize);
                 gridTiles[x, z] = Instantiate(gridTilePrefab, tilePosition, Quaternion.identity, transform);
             }
         }
     }
     public bool IsCellAvailable(Vector3 worldPosition)
     {
-        int x = Mathf.RoundToInt(worldPosition.x / cellSize);
-        int z = Mathf.RoundToInt(worldPosition.z / cellSize);
-
-        if (x >= 0 && x < width && z >= 0 && z < height)
-        {
-            return !gridData[x, z]; // True si la cellule est libre
-        }
+        if (TryGetGridCoordinates(worldPosition, out int x, out int z))
+            return !occupiedCells[x, z];
         return false;
     }
 
     public void OccupyCell(Vector3 worldPosition)
     {
-        int x = Mathf.RoundToInt(worldPosition.x / cellSize);
-        int z = Mathf.RoundToInt(worldPosition.z / cellSize);
-
-        if (x >= 0 && x < width && z >= 0 && z < height)
+        if (TryGetGridCoordinates(worldPosition, out int x, out int z))
         {
-            gridData[x, z] = true;
-            HighlightOccupiedCell(x, z);
+            occupiedCells[x, z] = true;
+            HighlightCell(x, z, Color.red);
         }
+    }
+
+    private bool TryGetGridCoordinates(Vector3 worldPosition, out int x, out int z)
+    {
+        x = Mathf.RoundToInt(worldPosition.x / cellSize);
+        z = Mathf.RoundToInt(worldPosition.z / cellSize);
+        return x >= 0 && x < width && z >= 0 && z < height;
+    }
+
+    private void HighlightCell(int x, int z, Color color)
+    {
+        Renderer renderer = gridTiles[x, z]?.GetComponent<Renderer>();
+        if (renderer) renderer.material.color = color;
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;
-        Vector3 gridOrigin = transform.position;
+        Vector3 origin = transform.position;
 
         for (int x = 0; x < width; x++)
         {
             for (int z = 0; z < height; z++)
             {
-                Vector3 cellCenter = gridOrigin + new Vector3(x * cellSize, 0, z * cellSize);
-                Gizmos.DrawWireCube(cellCenter, new Vector3(cellSize, 0.1f, cellSize));
+                Vector3 position = origin + new Vector3(x * cellSize, 0, z * cellSize);
+                Gizmos.DrawWireCube(position, new Vector3(cellSize, 0.1f, cellSize));
             }
         }
     }
-
-    private void HighlightOccupiedCell(int x, int z)
-    {
-        Renderer tileRenderer = gridTiles[x, z].GetComponent<Renderer>();
-        if (tileRenderer != null)
-        {
-            tileRenderer.material.color = Color.red;
-        }
-    }
-
 }

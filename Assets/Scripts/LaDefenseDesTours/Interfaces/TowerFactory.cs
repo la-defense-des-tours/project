@@ -3,6 +3,6 @@ using UnityEngine;
 
 public abstract class TowerFactory : MonoBehaviour
 {
-    public abstract Tower CreateTower();
+    public abstract GameObject CreateTower();
     public abstract void Notify();
 }

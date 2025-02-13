@@ -10,14 +10,23 @@ public class TowerManager : MonoBehaviour
     [SerializeField] private TowerFactory canonFactory;
     [SerializeField] private Transform target;
     [SerializeField] private LayerMask placementZoneLayer;
-    [SerializeField] private List<Grid> gridManagers;
-
-    [Header("UI Tower Selection Buttons")]
+    [SerializeField] private List<Grid> grids;
     [SerializeField] private Button machineGunButton;
     [SerializeField] private Button laserButton;
     [SerializeField] private Button canonButton;
     private TowerFactory selectedFactory;
+    public static TowerManager Instance;
 
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("Multiple TowerManager instances detected!");
+            return;
+        }
+        Instance = this;
+    }
 
     public void Start()
     {
@@ -29,8 +38,6 @@ public class TowerManager : MonoBehaviour
     }
     public void Update()
     {
-        // HandleTowerSelection();
-
         if (Input.GetMouseButtonDown(1)) // Bouton droit de la souris
         {
             TryPlaceTower();
@@ -44,47 +51,19 @@ public class TowerManager : MonoBehaviour
     }
     private void TryPlaceTower()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
+        if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, Mathf.Infinity, placementZoneLayer))
+            return;
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, placementZoneLayer))
-        {
-            Grid targetGrid = FindGridUnderHit(hit);
-            Debug.Log($"Hit object: {hit.transform.position}");
-            if (targetGrid != null)
-            {
-                Vector3 gridPosition = hit.transform.position;
-                Debug.Log($"Grid position: {gridPosition}");
+        Grid grid = FindGridUnderHit(hit);
+        if (grid == null || !grid.IsCellAvailable(hit.point)) return;
 
-
-                if (targetGrid.IsCellAvailable(gridPosition))
-                {
-                    PlaceTower(gridPosition);
-                    targetGrid.OccupyCell(gridPosition);
-                    Debug.Log($"Tower placed at grid position {gridPosition} on grid {targetGrid.name}");
-                }
-                else
-                {
-                    Debug.Log("Invalid placement or cell already occupied.");
-                }
-            }
-            else
-            {
-                Debug.Log("No valid grid under the mouse click.");
-            }
-        }
+        PlaceTower(hit.point);
+        grid.OccupyCell(hit.point);
     }
 
     private Grid FindGridUnderHit(RaycastHit hit)
     {
-        foreach (Grid gridManager in gridManagers)
-        {
-            if (hit.collider.transform.IsChildOf(gridManager.transform))
-            {
-                return gridManager;
-            }
-        }
-        return null;
+        return grids.Find(grid => hit.collider.transform.IsChildOf(grid.transform));
     }
 
     private void PlaceTower(Vector3 position)
@@ -95,8 +74,17 @@ public class TowerManager : MonoBehaviour
             return;
         }
 
-        Tower newTower = selectedFactory.CreateTower();
+        Tower newTower = selectedFactory.CreateTower().GetComponent<Tower>();
         newTower.SetPosition(position);
         Debug.Log($"Tower placed at: {position}");
+    }
+
+    public GameObject GetTowerToPlace()
+    {
+        if (selectedFactory == null)
+        {
+            return null;
+        }
+        return selectedFactory.CreateTower();
     }
 }

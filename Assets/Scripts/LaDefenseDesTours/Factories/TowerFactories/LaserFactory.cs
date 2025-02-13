@@ -7,11 +7,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
     public class LaserFactory : TowerFactory
     {
         [SerializeField] private LaserTower laserTower;
-        public override Tower CreateTower()
+        public override GameObject CreateTower()
         {
             Notify();
             GameObject instance = Instantiate(laserTower.gameObject);
-            return instance.GetComponent<LaserTower>();
+            return instance;
         }
         public override void Notify()
         {
