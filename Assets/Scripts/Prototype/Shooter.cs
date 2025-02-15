@@ -13,13 +13,17 @@ public class Shooter : MonoBehaviour
     [SerializeField] private Transform firePoint;
 
     private Transform target;
-    private float range; 
+    private float range;
+    private float damage;
     private string enemyTag = "Enemy";
 
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
-        range = GetComponentInParent<Tower>().GetTowerRange();
+        
+        Tower tower = GetComponent<Tower>();
+        range = tower.range;
+        damage = tower.damage;
     }
 
     void Update()
@@ -74,7 +78,10 @@ public class Shooter : MonoBehaviour
         Bullet bullet = bulletObject.GetComponent<Bullet>();
 
         if (bullet != null)
+        {
             bullet.Seek(target);
+            bullet.SetDamage(damage);
+        }
     }
 
     void OnDrawGizmosSelected()

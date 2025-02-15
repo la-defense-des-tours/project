@@ -6,6 +6,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
     {
         protected Tower tower;
         public string towerName => tower.towerName;
+        public float range => tower.range;
+        public float damage => tower.damage;
 
         public TowerDecorator(Tower tower)
         {
@@ -44,6 +46,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             throw new System.NotImplementedException();
         }
         public float GetTowerRange()
+        {
+            throw new System.NotImplementedException();
+        }
+        public float GetTowerDamage()
         {
             throw new System.NotImplementedException();
         }

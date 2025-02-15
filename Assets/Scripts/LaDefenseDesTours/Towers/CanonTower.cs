@@ -9,10 +9,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
 
         private NavMeshAgent agent;
         public string towerName { get; set; } = "Canon Tower";
-
-        private float range { get; set; }
+        public float range { get; private set; } = 20f;
+        public float damage { get; private set; } = 100f;
         private int currentLevel { get; set; }
-        private float damage { get; set; }
         private float fireRate { get; set; }
         private int cost { get; set; }
         private int health { get; set; }
@@ -55,10 +54,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             position.x = Mathf.Round(position.x);
             position.z = Mathf.Round(position.z);
             transform.position = position;
-        }
-        public float GetTowerRange()
-        {
-            return range;
         }
     }
 

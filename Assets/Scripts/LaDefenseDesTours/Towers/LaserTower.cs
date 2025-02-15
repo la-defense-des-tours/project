@@ -9,9 +9,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
         private NavMeshAgent agent;
 
         public string towerName { get; set; } = "Laser Tower";
-        private float range { get; set; }
+        public float range { get; set; } = 50f;
+        public float damage { get; set; } = 0.5f;
         private int currentLevel { get; set; }
-        private float damage { get; set; }
         private float fireRate { get; set; }
         private int cost { get; set; }
         private int health { get; set; }
@@ -48,7 +48,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
         {
             Debug.Log("Laser Tower is attacking");
         }
-
         void Tower.SetPosition(Vector3 position)
         {
             position.x = Mathf.Round(position.x);
@@ -58,6 +57,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
         public float GetTowerRange()
         {
             return range;
+        }
+        public float GetTowerDamage()
+        {
+            return damage;
         }
     }
 }
