@@ -257,11 +257,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.25882354, g: 0.7372549, b: 0.9686275, a: 1}
-    m_HighlightedColor: {r: 0.25882354, g: 0.9686275, b: 0.9058824, a: 1}
-    m_PressedColor: {r: 0.64705884, g: 0.86274517, b: 0.9686275, a: 1}
-    m_SelectedColor: {r: 0.25882354, g: 0.9686275, b: 0.9058824, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_NormalColor: {r: 0.9215687, g: 0.27450982, b: 0.019607844, a: 1}
+    m_HighlightedColor: {r: 0.9215687, g: 0.8235295, b: 0.019607844, a: 1}
+    m_PressedColor: {r: 0.91372555, g: 0.5686275, b: 0.43529415, a: 1}
+    m_SelectedColor: {r: 0.9215687, g: 0.8235295, b: 0.019607844, a: 1}
+    m_DisabledColor: {r: 0.9215687, g: 0.27450982, b: 0.019607844, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -276,15 +276,39 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 8356151580294958078}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 656161120769088525}
         m_TargetAssemblyTypeName: Assets.Scripts.LaDefenseDesTours.UI.HUD.BuildSidebar,
           Assembly-CSharp
-        m_MethodName: AddCurrency
-        m_Mode: 3
+        m_MethodName: StartWaveButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7754151366149212427}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1000
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8214770380503930098}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -406,7 +430,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 100}
+  m_AnchoredPosition: {x: 1.829956, y: 100}
   m_SizeDelta: {x: 250, y: 200}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &8227176493980407394
@@ -662,10 +686,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5527489774396058457}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 113.1, y: 0}
-  m_SizeDelta: {x: 30, y: 22}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 79, y: 0}
+  m_SizeDelta: {x: 19, y: -38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1346524430992105068
 CanvasRenderer:
@@ -821,7 +845,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &4173425690938881574
@@ -874,7 +898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a197ef280fa149c48a7f71087a03ff5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerSpawnButton: {fileID: 0}
+  towerSpawnButton: {fileID: 9016580293605146782, guid: babe527866cbcad4ebeb4343db438f76, type: 3}
 --- !u!114 &3840904564713862916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1096,7 +1120,7 @@ RectTransform:
   m_GameObject: {fileID: 7452964265370934464}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0948905, y: 1.0948905, z: 1.0948905}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 340140364260858551}
@@ -1146,7 +1170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
+  m_IgnoreReversedGraphics: 0
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
@@ -1226,8 +1250,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -99.79004, y: 0}
-  m_SizeDelta: {x: 318.86, y: 75}
+  m_AnchoredPosition: {x: -63.7, y: 0}
+  m_SizeDelta: {x: 200, y: 60}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &5575289389358465750
 CanvasRenderer:
@@ -1638,4 +1662,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: START WAVE
+  m_Text: START

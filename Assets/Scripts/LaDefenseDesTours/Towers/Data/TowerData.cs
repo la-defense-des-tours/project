@@ -8,6 +8,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.LaDefenseDesTours.Towers.Data
 {
+
     [CreateAssetMenu(fileName = "TowerData.asset", menuName = "La défense des tours/Tower Configuration", order = 1)]
     public class TowerData : ScriptableObject
     {
@@ -23,16 +24,21 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers.Data
         /// </summary>
         public string upgradeDescription;
 
-        /// <summary>
-        /// La tour lié
-        /// </summary>
-        public Tower Tower;
 
-        public int Level = 1;
+        /// <summary>
+        /// Price of the tower
+        /// </summary>
+        public int cost;
+
+        ///// <summary>
+        ///// The tower levels associated with this tower
+        ///// </summary>
+        //public TowerLevel[] levels;
 
         /// <summary>
         /// The tower icon
         /// </summary>
         public Sprite icon;
     }
+
 }

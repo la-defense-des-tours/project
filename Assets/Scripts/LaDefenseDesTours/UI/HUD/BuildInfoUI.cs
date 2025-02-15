@@ -13,6 +13,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <summary>
 		/// an enum for easily keeping track of UI animation
 		/// </summary>
+		/// 
 		public enum AnimationState
 		{
 			/// <summary>
@@ -54,7 +55,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <summary>
 		/// The attached <see cref="TowerUI"/>
 		/// </summary>
-		//protected TowerUI m_TowerUI;
+		protected TowerUI m_TowerUI;
 
 		/// <summary>
 		/// The attached canvas
@@ -131,7 +132,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		protected virtual void Awake()
 		{
 			m_Canvas = GetComponent<Canvas>();
-			//m_TowerUI = GetComponent<TowerUI>();
+			m_TowerUI = GetComponent<TowerUI>();
 		}
 	}
 }

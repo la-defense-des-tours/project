@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8b17a1b5ece3bf4f81f93206c9f93e0, type: 3}
   m_Name: TowerData
   m_EditorClassIdentifier: 
+  towerName: Tower 1
   description: Le canon envoie des gros boulet
-  upgradeDescription: 
-  cost: 10
-  sell: 10
-  maxHealth: 5
-  startingHealth: 5
+  upgradeDescription: Envoie des trucs de fou
+  cost: 100
   icon: {fileID: 21300000, guid: fa91237b5487541158165bfce6ebfa0c, type: 3}

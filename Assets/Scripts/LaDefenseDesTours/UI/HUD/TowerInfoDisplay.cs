@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.LaDefenseDesTours.Towers.Data;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
@@ -54,28 +55,42 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <param name="tower">
 		/// The tower to gain info from
 		/// </param>
-		//public void Show(Tower tower)
-		//{
-		//	int levelOfTower = tower.currentLevel;
-		//	Show(tower, levelOfTower);
-		//}
+		public void Show(TowerData tower)
+		{
+            //if (levelOfTower >= tower.levels.Length)
+            //{
+            //	return;
+            //}
+            DisplayText(towerName, tower.towerName);
+            DisplayText(description, tower.description);
+            //DisplayText(dps, towerLevel.GetTowerDps().ToString("f2"));
+            //DisplayText(health, string.Format("{0}/{1}", tower.configuration.currentHealth, towerLevel.maxHealth));
+            //DisplayText(level, (levelOfTower + 1).ToString());
+            //DisplayText(dimensions, string.Format("{0}, {1}", tower.dimensions.x, tower.dimensions.y));
+            //if (levelOfTower + 1 < tower.levels.Length)
+            //{
+            //    DisplayText(upgradeCost, tower.levels[levelOfTower + 1].cost.ToString());
+            //}
 
-		/// <summary>
-		/// Draws the tower data on to the canvas, if the relevant text components are populated
-		/// </summary>
-		/// <param name="tower">The tower to gain info from</param>
-		/// <param name="levelOfTower">The level of the tower</param>
-		//public void Show(Tower tower, int levelOfTower)
+            //int sellValue = tower.GetSellLevel(levelOfTower);
+            //DisplayText(sellPrice, sellValue.ToString());
+        }
+
+        /// <summary>
+        /// Draws the tower data on to the canvas, if the relevant text components are populated
+        /// </summary>
+        /// <param name="tower">The tower to gain info from</param>
+        /// <param name="levelOfTower">The level of the tower</param>
+  //      public void Show(TowerData tower, int levelOfTower)
 		//{
-		//	if (levelOfTower >= tower.levels.Length)
-		//	{
-		//		return;
-		//	}
-		//	TowerLevel towerLevel = tower.levels[levelOfTower];
+		//	//if (levelOfTower >= tower.levels.Length)
+		//	//{
+		//	//	return;
+		//	//}
 		//	DisplayText(towerName, tower.towerName);
-		//	DisplayText(description, towerLevel.description);
-		//	DisplayText(dps, towerLevel.GetTowerDps().ToString("f2"));
-		//	DisplayText(health, string.Format("{0}/{1}", tower.configuration.currentHealth, towerLevel.maxHealth));
+		//	DisplayText(description, tower.description);
+		//	//DisplayText(dps, towerLevel.GetTowerDps().ToString("f2"));
+		//	//DisplayText(health, string.Format("{0}/{1}", tower.configuration.currentHealth, towerLevel.maxHealth));
 		//	DisplayText(level, (levelOfTower + 1).ToString());
 		//	DisplayText(dimensions, string.Format("{0}, {1}", tower.dimensions.x, tower.dimensions.y));
 		//	if (levelOfTower + 1 < tower.levels.Length)
@@ -83,8 +98,8 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		//		DisplayText(upgradeCost, tower.levels[levelOfTower + 1].cost.ToString());
 		//	}
 
-		//	int sellValue = tower.GetSellLevel(levelOfTower);
-		//	DisplayText(sellPrice, sellValue.ToString());
+		//	//int sellValue = tower.GetSellLevel(levelOfTower);
+		//	//DisplayText(sellPrice, sellValue.ToString());
 		//}
 
 		/// <summary>

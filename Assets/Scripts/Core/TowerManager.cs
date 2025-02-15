@@ -10,9 +10,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers {
         [SerializeField] private TowerFactory canonFactory;
         [SerializeField] private Transform target;
         [SerializeField] private LayerMask placementZoneLayer;
-        private Tower machineGun;
-        private Tower laser;
-        private Tower canon;
         private TowerFactory selectedFactory;
 
         public void Start()

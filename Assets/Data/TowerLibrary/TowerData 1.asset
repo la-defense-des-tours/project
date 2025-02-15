@@ -9,6 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88d23d151f12e724da97f08438fe0bec, type: 3}
-  m_Name: TowerLibrary 1
+  m_Script: {fileID: 11500000, guid: b8b17a1b5ece3bf4f81f93206c9f93e0, type: 3}
+  m_Name: TowerData 1
   m_EditorClassIdentifier: 
+  towerName: Tower 2
+  description: Description tower 2
+  upgradeDescription: Description upgrade tower 2
+  cost: 150
+  icon: {fileID: 21300000, guid: 3631244dc04164d079a3302a39dbc0c6, type: 3}

@@ -145,20 +145,16 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 			return (float)health;
         }
 
-		private void Awake()
+        private void Awake()
         {
+            instance = this; // ✅ Ajout de cette ligne !
             base.Awake();
             waveManager = GetComponent<WaveManager>();
 
-            // Does not use the change state function as we don't need to broadcast the event for this default value
+            // Ne pas utiliser la fonction de changement d'état car on ne veut pas d'événement à ce moment
             levelState = LevelState.Intro;
             numberOfEnemies = 0;
 
-            // Ensure currency change listener is assigned
-            //currency = new Currency(startingCurrency);
-            //currencyGainer.Initialize(currency);
-
-            // If there's an intro use it, otherwise fall through to gameplay
             if (intro != null)
             {
                 intro.introCompleted += IntroCompleted;
@@ -167,8 +163,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             {
                 IntroCompleted();
             }
-
         }
+
 
         /// <summary>
         /// Définit le niveau actuel

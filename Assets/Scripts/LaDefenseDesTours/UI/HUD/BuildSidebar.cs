@@ -25,18 +25,36 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// </summary>
         protected virtual void Start()
         {
-            if (!LevelManager.instanceExists)
+            if (!LevelManager.instanceExists || LevelManager.instance == null)
             {
                 Debug.LogError("[UI] No level manager for tower list");
             }
-            foreach (TowerData tower in LevelManager.instance.towerLibrary.Values)
+            else if (LevelManager.instance.towerLibrary == null)
             {
-                TowerSpawnButton button = Instantiate(towerSpawnButton, transform);
-                button.InitializeButton(tower);
-                button.buttonTapped += OnButtonTapped;
-                button.draggedOff += OnButtonDraggedOff;
+                Debug.LogError("[UI] Tower library is null in LevelManager!");
+            }
+            else if (LevelManager.instance.towerLibrary.configurations == null || LevelManager.instance.towerLibrary.configurations.Count == 0)
+            {
+                Debug.LogError("[UI] Tower library is empty or configurations list is null!");
+            }
+            else
+            {
+                foreach (TowerData tower in LevelManager.instance.towerLibrary)
+                {
+                    if (tower == null)
+                    {
+                        Debug.LogError("[UI] A TowerData entry in towerLibrary is null!");
+                        continue;
+                    }
+
+                    TowerSpawnButton button = Instantiate(towerSpawnButton, transform);
+                    button.InitializeButton(tower);
+                    //button.buttonTapped += OnButtonTapped;
+                    //button.draggedOff += OnButtonDraggedOff;
+                }
             }
         }
+
 
         /// <summary>
         /// Sets the GameUI to build mode with the <see cref="towerData"/>

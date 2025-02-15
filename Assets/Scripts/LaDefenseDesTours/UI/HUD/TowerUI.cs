@@ -64,38 +64,38 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// </param>
 		public virtual void Show(Tower towerToShow)
 		{
-			//if (towerToShow == null)
-			//{
-			//	return;
-			//}
-			//m_Tower = towerToShow;
-			//AdjustPosition();
+			if (towerToShow == null)
+			{
+				return;
+			}
+			m_Tower = towerToShow;
+			AdjustPosition();
 
-			//m_Canvas.enabled = true;
+			m_Canvas.enabled = true;
 
 			//int sellValue = m_Tower.GetSellLevel();
-			//if (sellButton != null)
-			//{
-			//	sellButton.gameObject.SetActive(sellValue > 0);
-			//}
-			//if (upgradeButton != null)
-			//{
-			//	upgradeButton.interactable = 
-			//		LevelManager.instance.currency.CanAfford(m_Tower.GetCostForNextLevel());
-			//	bool maxLevel = m_Tower.isAtMaxLevel;
-			//	upgradeButton.gameObject.SetActive(!maxLevel);
-			//	if (!maxLevel)
-			//	{
-			//		upgradeDescription.text =
-			//			m_Tower.levels[m_Tower.currentLevel + 1].upgradeDescription.ToUpper();
-			//	}
-			//}
+			if (sellButton != null)
+			{
+				//sellButton.gameObject.SetActive(sellValue > 0);
+			}
+			if (upgradeButton != null)
+			{
+				//upgradeButton.interactable =
+					//LevelManager.instance.currency.CanAfford(m_Tower.GetCostForNextLevel());
+				//bool maxLevel = m_Tower.isAtMaxLevel;
+				//upgradeButton.gameObject.SetActive(!maxLevel);
+				//if (!maxLevel)
+				//{
+				//	upgradeDescription.text =
+				//		m_Tower.levels[m_Tower.currentLevel + 1].upgradeDescription.ToUpper();
+				//}
+			}
 			//LevelManager.instance.currency.currencyChanged += OnCurrencyChanged;
 			//towerInfoDisplay.Show(towerToShow);
-			//foreach (var button in confirmationButtons)
-			//{
-			//	button.SetActive(false);
-			//}
+			foreach (var button in confirmationButtons)
+			{
+				button.SetActive(false);
+			}
 		}
 
 		/// <summary>
@@ -232,7 +232,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		{
 			if (GameUI.instanceExists)
 			{
-				//GameUI.instance.selectionChanged -= OnUISelectionChanged;
+				GameUI.instance.selectionChanged -= OnUISelectionChanged;
 				GameUI.instance.stateChanged -= OnGameUIStateChanged;
 			}
 		}

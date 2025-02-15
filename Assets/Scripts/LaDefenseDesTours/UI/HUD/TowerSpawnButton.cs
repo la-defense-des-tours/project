@@ -65,13 +65,13 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// </summary>
         public virtual void OnDrag(PointerEventData eventData)
         {
-            if (!RectTransformUtility.RectangleContainsScreenPoint(m_RectTransform, eventData.position))
-            {
-                if (draggedOff != null)
-                {
-                    draggedOff(m_Tower);
-                }
-            }
+        //    if (!RectTransformUtility.RectangleContainsScreenPoint(m_RectTransform, eventData.position))
+        //    {
+        //        if (draggedOff != null)
+        //        {
+        //            draggedOff(m_Tower);
+        //        }
+        //    }
         }
 
         /// <summary>
@@ -84,21 +84,14 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         {
             m_Tower = towerData;
 
-            if (towerData.levels.Length > 0)
-            {
-                TowerLevel firstTower = towerData.levels[0];
-                buttonText.text = firstTower.cost.ToString();
-                towerIcon.sprite = firstTower.levelData.icon;
-            }
-            else
-            {
-                Debug.LogWarning("[Tower Spawn Button] No level data for tower");
-            }
+            buttonText.text = m_Tower.cost.ToString();
+            towerIcon.sprite = m_Tower.icon;
+
 
             if (LevelManager.instanceExists)
             {
-                m_Currency = LevelManager.instance.currency;
-                m_Currency.currencyChanged += UpdateButton;
+                //m_Currency = LevelManager.instance.currency;
+                //m_Currency.currencyChanged += UpdateButton;
             }
             else
             {

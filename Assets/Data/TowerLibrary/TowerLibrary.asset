@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d23d151f12e724da97f08438fe0bec, type: 3}
   m_Name: TowerLibrary
   m_EditorClassIdentifier: 
+  configurations:
+  - {fileID: 11400000, guid: bace72e4484721343a627d7ec92c0ad1, type: 2}
+  - {fileID: 11400000, guid: 8a235baafa34d1b41af23316bfeee03f, type: 2}
