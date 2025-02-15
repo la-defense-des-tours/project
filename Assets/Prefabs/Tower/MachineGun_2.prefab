@@ -173,7 +173,7 @@ MonoBehaviour:
   rotatingPart: {fileID: 386654444262887737}
   fireRate: 4
   fireCountdown: 0
-  bulletPrefab: {fileID: 7094944031050453007, guid: 81ca8f34f4795244faea059045c57917, type: 3}
+  bulletPrefab: {fileID: 2133051209636147784, guid: 0c0e6c6dd14c7fc019b6552dd254f299, type: 3}
   firePoint: {fileID: 2221085130970084641}
 --- !u!1 &5970522283295220337
 GameObject:
