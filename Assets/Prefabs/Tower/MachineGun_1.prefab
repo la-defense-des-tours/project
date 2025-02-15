@@ -311,7 +311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotatingSpeed: 15
   rotatingPart: {fileID: 5692223279559571255}
-  fireRate: 5
+  fireRate: 2
   fireCountdown: 0
   bulletPrefab: {fileID: 7094944031050453007, guid: 81ca8f34f4795244faea059045c57917, type: 3}
   firePoint: {fileID: 4208258262680981007}
