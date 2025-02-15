@@ -8,12 +8,10 @@ public class Grid : MonoBehaviour
     [SerializeField] private float cellSize = 1f;
     [SerializeField] private GameObject gridTilePrefab;
 
-    private bool[,] occupiedCells;
     private GameObject[,] gridTiles;
 
     private void Awake()
     {
-        occupiedCells = new bool[width, height];
         gridTiles = new GameObject[width, height];
         CreateGrid();
     }
@@ -29,34 +27,6 @@ public class Grid : MonoBehaviour
                 gridTiles[x, z] = Instantiate(gridTilePrefab, tilePosition, Quaternion.identity, transform);
             }
         }
-    }
-    public bool IsCellAvailable(Vector3 worldPosition)
-    {
-        if (TryGetGridCoordinates(worldPosition, out int x, out int z))
-            return !occupiedCells[x, z];
-        return false;
-    }
-
-    public void OccupyCell(Vector3 worldPosition)
-    {
-        if (TryGetGridCoordinates(worldPosition, out int x, out int z))
-        {
-            occupiedCells[x, z] = true;
-            HighlightCell(x, z, Color.red);
-        }
-    }
-
-    private bool TryGetGridCoordinates(Vector3 worldPosition, out int x, out int z)
-    {
-        x = Mathf.RoundToInt(worldPosition.x / cellSize);
-        z = Mathf.RoundToInt(worldPosition.z / cellSize);
-        return x >= 0 && x < width && z >= 0 && z < height;
-    }
-
-    private void HighlightCell(int x, int z, Color color)
-    {
-        Renderer renderer = gridTiles[x, z]?.GetComponent<Renderer>();
-        if (renderer) renderer.material.color = color;
     }
 
     private void OnDrawGizmos()

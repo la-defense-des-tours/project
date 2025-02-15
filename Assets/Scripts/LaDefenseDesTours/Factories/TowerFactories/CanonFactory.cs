@@ -10,12 +10,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
         public override GameObject CreateTower()
         {
             Notify();
-            GameObject instance = Instantiate(canonTower.gameObject);
-            return instance;
+            return canonTower.gameObject;
         }
         public override void Notify()
         {
-            Debug.Log("Canon Tower Created");
+            Debug.Log("Canon Tower prefab returned, not instantiated.");
         }
     }
 }

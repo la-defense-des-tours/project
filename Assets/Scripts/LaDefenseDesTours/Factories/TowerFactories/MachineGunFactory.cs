@@ -9,12 +9,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
         public override GameObject CreateTower()
         {
             Notify();
-            GameObject instance = Instantiate(machineGunTower.gameObject);
-            return instance;
+            return machineGunTower.gameObject;
         }
         public override void Notify()
         {
-            Debug.Log("Machine Gun Tower Created");
+            Debug.Log("Machine Gun Tower prefab returned, not instantiated.");
         }
     }
 }

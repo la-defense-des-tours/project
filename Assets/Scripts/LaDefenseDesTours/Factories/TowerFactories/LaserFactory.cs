@@ -10,12 +10,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
         public override GameObject CreateTower()
         {
             Notify();
-            GameObject instance = Instantiate(laserTower.gameObject);
-            return instance;
+            return laserTower.gameObject;
         }
         public override void Notify()
         {
-            Debug.Log("Laser Tower Created");
+            Debug.Log("Laser Tower prefab returned, not instantiated.");
         }
     }
 }
