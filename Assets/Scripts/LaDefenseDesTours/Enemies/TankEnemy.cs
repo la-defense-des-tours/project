@@ -20,7 +20,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         void Update() // Tests pour les effets
         {
             UpdateState();
-            CheckArrival();
 
             switch (Input.inputString)
             {
@@ -37,6 +36,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
                     TransitionTo(new Burned());
                     break;
             }
+
+            if (currentState is not Dead)
+                CheckArrival();
         }
         public void SetupNavMeshAgent()
         {

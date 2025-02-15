@@ -1,10 +1,12 @@
 using UnityEngine;
+using Assets.Scripts.LaDefenseDesTours.Interfaces;
 
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float speed = 75f;
     private Transform target;
     private Collider targetCollider;
+    private float damage;
 
     void Update()
     {
@@ -17,10 +19,11 @@ public class Bullet : MonoBehaviour
         targetCollider = _target.GetComponent<Collider>();
     }
 
-    private void HitTarget()
+    private void HitTarget(Enemy enemy)
     {
         Destroy(gameObject);
         // Add damage to target
+        enemy.TakeDamage(50);
     }
 
     private void HandleTrajectory()
@@ -37,9 +40,14 @@ public class Bullet : MonoBehaviour
 
         if (direction.magnitude <= distanceThisFrame)
         {
-            HitTarget();
+            HitTarget(target.GetComponent<Enemy>());
             return;
         }
         transform.Translate(direction.normalized * distanceThisFrame, Space.World);
+    }
+
+    public void SetDamage(float _damage)
+    {
+        damage = _damage;
     }
 }
