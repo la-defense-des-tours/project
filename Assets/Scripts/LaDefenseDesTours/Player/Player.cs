@@ -3,16 +3,16 @@ using UnityEngine.AI;
 
 namespace Assets.Scripts.LaDefenseDesTours.Player
 {
-    public sealed class Player : MonoBehaviour
+    public sealed class PlayerBase : MonoBehaviour
     {
-        private static Player instance;
+        private static PlayerBase instance;
 
         public string name { get; private set; }
         public double health { get; private set; }
         public double score { get; private set; }
         public double currency { get; private set; }
 
-        private Player()
+        private PlayerBase()
         {
             name = "DefaultPlayer";
             health = 100.0;
@@ -21,9 +21,14 @@ namespace Assets.Scripts.LaDefenseDesTours.Player
             Debug.Log("Player name is: " + name + " with health: " + health + " score: " + score + " currency: " + currency);
         }
 
-        public static Player GetInstance()
+        public double GetHealth()
         {
-            instance ??= new Player();
+            return health;
+        }
+
+        public static PlayerBase GetInstance()
+        {
+            instance ??= new PlayerBase();
             return instance;
         }
 

@@ -83,7 +83,7 @@ namespace Assets.Scripts.Core.Utilities
         /// </summary>
         public void FireEvent()
         {
-            m_Callback.Invoke();
+            //m_Callback.Invoke();
         }
 
         /// <summary>

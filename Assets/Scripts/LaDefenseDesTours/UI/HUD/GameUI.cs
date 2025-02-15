@@ -2,6 +2,7 @@ using System;
 using Assets.Scripts.Core.Utilities;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using Assets.Scripts.LaDefenseDesTours.Level;
+using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using Core.Input;
 using JetBrains.Annotations;
 using TowerDefense.UI;
@@ -317,7 +318,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <exception cref="InvalidOperationException">
 		/// Throws exception when trying to change to Drag mode when not in Normal Mode
 		/// </exception>
-		public void SetToDragMode([NotNull] Tower towerToBuild)
+		public void SetToDragMode([NotNull] TowerData towerToBuild)
 		{
 			if (state != State.Normal)
 			{
@@ -342,7 +343,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <exception cref="InvalidOperationException">
 		/// Throws exception trying to enter Build Mode when not in Normal Mode
 		/// </exception>
-		public void SetToBuildMode([NotNull] Tower towerToBuild)
+		public void SetToBuildMode([NotNull] TowerData towerToBuild)
 		{
 			if (state != State.Normal)
 			{
