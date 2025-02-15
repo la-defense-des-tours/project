@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
 
 namespace Assets.Scripts.LaDefenseDesTours.Towers
@@ -6,14 +7,15 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
     public class MachineGunFactory : TowerFactory
     {
         [SerializeField] private MachineGunTower machineGunTower;
-        public override GameObject CreateTower()
+        public override Tower CreateTower(Vector3 position)
         {
             Notify();
-            return machineGunTower.gameObject;
+            GameObject instance = Instantiate(machineGunTower.gameObject, position, Quaternion.identity);
+            return instance.GetComponent<MachineGunTower>();
         }
         public override void Notify()
         {
-            Debug.Log("Machine Gun Tower prefab returned, not instantiated.");
+            Debug.Log("MachineGun Tower Created");
         }
     }
 }

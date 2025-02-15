@@ -40,12 +40,12 @@ public class TowerManager : MonoBehaviour
         Debug.Log($"Selected Tower: {towerName}");
     }
 
-    public GameObject GetTowerToPlace()
+    public Tower GetTowerToPlace(Vector3 position)
     {
         if (selectedFactory == null)
         {
             return null;
         }
-        return selectedFactory.CreateTower();
+        return selectedFactory.CreateTower(position);
     }
 }

@@ -1,3 +1,4 @@
+using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using UnityEngine;
 
 public class Cell : MonoBehaviour
@@ -6,7 +7,7 @@ public class Cell : MonoBehaviour
     public Vector3 positionOffset;
     private Renderer cellRenderer;
     private Material defaultMaterial;
-    private GameObject tower;
+    private Tower tower;
 
     private void Start()
     {
@@ -22,14 +23,13 @@ public class Cell : MonoBehaviour
             return;
         }
 
-        GameObject towerPrefab = TowerManager.Instance.GetTowerToPlace();
-        if (towerPrefab == null)
+        tower = TowerManager.Instance.GetTowerToPlace(transform.position);
+        if (tower == null)
         {
             Debug.Log("No tower selected!");
             return;
         }
 
-        tower = Instantiate(towerPrefab, transform.position + positionOffset, Quaternion.identity);
         Debug.Log($"Tower placed at: {transform.position}");
     }
 
@@ -48,7 +48,7 @@ public class Cell : MonoBehaviour
         return tower != null;
     }
 
-    public void SetTower(GameObject newTower)
+    public void SetTower(Tower newTower)
     {
         tower = newTower;
     }

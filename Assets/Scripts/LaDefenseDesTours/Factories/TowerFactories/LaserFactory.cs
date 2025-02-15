@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.AI;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
 
 namespace Assets.Scripts.LaDefenseDesTours.Towers
@@ -7,14 +6,15 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
     public class LaserFactory : TowerFactory
     {
         [SerializeField] private LaserTower laserTower;
-        public override GameObject CreateTower()
+        public override Tower CreateTower(Vector3 position)
         {
             Notify();
-            return laserTower.gameObject;
+            GameObject instance = Instantiate(laserTower.gameObject, position, Quaternion.identity);
+            return instance.GetComponent<LaserTower>();
         }
         public override void Notify()
         {
-            Debug.Log("Laser Tower prefab returned, not instantiated.");
+            Debug.Log("Laser Tower Created");
         }
     }
 }
