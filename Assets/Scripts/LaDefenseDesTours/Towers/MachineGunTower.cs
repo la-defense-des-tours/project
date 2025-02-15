@@ -6,12 +6,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
 {
     public class MachineGunTower : MonoBehaviour, Tower
     {
+        [SerializeField] private Bullet bullet;
         private NavMeshAgent agent;
-
         public string towerName { get; set; } = "Machine Gun Tower";
-        private float range { get; set; } = 50f;
+        private float range { get; set; } = 20f;
         private int currentLevel { get; set; }
-        private float damage { get; set; }
+        private float damage { get; set; } = 100f;
         private float fireRate { get; set; }
         private int cost { get; set; }
         private int health { get; set; }
@@ -22,6 +22,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
         private int sellValue { get; set; }
         private int upgradeSellValue { get; set; }
         private float attackPerSecond { get; set; }
+
+        void Start()
+        {
+            bullet.SetDamage(damage);
+        }
+
         public void Upgrade()
         {
             currentLevel++;

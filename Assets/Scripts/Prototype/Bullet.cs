@@ -22,8 +22,7 @@ public class Bullet : MonoBehaviour
     private void HitTarget(Enemy enemy)
     {
         Destroy(gameObject);
-        // Add damage to target
-        enemy.TakeDamage(50);
+        enemy.TakeDamage(damage);
     }
 
     private void HandleTrajectory()
@@ -43,6 +42,7 @@ public class Bullet : MonoBehaviour
             HitTarget(target.GetComponent<Enemy>());
             return;
         }
+
         transform.Translate(direction.normalized * distanceThisFrame, Space.World);
     }
 
