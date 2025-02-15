@@ -1,12 +1,14 @@
 ﻿using System;
+using Assets.Scripts.Core;
 using Assets.Scripts.Core.Utilities;
+using Assets.Scripts.LaDefenseDesTours.Player;
 using Assets.Scripts.LaDefenseDesTours.Towers.Data;
+using TowerDefense.Level;
 
 //using Core.Economy;
 //using Core.Health;
 //using Core.Utilities;
 //using TowerDefense.Economy;
-using TowerDefense.Level;
 //using TowerDefense.Towers.Data;
 using UnityEngine;
 
@@ -52,9 +54,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		///// <summary>
 		///// The home bases that the player must defend
 		///// </summary>
-		//public PlayerHomeBase[] homeBases;
+		public PlayerBase homeBase;
 
-		public Collider[] environmentColliders;
+        public Collider[] environmentColliders;
 
 		/// <summary>
 		/// The attached wave manager
@@ -133,20 +135,17 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 			SafelyCallNumberOfEnemiesChanged();
 		}
 
-        /// <summary>
-        /// Returns the sum of all HomeBases' health
-        /// </summary>
-        //public float GetAllHomeBasesHealth()
-        //{
-        //	float health = 0.0f;
-        //	foreach (PlayerHomeBase homebase in homeBases)
-        //	{
-        //		health += homebase.configuration.currentHealth;
-        //	}
-        //	return health;
-        //}
+		/// <summary>
+		/// Returns the sum of all HomeBases' health
+		/// </summary>
+		public float GetAllHomeBasesHealth()
+		{
+			double health = 0.0;
+			health = homeBase.GetHealth();
+			return (float)health;
+        }
 
-        private void Awake()
+		private void Awake()
         {
             base.Awake();
             waveManager = GetComponent<WaveManager>();
@@ -169,13 +168,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
                 IntroCompleted();
             }
 
-            // Iterate through home bases and subscribe
-            //numberOfHomeBases = homeBases.Length;
-            //numberOfHomeBasesLeft = numberOfHomeBases;
-            //for (int i = 0; i < numberOfHomeBases; i++)
-            //{
-            //	homeBases[i].died += OnHomeBaseDestroyed;
-            //}
         }
 
         /// <summary>
@@ -196,19 +188,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             return currentLevel;
         }
 
-        /// <summary>
-        /// Decrements the number of enemies. Called on Agent death
-        /// </summary>
-        public virtual void DecrementNumberOfEnemies()
-		{
-			numberOfEnemies--;
-			SafelyCallNumberOfEnemiesChanged();
-			if (numberOfEnemies < 0)
-			{
-				Debug.LogError("[LEVEL] There should never be a negative number of enemies. Something broke!");
-				numberOfEnemies = 0;
-			}
-		}
 
 		/// <summary>
 		/// Completes building phase, setting state to spawn enemies
@@ -246,17 +225,15 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 				intro.introCompleted -= IntroCompleted;
 			}
 
-			// Iterate through home bases and unsubscribe
-			//for (int i = 0; i < numberOfHomeBases; i++)
-			//{
-			//	homeBases[i].died -= OnHomeBaseDestroyed;
-			//}
-		}
+            // Il faut détruire la base pour lancer l'événement
 
-		/// <summary>
-		/// Fired when Intro is completed or immediately, if no intro is specified
-		/// </summary>
-		protected virtual void IntroCompleted()
+            //	homeBase.died -= OnHomeBaseDestroyed;
+        }
+
+        /// <summary>
+        /// Fired when Intro is completed or immediately, if no intro is specified
+        /// </summary>
+        protected virtual void IntroCompleted()
 		{
 			ChangeLevelState(LevelState.Building);
 		}
@@ -284,7 +261,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 			switch (newState)
 			{
 				case LevelState.SpawningEnemies:
-					waveManager.StartWaves();
+					waveManager.Start();
 					break;
 				case LevelState.Lose:
 					SafelyCallLevelFailed();
@@ -295,23 +272,23 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		/// <summary>
 		/// Fired when a home base is destroyed
 		/// </summary>
-		//protected virtual void OnHomeBaseDestroyed(DamageableBehaviour homeBase)
-		//{
-		//	// Decrement the number of home bases
-		//	numberOfHomeBasesLeft--;
+		protected virtual void OnHomeBaseDestroyed()
+		{
+			// Decrement the number of home bases
+			numberOfHomeBasesLeft--;
 
-		//	// Call the destroyed event
-		//	if (homeBaseDestroyed != null)
-		//	{
-		//		homeBaseDestroyed();
-		//	}
+			// Call the destroyed event
+			if (homeBaseDestroyed != null)
+			{
+				homeBaseDestroyed();
+			}
 
-		//	// If there are no home bases left and the level is not over then set the level to lost
-		//	if ((numberOfHomeBasesLeft == 0) && !isGameOver)
-		//	{
-		//		ChangeLevelState(LevelState.Lose);
-		//	}
-		//}
+			// If there are no home bases left and the level is not over then set the level to lost
+			if ((numberOfHomeBasesLeft == 0) && !isGameOver)
+			{
+				ChangeLevelState(LevelState.Lose);
+			}
+		}
 
 		/// <summary>
 		/// Calls the <see cref="numberOfEnemiesChanged"/> event

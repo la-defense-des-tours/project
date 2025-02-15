@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using Assets.Scripts.LaDefenseDesTours.Level;
+using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             {
                 Debug.LogError("[UI] No level manager for tower list");
             }
-            foreach (Tower tower in LevelManager.instance.towerLibrary)
+            foreach (TowerData tower in LevelManager.instance.towerLibrary.Values)
             {
                 TowerSpawnButton button = Instantiate(towerSpawnButton, transform);
                 button.InitializeButton(tower);
@@ -41,7 +42,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// Sets the GameUI to build mode with the <see cref="towerData"/>
         /// </summary>
         /// <param name="towerData"></param>
-        void OnButtonTapped(Tower towerData)
+        void OnButtonTapped(TowerData towerData)
         {
             var gameUI = GameUI.instance;
             if (gameUI.isBuilding)
@@ -55,7 +56,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// Sets the GameUI to build mode with the <see cref="towerData"/> 
         /// </summary>
         /// <param name="towerData"></param>
-        void OnButtonDraggedOff(Tower towerData)
+        void OnButtonDraggedOff(TowerData towerData)
         {
             if (!GameUI.instance.isBuilding)
             {

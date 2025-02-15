@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 
 namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 {
@@ -35,18 +36,18 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// <summary>
         /// Fires when the button is tapped
         /// </summary>
-        public event Action<Tower> buttonTapped;
+        public event Action<TowerData> buttonTapped;
 
         /// <summary>
         /// Fires when the pointer is outside of the button bounds
         /// and still down
         /// </summary>
-        public event Action<Tower> draggedOff;
+        public event Action<TowerData> draggedOff;
 
         /// <summary>
         /// The tower controller that defines the button
         /// </summary>
-        Tower m_Tower;
+        TowerData m_Tower;
 
         /// <summary>
         /// Cached reference to level currency
@@ -79,30 +80,30 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// <param name="towerData">
         /// The tower to initialize the button with
         /// </param>
-        public void InitializeButton(Tower towerData)
+        public void InitializeButton(TowerData towerData)
         {
             m_Tower = towerData;
 
-            //if (towerData.levels.Length > 0)
-            //{
-            //    TowerLevel firstTower = towerData.levels[0];
-            //    buttonText.text = firstTower.cost.ToString();
-            //    towerIcon.sprite = firstTower.levelData.icon;
-            //}
-            //else
-            //{
-            //    Debug.LogWarning("[Tower Spawn Button] No level data for tower");
-            //}
+            if (towerData.levels.Length > 0)
+            {
+                TowerLevel firstTower = towerData.levels[0];
+                buttonText.text = firstTower.cost.ToString();
+                towerIcon.sprite = firstTower.levelData.icon;
+            }
+            else
+            {
+                Debug.LogWarning("[Tower Spawn Button] No level data for tower");
+            }
 
-            //if (LevelManager.instanceExists)
-            //{
-            //    m_Currency = LevelManager.instance.currency;
-            //    m_Currency.currencyChanged += UpdateButton;
-            //}
-            //else
-            //{
-            //    Debug.LogWarning("[Tower Spawn Button] No level manager to get currency object");
-            //}
+            if (LevelManager.instanceExists)
+            {
+                m_Currency = LevelManager.instance.currency;
+                m_Currency.currencyChanged += UpdateButton;
+            }
+            else
+            {
+                Debug.LogWarning("[Tower Spawn Button] No level manager to get currency object");
+            }
             UpdateButton();
         }
 

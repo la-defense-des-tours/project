@@ -14,7 +14,7 @@ namespace Assets.Scripts.Core
         [SerializeField] private Transform target;
         private Wave wave1, wave2, wave3, wave4;
 
-        private void Start()
+        public void Start()
         {
             SetupWaves();
             StartWave(wave1);
