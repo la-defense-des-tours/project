@@ -9,8 +9,6 @@ public class TowerManager : MonoBehaviour
     [SerializeField] private TowerFactory laserFactory;
     [SerializeField] private TowerFactory canonFactory;
     [SerializeField] private Transform target;
-    [SerializeField] private LayerMask placementZoneLayer;
-    [SerializeField] private List<Grid> grids;
     [SerializeField] private Button machineGunButton;
     [SerializeField] private Button laserButton;
     [SerializeField] private Button canonButton;
