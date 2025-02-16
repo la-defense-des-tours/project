@@ -9,7 +9,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         protected NavMeshAgent agent;
         protected Animator animator;
         public virtual float health { get; set; }
-        public virtual float speed { get; set; } 
+        public virtual float speed { get; set; }
         public virtual float acceleration { get; set; }
 
         public void Awake()
@@ -18,7 +18,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             SetupNavMeshAgent();
         }
 
-        void Update() 
+        void Update()
         {
             UpdateState();
 
@@ -100,6 +100,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public void SetSpeed(float _speed)
         {
             agent.speed = _speed;
+
+            if (animator != null)
+                animator.speed = _speed;
         }
         public virtual void CheckArrival()
         {
@@ -108,7 +111,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
                 if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
                 {
                     DealDamage(health);
-                    TransitionTo(new Dead()); 
+                    TransitionTo(new Dead());
                 }
             }
         }
