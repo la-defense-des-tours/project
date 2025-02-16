@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace Assets.Scripts.LaDefenseDesTours.Waves
 {
-    public class Wave_2 : BaseWave
+    public class Wave_2 : Wave
     {
         private readonly EnemyFactory walkingEnemyFactory;
         private readonly EnemyFactory flyingEnemyFactory;

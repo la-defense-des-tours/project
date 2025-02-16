@@ -230,6 +230,7 @@ GameObject:
   - component: {fileID: 5127573195295889936}
   - component: {fileID: -2066031236903285922}
   - component: {fileID: 8557772254240928588}
+  - component: {fileID: -4433422411206593322}
   m_Layer: 0
   m_Name: Canon_1
   m_TagString: Untagged
@@ -275,7 +276,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 5059962892274874607}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 302aaf16cbac0a347839c4d931afa613, type: 3}
+  m_Script: {fileID: 11500000, guid: c464a8877f19ff6489a9c6688a79dc06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canonTower: {fileID: -2066031236903285922}
+--- !u!114 &-4433422411206593322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5059962892274874607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa95b2419f4b51240a2aedc639fdc3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotatingSpeed: 7

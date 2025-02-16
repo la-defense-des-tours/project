@@ -5,9 +5,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
     public abstract class TowerDecorator : Tower
     {
         protected Tower tower;
-        public string towerName => tower.towerName;
-        public float range => tower.range;
-        public float damage => tower.damage;
+        public override string towerName => tower.towerName;
+        public override float range => tower.range;
+        public override float damage => tower.damage;
 
         public TowerDecorator(Tower tower)
         {

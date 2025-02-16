@@ -3,7 +3,7 @@ using UnityEngine;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using System.Collections.Generic;
 
-public class TestWave : BaseWave
+public class TestWave : Wave
 {
     public TestWave GetNextWave() => (TestWave)nextWave;
     public Vector3 GetTargetPosition() => targetPosition;

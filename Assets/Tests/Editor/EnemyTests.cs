@@ -5,60 +5,26 @@ using UnityEngine.AI;
 
 public class EnemyTests
 {
-    private class TestEnemy : MonoBehaviour, Enemy
+    private class TestEnemy : Enemy
     {
-        private State currentState;
         public bool isDead = false;
-        public float health = 100f;
-        public float speed = 5f;
+        public override float health { get; set; } = 100f;
+        public override float speed { get; set; }  = 5f;
 
-        public void Die()
+        public override void Die()
         {
             isDead = true;
             DestroyImmediate(gameObject);
         }
-        public void SetupNavMeshAgent()
+        public override void SetupNavMeshAgent()
         {
         }
-        public void Move(Vector3 destination)
+        public override void Move(Vector3 destination)
         {
         }
-        public Enemy Clone(Transform spawnPoint)
-        {
-            return (Enemy)this.MemberwiseClone();
-        }
-        public void TakeDamage(float damage)
-        {
-            health -= damage;
-            if (health <= 0)
-            {
-                Die();
-            }
-        }
-        public void DealDamage(float damage)
-        {
-            Player.GetInstance().TakeDamage(damage);
-        }
-        public void TransitionTo(State state)
-        {
-            if (state is Slowed)
-            {
-                Debug.Log("Enemy is slowed.");
-            }
-        }
-        public void UpdateState()
-        {
-            currentState?.ApplyEffect();
-        }
-        public float GetSpeed()
-        {
-            return speed;
-        }
-        public void SetSpeed(float speed)
-        {
-            this.speed = speed;
-        }
-        public void CheckArrival()
+     
+       
+        public override void CheckArrival()
         {
         }
     }

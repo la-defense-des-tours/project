@@ -12,7 +12,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Game
 		/// <summary>
 		/// A list of level IDs for completed levels
 		/// </summary>
-		public List<LevelSaveData> completedLevels = new List<LevelSaveData>();
+		//public List<LevelSaveData> completedLevels = new List<LevelSaveData>();
 
 		/// <summary>
 		/// Outputs to debug
@@ -37,15 +37,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Game
 		/// <param name="starsEarned">Stars earned</param>
 		public void CompleteLevel(string levelId, int starsEarned)
 		{
-			foreach (LevelSaveData level in completedLevels)
-			{
-				if (level.id == levelId)
-				{
-					level.numberOfStars = Mathf.Max(level.numberOfStars, starsEarned);
-					return;
-				}
-			}
-			completedLevels.Add(new LevelSaveData(levelId, starsEarned));
+
 		}
 
 		/// <summary>
@@ -55,13 +47,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Game
 		/// <returns>true if the level is completed</returns>
 		public bool IsLevelCompleted(string levelId)
 		{
-			foreach (LevelSaveData level in completedLevels)
-			{
-				if (level.id == levelId)
-				{
-					return true;
-				}
-			}
+
 			return false;
 		}
 
@@ -70,13 +56,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Game
 		/// </summary>
 		public int GetNumberOfStarForLevel(string levelId)
 		{
-			foreach (LevelSaveData level in completedLevels)
-			{
-				if (level.id == levelId)
-				{
-					return level.numberOfStars;
-				}
-			}
 			return 0;
 		}
 	}

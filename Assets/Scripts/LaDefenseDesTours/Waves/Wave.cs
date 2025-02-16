@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
-    public abstract class BaseWave : Wave
+    public abstract class Wave
     {
         protected MonoBehaviour coroutineRunner;
         protected Wave nextWave;
@@ -33,7 +33,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         protected virtual void OnWaveCompleted()
         {
-            Debug.Log($"Wave {GetType().Name} completed!");
+            Debug.Log($"Wave {this.GetType().Name} completed!");
             if (nextWave != null)
                 coroutineRunner.StartCoroutine(WaitForNextWave());
         }

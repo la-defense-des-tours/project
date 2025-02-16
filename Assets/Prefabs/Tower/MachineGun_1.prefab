@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 3119963224667280803}
   - component: {fileID: 1581645643603749909}
   - component: {fileID: 2881728792869223592}
+  - component: {fileID: -5796374292621858601}
   m_Layer: 0
   m_Name: MachineGun_1
   m_TagString: Untagged
@@ -306,10 +307,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 7129850076736660284}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 302aaf16cbac0a347839c4d931afa613, type: 3}
+  m_Script: {fileID: 11500000, guid: 8253bf836e231aa4f8790898cb6ccf1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotatingSpeed: 15
+  machineGunTower: {fileID: 1581645643603749909}
+--- !u!114 &-5796374292621858601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7129850076736660284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa95b2419f4b51240a2aedc639fdc3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotatingSpeed: 7
   rotatingPart: {fileID: 5692223279559571255}
   fireRate: 2
   fireCountdown: 0

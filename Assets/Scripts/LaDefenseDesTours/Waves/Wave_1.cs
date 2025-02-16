@@ -4,7 +4,7 @@ using Assets.Scripts.LaDefenseDesTours.Interfaces;
 
 namespace Assets.Scripts.LaDefenseDesTours.Waves
 {
-    public class Wave_1 : BaseWave
+    public class Wave_1 : Wave
     {
         private readonly EnemyFactory walkingEnemyFactory;
         private readonly EnemyFactory flyingEnemyFactory;

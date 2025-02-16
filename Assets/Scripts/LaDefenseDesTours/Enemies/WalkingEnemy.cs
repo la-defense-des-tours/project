@@ -4,111 +4,19 @@ using Assets.Scripts.LaDefenseDesTours.Interfaces;
 
 namespace Assets.Scripts.LaDefenseDesTours.Enemies
 {
-    public class WalkingEnemy : MonoBehaviour, Enemy
+    public class WalkingEnemy : Enemy
     {
-        private State currentState;
-        private NavMeshAgent agent;
-        private Animator animator;
-        private float health = 200f;
-        private readonly float speed = 2.5f;
-        private readonly float acceleration = 5;
+        public override float health { get; set; } = 200;
+        public override float speed { get; set; } = 2.5f;
+        public override float acceleration { get; set; } = 5f;
 
-        void Awake()
-        {
-            animator = GetComponent<Animator>();
-            SetupNavMeshAgent();
-        }
-        void Update() // Tests pour les effets
-        {
-            UpdateState();
-            switch (Input.inputString)
-            {
-                case "s":
-                    TransitionTo(new Slowed());
-                    break;
-                case "p":
-                    TransitionTo(new Paralyzed());
-                    break;
-                case "d":
-                    TransitionTo(new Dead());
-                    break;
-                case "b":
-                    TransitionTo(new Burned());
-                    break;
-            }
-
-            if (currentState is not Dead)
-                CheckArrival();
-        }
-        public void SetupNavMeshAgent()
-        {
-            if (gameObject.GetComponent<NavMeshAgent>() == null)
-                agent = gameObject.AddComponent<NavMeshAgent>();
-            else
-                agent = gameObject.GetComponent<NavMeshAgent>();
-            SetupSpeed();
-        }
-        public void Move(Vector3 destination)
-        {
-            if (currentState is not Paralyzed)
-                agent.SetDestination(destination);
-        }
-        public Enemy Clone(Transform spawnPoint)
-        {
-            Enemy clone = Instantiate(this, spawnPoint.position, Quaternion.identity);
-            clone.SetupNavMeshAgent();
-            return clone;
-        }
-        public void SetupSpeed()
+     
+        public override void SetupSpeed()
         {
             agent.speed = speed;
             agent.acceleration = acceleration;
             animator.speed = speed / 2;
         }
-        public void TakeDamage(float _damage)
-        {
-            health -= _damage;
-            if (health <= 0)
-                TransitionTo(new Dead());
-        }
-        public void DealDamage(float _damage)
-        {
-            Player.GetInstance().TakeDamage(_damage);
-            Debug.Log($"Player took {_damage} damage. Player health: {Player.GetInstance().health}");
-        }
-        public void Die()
-        {
-            Destroy(gameObject);
-        }
-        public void TransitionTo(State state)
-        {
-            currentState = state;
-            currentState.SetContext(this);
-        }
-        public void UpdateState()
-        {
-            currentState?.ApplyEffect();
-        }
-        public float GetSpeed()
-        {
-            return agent.speed;
-        }
-        public void SetSpeed(float _speed)
-        {
-            agent.speed = _speed;
-            animator.speed = _speed / 2;
-        }
-
-        public void CheckArrival()
-        {
-            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
-            {
-                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-                {
-                    DealDamage(health);
-                    Die();
-                }
-            }
-        }
+ 
     }
 }

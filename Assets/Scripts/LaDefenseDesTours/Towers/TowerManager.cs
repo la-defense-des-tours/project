@@ -10,7 +10,6 @@ public class TowerManager : MonoBehaviour
     [SerializeField] private TowerFactory machineGunFactory;
     [SerializeField] private TowerFactory laserFactory;
     [SerializeField] private TowerFactory canonFactory;
-    [SerializeField] private Transform target;
     private TowerFactory selectedFactory;
     public static TowerManager Instance;
     private List<TowerSpawnButton> spawnButtons = new List<TowerSpawnButton>();

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using Assets.Scripts.LaDefenseDesTours.Waves;
 
-namespace Assets.Scripts.Core
-{
     public class WaveManager : MonoBehaviour
     {
         [SerializeField] private EnemyFactory walkingEnemyFactory;
@@ -39,4 +37,3 @@ namespace Assets.Scripts.Core
             wave.GenerateWave(target.position);
         }
     }
-}
