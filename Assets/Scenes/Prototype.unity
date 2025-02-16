@@ -314,7 +314,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7872298357906528581, guid: e9c3e0e6185e97e498cdaaf6838a682a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 28.6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7872298357906528581, guid: e9c3e0e6185e97e498cdaaf6838a682a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -322,7 +322,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7872298357906528581, guid: e9c3e0e6185e97e498cdaaf6838a682a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.04
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 7872298357906528581, guid: e9c3e0e6185e97e498cdaaf6838a682a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -552,8 +552,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439326816}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.07872039, y: -0.9168738, z: 0.22583242, w: -0.31960163}
-  m_LocalPosition: {x: -18.335804, y: 11.267005, z: 31.259558}
+  m_LocalRotation: {x: -0.15974282, y: 0.74976563, z: -0.1958435, w: -0.61153823}
+  m_LocalPosition: {x: 67.85664, y: 18.924856, z: 5.7539487}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -582,7 +582,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
