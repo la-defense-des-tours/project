@@ -10,13 +10,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         public override float speed { get; set; } = 2.5f;
         public override float acceleration { get; set; } = 5f;
 
-     
         public override void SetupSpeed()
         {
             agent.speed = speed;
             agent.acceleration = acceleration;
             animator.speed = speed / 2;
         }
- 
+
     }
 }

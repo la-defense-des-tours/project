@@ -5,7 +5,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
     public abstract class Enemy : MonoBehaviour
     {
-
         protected State currentState;
         protected NavMeshAgent agent;
         protected Animator animator;
@@ -109,7 +108,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
                 if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
                 {
                     DealDamage(health);
-                    Die(); 
+                    TransitionTo(new Dead()); 
                 }
             }
         }
