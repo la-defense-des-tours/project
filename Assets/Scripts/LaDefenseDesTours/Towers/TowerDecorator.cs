@@ -19,7 +19,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             this.tower = tower;
         }
 
-        public void Attack()
+        public override void Attack()
         {
             if (tower != null)
             {
@@ -31,27 +31,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             }
         }
 
-        public void Upgrade()
+        public override void Upgrade()
         {
             Debug.Log("Upgrading tower");
-        }
-
-        public void SetupNavMeshAgent()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void SetPosition(Vector3 position)
-        {
-            throw new System.NotImplementedException();
-        }
-        public float GetTowerRange()
-        {
-            throw new System.NotImplementedException();
-        }
-        public float GetTowerDamage()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

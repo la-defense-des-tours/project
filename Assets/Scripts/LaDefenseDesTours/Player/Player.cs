@@ -17,7 +17,6 @@ public sealed class Player : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
-
         DontDestroyOnLoad(gameObject);
     }
 

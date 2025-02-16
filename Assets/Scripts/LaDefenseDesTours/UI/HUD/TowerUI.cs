@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -49,7 +50,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <summary>
 		/// The current tower to draw
 		/// </summary>
-		protected Tower m_Tower;
+		protected TowerData m_Tower;
 
 		/// <summary>
 		/// The canvas attached to the gameObject
@@ -62,40 +63,40 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <param name="towerToShow">
 		/// The tower to gain info from
 		/// </param>
-		public virtual void Show(Tower towerToShow)
+		public virtual void Show(TowerData towerToShow)
 		{
-			//if (towerToShow == null)
-			//{
-			//	return;
-			//}
-			//m_Tower = towerToShow;
-			//AdjustPosition();
+			if (towerToShow == null)
+			{
+				return;
+			}
+			m_Tower = towerToShow;
+			AdjustPosition();
 
-			//m_Canvas.enabled = true;
+			m_Canvas.enabled = true;
 
 			//int sellValue = m_Tower.GetSellLevel();
-			//if (sellButton != null)
-			//{
-			//	sellButton.gameObject.SetActive(sellValue > 0);
-			//}
-			//if (upgradeButton != null)
-			//{
-			//	upgradeButton.interactable = 
-			//		LevelManager.instance.currency.CanAfford(m_Tower.GetCostForNextLevel());
-			//	bool maxLevel = m_Tower.isAtMaxLevel;
-			//	upgradeButton.gameObject.SetActive(!maxLevel);
-			//	if (!maxLevel)
-			//	{
-			//		upgradeDescription.text =
-			//			m_Tower.levels[m_Tower.currentLevel + 1].upgradeDescription.ToUpper();
-			//	}
-			//}
+			if (sellButton != null)
+			{
+				//sellButton.gameObject.SetActive(sellValue > 0);
+			}
+			if (upgradeButton != null)
+			{
+				//upgradeButton.interactable =
+					//LevelManager.instance.currency.CanAfford(m_Tower.GetCostForNextLevel());
+				//bool maxLevel = m_Tower.isAtMaxLevel;
+				//upgradeButton.gameObject.SetActive(!maxLevel);
+				//if (!maxLevel)
+				//{
+				//	upgradeDescription.text =
+				//		m_Tower.levels[m_Tower.currentLevel + 1].upgradeDescription.ToUpper();
+				//}
+			}
 			//LevelManager.instance.currency.currencyChanged += OnCurrencyChanged;
-			//towerInfoDisplay.Show(towerToShow);
-			//foreach (var button in confirmationButtons)
-			//{
-			//	button.SetActive(false);
-			//}
+			towerInfoDisplay.Show(towerToShow);
+			foreach (var button in confirmationButtons)
+			{
+				button.SetActive(false);
+			}
 		}
 
 		/// <summary>
@@ -140,7 +141,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// Fires when tower is selected/deselected
 		/// </summary>
 		/// <param name="newTower"></param>
-		protected virtual void OnUISelectionChanged(Tower newTower)
+		protected virtual void OnUISelectionChanged(TowerData newTower)
 		{
 			if (newTower != null)
 			{
@@ -232,7 +233,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		{
 			if (GameUI.instanceExists)
 			{
-				//GameUI.instance.selectionChanged -= OnUISelectionChanged;
+				GameUI.instance.selectionChanged -= OnUISelectionChanged;
 				GameUI.instance.stateChanged -= OnGameUIStateChanged;
 			}
 		}

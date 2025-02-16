@@ -4,62 +4,24 @@ using Assets.Scripts.LaDefenseDesTours.Interfaces;
 
 namespace Assets.Scripts.LaDefenseDesTours.Towers
 {
-    public class MachineGunTower : MonoBehaviour, Tower
+    public class MachineGunTower : Tower
     {
-        private NavMeshAgent agent;
-        public string towerName { get; set; } = "Machine Gun Tower";
-        public float range { get; private set; } = 30f;
-        public float damage { get; private set; } = 50f;
-        private int currentLevel { get; set; }
-        private float fireRate { get; set; }
-        private int cost { get; set; }
-        private int health { get; set; }
-        private int upgradeCost { get; set; }
-        private float upgradeDamage { get; set; }
-        private float upgradeFireRate { get; set; }
-        private float upgradeRange { get; set; }
-        private int sellValue { get; set; }
-        private int upgradeSellValue { get; set; }
+        public override string  towerName { get; } = "Machine Gun Tower";
         private float attackPerSecond { get; set; }
-
-
-        public void Upgrade()
+        public override float range { get; } = 30f;
+        public override float damage {get; } = 30f;
+        
+        public override void Upgrade()
         {
             currentLevel++;
             health += 10;
             cost += 10;
             attackPerSecond += 0.5f;
         }
-        public void SetupNavMeshAgent()
-        {
-            if (gameObject.GetComponent<NavMeshAgent>() == null)
-            {
-                agent = gameObject.AddComponent<NavMeshAgent>();
-            }
-            else
-            {
-                agent = gameObject.GetComponent<NavMeshAgent>();
-            }
-        }
-
-        public void Attack()
+        
+        public override void Attack()
         {
             Debug.Log("Machine Gun Tower is attacking");
-        }
-
-        public void SetPosition(Vector3 position)
-        {
-            position.x = Mathf.Round(position.x);
-            position.z = Mathf.Round(position.z);
-            transform.position = position;
-        }
-        public float GetTowerRange()
-        {
-            return range;
-        }
-        public float GetTowerDamage()
-        {
-            return damage;
         }
     }
 }

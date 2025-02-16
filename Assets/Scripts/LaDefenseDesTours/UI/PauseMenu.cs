@@ -91,7 +91,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI
     {
         // Remplacez cela par la logique spécifique à votre jeu
         // Exemple : Si le gestionnaire de niveau est accessible globalement
-        LevelManager levelManager = FindObjectOfType<LevelManager>();
+        LevelManager levelManager = FindFirstObjectByType<LevelManager>();
 
         if (levelManager != null)
         {

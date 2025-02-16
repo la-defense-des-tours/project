@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using UnityEngine;
 
 namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
@@ -13,6 +14,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <summary>
 		/// an enum for easily keeping track of UI animation
 		/// </summary>
+		/// 
 		public enum AnimationState
 		{
 			/// <summary>
@@ -54,7 +56,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <summary>
 		/// The attached <see cref="TowerUI"/>
 		/// </summary>
-		//protected TowerUI m_TowerUI;
+		protected TowerUI m_TowerUI;
 
 		/// <summary>
 		/// The attached canvas
@@ -92,9 +94,9 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// <param name="controller">
         /// The tower information to display
         /// </param>
-        public virtual void Show() //  # a ajouter (Tower controller)
+        public virtual void Show(TowerData controller) 
         {
-			//m_TowerUI.Show(controller);
+			m_TowerUI.Show(controller);
 			if (m_State == AnimationState.Shown)
 			{
 				return;
@@ -131,7 +133,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		protected virtual void Awake()
 		{
 			m_Canvas = GetComponent<Canvas>();
-			//m_TowerUI = GetComponent<TowerUI>();
+			m_TowerUI = GetComponent<TowerUI>();
 		}
 	}
 }
