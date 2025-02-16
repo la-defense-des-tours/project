@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Towers.Data;
+using Assets.Scripts.LaDefenseDesTours.UI.HUD;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,9 +11,6 @@ public class TowerManager : MonoBehaviour
     [SerializeField] private TowerFactory laserFactory;
     [SerializeField] private TowerFactory canonFactory;
     [SerializeField] private Transform target;
-    [SerializeField] private Button machineGunButton;
-    [SerializeField] private Button laserButton;
-    [SerializeField] private Button canonButton;
     private TowerFactory selectedFactory;
     public static TowerManager Instance;
 
@@ -28,15 +27,39 @@ public class TowerManager : MonoBehaviour
     public void Start()
     {
         // Sélection par défaut
-        selectedFactory = machineGunFactory;
-        machineGunButton.onClick.AddListener(() => SelectTower(machineGunFactory, "Machine Gun"));
-        laserButton.onClick.AddListener(() => SelectTower(laserFactory, "Laser"));
-        canonButton.onClick.AddListener(() => SelectTower(canonFactory, "Canon"));
+        TowerSpawnButton[] spawnButtons = FindObjectsByType<TowerSpawnButton>(FindObjectsSortMode.None);
+        Debug.Log($"Found {spawnButtons.Length} buttons");
+        foreach (TowerSpawnButton button in spawnButtons)
+        {
+            button.buttonTapped += OnTowerButtonTapped;
+
+
+        }
     }
 
-    private void SelectTower(TowerFactory factory, string towerName)
+    private void OnTowerButtonTapped(TowerData towerData)
     {
-        selectedFactory = factory;
+        SelectTower(towerData.towerName);
+        Debug.Log("Tower selected");
+    }
+
+    private void SelectTower(string towerName)
+    {
+        switch (towerName)
+        {
+            case "Machine Gun":
+                selectedFactory = machineGunFactory;
+                break;
+            case "Laser":
+                selectedFactory = laserFactory;
+                break;
+            case "Canon":
+                selectedFactory = canonFactory;
+                break;
+            default:
+                Debug.LogError("Invalid tower name");
+                break;
+        }
         Debug.Log($"Selected Tower: {towerName}");
     }
 

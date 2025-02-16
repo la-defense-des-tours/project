@@ -59,6 +59,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// </summary>
         RectTransform m_RectTransform;
 
+
         /// <summary>
         /// Checks if the pointer is out of bounds
         /// and then fires the draggedOff event
@@ -123,11 +124,12 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// The click for when the button is tapped
         /// </summary>
         public void OnClick()
-        {
-            if (buttonTapped != null)
-            {
-                buttonTapped(m_Tower);
-            }
+        {  
+            Debug.Log("m_Tower: " + m_Tower);
+
+            buttonTapped(m_Tower);
+
+
         }
 
         /// <summary>

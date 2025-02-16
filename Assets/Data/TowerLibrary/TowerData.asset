@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8b17a1b5ece3bf4f81f93206c9f93e0, type: 3}
   m_Name: TowerData
   m_EditorClassIdentifier: 
-  towerName: Tower 1
+  towerName: Laser
   description: Le canon envoie des gros boulet
   upgradeDescription: Envoie des trucs de fou
   cost: 100

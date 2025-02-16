@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using UnityEngine;
 
 namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
@@ -93,9 +94,9 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// <param name="controller">
         /// The tower information to display
         /// </param>
-        public virtual void Show() //  # a ajouter (Tower controller)
+        public virtual void Show(TowerData controller) 
         {
-			//m_TowerUI.Show(controller);
+			m_TowerUI.Show(controller);
 			if (m_State == AnimationState.Shown)
 			{
 				return;

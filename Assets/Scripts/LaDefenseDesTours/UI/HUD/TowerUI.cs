@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -49,7 +50,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <summary>
 		/// The current tower to draw
 		/// </summary>
-		protected Tower m_Tower;
+		protected TowerData m_Tower;
 
 		/// <summary>
 		/// The canvas attached to the gameObject
@@ -62,7 +63,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <param name="towerToShow">
 		/// The tower to gain info from
 		/// </param>
-		public virtual void Show(Tower towerToShow)
+		public virtual void Show(TowerData towerToShow)
 		{
 			if (towerToShow == null)
 			{
@@ -91,7 +92,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 				//}
 			}
 			//LevelManager.instance.currency.currencyChanged += OnCurrencyChanged;
-			//towerInfoDisplay.Show(towerToShow);
+			towerInfoDisplay.Show(towerToShow);
 			foreach (var button in confirmationButtons)
 			{
 				button.SetActive(false);
@@ -140,7 +141,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// Fires when tower is selected/deselected
 		/// </summary>
 		/// <param name="newTower"></param>
-		protected virtual void OnUISelectionChanged(Tower newTower)
+		protected virtual void OnUISelectionChanged(TowerData newTower)
 		{
 			if (newTower != null)
 			{
