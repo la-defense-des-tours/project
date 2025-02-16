@@ -74,7 +74,7 @@ public class Shooter : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bulletObject = Instantiate(bulletPrefab, firePoint.position, bulletPrefab.transform.rotation);
+        GameObject bulletObject = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         Bullet bullet = bulletObject.GetComponent<Bullet>();
 
         if (bullet != null)

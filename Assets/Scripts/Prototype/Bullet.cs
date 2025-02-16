@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed = 75f;
     private Transform target;
     private Collider targetCollider;
+    private Enemy targetEnemy;
     private float damage;
 
     void Update()
@@ -17,12 +18,13 @@ public class Bullet : MonoBehaviour
     {
         target = _target;
         targetCollider = _target.GetComponent<Collider>();
+        targetEnemy = _target.GetComponent<Enemy>();
     }
 
-    private void HitTarget(Enemy enemy)
+    private void HitTarget()
     {
         Destroy(gameObject);
-        enemy.TakeDamage(damage);
+        targetEnemy.TakeDamage(damage);
     }
 
     private void HandleTrajectory()
@@ -39,7 +41,7 @@ public class Bullet : MonoBehaviour
 
         if (direction.magnitude <= distanceThisFrame)
         {
-            HitTarget(target.GetComponent<Enemy>());
+            HitTarget();
             return;
         }
 
