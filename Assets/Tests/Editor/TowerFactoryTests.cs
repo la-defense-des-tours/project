@@ -47,7 +47,8 @@ public class TowerFactoryTests
     [Test]
     public void MachineGunFactory_ReturnsMachineGunTower()
     {
-        Tower tower = machineGunTowerFactory.CreateTower();
+        Vector3 position = new Vector3(0, 0, 0);
+        Tower tower = machineGunTowerFactory.CreateTower(position);
 
         Assert.IsNotNull(tower);
         Assert.IsTrue(tower is MachineGunTower);
@@ -56,7 +57,8 @@ public class TowerFactoryTests
     [Test]
     public void CanonFactory_ReturnsCanonTower()
     {
-        Tower tower = canonTowerFactory.CreateTower();
+        Vector3 position = new Vector3(0, 0, 0);
+        Tower tower = canonTowerFactory.CreateTower(position);
 
         Assert.IsNotNull(tower);
         Assert.IsTrue(tower is CanonTower);
@@ -65,7 +67,8 @@ public class TowerFactoryTests
     [Test]
     public void LaserFactory_ReturnsLaserTower()
     {
-        Tower tower = laserTowerFactory.CreateTower();
+        Vector3 position = new Vector3(0, 0, 0);
+        Tower tower = laserTowerFactory.CreateTower(position);
 
         Assert.IsNotNull(tower);
         Assert.IsTrue(tower is LaserTower);
@@ -74,7 +77,7 @@ public class TowerFactoryTests
     [Test]
     public void Notify_MachineGunTower()
     {
-        string expectedMessage = "Machine Gun Tower Created";
+        string expectedMessage = "MachineGun Tower Created";
 
         LogAssert.Expect(LogType.Log, expectedMessage);
         machineGunTowerFactory.Notify();
