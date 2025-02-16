@@ -7,7 +7,7 @@ public class Shooter : MonoBehaviour
     [SerializeField] private Transform rotatingPart;
     [SerializeField] private float fireRate;
     [SerializeField] private float fireCountdown;
-    
+
     [Header("Bullet Attributes")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
@@ -20,7 +20,7 @@ public class Shooter : MonoBehaviour
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
-        
+
         Tower tower = GetComponent<Tower>();
         range = tower.range;
         damage = tower.damage;
@@ -74,7 +74,8 @@ public class Shooter : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bulletObject = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        Quaternion bulletRotation = Quaternion.LookRotation(target.position - firePoint.position);
+        GameObject bulletObject = Instantiate(bulletPrefab, firePoint.position, bulletRotation);
         Bullet bullet = bulletObject.GetComponent<Bullet>();
 
         if (bullet != null)
