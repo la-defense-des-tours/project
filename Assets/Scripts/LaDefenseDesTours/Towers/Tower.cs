@@ -1,11 +1,10 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
     public abstract class Tower : MonoBehaviour
     {
-        public virtual  string towerName { get; }
+        public virtual string towerName { get; }
         public virtual float range { get; }
         protected int currentLevel;
         public virtual float damage { get; }

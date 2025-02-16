@@ -61,6 +61,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
             boss.Move(targetPosition);
             spawnedEnemies.Add(boss);
             Debug.Log("Wave 4: Spawned Boss");
+            Debug.Log($"Total enemies: {spawnedEnemies.Count}");
             yield return new WaitForSeconds(timeBetweenSpawns);
 
             isSpawning = false;

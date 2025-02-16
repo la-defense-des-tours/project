@@ -3,7 +3,6 @@ using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using Assets.Scripts.LaDefenseDesTours.UI.HUD;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TowerManager : MonoBehaviour
 {

@@ -9,7 +9,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
         public override string towerName { get; } = "Canon Tower";
         public float areaOfEffect { get; set; }
         public override float range { get; } = 20f;
-        public override float damage {get; } = 100f;
+        public override float damage { get; } = 100f;
         public override void Upgrade()
         {
             currentLevel++;
