@@ -2,6 +2,7 @@ using System;
 using Assets.Scripts.Core.Utilities;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using Assets.Scripts.LaDefenseDesTours.Level;
+using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using Core.Input;
 using JetBrains.Annotations;
 using TowerDefense.UI;
@@ -138,7 +139,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <summary>
 		/// Fires when a tower is selected/deselected
 		/// </summary>
-		public event Action<Tower> selectionChanged;
+		public event Action<TowerData> selectionChanged;
 
 		/// <summary>
 		/// Placement area ghost tower is currently on
@@ -169,7 +170,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <summary>
 		/// Gets the current selected tower
 		/// </summary>
-		public Tower currentSelectedTower { get; private set; }
+		public TowerData currentSelectedTower { get; private set; }
 
 		/// <summary>
 		/// Gets whether a tower has been selected
@@ -317,7 +318,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <exception cref="InvalidOperationException">
 		/// Throws exception when trying to change to Drag mode when not in Normal Mode
 		/// </exception>
-		public void SetToDragMode([NotNull] Tower towerToBuild)
+		public void SetToDragMode([NotNull] TowerData towerToBuild)
 		{
 			if (state != State.Normal)
 			{
@@ -342,7 +343,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <exception cref="InvalidOperationException">
 		/// Throws exception trying to enter Build Mode when not in Normal Mode
 		/// </exception>
-		public void SetToBuildMode([NotNull] Tower towerToBuild)
+		public void SetToBuildMode([NotNull] TowerData towerToBuild)
 		{
 			if (state != State.Normal)
 			{
@@ -399,7 +400,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <summary>
 		/// Sets up the radius visualizer for a tower or ghost tower
 		/// </summary>
-		public void SetupRadiusVisualizer(Tower tower, Transform ghost = null)
+		public void SetupRadiusVisualizer(TowerData tower, Transform ghost = null)
 		{
 			radiusVisualizerController.SetupRadiusVisualizers(tower, ghost);
 		}
@@ -421,7 +422,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <exception cref="InvalidOperationException">
 		/// Throws exception when selecting tower when <see cref="State" /> does not equal <see cref="State.Normal" />
 		/// </exception>
-		public void SelectTower(Tower tower)
+		public void SelectTower(TowerData tower)
 		{
 			if (state != State.Normal)
 			{
@@ -699,7 +700,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 			{
 				return;
 			}
-			var controller = output.collider.GetComponent<Tower>();
+			var controller = output.collider.GetComponent<TowerData>();
 			if (controller != null)
 			{
 				SelectTower(controller);

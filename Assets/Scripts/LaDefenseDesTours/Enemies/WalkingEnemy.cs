@@ -36,6 +36,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
                     TransitionTo(new Burned());
                     break;
             }
+
+            if (currentState is not Dead)
+                CheckArrival();
         }
         public void SetupNavMeshAgent()
         {
@@ -50,7 +53,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
             if (currentState is not Paralyzed)
                 agent.SetDestination(destination);
         }
-        // Clone garde-t-il les mêmes états que l'original ? Propriété à l'instant T
         public Enemy Clone(Transform spawnPoint)
         {
             Enemy clone = Instantiate(this, spawnPoint.position, Quaternion.identity);
@@ -63,11 +65,16 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
             agent.acceleration = acceleration;
             animator.speed = speed / 2;
         }
-        public void TakeDamage(float damage)
+        public void TakeDamage(float _damage)
         {
-            health -= damage;
+            health -= _damage;
             if (health <= 0)
                 TransitionTo(new Dead());
+        }
+        public void DealDamage(float _damage)
+        {
+            Player.GetInstance().TakeDamage(_damage);
+            Debug.Log($"Player took {_damage} damage. Player health: {Player.GetInstance().health}");
         }
         public void Die()
         {
@@ -86,11 +93,22 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         {
             return agent.speed;
         }
-
         public void SetSpeed(float _speed)
         {
             agent.speed = _speed;
             animator.speed = _speed / 2;
+        }
+
+        public void CheckArrival()
+        {
+            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+            {
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    DealDamage(health);
+                    Die();
+                }
+            }
         }
     }
 }

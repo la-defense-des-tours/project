@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// <summary>
         /// The tower we represent
         /// </summary>
-        public Tower controller { get; private set; }
+        public TowerData controller { get; private set; }
 
         /// <summary>
         /// Prefab used to visualize effect radius of tower
@@ -74,7 +75,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// Initialize this ghost
         /// </summary>
         /// <param name="tower">The tower controller we're a ghost of</param>
-        public virtual void Initialize(Tower tower)
+        public virtual void Initialize(TowerData tower)
         {
             m_MeshRenderers = GetComponentsInChildren<MeshRenderer>();
             controller = tower;

@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,7 +29,7 @@ namespace TowerDefense.UI
 		/// </param>
 		/// <param name="ghost">Transform of ghost to parent the visualiser to.</param>
 
-		public void SetupRadiusVisualizers(Tower tower, Transform ghost = null)
+		public void SetupRadiusVisualizers(TowerData tower, Transform ghost = null)
 		{
 			// Create necessary affector radius visualizations
 			//List<ITowerRadiusProvider> providers =

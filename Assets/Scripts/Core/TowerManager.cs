@@ -1,83 +1,83 @@
+using System.Collections.Generic;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Towers.Data;
+using Assets.Scripts.LaDefenseDesTours.UI.HUD;
 using UnityEngine;
+using UnityEngine.UI;
 
+public class TowerManager : MonoBehaviour
+{
+    [SerializeField] private TowerFactory machineGunFactory;
+    [SerializeField] private TowerFactory laserFactory;
+    [SerializeField] private TowerFactory canonFactory;
+    [SerializeField] private Transform target;
+    private TowerFactory selectedFactory;
+    public static TowerManager Instance;
+    private List<TowerSpawnButton> spawnButtons = new List<TowerSpawnButton>();
 
-namespace Assets.Scripts.LaDefenseDesTours.Towers {
-    public class TowerManager : MonoBehaviour
+    private void Awake()
     {
-        [SerializeField] private TowerFactory machineGunFactory;
-        [SerializeField] private TowerFactory laserFactory;
-        [SerializeField] private TowerFactory canonFactory;
-        [SerializeField] private Transform target;
-        [SerializeField] private LayerMask placementZoneLayer;
-        private Tower machineGun;
-        private Tower laser;
-        private Tower canon;
-        private TowerFactory selectedFactory;
-
-        public void Start()
+        if (Instance != null)
         {
-            // Sélection par défaut
-            selectedFactory = machineGunFactory;
+            Debug.LogError("Multiple TowerManager instances detected!");
+            return;
         }
-        public void Update()
-        {
-            HandleTowerSelection();
+        Instance = this;
+    }
 
-            if (Input.GetMouseButtonDown(1)) // Bouton gauche de la souris
-            {
-                TryPlaceTower();
-            }
-        }
-        private void HandleTowerSelection()
+
+    public void RegisterSpawnButton(TowerSpawnButton button)
+    {
+        if (button == null)
         {
-            // Touches M, L et C pour sélectionner les tours
-            // Il faudra par la suite changer la sélection par des boutons dans l'UI qui seront liés à des événements monnaie
-            if (Input.GetKeyDown(KeyCode.M))
-            {
+            Debug.LogError("Trying to register a null button in TowerManager!");
+            return;
+        }
+
+        spawnButtons.Add(button);
+        button.buttonTapped += OnTowerButtonTapped; // Ajoute l'événement
+
+        Debug.Log($"Button registered: {button.name}, total buttons: {spawnButtons.Count}");
+    }
+
+
+    public void Start()
+    {
+
+    }
+
+    private void OnTowerButtonTapped(TowerData towerData)
+    {
+        SelectTower(towerData.towerName);
+        Debug.Log("Tower selected");
+    }
+
+    private void SelectTower(string towerName)
+    {
+        switch (towerName)
+        {
+            case "Machine Gun":
                 selectedFactory = machineGunFactory;
-                Debug.Log("Selected Tower: Machine Gun");
-            }
-            else if (Input.GetKeyDown(KeyCode.L))
-            {
+                break;
+            case "Laser":
                 selectedFactory = laserFactory;
-                Debug.Log("Selected Tower: Laser");
-            }
-            else if (Input.GetKeyDown(KeyCode.C))
-            {
+                break;
+            case "Canon":
                 selectedFactory = canonFactory;
-                Debug.Log("Selected Tower: Canon");
-            }
+                break;
+            default:
+                Debug.LogError("Invalid tower name");
+                break;
         }
-        private void TryPlaceTower()
+        Debug.Log($"Selected Tower: {towerName}");
+    }
+
+    public Tower GetTowerToPlace(Vector3 position)
+    {
+        if (selectedFactory == null)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            // Vérifie si le raycast tape sur une position valide
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, placementZoneLayer))
-            {
-                Vector3 placementPosition = hit.point;
-                PlaceTower(placementPosition);
-                Debug.Log("Good placement zone.");
-            }
-            else
-            {
-                Debug.Log("Invalid placement zone.");
-            }
+            return null;
         }
-
-        private void PlaceTower(Vector3 position)
-        {
-            if (selectedFactory == null)
-            {
-                Debug.Log("No factory selected!");
-                return;
-            }
-            Tower newTower = selectedFactory.CreateTower();
-            newTower.SetPosition(position);
-
-            Debug.Log($"Tower placed at: {position}");
-        }
+        return selectedFactory.CreateTower(position);
     }
 }

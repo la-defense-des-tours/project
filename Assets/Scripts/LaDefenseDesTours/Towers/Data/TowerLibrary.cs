@@ -3,36 +3,39 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.LaDefenseDesTours.Towers.Data
 {
-    /// <summary>
-    /// The asset which holds the list of different towers
-    /// </summary>
-    [CreateAssetMenu(fileName = "TowerLibrary.asset", menuName = "TowerDefense/Tower Library", order = 1)]
-    public class TowerLibrary : ScriptableObject, IList<Tower>, IDictionary<string, Tower>
+    [CreateAssetMenu(fileName = "TowerLibrary.asset", menuName = "La défense des tours/Tower Library", order = 1)]
+    public class TowerLibrary : ScriptableObject, IList<TowerData>, IDictionary<string, TowerData>
     {
         /// <summary>
         /// The list of all the towers
         /// </summary>
-        public List<Tower> configurations;
+        public List<TowerData> configurations;
 
         /// <summary>
         /// The internal reference to the dictionary made from the list of towers
         /// with the name of tower as the key
         /// </summary>
-        Dictionary<string, Tower> m_ConfigurationDictionary;
+        Dictionary<string, TowerData> m_ConfigurationDictionary;
+
 
         /// <summary>
         /// The accessor to the towers by index
         /// </summary>
         /// <param name="index"></param>
-        public Tower this[int index]
+        public TowerData this[int index]
         {
             get { return configurations[index]; }
+
+        }
+
+        public TowerData this[string key]
+        {
+            get { return m_ConfigurationDictionary[key]; }
+            set { m_ConfigurationDictionary[key] = value; }
         }
 
         public void OnBeforeSerialize()
@@ -40,9 +43,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers.Data
         }
 
         /// <summary>
-        /// Convert the list (m_Configurations) to a dictionary for access via name
-        /// </summary>
-        public void OnAfterDeserialize()
+		/// Convert the list (m_Configurations) to a dictionary for access via name
+		/// </summary>
+		public void OnAfterDeserialize()
         {
             if (configurations == null)
             {
@@ -56,7 +59,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers.Data
             return m_ConfigurationDictionary.ContainsKey(key);
         }
 
-        public void Add(string key, Tower value)
+        public void Add(string key, TowerData value)
         {
             m_ConfigurationDictionary.Add(key, value);
         }
@@ -66,12 +69,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers.Data
             return m_ConfigurationDictionary.Remove(key);
         }
 
-        public bool TryGetValue(string key, out Tower value)
+        public bool TryGetValue(string key, out TowerData value)
         {
             return m_ConfigurationDictionary.TryGetValue(key, out value);
         }
 
-        Tower IDictionary<string, Tower>.this[string key]
+        TowerData IDictionary<string, TowerData>.this[string key]
         {
             get { return m_ConfigurationDictionary[key]; }
             set { m_ConfigurationDictionary[key] = value; }
@@ -79,51 +82,51 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers.Data
 
         public ICollection<string> Keys
         {
-            get { return ((IDictionary<string, Tower>)m_ConfigurationDictionary).Keys; }
+            get { return ((IDictionary<string, TowerData>)m_ConfigurationDictionary).Keys; }
         }
 
-        ICollection<Tower> IDictionary<string, Tower>.Values
+        ICollection<TowerData> IDictionary<string, TowerData>.Values
         {
             get { return m_ConfigurationDictionary.Values; }
         }
-
-        IEnumerator<KeyValuePair<string, Tower>> IEnumerable<KeyValuePair<string, Tower>>.GetEnumerator()
+        IEnumerator<KeyValuePair<string, TowerData>> IEnumerable<KeyValuePair<string, TowerData>>.GetEnumerator()
         {
             return m_ConfigurationDictionary.GetEnumerator();
         }
 
-        public void Add(KeyValuePair<string, Tower> item)
+
+        public void Add(KeyValuePair<string, TowerData> item)
         {
             m_ConfigurationDictionary.Add(item.Key, item.Value);
         }
 
-        public bool Remove(KeyValuePair<string, Tower> item)
+        public bool Remove(KeyValuePair<string, TowerData> item)
         {
             return m_ConfigurationDictionary.Remove(item.Key);
         }
 
-        public bool Contains(KeyValuePair<string, Tower> item)
+        public bool Contains(KeyValuePair<string, TowerData> item)
         {
             return m_ConfigurationDictionary.Contains(item);
         }
 
-        public void CopyTo(KeyValuePair<string, Tower>[] array, int arrayIndex)
+        public void CopyTo(KeyValuePair<string, TowerData>[] array, int arrayIndex)
         {
             int count = array.Length;
             for (int i = arrayIndex; i < count; i++)
             {
-                Tower config = configurations[i - arrayIndex];
-                KeyValuePair<string, Tower> current = new KeyValuePair<string, Tower>(config.towerName, config);
+                TowerData config = configurations[i - arrayIndex];
+                KeyValuePair<string, TowerData> current = new KeyValuePair<string, TowerData>(config.towerName, config);
                 array[i] = current;
             }
         }
 
-        public int IndexOf(Tower item)
+        public int IndexOf(TowerData item)
         {
             return configurations.IndexOf(item);
         }
 
-        public void Insert(int index, Tower item)
+        public void Insert(int index, TowerData item)
         {
             configurations.Insert(index, item);
         }
@@ -133,13 +136,13 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers.Data
             configurations.RemoveAt(index);
         }
 
-        Tower IList<Tower>.this[int index]
+        TowerData IList<TowerData>.this[int index]
         {
             get { return configurations[index]; }
             set { configurations[index] = value; }
         }
 
-        public IEnumerator<Tower> GetEnumerator()
+        public IEnumerator<TowerData> GetEnumerator()
         {
             return configurations.GetEnumerator();
         }
@@ -149,7 +152,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers.Data
             return ((IEnumerable)configurations).GetEnumerator();
         }
 
-        public void Add(Tower item)
+        public void Add(TowerData item)
         {
             configurations.Add(item);
         }
@@ -159,17 +162,17 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers.Data
             configurations.Clear();
         }
 
-        public bool Contains(Tower item)
+        public bool Contains(TowerData item)
         {
             return configurations.Contains(item);
         }
 
-        public void CopyTo(Tower[] array, int arrayIndex)
+        public void CopyTo(TowerData[] array, int arrayIndex)
         {
             configurations.CopyTo(array, arrayIndex);
         }
 
-        public bool Remove(Tower item)
+        public bool Remove(TowerData item)
         {
             return configurations.Remove(item);
         }
@@ -181,7 +184,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers.Data
 
         public bool IsReadOnly
         {
-            get { return ((ICollection<Tower>)configurations).IsReadOnly; }
+            get { return ((ICollection<TowerData>)configurations).IsReadOnly; }
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 
 namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 {
@@ -35,18 +36,18 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// <summary>
         /// Fires when the button is tapped
         /// </summary>
-        public event Action<Tower> buttonTapped;
+        public event Action<TowerData> buttonTapped;
 
         /// <summary>
         /// Fires when the pointer is outside of the button bounds
         /// and still down
         /// </summary>
-        public event Action<Tower> draggedOff;
+        public event Action<TowerData> draggedOff;
 
         /// <summary>
         /// The tower controller that defines the button
         /// </summary>
-        Tower m_Tower;
+        TowerData m_Tower;
 
         /// <summary>
         /// Cached reference to level currency
@@ -58,20 +59,38 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// </summary>
         RectTransform m_RectTransform;
 
+
         /// <summary>
         /// Checks if the pointer is out of bounds
         /// and then fires the draggedOff event
         /// </summary>
         public virtual void OnDrag(PointerEventData eventData)
         {
-            if (!RectTransformUtility.RectangleContainsScreenPoint(m_RectTransform, eventData.position))
-            {
-                if (draggedOff != null)
-                {
-                    draggedOff(m_Tower);
-                }
-            }
+        //    if (!RectTransformUtility.RectangleContainsScreenPoint(m_RectTransform, eventData.position))
+        //    {
+        //        if (draggedOff != null)
+        //        {
+        //            draggedOff(m_Tower);
+        //        }
+        //    }
         }
+
+        protected virtual void Awake()
+        {
+            Debug.Log($"TowerSpawnButton {gameObject.name} initialized");
+
+            if (TowerManager.Instance != null)
+            {
+                TowerManager.Instance.RegisterSpawnButton(this); 
+            }
+            else
+            {
+                Debug.LogError("TowerManager Instance is null, TowerSpawnButton cannot register!");
+            }
+
+            m_RectTransform = (RectTransform)transform;
+        }
+
 
         /// <summary>
         /// Define the button information for the tower
@@ -79,40 +98,26 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// <param name="towerData">
         /// The tower to initialize the button with
         /// </param>
-        public void InitializeButton(Tower towerData)
+        public void InitializeButton(TowerData towerData)
         {
             m_Tower = towerData;
 
-            //if (towerData.levels.Length > 0)
-            //{
-            //    TowerLevel firstTower = towerData.levels[0];
-            //    buttonText.text = firstTower.cost.ToString();
-            //    towerIcon.sprite = firstTower.levelData.icon;
-            //}
-            //else
-            //{
-            //    Debug.LogWarning("[Tower Spawn Button] No level data for tower");
-            //}
+            buttonText.text = m_Tower.cost.ToString();
+            towerIcon.sprite = m_Tower.icon;
 
-            //if (LevelManager.instanceExists)
-            //{
-            //    m_Currency = LevelManager.instance.currency;
-            //    m_Currency.currencyChanged += UpdateButton;
-            //}
-            //else
-            //{
-            //    Debug.LogWarning("[Tower Spawn Button] No level manager to get currency object");
-            //}
+
+            if (LevelManager.instanceExists)
+            {
+                //m_Currency = LevelManager.instance.currency;
+                //m_Currency.currencyChanged += UpdateButton;
+            }
+            else
+            {
+                Debug.LogWarning("[Tower Spawn Button] No level manager to get currency object");
+            }
             UpdateButton();
         }
 
-        /// <summary>
-        /// Cache the rect transform
-        /// </summary>
-        protected virtual void Awake()
-        {
-            m_RectTransform = (RectTransform)transform;
-        }
 
         /// <summary>
         /// Unsubscribe from events
@@ -129,11 +134,12 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// The click for when the button is tapped
         /// </summary>
         public void OnClick()
-        {
-            if (buttonTapped != null)
-            {
-                buttonTapped(m_Tower);
-            }
+        {  
+            Debug.Log("m_Tower: " + m_Tower);
+
+            buttonTapped(m_Tower);
+
+
         }
 
         /// <summary>

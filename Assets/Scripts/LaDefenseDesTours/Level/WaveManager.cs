@@ -11,7 +11,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
     /// <summary>
     /// WaveManager - handles wave initialisation and completion
     /// </summary>
-    public class WaveManager : MonoBehaviour
+    public class WaveManager2 : MonoBehaviour
 	{
 		/// <summary>
 		/// Current wave being used

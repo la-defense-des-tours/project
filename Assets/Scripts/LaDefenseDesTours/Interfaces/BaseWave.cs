@@ -11,7 +11,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         protected int difficulty;
         protected bool isSpawning = false;
         protected int totalEnemies;
-        protected float timeBetweenSpawns = 1.5f;
+        protected float timeBetweenSpawns = 2f;
         protected float timeBetweenWave = 5f;
         protected Vector3 targetPosition;
         public List<Enemy> spawnedEnemies = new List<Enemy>();
