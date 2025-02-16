@@ -6,7 +6,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
 {
     public class FlyingEnemy : Enemy
     {
-        public override float health { get; set; }  = 100;
+        public override float maxHealth { get; set; }  = 100;
         public override float speed { get; set; } = 4;
         public override float acceleration { get; set; } = 8;
 
