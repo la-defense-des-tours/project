@@ -761,17 +761,6 @@ MonoBehaviour:
   radiusVisualizerController: {fileID: 0}
   towerUI: {fileID: 0}
   buildInfoUI: {fileID: 0}
---- !u!114 &356157892 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5705146549942910845, guid: a6cb4125b9d50d244841d65a25295d88, type: 3}
-  m_PrefabInstance: {fileID: 5613255057236737548}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a1c9e19f172ecb4ab0015cec7947db3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &387907640
 GameObject:
   m_ObjectHideFlags: 0
@@ -2455,7 +2444,7 @@ Transform:
   m_GameObject: {fileID: 1636852410}
   serializedVersion: 2
   m_LocalRotation: {x: -0.39433464, y: -0.5593823, z: 0.34278986, w: 0.6434958}
-  m_LocalPosition: {x: -6.562531, y: -0.28345346, z: 55.971893}
+  m_LocalPosition: {x: -6.562531, y: -2000, z: 55.971893}
   m_LocalScale: {x: 100, y: 1, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3297,7 +3286,7 @@ PrefabInstance:
     - target: {fileID: 989004204346575349, guid: 245b973f6685d61429d7c0ebc07bd783, type: 3}
       propertyPath: flyingEnemyFactory
       value: 
-      objectReference: {fileID: 356157892}
+      objectReference: {fileID: 5613255057236737551}
     - target: {fileID: 989004204346575349, guid: 245b973f6685d61429d7c0ebc07bd783, type: 3}
       propertyPath: walkingEnemyFactory
       value: 
@@ -3450,11 +3439,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5705146549942910845, guid: a6cb4125b9d50d244841d65a25295d88, type: 3}
+      propertyPath: flyingEnemy
+      value: 
+      objectReference: {fileID: -2384930323376866074, guid: e0123180cf553de43a582138e4c8d353, type: 3}
+    - target: {fileID: 6291511129324968338, guid: a6cb4125b9d50d244841d65a25295d88, type: 3}
+      propertyPath: walkingEnemy
+      value: 
+      objectReference: {fileID: -5440026760372527798, guid: ff76a0eedd8a67a4686fb4c7d7081dd3, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6cb4125b9d50d244841d65a25295d88, type: 3}
+--- !u!114 &5613255057236737551 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5705146549942910845, guid: a6cb4125b9d50d244841d65a25295d88, type: 3}
+  m_PrefabInstance: {fileID: 5613255057236737548}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a1c9e19f172ecb4ab0015cec7947db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6104486696296617850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3595,6 +3603,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 52409583037002847, guid: ae539673595b86743940dc8512850773, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7130800125884514736}
+    - targetCorrespondingSourceObject: {fileID: 52409583037002847, guid: ae539673595b86743940dc8512850773, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7130800125884514737}
   m_SourcePrefab: {fileID: 100100000, guid: ae539673595b86743940dc8512850773, type: 3}
 --- !u!4 &7130800125884514735 stripped
 Transform:
@@ -3617,10 +3628,11 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!114 &7130800125884514737 stripped
+--- !u!114 &7130800125884514737
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4338886388570360237, guid: ae539673595b86743940dc8512850773, type: 3}
-  m_PrefabInstance: {fileID: 7130800125884514734}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 943699610}
   m_Enabled: 1

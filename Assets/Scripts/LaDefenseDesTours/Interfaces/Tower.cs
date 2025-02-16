@@ -6,10 +6,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
     public abstract class Tower : MonoBehaviour
     {
         public virtual  string towerName { get; }
-
-        protected float range { get; set; }
+        public virtual float range { get; }
         protected int currentLevel;
-        protected float damage;
+        public virtual float damage { get; }
         protected float fireRate;
         public virtual int cost { get; set; }
         protected int health;

@@ -20,6 +20,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         void Update() // Tests pour les effets
         {
             UpdateState();
+
             switch (Input.inputString)
             {
                 case "s":
@@ -35,6 +36,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
                     TransitionTo(new Burned());
                     break;
             }
+
+            if (currentState is not Dead)
+                CheckArrival();
         }
         public void SetupNavMeshAgent()
         {
@@ -68,6 +72,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
             if (health <= 0)
                 TransitionTo(new Dead());
         }
+        public void DealDamage(float _damage)
+        {
+            Player.GetInstance().TakeDamage(_damage);
+            Debug.Log($"Player took {_damage} damage. Player health: {Player.GetInstance().health}");
+        }
         public void Die()
         {
             Destroy(gameObject);
@@ -88,6 +97,18 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         public void SetSpeed(float _speed)
         {
             agent.speed = _speed;
+        }
+
+        public void CheckArrival()
+        {
+            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+            {
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    DealDamage(health);
+                    Die();
+                }
+            }
         }
     }
 }

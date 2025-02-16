@@ -35086,9 +35086,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1023016178183179716}
-  - component: {fileID: -2597181822718089466}
   - component: {fileID: 7985152958352722929}
   - component: {fileID: 7459241576225373022}
+  - component: {fileID: -2384930323376866074}
   m_Layer: 0
   m_Name: FlyingEnemy
   m_TagString: Enemy
@@ -35112,18 +35112,6 @@ Transform:
   - {fileID: 6017507934923577314}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-2597181822718089466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8276825245287970385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2b73347be3ec1c4b920ee110e2e406e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!195 &7985152958352722929
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -35167,6 +35155,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 2, z: 3}
   m_Center: {x: 0, y: 5, z: 0}
+--- !u!114 &-2384930323376866074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8276825245287970385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2b73347be3ec1c4b920ee110e2e406e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8677312531047991441
 GameObject:
   m_ObjectHideFlags: 0

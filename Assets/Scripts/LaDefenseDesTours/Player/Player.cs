@@ -1,36 +1,43 @@
 using UnityEngine;
-using UnityEngine.AI;
+using Assets.Scripts.LaDefenseDesTours.Interfaces;
 
-namespace Assets.Scripts.LaDefenseDesTours.Player
+public sealed class Player : MonoBehaviour
 {
-    public sealed class PlayerBase : MonoBehaviour
+    private static Player Instance { get; set; }
+    public string Name { get; set; } = "Han Solo";
+    public float health { get; set; } = 1000;
+    public float score { get; set; } = 0;
+    public float currency { get; set; } = 2000;
+    public bool isDead { get; set; } = false;
+
+    private void Awake()
     {
-        private static PlayerBase instance;
+        // Unity Singleton pattern
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+        DontDestroyOnLoad(gameObject);
+    }
 
-        public string name { get; private set; }
-        public double health { get; private set; }
-        public double score { get; private set; }
-        public double currency { get; private set; }
+    public static Player GetInstance()
+    {
+        // Singleton pattern - useful for testing
+        if (Instance != null)
+            Instance = FindFirstObjectByType<Player>();
+        else
+            Instance = new GameObject("Player").AddComponent<Player>();
 
-        private PlayerBase()
-        {
-            name = "DefaultPlayer";
-            health = 100.0;
-            score = 0.0;
-            currency = 0.0;
-            Debug.Log("Player name is: " + name + " with health: " + health + " score: " + score + " currency: " + currency);
-        }
-
-        public double GetHealth()
-        {
-            return health;
-        }
-
-        public static PlayerBase GetInstance()
-        {
-            instance ??= new PlayerBase();
-            return instance;
-        }
-
+        return Instance;
+    }
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        CheckHeatlh();
+    }
+    private void CheckHeatlh()
+    {
+        if (health <= 0)
+            Debug.Log("Player is dead");
     }
 }

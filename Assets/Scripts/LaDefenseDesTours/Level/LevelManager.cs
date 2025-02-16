@@ -1,7 +1,6 @@
 ﻿using System;
 using Assets.Scripts.Core;
 using Assets.Scripts.Core.Utilities;
-using Assets.Scripts.LaDefenseDesTours.Player;
 using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using TowerDefense.Level;
 
@@ -54,7 +53,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		///// <summary>
 		///// The home bases that the player must defend
 		///// </summary>
-		public PlayerBase homeBase;
+		public Player homeBase;
 
         public Collider[] environmentColliders;
 
@@ -141,7 +140,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		public float GetAllHomeBasesHealth()
 		{
 			double health = 0.0;
-			health = homeBase.GetHealth();
+			// health = homeBase.GetHealth();
 			return (float)health;
         }
 

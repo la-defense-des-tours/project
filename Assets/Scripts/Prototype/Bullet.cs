@@ -1,13 +1,33 @@
 using UnityEngine;
-using UnityEngine.TextCore.Text;
+using Assets.Scripts.LaDefenseDesTours.Interfaces;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float speed = 70f;
+    [SerializeField] private float speed = 75f;
     private Transform target;
     private Collider targetCollider;
-    // Update is called once per frame
+    private Enemy targetEnemy;
+    private float damage;
+
     void Update()
+    {
+        HandleTrajectory();
+    }
+
+    public void Seek(Transform _target)
+    {
+        target = _target;
+        targetCollider = _target.GetComponent<Collider>();
+        targetEnemy = _target.GetComponent<Enemy>();
+    }
+
+    private void HitTarget()
+    {
+        Destroy(gameObject);
+        targetEnemy.TakeDamage(damage);
+    }
+
+    private void HandleTrajectory()
     {
         if (target == null)
         {
@@ -24,17 +44,13 @@ public class Bullet : MonoBehaviour
             HitTarget();
             return;
         }
+
         transform.Translate(direction.normalized * distanceThisFrame, Space.World);
+        transform.LookAt(targetCenter);
     }
 
-    public void Seek(Transform _target)
+    public void SetDamage(float _damage)
     {
-        target = _target;
-        targetCollider = _target.GetComponent<Collider>();
-    }
-
-    void HitTarget()
-    {
-        Destroy(gameObject);
+        damage = _damage;
     }
 }

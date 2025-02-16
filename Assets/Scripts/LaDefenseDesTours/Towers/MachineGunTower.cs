@@ -6,10 +6,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
 {
     public class MachineGunTower : Tower
     {
-        private NavMeshAgent agent;
-
         public override string  towerName { get; } = "Machine Gun Tower";
         private float attackPerSecond { get; set; }
+        public override float range { get; } = 30f;
+        public override float damage {get; } = 30f;
+        
         public override void Upgrade()
         {
             currentLevel++;
@@ -17,8 +18,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             cost += 10;
             attackPerSecond += 0.5f;
         }
-
-
+        
         public override void Attack()
         {
             Debug.Log("Machine Gun Tower is attacking");

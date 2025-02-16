@@ -75,6 +75,23 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         //    }
         }
 
+        protected virtual void Awake()
+        {
+            Debug.Log($"TowerSpawnButton {gameObject.name} initialized");
+
+            if (TowerManager.Instance != null)
+            {
+                TowerManager.Instance.RegisterSpawnButton(this); 
+            }
+            else
+            {
+                Debug.LogError("TowerManager Instance is null, TowerSpawnButton cannot register!");
+            }
+
+            m_RectTransform = (RectTransform)transform;
+        }
+
+
         /// <summary>
         /// Define the button information for the tower
         /// </summary>
@@ -101,13 +118,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             UpdateButton();
         }
 
-        /// <summary>
-        /// Cache the rect transform
-        /// </summary>
-        protected virtual void Awake()
-        {
-            m_RectTransform = (RectTransform)transform;
-        }
 
         /// <summary>
         /// Unsubscribe from events
