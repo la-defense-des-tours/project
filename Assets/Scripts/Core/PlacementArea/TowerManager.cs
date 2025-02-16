@@ -13,6 +13,7 @@ public class TowerManager : MonoBehaviour
     [SerializeField] private Transform target;
     private TowerFactory selectedFactory;
     public static TowerManager Instance;
+    private List<TowerSpawnButton> spawnButtons = new List<TowerSpawnButton>();
 
     private void Awake()
     {
@@ -24,17 +25,25 @@ public class TowerManager : MonoBehaviour
         Instance = this;
     }
 
+
+    public void RegisterSpawnButton(TowerSpawnButton button)
+    {
+        if (button == null)
+        {
+            Debug.LogError("Trying to register a null button in TowerManager!");
+            return;
+        }
+
+        spawnButtons.Add(button);
+        button.buttonTapped += OnTowerButtonTapped; // Ajoute l'événement
+
+        Debug.Log($"Button registered: {button.name}, total buttons: {spawnButtons.Count}");
+    }
+
+
     public void Start()
     {
-        // Sélection par défaut
-        TowerSpawnButton[] spawnButtons = FindObjectsByType<TowerSpawnButton>(FindObjectsSortMode.None);
-        Debug.Log($"Found {spawnButtons.Length} buttons");
-        foreach (TowerSpawnButton button in spawnButtons)
-        {
-            button.buttonTapped += OnTowerButtonTapped;
 
-
-        }
     }
 
     private void OnTowerButtonTapped(TowerData towerData)
