@@ -15,7 +15,7 @@ public class Shooter : MonoBehaviour
     private Transform target;
     private float range;
     private float damage;
-    private string enemyTag = "Enemy";
+    private const string ENEMY_TAG = "Enemy";
 
     void Start()
     {
@@ -52,7 +52,7 @@ public class Shooter : MonoBehaviour
 
     void UpdateTarget()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(ENEMY_TAG);
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
 
@@ -74,8 +74,7 @@ public class Shooter : MonoBehaviour
 
     void Shoot()
     {
-        Quaternion bulletRotation = Quaternion.LookRotation(target.position - firePoint.position);
-        GameObject bulletObject = Instantiate(bulletPrefab, firePoint.position, bulletRotation);
+        GameObject bulletObject = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         Bullet bullet = bulletObject.GetComponent<Bullet>();
 
         if (bullet != null)

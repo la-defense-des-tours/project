@@ -46,6 +46,7 @@ public class Bullet : MonoBehaviour
         }
 
         transform.Translate(direction.normalized * distanceThisFrame, Space.World);
+        transform.LookAt(targetCenter);
     }
 
     public void SetDamage(float _damage)
