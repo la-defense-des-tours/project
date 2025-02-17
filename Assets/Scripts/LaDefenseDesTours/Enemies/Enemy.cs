@@ -82,10 +82,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         }
         public virtual void Die()
         {
+            currentState.OnStateEnter();
             Destroy(gameObject);
         }
         public void TransitionTo(State state)
         {
+            currentState?.OnStateExit();
             currentState = state;
             currentState.SetContext(this);
             currentState.OnStateEnter();
