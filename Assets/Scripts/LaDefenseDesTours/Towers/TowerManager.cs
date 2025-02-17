@@ -13,6 +13,10 @@ public class TowerManager : MonoBehaviour
     private TowerFactory selectedFactory;
     public static TowerManager Instance;
     private List<TowerSpawnButton> spawnButtons = new List<TowerSpawnButton>();
+    private Cell selectedCell;
+    public UpgradeMenu upgradeMenu;
+
+    public bool canBuild { get { return selectedFactory != null; } }
 
     private void Awake()
     {
@@ -71,12 +75,37 @@ public class TowerManager : MonoBehaviour
         Debug.Log($"Selected Tower: {towerName}");
     }
 
-    public Tower GetTowerToPlace(Vector3 position)
+    // public Tower GetTowerToPlace(Vector3 position)
+    // {
+    //     if (selectedFactory == null)
+    //     {
+    //         return null;
+    //     }
+    //     return selectedFactory.CreateTower(position);
+    // }
+     public TowerFactory GetSelectedFactory()
     {
-        if (selectedFactory == null)
+        return selectedFactory;
+    }
+
+    public void SelectCell(Cell cell)
+    {
+
+        if (cell == selectedCell)
         {
-            return null;
+            DeselectCell();
+            return;
         }
-        return selectedFactory.CreateTower(position);
+        selectedCell = cell;
+        Debug.Log($"Cell selected: {transform.position}");
+        selectedFactory = null;
+
+        upgradeMenu.SetTarget(cell);
+    }
+
+    public void DeselectCell()
+    {
+        selectedCell = null;
+        upgradeMenu.Hide();
     }
 }

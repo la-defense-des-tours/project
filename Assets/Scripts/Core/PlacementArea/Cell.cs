@@ -7,23 +7,42 @@ public class Cell : MonoBehaviour
     public Vector3 positionOffset;
     private Renderer cellRenderer;
     private Material defaultMaterial;
-    private Tower tower;
+    [HideInInspector]
+    public Tower tower;
+    [HideInInspector]
+    public Tower towerUpgrade;
+    public bool isUpgraded = false;
+    private TowerManager towerManager;
 
     private void Start()
     {
         cellRenderer = GetComponent<Renderer>();
         defaultMaterial = cellRenderer.material;
+
+        towerManager = TowerManager.Instance;
+    }
+
+    public Vector3 GetBuildPosition()
+    {
+        return transform.position + positionOffset;
     }
 
     private void OnMouseDown()
     {
+
         if (tower != null)
         {
-            Debug.Log("Cell is occupied");
+            towerManager.SelectCell(this);
             return;
         }
 
-        tower = TowerManager.Instance.GetTowerToPlace(transform.position);
+        if (!towerManager.canBuild)
+        {
+            Debug.Log("Not possible to build here!");
+            return;
+        }
+
+        BuildTower(towerManager.GetSelectedFactory());
         if (tower == null)
         {
             Debug.Log("No tower selected!");
@@ -33,6 +52,34 @@ public class Cell : MonoBehaviour
         Debug.Log($"Tower placed at: {transform.position}");
     }
 
+    public void UpgradeTower(TowerFactory factory)
+    {
+        if (factory == null)
+        {
+            Debug.Log("No tower selected!");
+            return;
+        }
+
+        Destroy(this.tower.gameObject);
+        Tower tower = factory.UpgradeTower(GetBuildPosition());
+
+        isUpgraded = true;
+
+        this.tower = tower;
+        Debug.Log("Tower upgraded");
+    }
+
+    private void BuildTower(TowerFactory factory)
+    {
+        if (factory == null)
+        {
+            Debug.Log("No tower selected!");
+            return;
+        }
+        Tower tower = factory.CreateTower(GetBuildPosition());
+        towerUpgrade = tower;
+        this.tower = tower;
+    }
     private void OnMouseEnter()
     {
         cellRenderer.material = hoverMaterial;

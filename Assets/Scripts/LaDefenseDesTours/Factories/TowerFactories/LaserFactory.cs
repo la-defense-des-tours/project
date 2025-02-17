@@ -6,11 +6,19 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
     public class LaserFactory : TowerFactory
     {
         [SerializeField] private LaserTower laserTower;
+        [SerializeField] private LaserTower laserTowerUpgrade;
+        [SerializeField] private LaserTower laserTowerUpgrade2;
         public override Tower CreateTower(Vector3 position)
         {
             Notify();
             GameObject instance = Instantiate(laserTower.gameObject, position, Quaternion.identity);
             return instance.GetComponent<LaserTower>();
+        }
+        public override Tower UpgradeTower(Vector3 position)
+        {
+            Notify();
+            GameObject instance = Instantiate(laserTowerUpgrade.gameObject, position, Quaternion.identity);
+            return instance.GetComponent<MachineGunTower>();
         }
         public override void Notify()
         {
