@@ -69,7 +69,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             return clone;
         }
 
-        public void TakeDamage(float damage)
+        public virtual void TakeDamage(float damage)
         {
             health -= damage;
             if (health <= 0)
@@ -93,11 +93,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         {
             currentState?.ApplyEffect();
         }
-        public float GetSpeed()
+        public virtual float GetSpeed()
         {
             return agent.speed;
         }
-        public void SetSpeed(float _speed)
+        public virtual void SetSpeed(float _speed)
         {
             agent.speed = _speed;
 

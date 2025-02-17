@@ -10,6 +10,7 @@ public class EnemyTests
         public bool isDead = false;
         public override float health { get; set; } = 100f;
         public override float speed { get; set; }  = 5f;
+        public override float acceleration { get; set; } = 5f;
 
         public override void Die()
         {
@@ -22,10 +23,22 @@ public class EnemyTests
         public override void Move(Vector3 destination)
         {
         }
-     
-       
         public override void CheckArrival()
         {
+        }
+        public override void TakeDamage(float damage)
+        {
+            health -= damage;
+            if (health <= 0)
+                Die();
+        }
+        public override float GetSpeed()
+        {
+            return speed;
+        }
+        public override void SetSpeed(float newSpeed)
+        {
+            speed = newSpeed;
         }
     }
 
