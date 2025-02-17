@@ -88,6 +88,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         {
             currentState = state;
             currentState.SetContext(this);
+            currentState.OnStateEnter();
         }
         public void UpdateState()
         {

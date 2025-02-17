@@ -13,9 +13,14 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
             duration -= Time.deltaTime;
             if (duration > 0)
+            {
                 enemy.SetSpeed(0); 
+            }
             else
+            {
+                OnStateExit();
                 enemy.SetupNavMeshAgent();
+            }
         }
     }
 }
