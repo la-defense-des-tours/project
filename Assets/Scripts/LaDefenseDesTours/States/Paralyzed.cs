@@ -5,22 +5,23 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
     public class Paralyzed : State
     {
         private float duration = 5f;
+        public bool isApplied = false;
 
         public override void ApplyEffect()
         {
-            if (enemy == null)
-                return;
+           if (!isApplied)
+            {
+                enemy.SetSpeed(0);
+                isApplied = true;
+            }
 
             duration -= Time.deltaTime;
-            if (duration > 0)
+            if (duration <= 0)
             {
-                enemy.SetSpeed(0); 
-            }
-            else
-            {
-                OnStateExit();
                 enemy.SetupNavMeshAgent();
-            }
+                isApplied = false;
+                OnStateExit();
+            } 
         }
     }
 }
