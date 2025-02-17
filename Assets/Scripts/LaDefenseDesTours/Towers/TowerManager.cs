@@ -38,12 +38,6 @@ public class TowerManager : MonoBehaviour
         Debug.Log($"Button registered: {button.name}, total buttons: {spawnButtons.Count}");
     }
 
-
-    public void Start()
-    {
-
-    }
-
     private void OnTowerButtonTapped(TowerData towerData)
     {
         SelectTower(towerData.towerName);
@@ -73,9 +67,8 @@ public class TowerManager : MonoBehaviour
     public Tower GetTowerToPlace(Vector3 position)
     {
         if (selectedFactory == null)
-        {
             return null;
-        }
+
         return selectedFactory.CreateTower(position);
     }
 }

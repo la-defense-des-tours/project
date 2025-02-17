@@ -13,11 +13,12 @@ public sealed class Player : MonoBehaviour
     private void Awake()
     {
         // Unity Singleton pattern
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
-        DontDestroyOnLoad(gameObject);
+        if (Instance != null)
+        {
+            Debug.LogError("Multiple Player instances detected!");
+            return;
+        }
+        Instance = this; 
     }
 
     public static Player GetInstance()
@@ -38,6 +39,6 @@ public sealed class Player : MonoBehaviour
     private void CheckHeatlh()
     {
         if (health <= 0)
-            Debug.Log("Player is dead");
+            Debug.Log("Player is dead"); // Soit décharger ce check au Jeu pour qu'il gère l'affichage du Game Over ?
     }
 }

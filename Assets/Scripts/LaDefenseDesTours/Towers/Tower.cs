@@ -6,10 +6,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
     {
         public virtual string towerName { get; }
         public virtual float range { get; }
-        protected int currentLevel;
         public virtual float damage { get; }
-        protected float fireRate;
         public virtual int cost { get; set; }
+        protected int currentLevel;
+        protected float fireRate;
         protected int health;
         protected int upgradeCost;
         protected float upgradeDamage;

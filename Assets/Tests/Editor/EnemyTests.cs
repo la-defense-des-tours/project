@@ -8,9 +8,12 @@ public class EnemyTests
     private class TestEnemy : Enemy
     {
         public bool isDead = false;
-        public override float health { get; set; } = 100f;
-        public override float speed { get; set; }  = 5f;
-        public override float acceleration { get; set; } = 5f;
+        public TestEnemy()
+        {
+            health = 100;
+            speed = 5;
+            acceleration = 5;
+        }
 
         public override void Die()
         {
