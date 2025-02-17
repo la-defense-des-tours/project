@@ -6,7 +6,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
 {
     public class BossEnemy : Enemy
     {
-        public override float health { get; set; } = 100f;
+        public override float health { get; set; } = 1000f;
         public override float speed { get; set; } = 1;
         public override float acceleration { get; set; } = 3;
 
