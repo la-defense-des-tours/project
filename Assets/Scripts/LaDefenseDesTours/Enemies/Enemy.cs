@@ -55,7 +55,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         {
             agent.speed = speed;
             agent.acceleration = acceleration;
-            animator.speed = speed;
+
+            if (animator != null)
+                animator.speed = speed;
         }
         public virtual void Move(Vector3 destination)
         {
@@ -103,7 +105,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual void SetSpeed(float _speed)
         {
             agent.speed = _speed;
-
             if (animator != null)
                 animator.speed = _speed;
         }
