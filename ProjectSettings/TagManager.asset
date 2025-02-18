@@ -4,13 +4,12 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - TowerZone
   - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - PlacementZone
+  - 
   - Water
   - UI
   - 
