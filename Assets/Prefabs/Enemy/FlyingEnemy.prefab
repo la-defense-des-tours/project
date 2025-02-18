@@ -45173,6 +45173,14 @@ PrefabInstance:
       propertyPath: InitialModule.startSize.minScalar
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4132023780947258345, guid: f22f5ea23a779174da7009d0086fc4af, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132023780947258345, guid: f22f5ea23a779174da7009d0086fc4af, type: 3}
+      propertyPath: InitialModule.startLifetime.minScalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4624093429218504409, guid: f22f5ea23a779174da7009d0086fc4af, type: 3}
       propertyPath: m_Name
       value: FlyingExplosion
