@@ -14,11 +14,29 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             GameObject instance = Instantiate(laserTower.gameObject, position, Quaternion.identity);
             return instance.GetComponent<LaserTower>();
         }
-        public override Tower UpgradeTower(Vector3 position)
+        public override Tower UpgradeTower(Vector3 position, int upgradeLevel)
         {
-            Notify();
-            GameObject instance = Instantiate(laserTowerUpgrade.gameObject, position, Quaternion.identity);
-            return instance.GetComponent<MachineGunTower>();
+            if (upgradeLevel == 0 && laserTowerUpgrade == null || upgradeLevel == 1 && laserTowerUpgrade2 == null)
+            {
+                Debug.LogError("Laser Tower Upgrade prefab is not assigned!");
+                return null; // Le retour null est nécessaire pour éviter une erreur de compilation
+            }
+
+            if (upgradeLevel == 0)
+            {
+                Debug.Log("Laser Tower 1 Upgraded");
+                GameObject instance = Instantiate(laserTowerUpgrade.gameObject, position, Quaternion.identity);
+                return instance.GetComponent<LaserTower>();
+            }
+            
+            else if (upgradeLevel == 1)
+            {
+                Debug.Log("Laser Tower 2 Upgraded");
+                GameObject instance = Instantiate(laserTowerUpgrade2.gameObject, position, Quaternion.identity);
+                return instance.GetComponent<LaserTower>();
+            }
+            Debug.LogError("Max upgrade level reached!");
+            return null;
         }
         public override void Notify()
         {

@@ -13,6 +13,9 @@ public class Cell : MonoBehaviour
     public Tower towerUpgrade;
     public bool isUpgraded = false;
     private TowerManager towerManager;
+    [HideInInspector]
+    public TowerFactory currentFactory;
+    public int upgradeLevel = 0;
 
     private void Start()
     {
@@ -52,21 +55,28 @@ public class Cell : MonoBehaviour
         Debug.Log($"Tower placed at: {transform.position}");
     }
 
-    public void UpgradeTower(TowerFactory factory)
+    public void UpgradeTower()
     {
-        if (factory == null)
+        if (currentFactory == null)
         {
             Debug.Log("No tower selected!");
             return;
         }
 
         Destroy(this.tower.gameObject);
-        Tower tower = factory.UpgradeTower(GetBuildPosition());
+        Tower tower = currentFactory.UpgradeTower(GetBuildPosition(), upgradeLevel);
 
-        isUpgraded = true;
-
-        this.tower = tower;
-        Debug.Log("Tower upgraded");
+        if (tower != null)
+        {
+            this.tower = tower;
+            isUpgraded = true;
+            upgradeLevel++;
+            Debug.Log("Tower upgraded to level: " + upgradeLevel);
+        }
+        else
+        {
+            Debug.LogError("Upgrade failed!");
+        }
     }
 
     private void BuildTower(TowerFactory factory)
@@ -77,8 +87,9 @@ public class Cell : MonoBehaviour
             return;
         }
         Tower tower = factory.CreateTower(GetBuildPosition());
-        towerUpgrade = tower;
         this.tower = tower;
+        currentFactory = factory;
+        upgradeLevel = 0;
     }
     private void OnMouseEnter()
     {
