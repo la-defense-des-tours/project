@@ -45156,6 +45156,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 981584268347633161}
     m_Modifications:
+    - target: {fileID: 1469919040558172163, guid: f22f5ea23a779174da7009d0086fc4af, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132023780947258345, guid: f22f5ea23a779174da7009d0086fc4af, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4132023780947258345, guid: f22f5ea23a779174da7009d0086fc4af, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 2
@@ -45206,6 +45214,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7357339947691975974, guid: f22f5ea23a779174da7009d0086fc4af, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033227419983543291, guid: f22f5ea23a779174da7009d0086fc4af, type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

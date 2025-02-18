@@ -6950,9 +6950,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3713712968837396491}
     m_Modifications:
+    - target: {fileID: 1758609186304949368, guid: b9b6638f0180fe3499068c568a880285, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2268960807607862965, guid: b9b6638f0180fe3499068c568a880285, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2268960807607862965, guid: b9b6638f0180fe3499068c568a880285, type: 3}
       propertyPath: ShapeModule.radius.value
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809934830571278162, guid: b9b6638f0180fe3499068c568a880285, type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3671215151688548358, guid: b9b6638f0180fe3499068c568a880285, type: 3}
       propertyPath: m_LocalScale.x
@@ -7006,9 +7018,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4668648958655549096, guid: b9b6638f0180fe3499068c568a880285, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5260545597491852395, guid: b9b6638f0180fe3499068c568a880285, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324899221894599143, guid: b9b6638f0180fe3499068c568a880285, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8373344236844484835, guid: b9b6638f0180fe3499068c568a880285, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8616876190402999196, guid: b9b6638f0180fe3499068c568a880285, type: 3}
       propertyPath: m_Name
       value: TankExplosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131756665389858288, guid: b9b6638f0180fe3499068c568a880285, type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
