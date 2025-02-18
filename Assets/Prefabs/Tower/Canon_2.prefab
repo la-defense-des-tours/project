@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7efa5adb37be047a8e026265fae5d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerUpgradePrefab: {fileID: 0}
+  currentLevel: 0
 --- !u!1001 &91229116700273014
 PrefabInstance:
   m_ObjectHideFlags: 0
