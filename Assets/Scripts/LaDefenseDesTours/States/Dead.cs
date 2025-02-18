@@ -9,7 +9,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         private bool effectStarted = false;
         private MeshRenderer[] renderers;
         private SkinnedMeshRenderer[] skinnedRenderers;
-        private Collider[] colliders;
 
         public override void OnStateEnter()
         {
@@ -40,10 +39,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             skinnedRenderers = enemy.GetComponentsInChildren<SkinnedMeshRenderer>();
             foreach (SkinnedMeshRenderer r in skinnedRenderers)
                 r.enabled = false;
-
-            colliders = enemy.GetComponentsInChildren<Collider>();
-            foreach (Collider c in colliders)
-                c.enabled = false;
         }
     }
 }
