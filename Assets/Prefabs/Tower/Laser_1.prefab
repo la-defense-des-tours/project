@@ -260,7 +260,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8382995077123680558}
   - component: {fileID: 7860087309538003013}
-  - component: {fileID: 7248176329661392648}
   - component: {fileID: -1629460715701370494}
   m_Layer: 0
   m_Name: Laser_1
@@ -298,19 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db400459deef55940aa411678844ce66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7248176329661392648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8951942140004569536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc196f5c08a8aba48a28adc73947d4c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  laserTower: {fileID: 7860087309538003013}
+  currentLevel: 0
 --- !u!114 &-1629460715701370494
 MonoBehaviour:
   m_ObjectHideFlags: 0
