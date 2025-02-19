@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
@@ -12,13 +13,26 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual float speed { get; set; }
         public virtual float acceleration { get; set; }
 
+        [SerializeField] private Slider healthBar;
+        public virtual float maxHealth { get; set; } = 100;
+
         public void Awake()
         {
             animator = GetComponent<Animator>();
             SetupNavMeshAgent();
         }
 
-        void Update()
+        private void Start()
+        {
+            health = maxHealth;
+            if (healthBar != null)
+            {
+                healthBar.maxValue = maxHealth;
+                healthBar.value = health;
+            }
+        }
+
+        void Update() 
         {
             UpdateState();
 
@@ -51,6 +65,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             SetupSpeed();
         }
 
+
         public virtual void SetupSpeed()
         {
             agent.speed = speed;
@@ -77,6 +92,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
                 return;
 
             health -= damage;
+            if (healthBar != null)
+            {
+                healthBar.value = health; 
+            }
             if (health <= 0)
                 TransitionTo(new Dead());
         }

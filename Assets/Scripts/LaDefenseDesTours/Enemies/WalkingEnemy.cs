@@ -4,13 +4,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
 {
     public class WalkingEnemy : Enemy
     {
-        public WalkingEnemy()
+        WalkingEnemy()
         {
-            health = 200;
+            maxHealth = 200f;
             speed = 2.5f;
             acceleration = 5f;
         }
-
         public override void SetupSpeed()
         {
             agent.speed = speed;

@@ -3,12 +3,6 @@ using Assets.Scripts.Core;
 using Assets.Scripts.Core.Utilities;
 using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using TowerDefense.Level;
-
-//using Core.Economy;
-//using Core.Health;
-//using Core.Utilities;
-//using TowerDefense.Economy;
-//using TowerDefense.Towers.Data;
 using UnityEngine;
 
 namespace Assets.Scripts.LaDefenseDesTours.Level
@@ -34,38 +28,18 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		///// </summary>
 		public TowerLibrary towerLibrary;
 
-		/// <summary>
-		/// The currency that the player starts with
-		/// </summary>
-		public int startingCurrency;
-
-		///// <summary>
-		///// The controller for gaining currency
-		///// </summary>
-		//public CurrencyGainer currencyGainer;
-
-		/// <summary>
-		/// Configuration for if the player gains currency even in pre-build phase
-		/// </summary>
-		[Header("Setting this will allow currency gain during the Intro and Pre-Build phase")]
-		public bool alwaysGainCurrency;
 
 		///// <summary>
 		///// The home bases that the player must defend
 		///// </summary>
 		public Player homeBase;
 
-        public Collider[] environmentColliders;
 
 		/// <summary>
 		/// The attached wave manager
 		/// </summary>
 		public WaveManager waveManager { get; protected set; }
 
-		/// <summary>
-		/// Number of enemies currently in the level
-		/// </summary>
-		public int numberOfEnemies { get; protected set; }
 
 		/// <summary>
 		/// The current state of the level
@@ -78,23 +52,15 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		/// </summary>
 		//public Currency currency { get; protected set; }
 
-		/// <summary>
-		/// Number of home bases left
-		/// </summary>
-		public int numberOfHomeBasesLeft { get; protected set; }
 
-		/// <summary>
-		/// Starting number of home bases
-		/// </summary>
-		public int numberOfHomeBases { get; protected set; }
 
 		///// <summary>
 		///// An accessor for the home bases
 		///// </summary>
-		//public PlayerHomeBase[] playerHomeBases
-		//{
-		//	get { return homeBases; }
-		//}
+		public Player playerHomeBase
+		{
+			get { return homeBase; }
+		}
 
 		/// <summary>
 		/// If the game is over
@@ -115,54 +81,35 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		/// </summary>
 		public event Action<LevelState, LevelState> levelStateChanged;
 
-		/// <summary>
-		/// Fired when the number of enemies has changed
-		/// </summary>
-		public event Action<int> numberOfEnemiesChanged;
 
 		/// <summary>
 		/// Event for home base being destroyed
 		/// </summary>
 		public event Action homeBaseDestroyed;
 
-		/// <summary>
-		/// Increments the number of enemies. Called on Agent spawn
-		/// </summary>
-		public virtual void IncrementNumberOfEnemies()
+
+		protected override void Awake()
 		{
-			numberOfEnemies++;
-			SafelyCallNumberOfEnemiesChanged();
+			instance = this;
+			base.Awake();
+			waveManager = GetComponent<WaveManager>();
+			// Ne pas utiliser la fonction de changement d'état car on ne veut pas d'événement à ce moment
+			levelState = LevelState.Intro;
+
+			if (intro != null)
+			{
+				intro.introCompleted += IntroCompleted;
+			}
+			else
+			{
+				IntroCompleted();
+			}
+
+			if (playerHomeBase)
+			{
+				playerHomeBase.OnPlayerDeath += OnHomeBaseDestroyed;
+			}
 		}
-
-		/// <summary>
-		/// Returns the sum of all HomeBases' health
-		/// </summary>
-		public float GetAllHomeBasesHealth()
-		{
-			double health = 0.0;
-			// health = homeBase.GetHealth();
-			return (float)health;
-        }
-
-        private void Awake()
-        {
-            instance = this; // ✅ Ajout de cette ligne !
-            base.Awake();
-            waveManager = GetComponent<WaveManager>();
-
-            // Ne pas utiliser la fonction de changement d'état car on ne veut pas d'événement à ce moment
-            levelState = LevelState.Intro;
-            numberOfEnemies = 0;
-
-            if (intro != null)
-            {
-                intro.introCompleted += IntroCompleted;
-            }
-            else
-            {
-                IntroCompleted();
-            }
-        }
 
 
         /// <summary>
@@ -212,9 +159,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		protected override void OnDestroy()
 		{
 			base.OnDestroy();
-			if (waveManager != null)
-			{
-			}
+
 			if (intro != null)
 			{
 				intro.introCompleted -= IntroCompleted;
@@ -222,7 +167,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 
             // Il faut détruire la base pour lancer l'événement
 
-            //	homeBase.died -= OnHomeBaseDestroyed;
+            if (playerHomeBase != null)
+            {
+                playerHomeBase.OnPlayerDeath -= OnHomeBaseDestroyed;
+            }
         }
 
         /// <summary>
@@ -256,7 +204,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 			switch (newState)
 			{
 				case LevelState.SpawningEnemies:
-					waveManager.Start();
+					waveManager.StartWave();
 					break;
 				case LevelState.Lose:
 					SafelyCallLevelFailed();
@@ -269,8 +217,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		/// </summary>
 		protected virtual void OnHomeBaseDestroyed()
 		{
-			// Decrement the number of home bases
-			numberOfHomeBasesLeft--;
 
 			// Call the destroyed event
 			if (homeBaseDestroyed != null)
@@ -278,23 +224,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 				homeBaseDestroyed();
 			}
 
-			// If there are no home bases left and the level is not over then set the level to lost
-			if ((numberOfHomeBasesLeft == 0) && !isGameOver)
+			if(!isGameOver)
 			{
 				ChangeLevelState(LevelState.Lose);
 			}
 		}
 
-		/// <summary>
-		/// Calls the <see cref="numberOfEnemiesChanged"/> event
-		/// </summary>
-		protected virtual void SafelyCallNumberOfEnemiesChanged()
-		{
-			if (numberOfEnemiesChanged != null)
-			{
-				numberOfEnemiesChanged(numberOfEnemies);
-			}
-		}
 
 		/// <summary>
 		/// Calls the <see cref="levelFailed"/> event

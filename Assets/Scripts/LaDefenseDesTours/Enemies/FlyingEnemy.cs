@@ -4,13 +4,13 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
 {
     public class FlyingEnemy : Enemy
     {
-        public FlyingEnemy()
+
+        FlyingEnemy()
         {
-            health = 100;
+            maxHealth = 100f;
             speed = 4;
             acceleration = 8;
         }
-
         public override void SetupSpeed()
         {
             agent.speed = speed;

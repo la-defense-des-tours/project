@@ -4,11 +4,13 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
 {
     public class TankEnemy : Enemy
     {
-        public TankEnemy()
+
+        TankEnemy()
         {
-            health = 350;
+            maxHealth = 350f;
             speed = 1.5f;
             acceleration = 2.5f;
         }
+
     }
 }
