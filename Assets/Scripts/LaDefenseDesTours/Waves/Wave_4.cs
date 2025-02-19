@@ -10,8 +10,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
         private readonly EnemyFactory flyingEnemyFactory;
         private readonly EnemyFactory tankEnemyFactory;
         private readonly EnemyFactory bossEnemyFactory;
+        private const string ENEMY_TAG = "Enemy";
 
-        public Wave_4(EnemyFactory walkingEnemyFactory, EnemyFactory flyingEnemyFactory,EnemyFactory tankEnemyFactory, EnemyFactory bossEnemyFactory, MonoBehaviour coroutineRunner)
+        public Wave_4(EnemyFactory walkingEnemyFactory, EnemyFactory flyingEnemyFactory, EnemyFactory tankEnemyFactory, EnemyFactory bossEnemyFactory, MonoBehaviour coroutineRunner)
         {
             difficulty = 1;
             this.walkingEnemyFactory = walkingEnemyFactory;
@@ -46,7 +47,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
                     enemy = flyingEnemyFactory.CreateEnemy();
                 else
                     enemy = tankEnemyFactory.CreateEnemy();
-                // enemy = walkingEnemyFactory.CreateEnemy();
 
                 targetPosition.z = Random.Range(-3, 3);
                 enemy.Move(targetPosition);
@@ -65,7 +65,22 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
 
             isSpawning = false;
             difficulty++;
-            OnWaveCompleted();
+            coroutineRunner.StartCoroutine(CheckWaveCompleted());
+        }
+
+        private IEnumerator CheckWaveCompleted()
+        {
+            while (true)
+            {
+                GameObject[] enemies = GameObject.FindGameObjectsWithTag(ENEMY_TAG);
+                Debug.Log($"Wave 4: {enemies.Length} enemies left");
+                if (enemies.Length == 0)
+                {
+                    OnWaveCompleted();
+                    yield break;
+                }
+                yield return new WaitForSeconds(1f);
+            }
         }
     }
 }

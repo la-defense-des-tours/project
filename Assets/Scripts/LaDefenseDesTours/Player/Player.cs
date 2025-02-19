@@ -15,11 +15,13 @@ public sealed class Player : MonoBehaviour
     private void Awake()
     {
         // Unity Singleton pattern
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
-        DontDestroyOnLoad(gameObject);
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogError("Multiple Player instances detected!");
+            DestroyImmediate(gameObject);
+            return;
+        }
+        Instance = this; 
     }
 
     public static Player GetInstance()

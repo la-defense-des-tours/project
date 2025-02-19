@@ -732,7 +732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a475548f6baf3745ae2f876896e678e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disableMovement: 1
+  disableMovement: 0
   panSpeed: 30
   scrollSpeed: 5
   cameraBoundary: {fileID: 1636852410}
@@ -2005,11 +2005,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2304084585255003760, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 79.93
+      value: 79.93005
       objectReference: {fileID: 0}
     - target: {fileID: 2304084585255003760, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 26.9
+      value: 26.900024
       objectReference: {fileID: 0}
     - target: {fileID: 4293974186446667280, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2429,11 +2429,11 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8, y: 0, z: 0.9}
+  m_Size: {x: 0.8, y: 0, z: 0.8}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1636852412
 Transform:
@@ -2444,7 +2444,7 @@ Transform:
   m_GameObject: {fileID: 1636852410}
   serializedVersion: 2
   m_LocalRotation: {x: -0.39433464, y: -0.5593823, z: 0.34278986, w: 0.6434958}
-  m_LocalPosition: {x: -4.7, y: -36.1, z: 77.1}
+  m_LocalPosition: {x: -6.562531, y: -25, z: 73.83556}
   m_LocalScale: {x: 100, y: 1, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
