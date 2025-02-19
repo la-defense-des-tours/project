@@ -8,9 +8,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
     {
         public override int cost { get; set; } = 80;
         public override string towerName { get; } = "Machine Gun Tower";
-        private float attackPerSecond { get; set; }
-        public override float range { get; } = 30f;
-        public override float damage { get; } = 30f;
+        public float attackPerSecond { get; set; }
+        public override float range { get; set; } = 30f;
+        public override float damage { get; set; } = 30f;
 
         public override void Upgrade()
         {

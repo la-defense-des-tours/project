@@ -99,9 +99,6 @@ public class TowerManager : MonoBehaviour
     {
         selectedCell = null;
         upgradeMenu.Hide();
-        if (selectedFactory == null)
-            return null;
 
-        return selectedFactory.CreateTower(position);
     }
 }
