@@ -15,10 +15,15 @@ using Assets.Scripts.LaDefenseDesTours.Waves;
         public void Start()
         {
             SetupWaves();
-            StartWave(wave1);
+            
         }
 
-        private void SetupWaves()
+        public void StartWave()
+        {
+            Generate(wave1);
+        }
+
+    private void SetupWaves()
         {
             wave1 = new Wave_1(walkingEnemyFactory, flyingEnemyFactory, tankEnemyFactory, this);
             wave2 = new Wave_2(walkingEnemyFactory, flyingEnemyFactory, tankEnemyFactory, this);
@@ -32,7 +37,7 @@ using Assets.Scripts.LaDefenseDesTours.Waves;
             wave4.SetNext(wave1);
         }
 
-        public void StartWave(Wave wave)
+        public void Generate(Wave wave)
         {
             wave.GenerateWave(target.position);
         }

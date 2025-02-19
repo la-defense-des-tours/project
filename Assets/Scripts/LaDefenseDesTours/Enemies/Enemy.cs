@@ -1,22 +1,35 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
     public abstract class Enemy : MonoBehaviour
     {
-
         protected State currentState;
         protected NavMeshAgent agent;
         protected Animator animator;
         public virtual float health { get; set; }
-        public virtual float speed { get; set; } 
+        public virtual float speed { get; set; }
         public virtual float acceleration { get; set; }
+
+        [SerializeField] private Slider healthBar;
+        public virtual float maxHealth { get; set; } = 100;
 
         public void Awake()
         {
             animator = GetComponent<Animator>();
             SetupNavMeshAgent();
+        }
+
+        private void Start()
+        {
+            health = maxHealth;
+            if (healthBar != null)
+            {
+                healthBar.maxValue = maxHealth;
+                healthBar.value = health;
+            }
         }
 
         void Update() 
@@ -52,11 +65,14 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             SetupSpeed();
         }
 
+
         public virtual void SetupSpeed()
         {
             agent.speed = speed;
             agent.acceleration = acceleration;
-            animator.speed = speed;
+
+            if (animator != null)
+                animator.speed = speed;
         }
         public virtual void Move(Vector3 destination)
         {
@@ -70,9 +86,16 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             return clone;
         }
 
-        public void TakeDamage(float damage)
+        public virtual void TakeDamage(float damage)
         {
+            if (currentState is Dead)
+                return;
+
             health -= damage;
+            if (healthBar != null)
+            {
+                healthBar.value = health; 
+            }
             if (health <= 0)
                 TransitionTo(new Dead());
         }
@@ -87,20 +110,27 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         }
         public void TransitionTo(State state)
         {
+            if (currentState is Dead)
+                return;
+
+            currentState?.OnStateExit();
             currentState = state;
             currentState.SetContext(this);
+            currentState.OnStateEnter();
         }
         public void UpdateState()
         {
             currentState?.ApplyEffect();
         }
-        public float GetSpeed()
+        public virtual float GetSpeed()
         {
             return agent.speed;
         }
-        public void SetSpeed(float _speed)
+        public virtual void SetSpeed(float _speed)
         {
             agent.speed = _speed;
+            if (animator != null)
+                animator.speed = _speed;
         }
         public virtual void CheckArrival()
         {
@@ -109,7 +139,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
                 if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
                 {
                     DealDamage(health);
-                    Die(); 
+                    TransitionTo(new Dead());
                 }
             }
         }

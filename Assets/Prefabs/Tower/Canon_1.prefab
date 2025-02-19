@@ -229,7 +229,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5127573195295889936}
   - component: {fileID: -2066031236903285922}
-  - component: {fileID: 8557772254240928588}
   - component: {fileID: -4433422411206593322}
   m_Layer: 0
   m_Name: Canon_1
@@ -267,19 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7efa5adb37be047a8e026265fae5d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8557772254240928588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5059962892274874607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c464a8877f19ff6489a9c6688a79dc06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canonTower: {fileID: -2066031236903285922}
+  currentLevel: 0
 --- !u!114 &-4433422411206593322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,9 +281,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotatingSpeed: 7
   rotatingPart: {fileID: 4338145872250059268}
-  fireRate: 0
+  fireRate: 1
   fireCountdown: 0
-  bulletPrefab: {fileID: 2133051209636147784, guid: 0c0e6c6dd14c7fc019b6552dd254f299, type: 3}
+  bulletPrefab: {fileID: 2133051209636147784, guid: db7b742c14606944b852667c9c6f0e1b, type: 3}
   firePoint: {fileID: 4104913997813101257}
 --- !u!1 &5119666428460181749
 GameObject:

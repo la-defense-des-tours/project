@@ -1,23 +1,22 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
     public abstract class Tower : MonoBehaviour
     {
-        public virtual  string towerName { get; }
-        public virtual float range { get; }
-        protected int currentLevel;
-        public virtual float damage { get; }
-        protected float fireRate;
+        public virtual string towerName { get; }
+        public virtual float range { get; set; }
+        public virtual float damage { get; set; }
         public virtual int cost { get; set; }
-        protected int health;
+        public  int currentLevel;
+        protected float fireRate;
+        public int health;
         protected int upgradeCost;
         protected float upgradeDamage;
         protected float upgradeFireRate;
         protected float upgradeRange;
+
         protected int sellValue;
-        protected int upgradeSellValue;
 
         public virtual void Upgrade()
         {
@@ -29,13 +28,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual void Attack()
         {
             Debug.Log("Base tower attack");
-        }
-
-        public virtual void SetPosition(Vector3 position)
-        {
-            position.x = Mathf.Round(position.x);
-            position.z = Mathf.Round(position.z);
-            transform.position = position;
         }
     }
 }

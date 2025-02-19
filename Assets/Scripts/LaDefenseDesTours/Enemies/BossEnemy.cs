@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.AI;
-using Assets.Scripts.LaDefenseDesTours.Interfaces;
+﻿using Assets.Scripts.LaDefenseDesTours.Interfaces;
 
 namespace Assets.Scripts.LaDefenseDesTours.Enemies
 {

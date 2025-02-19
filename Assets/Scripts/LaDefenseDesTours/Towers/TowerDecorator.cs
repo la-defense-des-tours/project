@@ -33,7 +33,14 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         public override void Upgrade()
         {
-            Debug.Log("Upgrading tower");
+            if (tower != null)
+            {
+                tower.Upgrade();
+            }
+            else
+            {
+                Debug.Log("No tower to upgrade");
+            }
         }
     }
 }
