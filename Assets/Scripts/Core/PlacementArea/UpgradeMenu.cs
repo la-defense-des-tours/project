@@ -10,7 +10,7 @@ public class UpgradeMenu : MonoBehaviour
     {
         this.target = target;
 
-        if (target.upgradeLevel >= 2)
+        if (target.tower.currentLevel >= 2)
         {
             Debug.Log("Tower is already at maximum upgrade level. Upgrade menu will not be shown.");
             return;
