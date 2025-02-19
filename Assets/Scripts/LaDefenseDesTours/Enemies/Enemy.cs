@@ -73,6 +73,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         public virtual void TakeDamage(float damage)
         {
+            if (currentState is Dead)
+                return;
+
             health -= damage;
             if (health <= 0)
                 TransitionTo(new Dead());
