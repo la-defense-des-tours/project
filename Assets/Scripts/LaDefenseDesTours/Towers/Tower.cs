@@ -9,15 +9,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual float range { get; set; }
         public int currentLevel;
         public virtual float damage { get; set; }
-        protected float fireRate;
         public virtual int cost { get; set; }
         public int health;
-        protected int upgradeCost;
-        protected float upgradeDamage;
-        protected float upgradeFireRate;
-        protected float upgradeRange;
         protected int sellValue;
-        protected int upgradeSellValue;
 
         public virtual void Upgrade()
         {

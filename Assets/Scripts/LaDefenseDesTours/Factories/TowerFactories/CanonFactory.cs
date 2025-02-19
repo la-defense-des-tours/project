@@ -14,29 +14,50 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             GameObject instance = Instantiate(canonTower.gameObject, position, Quaternion.identity);
             return instance.GetComponent<CanonTower>();
         }
-        public override Tower UpgradeTower(Vector3 position, int upgradeLevel)
+        public override Tower UpgradeTower(Vector3 position, int upgradeLevel, Tower currentTower)
         {
-            if (upgradeLevel == 0 && canonTowerUpgrade == null || upgradeLevel == 1 && canonTowerUpgrade2 == null)
+            if ((upgradeLevel == 0 && canonTowerUpgrade == null) ||
+                (upgradeLevel == 1 && canonTowerUpgrade2 == null))
             {
                 Debug.LogError("Canon Tower Upgrade prefab is not assigned!");
-                return null; // Le retour null est nécessaire pour éviter une erreur de compilation
+                return null;
             }
 
-            if (upgradeLevel == 0)
+            GameObject instance;
+            CanonTower upgradedTower;
+
+            // Utilisation d'un switch pour gérer les différents niveaux d'amélioration
+            switch (upgradeLevel)
             {
-                Debug.Log("Canon Tower 1 Upgraded");
-                GameObject instance = Instantiate(canonTowerUpgrade.gameObject, position, Quaternion.identity);
-                return instance.GetComponent<CanonTower>();
+                case 0:
+                    Debug.Log("Canon Tower 1 Upgraded");
+                    instance = Instantiate(canonTowerUpgrade.gameObject, position, Quaternion.identity);
+                    upgradedTower = instance.GetComponent<CanonTower>();
+                    break;
+
+                case 1:
+                    Debug.Log("Canon Tower 2 Upgraded");
+                    instance = Instantiate(canonTowerUpgrade2.gameObject, position, Quaternion.identity);
+                    upgradedTower = instance.GetComponent<CanonTower>();
+                    break;
+
+                default:
+                    Debug.LogError("Max upgrade level reached!");
+                    return null;
             }
 
-            else if (upgradeLevel == 1)
+            // Transfert des propriétés de la tour actuelle à la tour améliorée
+            if (currentTower != null)
             {
-                Debug.Log("Canon Tower 2 Upgraded");
-                GameObject instance = Instantiate(canonTowerUpgrade2.gameObject, position, Quaternion.identity);
-                return instance.GetComponent<CanonTower>();
+                upgradedTower.currentLevel = currentTower.currentLevel;
+                upgradedTower.health = currentTower.health;
+                upgradedTower.damage = currentTower.damage;
+                upgradedTower.range = currentTower.range;
+                upgradedTower.cost = currentTower.cost;
+                upgradedTower.areaOfEffect = (currentTower as CanonTower).areaOfEffect = 0f;
             }
-            Debug.LogError("Max upgrade level reached!");
-            return null;
+
+            return upgradedTower;
         }
         public override void Notify()
         {
