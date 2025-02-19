@@ -3,12 +3,6 @@ using Assets.Scripts.Core;
 using Assets.Scripts.Core.Utilities;
 using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using TowerDefense.Level;
-
-//using Core.Economy;
-//using Core.Health;
-//using Core.Utilities;
-//using TowerDefense.Economy;
-//using TowerDefense.Towers.Data;
 using UnityEngine;
 
 namespace Assets.Scripts.LaDefenseDesTours.Level
@@ -20,7 +14,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
     [RequireComponent(typeof(WaveManager))]
 	public class LevelManager : Singleton<LevelManager>
 	{
-        
+        public static LevelManager instance;
 
         [SerializeField]
         private LevelItem currentLevel;
@@ -34,21 +28,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		///// </summary>
 		public TowerLibrary towerLibrary;
 
-		/// <summary>
-		/// The currency that the player starts with
-		/// </summary>
-		public int startingCurrency;
-
-		///// <summary>
-		///// The controller for gaining currency
-		///// </summary>
-		//public CurrencyGainer currencyGainer;
-
-		/// <summary>
-		/// Configuration for if the player gains currency even in pre-build phase
-		/// </summary>
-		[Header("Setting this will allow currency gain during the Intro and Pre-Build phase")]
-		public bool alwaysGainCurrency;
 
 		///// <summary>
 		///// The home bases that the player must defend
@@ -109,23 +88,28 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		public event Action homeBaseDestroyed;
 
 
-        protected override void Awake()
-        {
-            instance = this; 
-            base.Awake();
+		protected override void Awake()
+		{
+			instance = this;
+			base.Awake();
+			waveManager = GetComponent<WaveManager>();
+			// Ne pas utiliser la fonction de changement d'état car on ne veut pas d'événement à ce moment
+			levelState = LevelState.Intro;
 
-            // Ne pas utiliser la fonction de changement d'état car on ne veut pas d'événement à ce moment
-            levelState = LevelState.Intro;
+			if (intro != null)
+			{
+				intro.introCompleted += IntroCompleted;
+			}
+			else
+			{
+				IntroCompleted();
+			}
 
-            if (intro != null)
-            {
-                intro.introCompleted += IntroCompleted;
-            }
-            else
-            {
-                IntroCompleted();
-            }
-        }
+			if (playerHomeBase)
+			{
+				playerHomeBase.OnPlayerDeath += OnHomeBaseDestroyed;
+			}
+		}
 
 
         /// <summary>
@@ -181,10 +165,13 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 				intro.introCompleted -= IntroCompleted;
 			}
 
-			// Il faut détruire la base pour lancer l'événement
+            // Il faut détruire la base pour lancer l'événement
 
-			//homeBase.died -= OnHomeBaseDestroyed;
-		}
+            if (playerHomeBase != null)
+            {
+                playerHomeBase.OnPlayerDeath -= OnHomeBaseDestroyed;
+            }
+        }
 
         /// <summary>
         /// Fired when Intro is completed or immediately, if no intro is specified
@@ -217,7 +204,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 			switch (newState)
 			{
 				case LevelState.SpawningEnemies:
-					waveManager.Start();
+					waveManager.StartWave();
 					break;
 				case LevelState.Lose:
 					SafelyCallLevelFailed();
