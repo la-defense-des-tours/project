@@ -83,13 +83,6 @@ public class EnemyTests
     }
 
     [Test]
-    public void TransitionTo_SlowsEnemy()
-    {
-        enemy.TransitionTo(new Slowed());
-        Assert.Pass();
-    }
-
-    [Test]
     public void GetSpeed_ReturnsSpeed()
     {
         float expected = 5f;
