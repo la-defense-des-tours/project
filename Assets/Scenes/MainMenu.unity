@@ -431,6 +431,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5242728887951611985, guid: e0123180cf553de43a582138e4c8d353, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242728887951611985, guid: e0123180cf553de43a582138e4c8d353, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6997524312584748344, guid: e0123180cf553de43a582138e4c8d353, type: 3}
       propertyPath: ShapeModule.angle
       value: 27.19
@@ -446,6 +454,14 @@ PrefabInstance:
     - target: {fileID: 8276825245287970385, guid: e0123180cf553de43a582138e4c8d353, type: 3}
       propertyPath: m_Name
       value: FlyingEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336873296814992739, guid: e0123180cf553de43a582138e4c8d353, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420378294441187624, guid: e0123180cf553de43a582138e4c8d353, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3500,9 +3516,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6136995104190988324, guid: ff76a0eedd8a67a4686fb4c7d7081dd3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136995104190988324, guid: ff76a0eedd8a67a4686fb4c7d7081dd3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6767481499260033057, guid: ff76a0eedd8a67a4686fb4c7d7081dd3, type: 3}
       propertyPath: m_Name
       value: WalkingEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579602012988686685, guid: ff76a0eedd8a67a4686fb4c7d7081dd3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7951545747978958102, guid: ff76a0eedd8a67a4686fb4c7d7081dd3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8597209075346910870, guid: ff76a0eedd8a67a4686fb4c7d7081dd3, type: 3}
       propertyPath: m_Enabled
