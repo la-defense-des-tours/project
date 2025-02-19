@@ -60,6 +60,13 @@ public class EnemyTests
     {
         if (enemy != null && enemy.gameObject != null)
             Object.DestroyImmediate(enemy.gameObject);
+
+        Player player = Player.GetInstance();
+        player.health = 1000f;
+        player.Name = "Han Solo";
+        player.score = 0f;
+        player.currency = 2000f;
+        player.isDead = false;
     }
 
     [Test]
