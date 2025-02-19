@@ -21,13 +21,13 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             if (enemy == null)
                 return;
 
-            if (effectStarted)
-            {
-                enemy.SetSpeed(0);
-                timeElapsed += Time.deltaTime;
-                if (timeElapsed >= destroyDelay)
-                    enemy.Die();
-            }
+            if (!effectStarted)
+                return;
+
+            enemy.SetSpeed(0);
+            timeElapsed += Time.deltaTime;
+            if (timeElapsed >= destroyDelay)
+                enemy.Die();
         }
         private void DisableEnemy()
         {
