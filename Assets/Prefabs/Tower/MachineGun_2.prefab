@@ -120,7 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5592781787644846949}
   - component: {fileID: 5790104110576652689}
-  - component: {fileID: 8455521830980940576}
+  - component: {fileID: 6133213040453096387}
   m_Layer: 0
   m_Name: MachineGun_2
   m_TagString: Untagged

@@ -1,5 +1,6 @@
 using UnityEngine;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using System;
 
 public sealed class Player : MonoBehaviour
 {
@@ -10,14 +11,17 @@ public sealed class Player : MonoBehaviour
     public float currency { get; set; } = 2000;
     public bool isDead { get; set; } = false;
 
+    public event Action OnPlayerDeath;
     private void Awake()
     {
         // Unity Singleton pattern
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
-        DontDestroyOnLoad(gameObject);
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogError("Multiple Player instances detected!");
+            DestroyImmediate(gameObject);
+            return;
+        }
+        Instance = this; 
     }
 
     public static Player GetInstance()
@@ -38,6 +42,10 @@ public sealed class Player : MonoBehaviour
     private void CheckHeatlh()
     {
         if (health <= 0)
+        { 
+            isDead = true;
+            OnPlayerDeath?.Invoke();
             Debug.Log("Player is dead");
+        }
     }
 }

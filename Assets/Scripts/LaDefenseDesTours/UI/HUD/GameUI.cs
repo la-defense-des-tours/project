@@ -134,7 +134,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <summary>
 		/// Fires off when the ghost was previously not valid but now is due to currency amount change
 		/// </summary>
-		public event Action ghostBecameValid;
+		// public event Action ghostBecameValid;
 
 		/// <summary>
 		/// Fires when a tower is selected/deselected
@@ -205,7 +205,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 			{
 				buildInfoUI.Hide();
 			}
-			Destroy(m_CurrentTower.gameObject);
+			// Destroy(m_CurrentTower.gameObject);
 			m_CurrentTower = null;
 			SetState(State.Normal);
 			DeselectTower();

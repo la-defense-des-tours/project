@@ -33,7 +33,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         protected virtual void OnWaveCompleted()
         {
-            Debug.Log($"Wave {this.GetType().Name} completed!");
+            Debug.Log($"Wave {GetType().Name} completed!");
             if (nextWave != null)
                 coroutineRunner.StartCoroutine(WaitForNextWave());
         }

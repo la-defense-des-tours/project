@@ -3,7 +3,6 @@ using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using Assets.Scripts.LaDefenseDesTours.UI.HUD;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TowerManager : MonoBehaviour
 {
@@ -48,6 +47,7 @@ public class TowerManager : MonoBehaviour
 
     }
 
+
     private void OnTowerButtonTapped(TowerData towerData)
     {
         SelectTower(towerData.towerName);
@@ -82,6 +82,7 @@ public class TowerManager : MonoBehaviour
     public void SelectCell(Cell cell)
     {
 
+
         if (cell == selectedCell)
         {
             DeselectCell();
@@ -98,5 +99,9 @@ public class TowerManager : MonoBehaviour
     {
         selectedCell = null;
         upgradeMenu.Hide();
+        if (selectedFactory == null)
+            return null;
+
+        return selectedFactory.CreateTower(position);
     }
 }

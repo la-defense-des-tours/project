@@ -47,4 +47,4 @@ MonoBehaviour:
   width: 10
   height: 10
   cellSize: 5
-  gridTilePrefab: {fileID: 8251087855543554309, guid: e8754b222c473704b8c02196e01aa529, type: 3}
+  gridTilePrefab: {fileID: 174553704818272586, guid: 8cfb7675dcc63a947aadc386935bd569, type: 3}

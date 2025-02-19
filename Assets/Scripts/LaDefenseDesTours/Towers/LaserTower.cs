@@ -7,10 +7,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
     public class LaserTower : Tower
     {
         public override string towerName { get; } = "Laser Tower";
-        public override float range { get; set; } = 50f;
-        public override float damage {get; set; } = 0.05f;
-        public override int cost { get; set; } = 100;
-        public float damageOverTime { get; set; } = 3f;
+        public float damageOverTime { get; set; }
+        public override float range { get; } = 50f;
+        public override float damage { get; } = 0.05f;
 
         public override void Upgrade()
         {
