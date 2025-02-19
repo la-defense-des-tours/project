@@ -27,7 +27,6 @@ public class TowerManager : MonoBehaviour
         Instance = this;
     }
 
-
     public void RegisterSpawnButton(TowerSpawnButton button)
     {
         if (button == null)
@@ -46,7 +45,6 @@ public class TowerManager : MonoBehaviour
     {
 
     }
-
 
     private void OnTowerButtonTapped(TowerData towerData)
     {
@@ -74,15 +72,13 @@ public class TowerManager : MonoBehaviour
         Debug.Log($"Selected Tower: {towerName}");
     }
 
-     public TowerFactory GetSelectedFactory()
+    public TowerFactory GetSelectedFactory()
     {
         return selectedFactory;
     }
 
     public void SelectCell(Cell cell)
     {
-
-
         if (cell == selectedCell)
         {
             DeselectCell();

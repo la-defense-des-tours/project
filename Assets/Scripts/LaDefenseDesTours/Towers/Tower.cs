@@ -10,19 +10,16 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual int cost { get; set; }
         public  int currentLevel;
         protected float fireRate;
-        public int health;
         protected int upgradeCost;
         protected float upgradeDamage;
         protected float upgradeFireRate;
         protected float upgradeRange;
-
         protected int sellValue;
 
         public virtual void Upgrade()
         {
             Debug.Log("Upgrading base tower...");
             currentLevel++;
-            health += 10;
         }
 
         public virtual void Attack()

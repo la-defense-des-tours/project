@@ -31,7 +31,7 @@ public class UpgradeMenu : MonoBehaviour
 
     public void Upgrade()
     {
-        Debug.Log("Upgrade");
+        Debug.Log("Upgrade button pressed");
 
         if (target == null)
         {

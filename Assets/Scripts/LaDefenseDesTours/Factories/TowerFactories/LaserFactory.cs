@@ -15,6 +15,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             GameObject instance = Instantiate(laserTower.gameObject, position, Quaternion.identity);
             return instance.GetComponent<LaserTower>();
         }
+
         public override Tower UpgradeTower(Vector3 position, int upgradeLevel, Tower currentTower)
         {
             if ((upgradeLevel == 0 && laserTowerUpgrade == null) ||
@@ -51,7 +52,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             if (currentTower != null)
             {
                 upgradedTower.currentLevel = currentTower.currentLevel;
-                upgradedTower.health = currentTower.health;
                 upgradedTower.damage = currentTower.damage;
                 upgradedTower.range = currentTower.range;
                 upgradedTower.cost = currentTower.cost;
@@ -60,6 +60,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
 
             return upgradedTower;
         }
+
         public override void Notify()
         {
             Debug.Log("Laser Tower Created");

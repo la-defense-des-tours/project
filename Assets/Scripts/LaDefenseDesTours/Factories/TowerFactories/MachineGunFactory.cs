@@ -16,6 +16,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             GameObject instance = Instantiate(machineGunTower.gameObject, position, Quaternion.identity);
             return instance.GetComponent<MachineGunTower>();
         }
+
         public override Tower UpgradeTower(Vector3 position, int upgradeLevel, Tower currentTower)
         {
             if ((upgradeLevel == 0 && machineGunTowerUpgrade == null) ||
@@ -52,7 +53,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             if (currentTower != null)
             {
                 upgradedTower.currentLevel = currentTower.currentLevel;
-                upgradedTower.health = currentTower.health;
                 upgradedTower.damage = currentTower.damage;
                 upgradedTower.range = currentTower.range;
                 upgradedTower.cost = currentTower.cost;
@@ -61,6 +61,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
 
             return upgradedTower;
         }
+
         public override void Notify()
         {
             Debug.Log("MachineGun Tower Created");

@@ -7,9 +7,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
     public class CanonTower : Tower
     {
         public override string towerName { get; } = "Canon Tower";
-        public float areaOfEffect { get; set; }
         public override float range { get;set; } = 20f;
         public override float damage { get; set;  } = 100f;
+        public override int cost { get; set; } = 120;
+        public float areaOfEffect { get; set; } = 5f;
 
         public override void Upgrade()
         {
@@ -19,7 +20,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             {
                 case 1:
                     // 1er upgrade
-                    health += 20;
                     cost += 25;
                     areaOfEffect += 0.5f;
                     damage += 15f;
@@ -28,7 +28,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
 
                 case 2:
                     // 2eme upgrade
-                    health += 30;
                     cost += 50;
                     areaOfEffect += 1.5f;
                     damage += 25f;
@@ -40,7 +39,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
                     break;
             }
 
-            Debug.Log($"Canon Tower upgraded to level {currentLevel}. New Stats - Health: {health}, Damage: {damage}, Range: {range}, Cost: {cost}, Area of effect: {areaOfEffect}");
+            Debug.Log($"Canon Tower upgraded to level {currentLevel}. New Stats - Damage: {damage}, Range: {range}, Cost: {cost}, Area of effect: {areaOfEffect}");
         }
 
         public override void Attack()

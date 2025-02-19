@@ -8,12 +8,14 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
         [SerializeField] private CanonTower canonTower;
         [SerializeField] private CanonTower canonTowerUpgrade;
         [SerializeField] private CanonTower canonTowerUpgrade2;
+
         public override Tower CreateTower(Vector3 position)
         {
             Notify();
             GameObject instance = Instantiate(canonTower.gameObject, position, Quaternion.identity);
             return instance.GetComponent<CanonTower>();
         }
+
         public override Tower UpgradeTower(Vector3 position, int upgradeLevel, Tower currentTower)
         {
             if ((upgradeLevel == 0 && canonTowerUpgrade == null) ||
@@ -50,7 +52,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             if (currentTower != null)
             {
                 upgradedTower.currentLevel = currentTower.currentLevel;
-                upgradedTower.health = currentTower.health;
                 upgradedTower.damage = currentTower.damage;
                 upgradedTower.range = currentTower.range;
                 upgradedTower.cost = currentTower.cost;
@@ -59,6 +60,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
 
             return upgradedTower;
         }
+
         public override void Notify()
         {
             Debug.Log("Canon Tower Created");
