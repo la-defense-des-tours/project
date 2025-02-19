@@ -50,7 +50,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
                     TowerSpawnButton button = Instantiate(towerSpawnButton, transform);
                     button.InitializeButton(tower);
                     button.buttonTapped += OnButtonTapped;
-                    //button.draggedOff += OnButtonDraggedOff;
+                    button.draggedOff += OnButtonDraggedOff;
                 }
             }
         }
@@ -92,7 +92,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             foreach (TowerSpawnButton towerButton in childButtons)
             {
                 towerButton.buttonTapped -= OnButtonTapped;
-                //towerButton.draggedOff -= OnButtonDraggedOff;
+                towerButton.draggedOff -= OnButtonDraggedOff;
             }
         }
 

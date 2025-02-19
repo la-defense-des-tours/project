@@ -330,7 +330,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 				// Destroy current ghost
 				CancelGhostPlacement();
 			}
-			//SetUpGhostTower(towerToBuild);
+			SetUpGhostTower(towerToBuild);
 			SetState(State.BuildingWithDrag);
 		}
 
@@ -355,7 +355,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 				// Destroy current ghost
 				CancelGhostPlacement();
 			}
-			//SetUpGhostTower(towerToBuild);
+			SetUpGhostTower(towerToBuild);
 			SetState(State.Building);
 		}
 
@@ -1015,7 +1015,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		///// <exception cref="ArgumentNullException">
 		///// Throws exception if the <paramref name="towerToBuild"/> is null
 		///// </exception>
-		void SetUpGhostTower([NotNull] Tower towerToBuild)
+		void SetUpGhostTower([NotNull] TowerData towerToBuild)
 		{
 			if (towerToBuild == null)
 			{
@@ -1027,10 +1027,10 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 			//m_CurrentTower.Hide();
 
 			////activate build info
-			//if (buildInfoUI != null)
-			//{
-			//	buildInfoUI.Show(towerToBuild);
-			//}
+			if (buildInfoUI != null)
+			{
+				buildInfoUI.Show(towerToBuild);
+			}
 		}
 
 	}

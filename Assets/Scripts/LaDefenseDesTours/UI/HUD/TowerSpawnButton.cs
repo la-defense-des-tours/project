@@ -42,7 +42,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// Fires when the pointer is outside of the button bounds
         /// and still down
         /// </summary>
-        //public event Action<TowerData> draggedOff;
+        public event Action<TowerData> draggedOff;
 
         /// <summary>
         /// The tower controller that defines the button
