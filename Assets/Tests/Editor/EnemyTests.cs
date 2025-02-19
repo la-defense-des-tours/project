@@ -55,6 +55,13 @@ public class EnemyTests
         enemy = enemyObject.AddComponent<TestEnemy>();
     }
 
+    [TearDown]
+    public void TearDown()
+    {
+        if (enemy != null && enemy.gameObject != null)
+            Object.DestroyImmediate(enemy.gameObject);
+    }
+
     [Test]
     public void TakeDamage_ReducesHealth()
     {
