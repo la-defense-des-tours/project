@@ -19,8 +19,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
 
         public override Tower UpgradeTower(Vector3 position, int upgradeLevel, Tower currentTower)
         {
-            if ((upgradeLevel == 0 && machineGunTowerUpgrade == null) ||
-                (upgradeLevel == 1 && machineGunTowerUpgrade2 == null))
+            if ((upgradeLevel == 1 && machineGunTowerUpgrade == null) ||
+                (upgradeLevel == 2 && machineGunTowerUpgrade2 == null))
             {
                 Debug.LogError("MachineGun Tower Upgrade prefab is not assigned!");
                 return null;
@@ -32,14 +32,14 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             // Utilisation d'un switch pour gérer les différents niveaux d'amélioration
             switch (upgradeLevel)
             {
-                case 0:
-                    Debug.Log("MachineGun Tower 1 Upgraded");
+                case 1:
+                    Debug.Log("MachineGun Tower has been upgraded to level 2");
                     instance = Instantiate(machineGunTowerUpgrade.gameObject, position, Quaternion.identity);
                     upgradedTower = instance.GetComponent<MachineGunTower>();
                     break;
 
-                case 1:
-                    Debug.Log("MachineGun Tower 2 Upgraded");
+                case 2:
+                    Debug.Log("MachineGun Tower has been upgraded to level 3");
                     instance = Instantiate(machineGunTowerUpgrade2.gameObject, position, Quaternion.identity);
                     upgradedTower = instance.GetComponent<MachineGunTower>();
                     break;

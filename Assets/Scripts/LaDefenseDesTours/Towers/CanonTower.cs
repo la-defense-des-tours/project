@@ -21,7 +21,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
 
             switch (currentLevel)
             {
-                case 1:
+                case 2:
                     // 1er upgrade
                     cost += 25;
                     areaOfEffect += 0.5f;
@@ -29,7 +29,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
                     range += 5f;
                     break;
 
-                case 2:
+                case 3:
                     // 2eme upgrade
                     cost += 50;
                     areaOfEffect += 1.5f;

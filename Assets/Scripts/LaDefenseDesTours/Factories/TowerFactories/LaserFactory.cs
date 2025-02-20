@@ -18,8 +18,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
 
         public override Tower UpgradeTower(Vector3 position, int upgradeLevel, Tower currentTower)
         {
-            if ((upgradeLevel == 0 && laserTowerUpgrade == null) ||
-                (upgradeLevel == 1 && laserTowerUpgrade2 == null))
+            if ((upgradeLevel == 1 && laserTowerUpgrade == null) ||
+                (upgradeLevel == 2 && laserTowerUpgrade2 == null))
             {
                 Debug.LogError("Laser Tower Upgrade prefab is not assigned!");
                 return null;
@@ -31,14 +31,14 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             // Utilisation d'un switch pour gérer les différents niveaux d'amélioration
             switch (upgradeLevel)
             {
-                case 0:
-                    Debug.Log("Laser Tower 1 Upgraded");
+                case 1:
+                    Debug.Log("Laser Tower has been upgraded to level 2");
                     instance = Instantiate(laserTowerUpgrade.gameObject, position, Quaternion.identity);
                     upgradedTower = instance.GetComponent<LaserTower>();
                     break;
 
-                case 1:
-                    Debug.Log("Laser Tower 2 Upgraded");
+                case 2:
+                    Debug.Log("Laser Tower has been upgraded to level 3");
                     instance = Instantiate(laserTowerUpgrade2.gameObject, position, Quaternion.identity);
                     upgradedTower = instance.GetComponent<LaserTower>();
                     break;
