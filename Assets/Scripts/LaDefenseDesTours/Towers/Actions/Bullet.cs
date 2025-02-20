@@ -13,20 +13,17 @@ public class Bullet : MonoBehaviour
     {
         HandleTrajectory();
     }
-
     public void Seek(Transform _target)
     {
         target = _target;
         targetCollider = _target.GetComponent<Collider>();
         targetEnemy = _target.GetComponent<Enemy>();
     }
-
     private void HitTarget()
     {
         Destroy(gameObject);
         targetEnemy.TakeDamage(damage);
     }
-
     private void HandleTrajectory()
     {
         if (target == null)
@@ -48,7 +45,6 @@ public class Bullet : MonoBehaviour
         transform.Translate(direction.normalized * distanceThisFrame, Space.World);
         transform.LookAt(targetCenter);
     }
-
     public void SetDamage(float _damage)
     {
         damage = _damage;
