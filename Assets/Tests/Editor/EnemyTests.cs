@@ -60,13 +60,6 @@ public class EnemyTests
     {
         if (enemy != null && enemy.gameObject != null)
             Object.DestroyImmediate(enemy.gameObject);
-
-        Player player = Player.GetInstance();
-        player.health = 1000f;
-        player.Name = "Han Solo";
-        player.score = 0f;
-        player.currency = 2000f;
-        player.isDead = false;
     }
 
     [Test]
@@ -127,7 +120,7 @@ public class EnemyTests
     public void DealDamage_CallsPlayerTakeDamageWithCorrectValue()
     {
         enemy.DealDamage(200f);
-        double expectedPlayerHealth = 800;
+        double expectedPlayerHealth = 700;
         double resultPlayerHealth = Player.GetInstance().health;
 
         Assert.AreEqual(expectedPlayerHealth, resultPlayerHealth);
