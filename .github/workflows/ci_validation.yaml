@@ -33,11 +33,15 @@ jobs:
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           testMode: EditMode
-          targetPlatform: ${{ matrix.targetPlatform }}
 
   build:
     name: Build 🛠️
+    needs: test
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        targetPlatform:
+          - WebGL
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -63,5 +67,5 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: Build
+          name: Build-${{ matrix.targetPlatform }}
           path: build

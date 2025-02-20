@@ -14,7 +14,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
     [RequireComponent(typeof(WaveManager))]
 	public class LevelManager : Singleton<LevelManager>
 	{
-        public static LevelManager instance;
+        public static new LevelManager instance;
 
         [SerializeField]
         private LevelItem currentLevel;
