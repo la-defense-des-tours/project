@@ -7,11 +7,14 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
     public class CanonTower : Tower
     {
         public override string towerName { get; } = "Canon Tower";
-        public override float range { get;set; } = 20f;
-        public override float damage { get; set;  } = 100f;
-        public override int cost { get; set; } = 120;
         public float areaOfEffect { get; set; } = 5f;
 
+        public CanonTower()
+        {
+            range = 20f;
+            damage = 100f;
+            cost = 120;
+        }
         public override void Upgrade()
         {
             currentLevel++;
