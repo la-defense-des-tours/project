@@ -108,7 +108,7 @@ public class Cell : MonoBehaviour
         this.tower = tower;
         currentFactory = factory;
 
-        tower.currentLevel = 0;
+        tower.currentLevel = 1;
 
         Debug.Log($"Tower Name: {tower.towerName}");
         Debug.Log($"Tower Damage: {tower.damage}");
