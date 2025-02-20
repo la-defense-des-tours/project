@@ -33,7 +33,6 @@ jobs:
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           testMode: EditMode
-          targetPlatform: ${{ matrix.targetPlatform }}
 
   build:
     name: Build 🛠️
