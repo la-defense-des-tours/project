@@ -33,6 +33,7 @@ jobs:
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           testMode: EditMode
+          targetPlatform: ${{ matrix.targetPlatform }}
 
   build:
     name: Build 🛠️
@@ -41,7 +42,7 @@ jobs:
     strategy:
       matrix:
         targetPlatform:
-          - WebGL
+          - StandaloneWindows64
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
