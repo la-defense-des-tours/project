@@ -27,3 +27,4 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.CI_PASSWORD }}
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
+          testMode: EditMode
