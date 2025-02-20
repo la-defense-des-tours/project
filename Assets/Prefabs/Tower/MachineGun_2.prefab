@@ -120,7 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5592781787644846949}
   - component: {fileID: 5790104110576652689}
-  - component: {fileID: 6133213040453096387}
+  - component: {fileID: 8455521830980940576}
   m_Layer: 0
   m_Name: MachineGun_2
   m_TagString: Untagged
@@ -174,7 +174,7 @@ MonoBehaviour:
   rotatingPart: {fileID: 386654444262887737}
   fireRate: 4
   fireCountdown: 0
-  bulletPrefab: {fileID: 2133051209636147784, guid: 0c0e6c6dd14c7fc019b6552dd254f299, type: 3}
+  bullet: {fileID: 3756381238834390066, guid: 0c0e6c6dd14c7fc019b6552dd254f299, type: 3}
   firePoint: {fileID: 2221085130970084641}
 --- !u!1 &5970522283295220337
 GameObject:

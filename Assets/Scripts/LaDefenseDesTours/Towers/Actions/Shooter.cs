@@ -1,5 +1,4 @@
 using UnityEngine;
-using Assets.Scripts.LaDefenseDesTours.Interfaces;
 public class Shooter : MonoBehaviour
 {
     [Header("Tower Attributes")]
@@ -11,7 +10,7 @@ public class Shooter : MonoBehaviour
     private Transform target;
 
     [Header("Bullet Attributes")]
-    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Bullet bullet;
     [SerializeField] private Transform firePoint;
     private float range;
     private float damage;
@@ -65,13 +64,12 @@ public class Shooter : MonoBehaviour
     }
     void Shoot()
     {
-        GameObject bulletObject = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-        Bullet bullet = bulletObject.GetComponent<Bullet>();
+        Bullet bulletInstance = Instantiate(bullet, firePoint.position, firePoint.rotation);
 
-        if (bullet != null)
+        if (bulletInstance != null)
         {
-            bullet.Seek(target);
-            bullet.SetDamage(damage);
+            bulletInstance.Seek(target);
+            bulletInstance.SetDamage(damage);
         }
     }
     public void SetRange(float _range)
