@@ -14,8 +14,8 @@ jobs:
 
       - uses: actions/cache@v3
         with:
-          path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          path: ./Library
+          key: Library-LaDefenseDesTours
           restore-keys: |
             Library-
 
