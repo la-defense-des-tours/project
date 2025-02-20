@@ -37,6 +37,7 @@ jobs:
   build:
     name: Build 🛠️
     needs: test
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
     strategy:
       matrix:
