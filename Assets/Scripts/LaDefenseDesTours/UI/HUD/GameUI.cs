@@ -203,6 +203,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 
 			if (buildInfoUI != null)
 			{
+
 				buildInfoUI.Hide();
 			}
 			// Destroy(m_CurrentTower.gameObject);
@@ -271,7 +272,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 				case State.GameOver:
 					if (oldState == State.Building)
 					{
-						//CancelGhostPlacement();
+						CancelGhostPlacement();
 					}
 					Time.timeScale = 0f;
 					break;
@@ -519,7 +520,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 			//bool successfulPurchase = LevelManager.instance.currency.TryPurchase(cost);
 			//if (successfulPurchase)
 			//{
-			//	PlaceTower();
+				PlaceTower();
 			//}
 		}
 

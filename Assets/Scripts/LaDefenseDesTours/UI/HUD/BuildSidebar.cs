@@ -66,6 +66,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             if (gameUI.isBuilding)
             {
                 gameUI.CancelGhostPlacement();
+
             }
             gameUI.SetToBuildMode(towerData);
         }
