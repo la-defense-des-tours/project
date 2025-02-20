@@ -949,7 +949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a475548f6baf3745ae2f876896e678e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disableMovement: 1
+  disableMovement: 0
   panSpeed: 30
   scrollSpeed: 5
   cameraBoundary: {fileID: 1636852410}

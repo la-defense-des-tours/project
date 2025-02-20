@@ -228,7 +228,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8749912686568641172}
-  - component: {fileID: 6013670905969291423}
+  - component: {fileID: 3508522599049903178}
+  - component: {fileID: 866880212385156603}
   m_Layer: 0
   m_Name: Laser_2
   m_TagString: Untagged
@@ -266,8 +267,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: 0
---- !u!1001 &2988862104800514165
-PrefabInstance:
+--- !u!114 &866880212385156603
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
