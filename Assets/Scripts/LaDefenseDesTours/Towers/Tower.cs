@@ -17,7 +17,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         protected float upgradeRange;
         protected int sellValue;
 
-        void Start()
+        public virtual void Start()
         {
             m_shooter = GetComponent<Shooter>();
             m_shooter.SetRange(range);

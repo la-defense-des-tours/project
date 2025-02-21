@@ -14,6 +14,7 @@ public class Shooter : MonoBehaviour
     [SerializeField] private Transform firePoint;
     private float range;
     private float damage;
+    private float specialAbility;
 
     void Start()
     {
@@ -77,11 +78,15 @@ public class Shooter : MonoBehaviour
     {
         damage = _damage;
     }
-
+    public void SetSpecialAbility(float _specialAbility)
+    {
+        specialAbility = _specialAbility;
+    }
     private void InitializeBullet(Bullet bullet)
     {
         bullet.Seek(target);
         bullet.SetDamage(damage);
+        bullet.SetSpecialAbility(specialAbility);
     }
 
     void OnDrawGizmosSelected()

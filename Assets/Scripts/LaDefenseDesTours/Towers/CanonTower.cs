@@ -15,6 +15,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             damage = 100f;
             cost = 120;
         }
+        public override void Start()
+        {
+            base.Start();
+            m_shooter.SetSpecialAbility(areaOfEffect);
+        }
         public override void Upgrade()
         {
             currentLevel++;
@@ -24,7 +29,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
                 case 2:
                     // 1er upgrade
                     cost += 25;
-                    areaOfEffect += 0.5f;
+                    areaOfEffect += 5f;
                     damage += 15f;
                     range += 5f;
                     break;
@@ -32,7 +37,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
                 case 3:
                     // 2eme upgrade
                     cost += 50;
-                    areaOfEffect += 1.5f;
+                    areaOfEffect += 10f;
                     damage += 25f;
                     range += 5f;
                     break;

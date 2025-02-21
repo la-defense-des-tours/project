@@ -5,6 +5,7 @@ public abstract class Bullet : MonoBehaviour
 {
     [Header("Bullet Settings")]
     [SerializeField] protected float speed = 75f;
+    protected virtual float specialAbility { get; set; }
     protected float damage;
 
     [Header("Target Settings")]
@@ -51,5 +52,10 @@ public abstract class Bullet : MonoBehaviour
     public void SetDamage(float _damage)
     {
         damage = _damage;
+    }
+
+    public void SetSpecialAbility(float _specialAbility)
+    {
+        specialAbility = _specialAbility;
     }
 }
