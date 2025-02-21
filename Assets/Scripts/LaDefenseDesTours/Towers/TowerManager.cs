@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Towers;
 using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using Assets.Scripts.LaDefenseDesTours.UI.HUD;
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
 
 public class TowerManager : MonoBehaviour
 {
@@ -15,20 +15,16 @@ public class TowerManager : MonoBehaviour
     [SerializeField] private GameObject laserGhostPrefab;
     [SerializeField] private GameObject canonGhostPrefab;
 
-    private GameObject currentGhost;
     private TowerFactory selectedFactory;
-    public static TowerManager Instance;
+    private GameObject currentGhost;
     private bool isPlacingTower = false;
     private bool isGhostPlacementValid = false;
-
-    [SerializeField] private LayerMask placementAreaMask;
 
     private List<TowerSpawnButton> spawnButtons = new List<TowerSpawnButton>();
     private Cell selectedCell;
     public UpgradeMenu upgradeMenu;
 
-    public bool IsPlacingTower => isPlacingTower;
-    public bool CanBuild() => selectedFactory != null;
+    public static TowerManager Instance;
 
     private void Awake()
     {
@@ -40,16 +36,38 @@ public class TowerManager : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
+    public void SelectCell(Cell cell)
     {
-        foreach (var button in spawnButtons)
+        if (cell == selectedCell)
         {
-            button.buttonTapped += OnTowerButtonTapped;
+            DeselectCell();
+            return;
         }
+        selectedCell = cell;
+        upgradeMenu.SetTarget(cell);
     }
-    public TowerFactory GetSelectedFactory()
+
+    public void DeselectCell()
     {
-        return selectedFactory;
+        selectedCell = null;
+        upgradeMenu.Hide();
+    }
+
+    public void TryPlaceTowerOnCell(Cell cell)
+    {
+        if (!isPlacingTower || selectedFactory == null || cell.IsOccupied())
+        {
+            Debug.Log("Can't place tower here!");
+            return;
+        }
+
+        Tower newTower = selectedFactory.CreateTower(cell.GetBuildPosition());
+        if (newTower != null)
+        {
+            cell.SetTower(newTower, selectedFactory);
+        }
+
+        CancelGhostPlacement();
     }
 
     public void RegisterSpawnButton(TowerSpawnButton button)
@@ -64,20 +82,6 @@ public class TowerManager : MonoBehaviour
         button.buttonTapped += OnTowerButtonTapped;
         Debug.Log($"Button registered: {button.name}, total buttons: {spawnButtons.Count}");
     }
-
-    private void Update()
-    {
-        if (isPlacingTower && currentGhost != null)
-        {
-            MoveGhostToMouse();
-        }
-
-        if (Input.GetMouseButtonDown(1) && isPlacingTower)
-        {
-            CancelGhostPlacement();
-        }
-    }
-
     private void OnTowerButtonTapped(TowerData towerData)
     {
         Debug.Log($"Tower button clicked: {towerData.towerName}");
@@ -85,6 +89,61 @@ public class TowerManager : MonoBehaviour
 
 
     }
+
+    public void UpgradeTower(Cell cell)
+    {
+        if (cell.currentFactory == null)
+        {
+            Debug.LogError("No factory stored in this cell! Cannot upgrade.");
+            return;
+        }
+
+        if (cell.tower == null)
+        {
+            Debug.LogError("No tower in this cell! Cannot upgrade.");
+            return;
+        }
+
+        // Détruire l'ancienne tour
+        Destroy(cell.tower.gameObject);
+
+        // Créer la tour améliorée via la factory de la cellule
+        Tower upgradedTower = cell.currentFactory.UpgradeTower(cell.GetBuildPosition(), cell.tower.currentLevel, cell.tower);
+
+        if (upgradedTower != null)
+        {
+            cell.SetTower(upgradedTower, cell.currentFactory);
+            cell.isUpgraded = true;
+
+            upgradedTower.Upgrade();
+
+            Debug.Log($"New Tower upgraded to level: {upgradedTower.currentLevel}");
+            Debug.Log($"New Tower Name: {upgradedTower.towerName}");
+            Debug.Log($"New Tower Damage: {upgradedTower.damage}");
+            Debug.Log($"New Tower Range: {upgradedTower.range}");
+            Debug.Log($"New Tower Cost: {upgradedTower.cost}");
+
+            // Afficher les spécificités selon le type de tour
+            if (upgradedTower is LaserTower laserTower)
+            {
+                Debug.Log($"New Tower Damage Over Time: {laserTower.damageOverTime}");
+            }
+            else if (upgradedTower is CanonTower canonTower)
+            {
+                Debug.Log($"New Area of Effect: {canonTower.areaOfEffect}");
+            }
+            else if (upgradedTower is MachineGunTower machineGunTower)
+            {
+                Debug.Log($"New Attack Per Second: {machineGunTower.attackPerSecond}");
+            }
+        }
+        else
+        {
+            Debug.LogError("Upgrade failed!");
+        }
+    }
+
+    // ================= GESTION DES GHOSTS ================= //
 
     public void StartPlacingTower(TowerData towerData)
     {
@@ -121,12 +180,25 @@ public class TowerManager : MonoBehaviour
         GameUI.instance.SetToBuildMode(towerData);
     }
 
+    private void Update()
+    {
+        if (isPlacingTower && currentGhost != null)
+        {
+            MoveGhostToMouse();
+        }
+
+        if (Input.GetMouseButtonDown(1) && isPlacingTower)
+        {
+            CancelGhostPlacement();
+        }
+    }
+
     private void MoveGhostToMouse()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, placementAreaMask))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
             Cell cell = hit.collider.GetComponent<Cell>();
 
@@ -157,52 +229,16 @@ public class TowerManager : MonoBehaviour
         }
     }
 
-    public void TryPlaceTowerOnCell(Cell cell)
-    {
-        if (!isGhostPlacementValid || selectedFactory == null || cell.IsOccupied())
-        {
-            Debug.Log("Can't place tower here!");
-            return;
-        }
-
-        Tower newTower = selectedFactory.CreateTower(cell.GetBuildPosition());
-        if (newTower != null)
-        {
-            cell.SetTower(newTower);
-            cell.currentFactory = selectedFactory; 
-        }
-
-        CancelGhostPlacement();
-    }
-
     public void CancelGhostPlacement()
     {
         if (currentGhost != null)
         {
             Destroy(currentGhost);
         }
-        Debug.Log("Enter in cancel ghost");
         currentGhost = null;
         selectedFactory = null;
-        isPlacingTower = false;  // <- AJOUTER CETTE LIGNE
-        isGhostPlacementValid = false; // <- AJOUTER CETTE LIGNE
+        isPlacingTower = false;
+        isGhostPlacementValid = false;
         GameUI.instance.CancelGhostPlacement();
-    }
-
-    public void SelectCell(Cell cell)
-    {
-        if (cell == selectedCell)
-        {
-            DeselectCell();
-            return;
-        }
-        selectedCell = cell;
-        upgradeMenu.SetTarget(cell);
-    }
-
-    public void DeselectCell()
-    {
-        selectedCell = null;
-        upgradeMenu.Hide();
     }
 }
