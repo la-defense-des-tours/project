@@ -11,6 +11,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
 
         public MachineGunTower()
         {
+            currentLevel = 1;
             range = 30f;
             damage = 30f;
             cost = 80;

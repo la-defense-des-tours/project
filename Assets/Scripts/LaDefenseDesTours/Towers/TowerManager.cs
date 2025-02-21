@@ -3,19 +3,32 @@ using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using Assets.Scripts.LaDefenseDesTours.UI.HUD;
 using UnityEngine;
+using UnityEngine.InputSystem.HID;
 
 public class TowerManager : MonoBehaviour
 {
     [SerializeField] private TowerFactory machineGunFactory;
     [SerializeField] private TowerFactory laserFactory;
     [SerializeField] private TowerFactory canonFactory;
+
+    [SerializeField] private GameObject machineGunGhostPrefab;
+    [SerializeField] private GameObject laserGhostPrefab;
+    [SerializeField] private GameObject canonGhostPrefab;
+
+    private GameObject currentGhost;
     private TowerFactory selectedFactory;
     public static TowerManager Instance;
+    private bool isPlacingTower = false;
+    private bool isGhostPlacementValid = false;
+
+    [SerializeField] private LayerMask placementAreaMask;
+
     private List<TowerSpawnButton> spawnButtons = new List<TowerSpawnButton>();
     private Cell selectedCell;
     public UpgradeMenu upgradeMenu;
 
-    public bool canBuild { get { return selectedFactory != null; } }
+    public bool IsPlacingTower => isPlacingTower;
+    public bool CanBuild() => selectedFactory != null;
 
     private void Awake()
     {
@@ -27,6 +40,18 @@ public class TowerManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        foreach (var button in spawnButtons)
+        {
+            button.buttonTapped += OnTowerButtonTapped;
+        }
+    }
+    public TowerFactory GetSelectedFactory()
+    {
+        return selectedFactory;
+    }
+
     public void RegisterSpawnButton(TowerSpawnButton button)
     {
         if (button == null)
@@ -36,45 +61,132 @@ public class TowerManager : MonoBehaviour
         }
 
         spawnButtons.Add(button);
-        button.buttonTapped += OnTowerButtonTapped; // Ajoute l'événement
-
+        button.buttonTapped += OnTowerButtonTapped;
         Debug.Log($"Button registered: {button.name}, total buttons: {spawnButtons.Count}");
     }
 
-    public void Start()
+    private void Update()
     {
+        if (isPlacingTower && currentGhost != null)
+        {
+            MoveGhostToMouse();
+        }
 
+        if (Input.GetMouseButtonDown(1) && isPlacingTower)
+        {
+            CancelGhostPlacement();
+        }
     }
 
     private void OnTowerButtonTapped(TowerData towerData)
     {
-        SelectTower(towerData.towerName);
-        Debug.Log("Tower selected");
+        Debug.Log($"Tower button clicked: {towerData.towerName}");
+        StartPlacingTower(towerData);
+
+
     }
 
-    private void SelectTower(string towerName)
+    public void StartPlacingTower(TowerData towerData)
     {
-        switch (towerName)
+        if (currentGhost != null)
+        {
+            CancelGhostPlacement();
+        }
+
+        switch (towerData.towerName)
         {
             case "Machine Gun":
                 selectedFactory = machineGunFactory;
+                currentGhost = Instantiate(machineGunGhostPrefab);
                 break;
             case "Laser":
                 selectedFactory = laserFactory;
+                currentGhost = Instantiate(laserGhostPrefab);
                 break;
             case "Canon":
                 selectedFactory = canonFactory;
+                currentGhost = Instantiate(canonGhostPrefab);
                 break;
             default:
                 Debug.LogError("Invalid tower name");
-                break;
+                return;
         }
-        Debug.Log($"Selected Tower: {towerName}");
+
+        if (currentGhost != null)
+        {
+            currentGhost.SetActive(true);
+        }
+
+        isPlacingTower = true;
+        GameUI.instance.SetToBuildMode(towerData);
     }
 
-    public TowerFactory GetSelectedFactory()
+    private void MoveGhostToMouse()
     {
-        return selectedFactory;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, placementAreaMask))
+        {
+            Cell cell = hit.collider.GetComponent<Cell>();
+
+            if (cell != null && !cell.IsOccupied())
+            {
+                currentGhost.transform.position = cell.GetBuildPosition();
+                isGhostPlacementValid = true;
+            }
+            else
+            {
+                isGhostPlacementValid = false;
+            }
+        }
+        else
+        {
+            isGhostPlacementValid = false;
+        }
+
+        UpdateGhostVisual();
+    }
+
+    private void UpdateGhostVisual()
+    {
+        Renderer ghostRenderer = currentGhost?.GetComponent<Renderer>();
+        if (ghostRenderer != null)
+        {
+            ghostRenderer.material.color = isGhostPlacementValid ? new Color(0, 1, 0, 0.5f) : new Color(1, 0, 0, 0.5f);
+        }
+    }
+
+    public void TryPlaceTowerOnCell(Cell cell)
+    {
+        if (!isGhostPlacementValid || selectedFactory == null || cell.IsOccupied())
+        {
+            Debug.Log("Can't place tower here!");
+            return;
+        }
+
+        Tower newTower = selectedFactory.CreateTower(cell.GetBuildPosition());
+        if (newTower != null)
+        {
+            cell.SetTower(newTower);
+            cell.currentFactory = selectedFactory; 
+        }
+
+        CancelGhostPlacement();
+    }
+
+    public void CancelGhostPlacement()
+    {
+        if (currentGhost != null)
+        {
+            Destroy(currentGhost);
+        }
+        Debug.Log("Enter in cancel ghost");
+        currentGhost = null;
+        selectedFactory = null;
+        isPlacingTower = false;  // <- AJOUTER CETTE LIGNE
+        isGhostPlacementValid = false; // <- AJOUTER CETTE LIGNE
+        GameUI.instance.CancelGhostPlacement();
     }
 
     public void SelectCell(Cell cell)
@@ -85,9 +197,6 @@ public class TowerManager : MonoBehaviour
             return;
         }
         selectedCell = cell;
-        Debug.Log($"Cell selected: {transform.position}");
-        selectedFactory = null;
-
         upgradeMenu.SetTarget(cell);
     }
 
@@ -95,6 +204,5 @@ public class TowerManager : MonoBehaviour
     {
         selectedCell = null;
         upgradeMenu.Hide();
-
     }
 }

@@ -21,7 +21,6 @@ public class Cell : MonoBehaviour
     {
         cellRenderer = GetComponent<Renderer>();
         defaultMaterial = cellRenderer.material;
-
         towerManager = TowerManager.Instance;
     }
 
@@ -32,38 +31,41 @@ public class Cell : MonoBehaviour
 
     private void OnMouseDown()
     {
-
         if (tower != null)
         {
+            // Sélectionner la cellule si une tour est déjà dessus
             towerManager.SelectCell(this);
             return;
         }
 
-        if (!towerManager.canBuild)
+        if (!towerManager.CanBuild() || towerManager.IsPlacingTower == false)
         {
             Debug.Log("Not possible to build here!");
             return;
         }
 
-        BuildTower(towerManager.GetSelectedFactory());
-        if (tower == null)
-        {
-            Debug.Log("No tower selected!");
-            return;
-        }
-
-        Debug.Log($"Tower placed at: {transform.position}");
+        // Placer la tour via TowerManager
+        towerManager.TryPlaceTowerOnCell(this);
     }
 
     public void UpgradeTower()
     {
-        if (currentFactory == null || tower == null)
+        if (currentFactory == null)
         {
-            Debug.Log("No tower selected!");
+            Debug.LogError("No factory stored in this cell! Cannot upgrade.");
             return;
         }
 
+        if (tower == null)
+        {
+            Debug.LogError("No tower in this cell! Cannot upgrade.");
+            return;
+        }
+
+        // Détruire l'ancienne tour
         Destroy(tower.gameObject);
+
+        // Créer la tour améliorée
         Tower upgradedTower = currentFactory.UpgradeTower(GetBuildPosition(), tower.currentLevel, tower);
 
         if (upgradedTower != null)
@@ -78,17 +80,19 @@ public class Cell : MonoBehaviour
             Debug.Log($"New Tower Damage: {tower.damage}");
             Debug.Log($"New Tower Range: {tower.range}");
             Debug.Log($"New Tower Cost: {tower.cost}");
-            if (tower as LaserTower != null)
+
+            // Afficher les spécificités selon le type de tour
+            if (tower is LaserTower laserTower)
             {
-                Debug.Log($"New Tower Damage Over Time: {(tower as LaserTower).damageOverTime}");
+                Debug.Log($"New Tower Damage Over Time: {laserTower.damageOverTime}");
             }
-            else if (tower as CanonTower != null)
+            else if (tower is CanonTower canonTower)
             {
-                Debug.Log($"New Area of Effect: {(tower as CanonTower).areaOfEffect}");
+                Debug.Log($"New Area of Effect: {canonTower.areaOfEffect}");
             }
-            else if (tower as MachineGunTower != null)
+            else if (tower is MachineGunTower machineGunTower)
             {
-                Debug.Log($"New Attack Per Second: {(tower as MachineGunTower).attackPerSecond}");
+                Debug.Log($"New Attack Per Second: {machineGunTower.attackPerSecond}");
             }
         }
         else
@@ -97,32 +101,6 @@ public class Cell : MonoBehaviour
         }
     }
 
-    private void BuildTower(TowerFactory factory)
-    {
-        if (factory == null)
-        {
-            Debug.Log("No tower selected!");
-            return;
-        }
-        Tower tower = factory.CreateTower(GetBuildPosition());
-        this.tower = tower;
-        currentFactory = factory;
-
-        tower.currentLevel = 1;
-
-        Debug.Log($"Tower Name: {tower.towerName}");
-        Debug.Log($"Tower Damage: {tower.damage}");
-        Debug.Log($"Tower Range: {tower.range}");
-    }
-    private void OnMouseEnter()
-    {
-        cellRenderer.material = hoverMaterial;
-    }
-
-    private void OnMouseExit()
-    {
-        cellRenderer.material = defaultMaterial;
-    }
 
     public bool IsOccupied()
     {
@@ -132,5 +110,16 @@ public class Cell : MonoBehaviour
     public void SetTower(Tower newTower)
     {
         tower = newTower;
+        currentFactory = TowerManager.Instance.GetSelectedFactory();
+    }
+
+    private void OnMouseEnter()
+    {
+        cellRenderer.material = hoverMaterial;
+    }
+
+    private void OnMouseExit()
+    {
+        cellRenderer.material = defaultMaterial;
     }
 }

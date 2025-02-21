@@ -11,6 +11,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
 
         public CanonTower()
         {
+            currentLevel = 1; 
             range = 20f;
             damage = 100f;
             cost = 120;

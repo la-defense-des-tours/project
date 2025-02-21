@@ -4119,9 +4119,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1065354752}
     - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
+      propertyPath: canonGhostPrefab
+      value: 
+      objectReference: {fileID: 5059962892274874607, guid: c22b6379b55adaa48aa842b44781a98a, type: 3}
+    - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
+      propertyPath: laserGhostPrefab
+      value: 
+      objectReference: {fileID: 8951942140004569536, guid: 993a0d19472d7134e863930c11da5eb8, type: 3}
+    - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
       propertyPath: machineGunFactory
       value: 
       objectReference: {fileID: 1604393417}
+    - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
+      propertyPath: machineGunGhostPrefab
+      value: 
+      objectReference: {fileID: 7129850076736660284, guid: 84d5faa06b8eb2141bbca4cc2917364c, type: 3}
+    - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
+      propertyPath: placementAreaMask.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2125444469714331958, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
       propertyPath: m_Name
       value: TowerManager

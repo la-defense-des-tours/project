@@ -16,7 +16,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
     /// A button controller for spawning towers
     /// </summary>
     [RequireComponent(typeof(RectTransform))]
-    public class TowerSpawnButton : MonoBehaviour, IDragHandler
+    public class TowerSpawnButton : MonoBehaviour
     {
         /// <summary>
         /// The text attached to the button
@@ -38,11 +38,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// </summary>
         public event Action<TowerData> buttonTapped;
 
-        /// <summary>
-        /// Fires when the pointer is outside of the button bounds
-        /// and still down
-        /// </summary>
-        public event Action<TowerData> draggedOff;
+
 
         /// <summary>
         /// The tower controller that defines the button
@@ -60,20 +56,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         RectTransform m_RectTransform;
 
 
-        /// <summary>
-        /// Checks if the pointer is out of bounds
-        /// and then fires the draggedOff event
-        /// </summary>
-        public virtual void OnDrag(PointerEventData eventData)
-        {
-        //    if (!RectTransformUtility.RectangleContainsScreenPoint(m_RectTransform, eventData.position))
-        //    {
-        //        if (draggedOff != null)
-        //        {
-        //            draggedOff(m_Tower);
-        //        }
-        //    }
-        }
 
         protected virtual void Awake()
         {
@@ -136,9 +118,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         public void OnClick()
         {  
             Debug.Log("m_Tower: " + m_Tower);
-
             buttonTapped(m_Tower);
-
 
         }
 
