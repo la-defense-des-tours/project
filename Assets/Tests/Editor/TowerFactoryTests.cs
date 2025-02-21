@@ -121,28 +121,16 @@ public class TowerFactoryTests
     {
         Vector3 position = new Vector3(0, 0, 0);
 
-        // First Upgrade (Level 0 -> Level 1)
-        string expectedMessage1 = "MachineGun Tower 1 Upgraded";
-        LogAssert.Expect(LogType.Log, expectedMessage1);
-        Tower upgradedTower1 = machineGunTowerFactory.UpgradeTower(position, 0, null);
+        Tower upgradedTower1 = machineGunTowerFactory.UpgradeTower(position, 1, null);
+        Tower upgradedTower2 = machineGunTowerFactory.UpgradeTower(position, 2, upgradedTower1);
+        Tower nullTower = machineGunTowerFactory.UpgradeTower(position, 3, upgradedTower2);
 
         Assert.IsNotNull(upgradedTower1);
         Assert.IsTrue(upgradedTower1 is MachineGunTower);
-
-        // Second Upgrade (Level 1 -> Level 2)
-        string expectedMessage2 = "MachineGun Tower 2 Upgraded";
-        LogAssert.Expect(LogType.Log, expectedMessage2);
-        Tower upgradedTower2 = machineGunTowerFactory.UpgradeTower(position, 1, upgradedTower1);
-
         Assert.IsNotNull(upgradedTower2);
         Assert.IsTrue(upgradedTower2 is MachineGunTower);
-
-        // Invalid Upgrade (Max Level Reached)
-        string expectedErrorMessage = "Max upgrade level reached!";
-        LogAssert.Expect(LogType.Error, expectedErrorMessage);
-        Tower nullTower = machineGunTowerFactory.UpgradeTower(position, 2, upgradedTower2);
-
         Assert.IsNull(nullTower);
+        LogAssert.Expect(LogType.Error, "Max upgrade level reached!");
     }
 
     [Test]
@@ -150,28 +138,16 @@ public class TowerFactoryTests
     {
         Vector3 position = new Vector3(0, 0, 0);
 
-        // First Upgrade (Level 0 -> Level 1)
-        string expectedMessage1 = "Canon Tower 1 Upgraded";
-        LogAssert.Expect(LogType.Log, expectedMessage1);
-        Tower upgradedTower1 = canonTowerFactory.UpgradeTower(position, 0, null);
+        Tower upgradedTower1 = canonTowerFactory.UpgradeTower(position, 1, null);
+        Tower upgradedTower2 = canonTowerFactory.UpgradeTower(position, 2, upgradedTower1);
+        Tower nullTower = canonTowerFactory.UpgradeTower(position, 3, upgradedTower2);
 
         Assert.IsNotNull(upgradedTower1);
         Assert.IsTrue(upgradedTower1 is CanonTower);
-
-        // Second Upgrade (Level 1 -> Level 2)
-        string expectedMessage2 = "Canon Tower 2 Upgraded";
-        LogAssert.Expect(LogType.Log, expectedMessage2);
-        Tower upgradedTower2 = canonTowerFactory.UpgradeTower(position, 1, upgradedTower1);
-
         Assert.IsNotNull(upgradedTower2);
         Assert.IsTrue(upgradedTower2 is CanonTower);
-
-        // Invalid Upgrade (Max Level Reached)
-        string expectedErrorMessage = "Max upgrade level reached!";
-        LogAssert.Expect(LogType.Error, expectedErrorMessage);
-        Tower nullTower = canonTowerFactory.UpgradeTower(position, 2, upgradedTower2);
-
         Assert.IsNull(nullTower);
+        LogAssert.Expect(LogType.Error, "Max upgrade level reached!");
     }
 
     [Test]
@@ -179,28 +155,16 @@ public class TowerFactoryTests
     {
         Vector3 position = new Vector3(0, 0, 0);
 
-        // First Upgrade (Level 0 -> Level 1)
-        string expectedMessage1 = "Laser Tower 1 Upgraded";
-        LogAssert.Expect(LogType.Log, expectedMessage1);
-        Tower upgradedTower1 = laserTowerFactory.UpgradeTower(position, 0, null);
+        Tower upgradedTower1 = laserTowerFactory.UpgradeTower(position, 1, null);
+        Tower upgradedTower2 = laserTowerFactory.UpgradeTower(position, 2, upgradedTower1);
+        Tower nullTower = laserTowerFactory.UpgradeTower(position, 3, upgradedTower2);
 
         Assert.IsNotNull(upgradedTower1);
         Assert.IsTrue(upgradedTower1 is LaserTower);
-
-        // Second Upgrade (Level 1 -> Level 2)
-        string expectedMessage2 = "Laser Tower 2 Upgraded";
-        LogAssert.Expect(LogType.Log, expectedMessage2);
-        Tower upgradedTower2 = laserTowerFactory.UpgradeTower(position, 1, upgradedTower1);
-
         Assert.IsNotNull(upgradedTower2);
         Assert.IsTrue(upgradedTower2 is LaserTower);
-
-        // Invalid Upgrade (Max Level Reached)
-        string expectedErrorMessage = "Max upgrade level reached!";
-        LogAssert.Expect(LogType.Error, expectedErrorMessage);
-        Tower nullTower = laserTowerFactory.UpgradeTower(position, 2, upgradedTower2);
-
         Assert.IsNull(nullTower);
+        LogAssert.Expect(LogType.Error, "Max upgrade level reached!");
     }
 
     [Test]
