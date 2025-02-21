@@ -174,7 +174,7 @@ MonoBehaviour:
   rotatingPart: {fileID: 386654444262887737}
   fireRate: 4
   fireCountdown: 0
-  bullet: {fileID: 3756381238834390066, guid: 0c0e6c6dd14c7fc019b6552dd254f299, type: 3}
+  bullet: {fileID: 178726760221476399, guid: 0c0e6c6dd14c7fc019b6552dd254f299, type: 3}
   firePoint: {fileID: 2221085130970084641}
 --- !u!1 &5970522283295220337
 GameObject:

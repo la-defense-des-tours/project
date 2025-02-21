@@ -314,5 +314,5 @@ MonoBehaviour:
   rotatingPart: {fileID: 5692223279559571255}
   fireRate: 2
   fireCountdown: 0
-  bullet: {fileID: 3756381238834390066, guid: 0c0e6c6dd14c7fc019b6552dd254f299, type: 3}
+  bullet: {fileID: 178726760221476399, guid: 0c0e6c6dd14c7fc019b6552dd254f299, type: 3}
   firePoint: {fileID: 4208258262680981007}

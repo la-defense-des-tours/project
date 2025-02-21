@@ -67,10 +67,7 @@ public class Shooter : MonoBehaviour
         Bullet bulletInstance = Instantiate(bullet, firePoint.position, firePoint.rotation);
 
         if (bulletInstance != null)
-        {
-            bulletInstance.Seek(target);
-            bulletInstance.SetDamage(damage);
-        }
+            InitializeBullet(bulletInstance);
     }
     public void SetRange(float _range)
     {
@@ -80,6 +77,13 @@ public class Shooter : MonoBehaviour
     {
         damage = _damage;
     }
+
+    private void InitializeBullet(Bullet bullet)
+    {
+        bullet.Seek(target);
+        bullet.SetDamage(damage);
+    }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
