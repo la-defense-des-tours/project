@@ -4,7 +4,7 @@ using Assets.Scripts.LaDefenseDesTours.Interfaces;
 public abstract class Bullet : MonoBehaviour
 {
     [Header("Bullet Settings")]
-    [SerializeField] protected float speed = 75f;
+    [SerializeField] protected float speed = 70f;
     protected virtual float specialAbility { get; set; }
     protected float damage;
 
@@ -27,7 +27,7 @@ public abstract class Bullet : MonoBehaviour
 
     protected abstract void HitTarget();
 
-    private void HandleTrajectory()
+    protected virtual void HandleTrajectory()
     {
         if (target == null)
         {
