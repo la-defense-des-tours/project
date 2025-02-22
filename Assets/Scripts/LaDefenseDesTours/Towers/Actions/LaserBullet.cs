@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class LaserBullet : Bullet
 {
@@ -8,7 +7,7 @@ public class LaserBullet : Bullet
     [SerializeField] private Material laserMaterial;
 
     private bool isApplyingDamage;
-    private float lastDamage;
+    private const string ENEMY_TAG = "Enemy";
 
     private void Start()
     {
@@ -18,34 +17,44 @@ public class LaserBullet : Bullet
 
     private void SetupLaserVisuals()
     {
-        if (laserLine == null)
-        {
-            laserLine = gameObject.AddComponent<LineRenderer>();
-            laserLine.positionCount = 2;
-            laserLine.startWidth = 0.1f;
-            laserLine.endWidth = 0.1f;
-            laserLine.material = laserMaterial;
-        }
+        laserLine = gameObject.AddComponent<LineRenderer>();
+        laserLine.positionCount = 2;
+        laserLine.startWidth = 0.1f;
+        laserLine.endWidth = 0.1f;
+        laserLine.material = laserMaterial;
+        laserLine.useWorldSpace = true;
     }
 
     protected override void HandleTrajectory()
     {
-        if (target == null)
+        if (target == null || target.CompareTag("Untagged"))
         {
+            if (laserLine.enabled)
+                laserLine.enabled = false;
+                
             Destroy(gameObject);
             return;
         }
 
-        laserLine.SetPosition(0, transform.position);
-        laserLine.SetPosition(1, targetCollider.bounds.center);
+        if (!target.CompareTag(ENEMY_TAG))
+        {
+            laserLine.enabled = false;
+            return;
+        }
+
+        if (!laserLine.enabled)
+            laserLine.enabled = true;
+
+        Vector3 startPos = transform.position;
+        Vector3 endPos = targetCollider.bounds.center;
+        
+        laserLine.SetPosition(0, startPos);
+        laserLine.SetPosition(1, endPos);
 
         if (isApplyingDamage && targetEnemy != null)
         {
-            float baseDmg = damage * Time.deltaTime;
-            float dotDmg = specialAbility * Time.deltaTime;
-            lastDamage = baseDmg + dotDmg;
-
-            targetEnemy.TakeDamage(lastDamage);
+            float dmg = (damage + specialAbility) * Time.deltaTime;
+            targetEnemy.TakeDamage(dmg);
         }
     }
 
@@ -58,15 +67,5 @@ public class LaserBullet : Bullet
     private void OnDestroy()
     {
         isApplyingDamage = false;
-    }
-
-    private void OnGUI()
-    {
-        if (isApplyingDamage && targetEnemy != null)
-        {
-            Vector3 screenPos = Camera.main.WorldToScreenPoint(targetCollider.bounds.center);
-            GUI.Label(new Rect(screenPos.x, Screen.height - screenPos.y, 100, 20), 
-                     $"DPS: {(damage + specialAbility):F1}");
-        }
     }
 }
