@@ -8,11 +8,11 @@ public class Shooter : MonoBehaviour
     [SerializeField] private float fireCountdown;
     private const string ENEMY_TAG = "Enemy";
     private Transform target;
+    private float range;
 
     [Header("Bullet Attributes")]
     [SerializeField] private Bullet bullet;
     [SerializeField] private Transform firePoint;
-    private float range;
     private float damage;
     private float specialAbility;
 

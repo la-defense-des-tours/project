@@ -14,7 +14,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual float acceleration { get; set; }
 
         [SerializeField] private Slider healthBar;
-        public virtual float maxHealth { get; set; } = 100;
+        public virtual float maxHealth { get; set; }
 
         public void Awake()
         {

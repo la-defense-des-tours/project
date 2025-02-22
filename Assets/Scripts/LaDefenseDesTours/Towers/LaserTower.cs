@@ -15,6 +15,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             damage = 0.25f;
             cost = 100;
         }
+        public override void Start()
+        {
+            base.Start();
+            m_shooter.SetSpecialAbility(damageOverTime);
+        }
         public override void Upgrade()
         {
             currentLevel++;

@@ -16,6 +16,7 @@ public class WaveManager : MonoBehaviour
         SetupWaves();
     }
 
+    [ContextMenu("Start Wave")] // Pour mes tests sur scène Prototype
     public void StartWave()
     {
         Generate(wave1);
