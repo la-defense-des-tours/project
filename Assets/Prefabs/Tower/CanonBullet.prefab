@@ -121,5 +121,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b0cd159b3dcd374490abc4d28dbc94b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 75
-  areaOfEffect: 20
+  speed: 25

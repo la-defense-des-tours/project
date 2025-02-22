@@ -21,7 +21,6 @@ public class CanonBullet : Bullet
 
         Destroy(gameObject);
     }
-
     protected override void HandleTrajectory()
     {
         if (target == null)
@@ -37,18 +36,30 @@ public class CanonBullet : Bullet
             startTime = Time.time;
         }
 
-        float distanceCovered = (Time.time - startTime) * speed;
-        float progressDistance = distanceCovered / totalDistance; // Si 1, on a atteint la cible
+        float progressDistance = TrackProgress();
 
-        Vector3 targetCenter = targetCollider.bounds.center;
-        Vector3 linearPosition = Vector3.Lerp(startPosition, targetCenter, progressDistance);
-        float height = arcHeight * Mathf.Sin(progressDistance * Mathf.PI);
-        Vector3 arcPosition = linearPosition + Vector3.up * height;
-
-        transform.position = arcPosition;
-        transform.LookAt(targetCenter);
+        Vector3 updatePosition = CalculateArcPosition(progressDistance);
+        UpdateBulletPosition(updatePosition);
 
         if (progressDistance >= 1.0f)
             HitTarget();
+    }
+    private float TrackProgress()
+    {
+        float distanceCovered = (Time.time - startTime) * speed;
+        return distanceCovered / totalDistance; // Si 1, on a atteint la cible (distanceCovered = totalDistance)
+    }
+    private Vector3 CalculateArcPosition(float progressDistance)
+    {
+        Vector3 targetCenter = targetCollider.bounds.center;
+        Vector3 linearPosition = Vector3.Lerp(startPosition, targetCenter, progressDistance);
+        float height = arcHeight * Mathf.Sin(progressDistance * Mathf.PI);
+
+        return linearPosition + Vector3.up * height;
+    }
+    private void UpdateBulletPosition(Vector3 updatePosition)
+    {
+        transform.position = updatePosition;
+        transform.LookAt(targetCollider.bounds.center);
     }
 }
