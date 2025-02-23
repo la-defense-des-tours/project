@@ -4007,14 +4007,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4944757844558796686, guid: a6cb4125b9d50d244841d65a25295d88, type: 3}
-      propertyPath: machineGunTowerUpgrade
-      value: 
-      objectReference: {fileID: 5790104110576652689, guid: 9d7932de9c95152439ca4d789a7dacb4, type: 3}
-    - target: {fileID: 4944757844558796686, guid: a6cb4125b9d50d244841d65a25295d88, type: 3}
-      propertyPath: machineGunTowerUpgrade2
-      value: 
-      objectReference: {fileID: -6137382387874397706, guid: e9c3e0e6185e97e498cdaaf6838a682a, type: 3}
     - target: {fileID: 5598219764441656283, guid: a6cb4125b9d50d244841d65a25295d88, type: 3}
       propertyPath: canonTowerUpgrade
       value: 
@@ -4027,14 +4019,6 @@ PrefabInstance:
       propertyPath: flyingEnemy
       value: 
       objectReference: {fileID: -2384930323376866074, guid: e0123180cf553de43a582138e4c8d353, type: 3}
-    - target: {fileID: 5756627171735786665, guid: a6cb4125b9d50d244841d65a25295d88, type: 3}
-      propertyPath: laserTowerUpgrade
-      value: 
-      objectReference: {fileID: 3508522599049903178, guid: 73ad0c0d1fb5fe049a73d81a3cc5d58e, type: 3}
-    - target: {fileID: 5756627171735786665, guid: a6cb4125b9d50d244841d65a25295d88, type: 3}
-      propertyPath: laserTowerUpgrade2
-      value: 
-      objectReference: {fileID: -7995590564768954988, guid: 5ff5b74a14d09b142a14bfd9a6d49cca, type: 3}
     - target: {fileID: 6291511129324968338, guid: a6cb4125b9d50d244841d65a25295d88, type: 3}
       propertyPath: walkingEnemy
       value: 
@@ -4130,7 +4114,7 @@ PrefabInstance:
     - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
       propertyPath: laserGhostPrefab
       value: 
-      objectReference: {fileID: 8951942140004569536, guid: 993a0d19472d7134e863930c11da5eb8, type: 3}
+      objectReference: {fileID: 8951942140004569536, guid: c65d1ab510ebeb34b955a31ae47b9191, type: 3}
     - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
       propertyPath: machineGunFactory
       value: 
@@ -4138,7 +4122,7 @@ PrefabInstance:
     - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
       propertyPath: machineGunGhostPrefab
       value: 
-      objectReference: {fileID: 7129850076736660284, guid: 84d5faa06b8eb2141bbca4cc2917364c, type: 3}
+      objectReference: {fileID: 7129850076736660284, guid: 90cd1367838ed104eb47bc69ddcf977a, type: 3}
     - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
       propertyPath: placementAreaMask.m_Bits
       value: 8

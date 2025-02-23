@@ -43,8 +43,16 @@ namespace Assets.Scripts.LaDefenseDesTours
 
             UpdateHealthColor();
             healthSlider.value = target.health;
-            HandleHealthBarVisibility();
+
+            gameObject.SetActive(true);
+            if (target.health <= 0)
+            {
+                gameObject.SetActive(false);
+
+            }
+            canvasGroup.alpha = 1f;
         }
+
         private void UpdateHealthColor()
         {
             if (healthFill == null) return;
@@ -58,6 +66,9 @@ namespace Assets.Scripts.LaDefenseDesTours
         public void HandleHealthBarVisibility()
         {
             bool shouldBeVisible = target.health < target.maxHealth && target.health > 0;
+
+            Debug.Log("maxHealth " + target.maxHealth);
+            Debug.Log("health" + target.health);
 
             if (shouldBeVisible)
             {

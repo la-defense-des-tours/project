@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1c9e19f172ecb4ab0015cec7947db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flyingEnemy: {fileID: -2597181822718089466, guid: e0123180cf553de43a582138e4c8d353, type: 3}
+  flyingEnemy: {fileID: 0}
 --- !u!1 &1267014449939626879
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,7 +89,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc196f5c08a8aba48a28adc73947d4c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserTower: {fileID: 7860087309538003013, guid: 993a0d19472d7134e863930c11da5eb8, type: 3}
+  laserTower: {fileID: 7860087309538003013, guid: c65d1ab510ebeb34b955a31ae47b9191, type: 3}
+  laserTowerUpgrade: {fileID: 3508522599049903178, guid: 73ad0c0d1fb5fe049a73d81a3cc5d58e, type: 3}
+  laserTowerUpgrade2: {fileID: -7995590564768954988, guid: 5ff5b74a14d09b142a14bfd9a6d49cca, type: 3}
 --- !u!1 &1720220375865476085
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86541a0504da3e845a389b6536c712d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkingEnemy: {fileID: -6686621372911056189, guid: ff76a0eedd8a67a4686fb4c7d7081dd3, type: 3}
+  walkingEnemy: {fileID: 0}
 --- !u!1 &3438356546613777937
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,7 +264,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8253bf836e231aa4f8790898cb6ccf1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  machineGunTower: {fileID: 1581645643603749909, guid: 84d5faa06b8eb2141bbca4cc2917364c, type: 3}
+  machineGunTower: {fileID: 1581645643603749909, guid: 90cd1367838ed104eb47bc69ddcf977a, type: 3}
+  machineGunTowerUpgrade: {fileID: 5790104110576652689, guid: 9d7932de9c95152439ca4d789a7dacb4, type: 3}
+  machineGunTowerUpgrade2: {fileID: -6137382387874397706, guid: e9c3e0e6185e97e498cdaaf6838a682a, type: 3}
 --- !u!1 &4588860271367829317
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,6 +312,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canonTower: {fileID: -2066031236903285922, guid: c22b6379b55adaa48aa842b44781a98a, type: 3}
+  canonTowerUpgrade: {fileID: 0}
+  canonTowerUpgrade2: {fileID: 0}
 --- !u!1 &6652792228291203120
 GameObject:
   m_ObjectHideFlags: 0
