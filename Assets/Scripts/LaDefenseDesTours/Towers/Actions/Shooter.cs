@@ -1,5 +1,4 @@
 using UnityEngine;
-using Assets.Scripts.LaDefenseDesTours.Interfaces;
 public class Shooter : MonoBehaviour
 {
     [Header("Tower Attributes")]
@@ -7,30 +6,23 @@ public class Shooter : MonoBehaviour
     [SerializeField] private Transform rotatingPart;
     [SerializeField] private float fireRate;
     [SerializeField] private float fireCountdown;
+    private const string ENEMY_TAG = "Enemy";
+    private Transform target;
 
     [Header("Bullet Attributes")]
-    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Bullet bullet;
     [SerializeField] private Transform firePoint;
-
-    private Transform target;
     private float range;
     private float damage;
-    private const string ENEMY_TAG = "Enemy";
 
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
-
-        Tower tower = GetComponent<Tower>();
-        range = tower.range;
-        damage = tower.damage;
     }
-
     void Update()
     {
         RotateTurret();
     }
-
     void RotateTurret()
     {
         if (target == null)
@@ -49,7 +41,6 @@ public class Shooter : MonoBehaviour
 
         fireCountdown -= Time.deltaTime;
     }
-
     void UpdateTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(ENEMY_TAG);
@@ -71,19 +62,24 @@ public class Shooter : MonoBehaviour
         else
             target = null;
     }
-
     void Shoot()
     {
-        GameObject bulletObject = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-        Bullet bullet = bulletObject.GetComponent<Bullet>();
+        Bullet bulletInstance = Instantiate(bullet, firePoint.position, firePoint.rotation);
 
-        if (bullet != null)
+        if (bulletInstance != null)
         {
-            bullet.Seek(target);
-            bullet.SetDamage(damage);
+            bulletInstance.Seek(target);
+            bulletInstance.SetDamage(damage);
         }
     }
-
+    public void SetRange(float _range)
+    {
+        range = _range;
+    }
+    public void SetDamage(float _damage)
+    {
+        damage = _damage;
+    }
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

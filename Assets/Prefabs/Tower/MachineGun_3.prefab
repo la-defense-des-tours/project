@@ -95,7 +95,7 @@ MonoBehaviour:
   rotatingPart: {fileID: 9052286597470855091}
   fireRate: 6
   fireCountdown: 0
-  bulletPrefab: {fileID: 2133051209636147784, guid: 0c0e6c6dd14c7fc019b6552dd254f299, type: 3}
+  bullet: {fileID: 3756381238834390066, guid: 0c0e6c6dd14c7fc019b6552dd254f299, type: 3}
   firePoint: {fileID: 4188819099415367128}
 --- !u!1001 &2979175748552648527
 PrefabInstance:
