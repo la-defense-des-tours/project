@@ -94,17 +94,5 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
                 LevelManager.instance.BuildingCompleted();
             }
         }
-
-        /// <summary>
-        /// Debug button to add currency
-        /// </summary>
-        /// <param name="amount">How much to add</param>
-        public void AddCurrency(int amount)
-        {
-            if (LevelManager.instanceExists)
-            {
-                //LevelManager.instance.currency.AddCurrency(amount);
-            }
-        }
     }
 }

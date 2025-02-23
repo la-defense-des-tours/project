@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Level;
 using Assets.Scripts.LaDefenseDesTours.Towers;
 using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using Assets.Scripts.LaDefenseDesTours.UI.HUD;
+using NUnit.Framework;
 using UnityEngine;
 
 public class TowerManager : MonoBehaviour
@@ -24,6 +26,7 @@ public class TowerManager : MonoBehaviour
     private Cell selectedCell;
     public UpgradeMenu upgradeMenu;
 
+    private TowerData selectedTowerData;
     public static TowerManager Instance;
 
     private void Awake()
@@ -61,11 +64,25 @@ public class TowerManager : MonoBehaviour
             return;
         }
 
+        if (selectedTowerData == null)
+        {
+            Debug.LogError("No TowerData selected! Cannot determine cost.");
+            return;
+        }
+
+        if (!LevelManager.instance.currency.TryPurchase(selectedTowerData.cost))
+        {
+            Debug.Log("Pas assez d'argent !");
+            return; // Annuler le placement si pas assez d'argent
+        }
+
+        // Achat validé, placer la tour
         Tower newTower = selectedFactory.CreateTower(cell.GetBuildPosition());
         if (newTower != null)
         {
             cell.SetTower(newTower, selectedFactory);
         }
+
 
         CancelGhostPlacement();
     }
@@ -143,7 +160,6 @@ public class TowerManager : MonoBehaviour
         }
     }
 
-    // ================= GESTION DES GHOSTS ================= //
 
     public void StartPlacingTower(TowerData towerData)
     {
@@ -151,6 +167,8 @@ public class TowerManager : MonoBehaviour
         {
             CancelGhostPlacement();
         }
+
+        selectedTowerData = towerData;
 
         switch (towerData.towerName)
         {
@@ -170,6 +188,8 @@ public class TowerManager : MonoBehaviour
                 Debug.LogError("Invalid tower name");
                 return;
         }
+
+
 
         if (currentGhost != null)
         {

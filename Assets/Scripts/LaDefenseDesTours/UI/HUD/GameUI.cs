@@ -275,23 +275,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         }
 
 
-        /// <summary>
-        /// Attempt to position a tower at the given location
-        /// </summary>
-        /// <param name="pointerInfo">The pointer we're using to position the tower</param>
-        public void TryPlaceTower(PointerInfo pointerInfo)
-		{
-			UIPointer pointer = WrapPointer(pointerInfo);
-
-			// Do nothing if we're over UI
-			if (pointer.overUI)
-			{
-				return;
-			}
-			BuyTower(pointer);
-		}
-
-
 		/// <summary>
 		/// Sets up the radius visualizer for a tower or ghost tower
 		/// </summary>
@@ -336,82 +319,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 				selectionChanged(tower);
 			}
 		}
-
-
-		/// <summary>
-		/// Sells <see cref="currentSelectedTower" /> if possible
-		/// </summary>
-		/// <exception cref="InvalidOperationException">
-		/// Throws exception when selecting tower when <see cref="State" /> does not equal <see cref="State.Normal" />
-		/// or <see cref="currentSelectedTower" /> is null
-		/// </exception>
-		//public void SellSelectedTower()
-		//{
-		//	if (state != State.Normal)
-		//	{
-		//		throw new InvalidOperationException("Trying to sell tower whilst not in Normal state");
-		//	}
-		//	if (currentSelectedTower == null)
-		//	{
-		//		throw new InvalidOperationException("Selected Tower is null");
-		//	}
-		//	//int sellValue = currentSelectedTower.GetSellLevel();
-		//	//if (LevelManager.instanceExists && sellValue > 0)
-		//	//{
-		//	//	//LevelManager.instance.currency.AddCurrency(sellValue);
-		//	//	//currentSelectedTower.Sell();
-		//	//}
-		//	DeselectTower();
-		//}
-
-		/// <summary>
-		/// Buys the tower and places it in the place that it currently is
-		/// </summary>
-		/// <exception cref="InvalidOperationException">
-		/// Throws exception if trying to buy towers in Build Mode
-		/// </exception>
-		public void BuyTower()
-		{
-			if (!isBuilding)
-			{
-				throw new InvalidOperationException("Trying to buy towers when not in Build Mode");
-			}
-			//int cost = m_CurrentTower.controller.purchaseCost;
-			//bool successfulPurchase = LevelManager.instance.currency.TryPurchase(cost);
-			//if (successfulPurchase)
-			//{
-				//PlaceTower();
-			//}
-		}
-
-		/// <summary>
-		/// Used to buy the tower during the build phase
-		/// Checks currency and calls <see cref="PlaceGhost" />
-		/// <exception cref="InvalidOperationException">
-		/// Throws exception when not in a build mode or when tower is not a valid position
-		/// </exception>
-		/// </summary>
-		public void BuyTower(UIPointer pointer)
-		{
-			if (!isBuilding)
-			{
-				throw new InvalidOperationException("Trying to buy towers when not in a Build Mode");
-			}
-			//if (!pointer.raycast.HasValue || pointer.raycast.Value.collider == null)
-			//{
-				CancelGhostPlacement();
-				return;
-			//}
-			//int cost = m_CurrentTower.controller.purchaseCost;
-			//bool successfulPurchase = LevelManager.instance.currency.TryPurchase(cost);
-			//if (successfulPurchase)
-			//{
-			//	PlaceGhost(pointer);
-			//}
-		}
-
-
-
 
 
 
@@ -509,37 +416,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 			return currentEventSystem.IsPointerOverGameObject(pointerId);
 		}
 
-
-		/// <summary>
-		/// Modifies the valid rendering of the ghost tower once there is enough currency
-		/// </summary>
-		//protected virtual void OnCurrencyChanged()
-		//{
-		//	if (!isBuilding || m_CurrentTower == null || m_CurrentArea == null)
-		//	{
-		//		return;
-		//	}
-		//	TowerFitStatus fits = m_CurrentArea.Fits(m_GridPosition, m_CurrentTower.controller.dimensions);
-		//	bool valid = fits == TowerFitStatus.Fits && IsValidPurchase();
-		//	m_CurrentTower.Move(m_CurrentArea.GridToWorld(m_GridPosition, m_CurrentTower.controller.dimensions),
-		//						m_CurrentArea.transform.rotation,
-		//						valid);
-		//	if (valid && !m_GhostPlacementPossible && ghostBecameValid != null)
-		//	{
-		//		m_GhostPlacementPossible = true;
-		//		ghostBecameValid();
-		//	}
-		//}
-
-		/// <summary>
-		/// Closes the Tower UI on death of tower
-		/// </summary>
-		//protected void OnTowerDied(DamageableBehaviour targetable)
-		//{
-		//	towerUI.enabled = false;
-		//	radiusVisualizerController.HideRadiusVisualizers();
-		//	DeselectTower();
-		//}
 
 		///// <summary>
 		///// Creates and hides the tower and shows the buildInfoUI

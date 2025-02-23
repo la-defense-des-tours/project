@@ -206,12 +206,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 
 			LevelState oldState = levelState;
 			levelState = newState;
-			if (levelStateChanged != null)
-			{
-				levelStateChanged(oldState, newState);
-			}
-			
-			switch (newState)
+
+            levelStateChanged?.Invoke(oldState, newState);
+
+
+            switch (newState)
 			{
 				case LevelState.SpawningEnemies:
 					waveManager.StartWave();
@@ -228,13 +227,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		protected virtual void OnHomeBaseDestroyed()
 		{
 
-			// Call the destroyed event
-			if (homeBaseDestroyed != null)
-			{
-				homeBaseDestroyed();
-			}
+            homeBaseDestroyed?.Invoke();
 
-			if(!isGameOver)
+
+            if (!isGameOver)
 			{
 				ChangeLevelState(LevelState.Lose);
 			}

@@ -38,8 +38,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// </summary>
         public event Action<TowerData> buttonTapped;
 
-
-
         /// <summary>
         /// The tower controller that defines the button
         /// </summary>
@@ -48,7 +46,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// <summary>
         /// Cached reference to level currency
         /// </summary>
-        //Currency m_Currency;
+        Currency m_Currency;
 
         /// <summary>
         /// The attached rect transform
@@ -73,7 +71,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             m_RectTransform = (RectTransform)transform;
         }
 
-
         /// <summary>
         /// Define the button information for the tower
         /// </summary>
@@ -90,8 +87,8 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 
             if (LevelManager.instanceExists)
             {
-                //m_Currency = LevelManager.instance.currency;
-                //m_Currency.currencyChanged += UpdateButton;
+                m_Currency = LevelManager.instance.currency;
+                m_Currency.currencyChanged += UpdateButton;
             }
             else
             {
@@ -100,17 +97,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             UpdateButton();
         }
 
-
-        /// <summary>
-        /// Unsubscribe from events
-        /// </summary>
-        protected virtual void OnDestroy()
-        {
-            //if (m_Currency != null)
-            //{
-            //    m_Currency.currencyChanged -= UpdateButton;
-            //}
-        }
 
         /// <summary>
         /// The click for when the button is tapped
@@ -127,22 +113,35 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// </summary>
         void UpdateButton()
         {
-            //if (m_Currency == null)
-            //{
-            //    return;
-            //}
+            if (m_Currency == null)
+            {
+                return;
+            }
 
-            //// Enable button
-            //if (m_Currency.CanAfford(m_Tower.purchaseCost) && !buyButton.interactable)
-            //{
-            //    buyButton.interactable = true;
-            //    energyIcon.color = energyDefaultColor;
-            //}
-            //else if (!m_Currency.CanAfford(m_Tower.purchaseCost) && buyButton.interactable)
-            //{
-            //    buyButton.interactable = false;
-            //    energyIcon.color = energyInvalidColor;
-            //}
+            // Enable button
+            if (m_Currency.CanAfford(m_Tower.cost) && !buyButton.interactable)
+            {
+                buyButton.interactable = true;
+                energyIcon.color = energyDefaultColor;
+            }
+            else if (!m_Currency.CanAfford(m_Tower.cost) && buyButton.interactable)
+            {
+                buyButton.interactable = false;
+                energyIcon.color = energyInvalidColor;
+            }
         }
+
+
+        /// <summary>
+        /// Unsubscribe from events
+        /// </summary>
+        protected virtual void OnDestroy()
+        {
+            if (m_Currency != null)
+            {
+                m_Currency.currencyChanged -= UpdateButton;
+            }
+        }
+
     }
 }
