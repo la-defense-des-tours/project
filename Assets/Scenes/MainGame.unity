@@ -965,15 +965,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2541c747d71afe42ab87f309c6be321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placementAreaMask:
-    serializedVersion: 2
-    m_Bits: 0
-  towerSelectionLayer:
-    serializedVersion: 2
-    m_Bits: 2
-  ghostWorldPlacementMask:
-    serializedVersion: 2
-    m_Bits: 2
   sphereCastRadius: 1
   radiusVisualizerController: {fileID: 0}
   towerUI: {fileID: 0}
@@ -3936,6 +3927,7 @@ MonoBehaviour:
     sceneName: 
   intro: {fileID: 5372732949584366344}
   towerLibrary: {fileID: 11400000, guid: b905b328055fdf545903865cde03118f, type: 2}
+  startingCurrency: 1000
   homeBase: {fileID: 7130800125884514737}
 --- !u!114 &5372732949584366344
 MonoBehaviour:

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -14,6 +15,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual float acceleration { get; set; }
 
         [SerializeField] private Slider healthBar;
+
+        public int experiencePoints = 1000;
+
         public virtual float maxHealth { get; set; } = 100;
 
         public void Awake()
@@ -106,6 +110,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         }
         public virtual void Die()
         {
+            EnemyDeathEvent.EnemyDied(experiencePoints);
             Destroy(gameObject);
         }
         public void TransitionTo(State state)
