@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8178366977531421847}
   - component: {fileID: 186851612632379999}
   - component: {fileID: 6437184103318797361}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,3 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverMaterial: {fileID: 2100000, guid: 68be7588918bd1845af3b455270bf1ab, type: 2}
+  positionOffset: {x: 0, y: 0, z: 0}
+  tower: {fileID: 0}
+  towerUpgrade: {fileID: 0}
+  isUpgraded: 0
+  currentFactory: {fileID: 0}

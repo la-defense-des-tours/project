@@ -16,7 +16,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
     /// A button controller for spawning towers
     /// </summary>
     [RequireComponent(typeof(RectTransform))]
-    public class TowerSpawnButton : MonoBehaviour, IDragHandler
+    public class TowerSpawnButton : MonoBehaviour
     {
         /// <summary>
         /// The text attached to the button
@@ -39,12 +39,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         public event Action<TowerData> buttonTapped;
 
         /// <summary>
-        /// Fires when the pointer is outside of the button bounds
-        /// and still down
-        /// </summary>
-        public event Action<TowerData> draggedOff;
-
-        /// <summary>
         /// The tower controller that defines the button
         /// </summary>
         TowerData m_Tower;
@@ -52,7 +46,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// <summary>
         /// Cached reference to level currency
         /// </summary>
-        //Currency m_Currency;
+        Currency m_Currency;
 
         /// <summary>
         /// The attached rect transform
@@ -60,20 +54,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         RectTransform m_RectTransform;
 
 
-        /// <summary>
-        /// Checks if the pointer is out of bounds
-        /// and then fires the draggedOff event
-        /// </summary>
-        public virtual void OnDrag(PointerEventData eventData)
-        {
-        //    if (!RectTransformUtility.RectangleContainsScreenPoint(m_RectTransform, eventData.position))
-        //    {
-        //        if (draggedOff != null)
-        //        {
-        //            draggedOff(m_Tower);
-        //        }
-        //    }
-        }
 
         protected virtual void Awake()
         {
@@ -91,7 +71,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             m_RectTransform = (RectTransform)transform;
         }
 
-
         /// <summary>
         /// Define the button information for the tower
         /// </summary>
@@ -108,8 +87,8 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 
             if (LevelManager.instanceExists)
             {
-                //m_Currency = LevelManager.instance.currency;
-                //m_Currency.currencyChanged += UpdateButton;
+                m_Currency = LevelManager.instance.currency;
+                m_Currency.currencyChanged += UpdateButton;
             }
             else
             {
@@ -120,25 +99,12 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 
 
         /// <summary>
-        /// Unsubscribe from events
-        /// </summary>
-        protected virtual void OnDestroy()
-        {
-            //if (m_Currency != null)
-            //{
-            //    m_Currency.currencyChanged -= UpdateButton;
-            //}
-        }
-
-        /// <summary>
         /// The click for when the button is tapped
         /// </summary>
         public void OnClick()
         {  
             Debug.Log("m_Tower: " + m_Tower);
-
             buttonTapped(m_Tower);
-
 
         }
 
@@ -147,22 +113,35 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// </summary>
         void UpdateButton()
         {
-            //if (m_Currency == null)
-            //{
-            //    return;
-            //}
+            if (m_Currency == null)
+            {
+                return;
+            }
 
-            //// Enable button
-            //if (m_Currency.CanAfford(m_Tower.purchaseCost) && !buyButton.interactable)
-            //{
-            //    buyButton.interactable = true;
-            //    energyIcon.color = energyDefaultColor;
-            //}
-            //else if (!m_Currency.CanAfford(m_Tower.purchaseCost) && buyButton.interactable)
-            //{
-            //    buyButton.interactable = false;
-            //    energyIcon.color = energyInvalidColor;
-            //}
+            // Enable button
+            if (m_Currency.CanAfford(m_Tower.cost) && !buyButton.interactable)
+            {
+                buyButton.interactable = true;
+                energyIcon.color = energyDefaultColor;
+            }
+            else if (!m_Currency.CanAfford(m_Tower.cost) && buyButton.interactable)
+            {
+                buyButton.interactable = false;
+                energyIcon.color = energyInvalidColor;
+            }
         }
+
+
+        /// <summary>
+        /// Unsubscribe from events
+        /// </summary>
+        protected virtual void OnDestroy()
+        {
+            if (m_Currency != null)
+            {
+                m_Currency.currencyChanged -= UpdateButton;
+            }
+        }
+
     }
 }

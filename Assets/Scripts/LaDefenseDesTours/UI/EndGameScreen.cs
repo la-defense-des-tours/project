@@ -93,10 +93,10 @@ namespace Assets.Scripts.LaDefenseDesTours.UI
 			{
 				return;
 			}
-			//if (HUD.GameUI.instance.state == HUD.GameUI.State.Building)
-			//{
-			//	HUD.GameUI.instance.CancelGhostPlacement();
-			//}
+			if (HUD.GameUI.instance.state == HUD.GameUI.State.Building)
+			{
+				HUD.GameUI.instance.CancelGhostPlacement();
+			}
 
 			HUD.GameUI.instance.GameOver();
 		}

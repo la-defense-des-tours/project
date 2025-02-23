@@ -2394,7 +2394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3eb4f96335c4e45887e0ca63e29c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 2303177163077617181}
+  experiencePoints: 1000
 --- !u!1 &6841465960750767318
 GameObject:
   m_ObjectHideFlags: 0
@@ -3762,6 +3762,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8147954166937103935, guid: 2e918aafb43a34847ae62e7a88dcbb5b, type: 3}
+      propertyPath: canvasGroup
+      value: 
+      objectReference: {fileID: 3087762625798563633}
+    - target: {fileID: 8147954166937103935, guid: 2e918aafb43a34847ae62e7a88dcbb5b, type: 3}
+      propertyPath: healthSlider
+      value: 
+      objectReference: {fileID: 2303177163077617181}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3778,6 +3786,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &3087762625798563633 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 8261787658801643544, guid: 2e918aafb43a34847ae62e7a88dcbb5b, type: 3}
+  m_PrefabInstance: {fileID: 6376582113460184873}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4604202990321531717 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7465632947547184236, guid: 2e918aafb43a34847ae62e7a88dcbb5b, type: 3}

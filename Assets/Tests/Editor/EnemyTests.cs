@@ -50,7 +50,7 @@ public class EnemyTests
     [SetUp]
     public void SetUp()
     {
-        GameObject enemyObject = new GameObject("Enemy");
+        GameObject enemyObject = new("Enemy");
         enemyObject.AddComponent<NavMeshAgent>();
         enemy = enemyObject.AddComponent<TestEnemy>();
     }

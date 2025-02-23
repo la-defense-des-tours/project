@@ -89,7 +89,7 @@ public class TowerFactoryTests
     [Test]
     public void MachineGunFactory_ReturnsMachineGunTower()
     {
-        Vector3 position = new Vector3(0, 0, 0);
+        Vector3 position = new(0, 0, 0);
         Tower tower = machineGunTowerFactory.CreateTower(position);
 
         Assert.IsNotNull(tower);
@@ -99,7 +99,7 @@ public class TowerFactoryTests
     [Test]
     public void CanonFactory_ReturnsCanonTower()
     {
-        Vector3 position = new Vector3(0, 0, 0);
+        Vector3 position = new(0, 0, 0);
         Tower tower = canonTowerFactory.CreateTower(position);
 
         Assert.IsNotNull(tower);
@@ -109,7 +109,7 @@ public class TowerFactoryTests
     [Test]
     public void LaserFactory_ReturnsLaserTower()
     {
-        Vector3 position = new Vector3(0, 0, 0);
+        Vector3 position = new(0, 0, 0);
         Tower tower = laserTowerFactory.CreateTower(position);
 
         Assert.IsNotNull(tower);
@@ -119,7 +119,7 @@ public class TowerFactoryTests
     [Test]
     public void MachineGunFactory_UpgradeTower_ReturnsUpgradedMachineGunTower()
     {
-        Vector3 position = new Vector3(0, 0, 0);
+        Vector3 position = new(0, 0, 0);
 
         Tower upgradedTower1 = machineGunTowerFactory.UpgradeTower(position, 1, null);
         Tower upgradedTower2 = machineGunTowerFactory.UpgradeTower(position, 2, upgradedTower1);
@@ -136,7 +136,7 @@ public class TowerFactoryTests
     [Test]
     public void CanonFactory_UpgradeTower_ReturnsUpgradedCanonTower()
     {
-        Vector3 position = new Vector3(0, 0, 0);
+        Vector3 position = new(0, 0, 0);
 
         Tower upgradedTower1 = canonTowerFactory.UpgradeTower(position, 1, null);
         Tower upgradedTower2 = canonTowerFactory.UpgradeTower(position, 2, upgradedTower1);
@@ -153,7 +153,7 @@ public class TowerFactoryTests
     [Test]
     public void LaserFactory_UpgradeTower_ReturnsUpgradedLaserTower()
     {
-        Vector3 position = new Vector3(0, 0, 0);
+        Vector3 position = new(0, 0, 0);
 
         Tower upgradedTower1 = laserTowerFactory.UpgradeTower(position, 1, null);
         Tower upgradedTower2 = laserTowerFactory.UpgradeTower(position, 2, upgradedTower1);

@@ -1,6 +1,7 @@
 ﻿using System;
 using Assets.Scripts.Core;
 using Assets.Scripts.Core.Utilities;
+using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using TowerDefense.Level;
 using UnityEngine;
@@ -29,10 +30,16 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		public TowerLibrary towerLibrary;
 
 
-		///// <summary>
-		///// The home bases that the player must defend
-		///// </summary>
-		public Player homeBase;
+        /// <summary>
+        /// The currency that the player starts with
+        /// </summary>
+        public int startingCurrency;
+
+
+        ///// <summary>
+        ///// The home bases that the player must defend
+        ///// </summary>
+        public Player homeBase;
 
 
 		/// <summary>
@@ -50,7 +57,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		/// <summary>
 		/// The currency controller
 		/// </summary>
-		//public Currency currency { get; protected set; }
+		public Currency currency { get; protected set; }
 
 
 
@@ -96,7 +103,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 			// Ne pas utiliser la fonction de changement d'état car on ne veut pas d'événement à ce moment
 			levelState = LevelState.Intro;
 
-			if (intro != null)
+            currency = new Currency(startingCurrency);
+
+            EnemyDeathEvent.OnEnemyDeath += HandleEnemyDeath;
+
+            if (intro != null)
 			{
 				intro.introCompleted += IntroCompleted;
 			}
@@ -146,11 +157,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		/// </summary>
 		protected virtual void Update()
 		{
-			//if (alwaysGainCurrency ||
-			//    (!alwaysGainCurrency && levelState != LevelState.Building && levelState != LevelState.Intro))
-			//{
-			//	currencyGainer.Tick(Time.deltaTime);
-			//}
+
+
 		}
 
 		/// <summary>
@@ -171,6 +179,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             {
                 playerHomeBase.OnPlayerDeath -= OnHomeBaseDestroyed;
             }
+
+            EnemyDeathEvent.OnEnemyDeath -= HandleEnemyDeath;
         }
 
         /// <summary>
@@ -196,12 +206,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 
 			LevelState oldState = levelState;
 			levelState = newState;
-			if (levelStateChanged != null)
-			{
-				levelStateChanged(oldState, newState);
-			}
-			
-			switch (newState)
+
+            levelStateChanged?.Invoke(oldState, newState);
+
+
+            switch (newState)
 			{
 				case LevelState.SpawningEnemies:
 					waveManager.StartWave();
@@ -218,28 +227,29 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		protected virtual void OnHomeBaseDestroyed()
 		{
 
-			// Call the destroyed event
-			if (homeBaseDestroyed != null)
-			{
-				homeBaseDestroyed();
-			}
+            homeBaseDestroyed?.Invoke();
 
-			if(!isGameOver)
+
+            if (!isGameOver)
 			{
 				ChangeLevelState(LevelState.Lose);
 			}
 		}
 
 
-		/// <summary>
-		/// Calls the <see cref="levelFailed"/> event
-		/// </summary>
-		protected virtual void SafelyCallLevelFailed()
+        // Gère la mort d'un ennemi
+        private void HandleEnemyDeath(int rewardAmount)
+        {
+            currency.AddCurrency(rewardAmount);
+            Debug.Log($"Gagné {rewardAmount} currency ! Total: {currency.currentCurrency}");
+        }
+
+        /// <summary>
+        /// Calls the <see cref="levelFailed"/> event
+        /// </summary>
+        protected virtual void SafelyCallLevelFailed()
 		{
-			if (levelFailed != null)
-			{
-				levelFailed();
-			}
+			levelFailed?.Invoke();
 		}
 	}
 }
