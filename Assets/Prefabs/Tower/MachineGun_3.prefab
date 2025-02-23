@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7872298357906528581}
   - component: {fileID: -6137382387874397706}
-  - component: {fileID: -7440551399180478168}
+  - component: {fileID: -8686296533561124940}
   m_Layer: 0
   m_Name: MachineGun_3
   m_TagString: Untagged
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: 0
---- !u!114 &-7440551399180478168
+--- !u!114 &-8686296533561124940
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,14 +88,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8704721038707039447}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa95b2419f4b51240a2aedc639fdc3ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 98a6781d418245a43be2a041e4b24afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotatingSpeed: 7
   rotatingPart: {fileID: 9052286597470855091}
   fireRate: 6
   fireCountdown: 0
-  bullet: {fileID: 3756381238834390066, guid: 0c0e6c6dd14c7fc019b6552dd254f299, type: 3}
+  bullet: {fileID: 178726760221476399, guid: 0c0e6c6dd14c7fc019b6552dd254f299, type: 3}
   firePoint: {fileID: 4188819099415367128}
 --- !u!1001 &2979175748552648527
 PrefabInstance:

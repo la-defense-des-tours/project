@@ -229,7 +229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8749912686568641172}
   - component: {fileID: 3508522599049903178}
-  - component: {fileID: 866880212385156603}
+  - component: {fileID: -8147723791831392110}
   m_Layer: 0
   m_Name: Laser_2
   m_TagString: Untagged
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: 0
---- !u!114 &866880212385156603
+--- !u!114 &-8147723791831392110
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -276,14 +276,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5790424651677087611}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa95b2419f4b51240a2aedc639fdc3ae, type: 3}
+  m_Script: {fileID: 11500000, guid: da230b968a2e5bc408ac23608ce7a6b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotatingSpeed: 7
   rotatingPart: {fileID: 2988862104800643829}
-  fireRate: 1000
+  fireRate: 1
   fireCountdown: 0
-  bullet: {fileID: 3756381238834390066, guid: 0c0e6c6dd14c7fc019b6552dd254f299, type: 3}
+  bullet: {fileID: -6296854728457005710, guid: 0aaabc7ca07a57627bcf553c17de475a, type: 3}
   firePoint: {fileID: 8885887127294774764}
 --- !u!1 &6483979545727507759
 GameObject:

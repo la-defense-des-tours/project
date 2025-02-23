@@ -917,7 +917,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 2
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -965,15 +965,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2541c747d71afe42ab87f309c6be321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placementAreaMask:
-    serializedVersion: 2
-    m_Bits: 0
-  towerSelectionLayer:
-    serializedVersion: 2
-    m_Bits: 2
-  ghostWorldPlacementMask:
-    serializedVersion: 2
-    m_Bits: 2
   sphereCastRadius: 1
   radiusVisualizerController: {fileID: 0}
   towerUI: {fileID: 0}
@@ -2225,30 +2216,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1784796371}
     m_Modifications:
-    - target: {fileID: 340140364260858551, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 340140364260858551, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 340140364260858551, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 340140364260858551, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 468287296156074049, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 468287296156074049, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1272741486501038159, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2371,7 +2338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5178528715346500077, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 36.3
       objectReference: {fileID: 0}
     - target: {fileID: 5527489774396058457, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
       propertyPath: m_SizeDelta.y
@@ -3352,6 +3319,7 @@ GameObject:
   - component: {fileID: 1911644928}
   - component: {fileID: 1911644927}
   - component: {fileID: 1911644926}
+  - component: {fileID: 1911644929}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -3442,6 +3410,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1911644929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911644924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a723657a06c9953499410b49d437daf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1913129416 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4952205684782568900, guid: 6133513687dda5b4988eef49369c610b, type: 3}
@@ -3960,6 +3940,7 @@ MonoBehaviour:
     sceneName: 
   intro: {fileID: 5372732949584366344}
   towerLibrary: {fileID: 11400000, guid: b905b328055fdf545903865cde03118f, type: 2}
+  startingCurrency: 1000
   homeBase: {fileID: 7130800125884514737}
 --- !u!114 &5372732949584366344
 MonoBehaviour:
@@ -4143,9 +4124,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1065354752}
     - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
+      propertyPath: canonGhostPrefab
+      value: 
+      objectReference: {fileID: 5059962892274874607, guid: c22b6379b55adaa48aa842b44781a98a, type: 3}
+    - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
+      propertyPath: laserGhostPrefab
+      value: 
+      objectReference: {fileID: 8951942140004569536, guid: 993a0d19472d7134e863930c11da5eb8, type: 3}
+    - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
       propertyPath: machineGunFactory
       value: 
       objectReference: {fileID: 1604393417}
+    - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
+      propertyPath: machineGunGhostPrefab
+      value: 
+      objectReference: {fileID: 7129850076736660284, guid: 84d5faa06b8eb2141bbca4cc2917364c, type: 3}
+    - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
+      propertyPath: placementAreaMask.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2125444469714331958, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
       propertyPath: m_Name
       value: TowerManager

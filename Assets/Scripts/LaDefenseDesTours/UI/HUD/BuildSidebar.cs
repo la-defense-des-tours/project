@@ -50,7 +50,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
                     TowerSpawnButton button = Instantiate(towerSpawnButton, transform);
                     button.InitializeButton(tower);
                     button.buttonTapped += OnButtonTapped;
-                    button.draggedOff += OnButtonDraggedOff;
                 }
             }
         }
@@ -66,21 +65,11 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             if (gameUI.isBuilding)
             {
                 gameUI.CancelGhostPlacement();
+
             }
             gameUI.SetToBuildMode(towerData);
         }
 
-        /// <summary>
-        /// Sets the GameUI to build mode with the <see cref="towerData"/> 
-        /// </summary>
-        /// <param name="towerData"></param>
-        void OnButtonDraggedOff(TowerData towerData)
-        {
-            if (!GameUI.instance.isBuilding)
-            {
-                GameUI.instance.SetToDragMode(towerData);
-            }
-        }
 
         /// <summary>
         /// Unsubscribes from all the tower spawn buttons
@@ -92,7 +81,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             foreach (TowerSpawnButton towerButton in childButtons)
             {
                 towerButton.buttonTapped -= OnButtonTapped;
-                towerButton.draggedOff -= OnButtonDraggedOff;
             }
         }
 
@@ -104,18 +92,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             if (LevelManager.instanceExists)
             {
                 LevelManager.instance.BuildingCompleted();
-            }
-        }
-
-        /// <summary>
-        /// Debug button to add currency
-        /// </summary>
-        /// <param name="amount">How much to add</param>
-        public void AddCurrency(int amount)
-        {
-            if (LevelManager.instanceExists)
-            {
-                //LevelManager.instance.currency.AddCurrency(amount);
             }
         }
     }

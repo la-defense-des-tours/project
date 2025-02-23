@@ -9,7 +9,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual float range { get; set; }
         public virtual float damage { get; set; }
         public virtual int cost { get; set; }
-        public int currentLevel;
+        public int currentLevel { get; set; } = 1;
+
         protected float fireRate;
         protected int upgradeCost;
         protected float upgradeDamage;
@@ -17,7 +18,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         protected float upgradeRange;
         protected int sellValue;
 
-        void Start()
+        public virtual void Start()
         {
             m_shooter = GetComponent<Shooter>();
             m_shooter.SetRange(range);

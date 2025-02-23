@@ -18,9 +18,6 @@ public class UpgradeMenu : MonoBehaviour
 
         transform.position = target.GetBuildPosition();
 
-        TowerManager towerManager = TowerManager.Instance;
-        towerManager.GetSelectedFactory();
-
         menu.SetActive(true);
     }
 
@@ -45,7 +42,7 @@ public class UpgradeMenu : MonoBehaviour
             return;
         }
 
-        target.UpgradeTower();
+        TowerManager.Instance.UpgradeTower(target);
         Hide();
     }
 }

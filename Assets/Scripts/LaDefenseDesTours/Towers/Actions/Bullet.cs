@@ -1,30 +1,33 @@
 using UnityEngine;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
 
-public class Bullet : MonoBehaviour
+public abstract class Bullet : MonoBehaviour
 {
-    [SerializeField] private float speed = 75f;
-    private Transform target;
-    private Collider targetCollider;
-    private Enemy targetEnemy;
-    private float damage;
+    [Header("Bullet Settings")]
+    [SerializeField] protected float speed = 70f;
+    protected virtual float specialAbility { get; set; }
+    protected float damage;
+
+    [Header("Target Settings")]
+    protected Transform target;
+    protected Collider targetCollider;
+    protected Enemy targetEnemy;
 
     void Update()
     {
         HandleTrajectory();
     }
+
     public void Seek(Transform _target)
     {
         target = _target;
         targetCollider = _target.GetComponent<Collider>();
         targetEnemy = _target.GetComponent<Enemy>();
     }
-    private void HitTarget()
-    {
-        Destroy(gameObject);
-        targetEnemy.TakeDamage(damage);
-    }
-    private void HandleTrajectory()
+
+    protected abstract void HitTarget();
+
+    protected virtual void HandleTrajectory()
     {
         if (target == null)
         {
@@ -45,8 +48,14 @@ public class Bullet : MonoBehaviour
         transform.Translate(direction.normalized * distanceThisFrame, Space.World);
         transform.LookAt(targetCenter);
     }
+
     public void SetDamage(float _damage)
     {
         damage = _damage;
+    }
+
+    public void SetSpecialAbility(float _specialAbility)
+    {
+        specialAbility = _specialAbility;
     }
 }

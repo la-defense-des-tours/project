@@ -1,10 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
-    public abstract class Enemy : MonoBehaviour
+    public abstract class Enemy : MonoBehaviour, Health
     {
         protected State currentState;
         protected NavMeshAgent agent;
@@ -12,10 +13,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual float health { get; set; }
         public virtual float speed { get; set; }
         public virtual float acceleration { get; set; }
-
-        [SerializeField] private Slider healthBar;
+        public int experiencePoints = 1000;
         public virtual float maxHealth { get; set; } = 100;
 
+        public event Action OnHealthChanged; 
         public void Awake()
         {
             animator = GetComponent<Animator>();
@@ -24,12 +25,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         private void Start()
         {
-            health = maxHealth;
+            HealthBar healthBar = FindFirstObjectByType<HealthBar>();
             if (healthBar != null)
-            {
-                healthBar.maxValue = maxHealth;
-                healthBar.value = health;
+            { 
+                healthBar.SetTarget(this);
             }
+            health = maxHealth;
         }
 
         void Update() 
@@ -92,12 +93,14 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
                 return;
 
             health -= damage;
-            if (healthBar != null)
-            {
-                healthBar.value = health; 
-            }
+
+            OnHealthChanged?.Invoke();
+
             if (health <= 0)
+            { 
+                EnemyDeathEvent.EnemyDied(experiencePoints);
                 TransitionTo(new Dead());
+            }
         }
         public void DealDamage(float _damage)
         {

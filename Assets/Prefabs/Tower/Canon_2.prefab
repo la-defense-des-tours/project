@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4936814164988916048}
   - component: {fileID: -807063599039976432}
-  - component: {fileID: 6680003804738966}
+  - component: {fileID: -7574856565463809048}
   m_Layer: 0
   m_Name: Canon_2
   m_TagString: Untagged
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: 0
---- !u!114 &6680003804738966
+--- !u!114 &-7574856565463809048
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,14 +88,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7843308316611583591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa95b2419f4b51240a2aedc639fdc3ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 98a6781d418245a43be2a041e4b24afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotatingSpeed: 7
   rotatingPart: {fileID: 3487133208823281782}
   fireRate: 1
   fireCountdown: 0
-  bullet: {fileID: 3756381238834390066, guid: db7b742c14606944b852667c9c6f0e1b, type: 3}
+  bullet: {fileID: 6275715922120870924, guid: db7b742c14606944b852667c9c6f0e1b, type: 3}
   firePoint: {fileID: 5801682550408592181}
 --- !u!1001 &91229116700273014
 PrefabInstance:
