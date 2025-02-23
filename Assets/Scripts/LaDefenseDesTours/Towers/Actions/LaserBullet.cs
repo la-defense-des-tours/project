@@ -2,25 +2,17 @@ using UnityEngine;
 
 public class LaserBullet : Bullet
 {
-    [Header("Laser Settings")]
     private LineRenderer laserLine;
     [SerializeField] private Material laserMaterial;
-
-    private bool isApplyingDamage;
+    [SerializeField] private float laserWidth = 0.25f;
     private const string ENEMY_TAG = "Enemy";
 
-    private void Start()
-    {
-        SetupLaserVisuals();
-        isApplyingDamage = true;
-    }
-
-    private void SetupLaserVisuals()
+    private void Awake()
     {
         laserLine = gameObject.AddComponent<LineRenderer>();
         laserLine.positionCount = 2;
-        laserLine.startWidth = 0.1f;
-        laserLine.endWidth = 0.1f;
+        laserLine.startWidth = laserWidth;
+        laserLine.endWidth = laserWidth;
         laserLine.material = laserMaterial;
         laserLine.useWorldSpace = true;
     }
@@ -30,32 +22,21 @@ public class LaserBullet : Bullet
         if (target == null || !target.CompareTag(ENEMY_TAG))
         {
             laserLine.enabled = false;
-            Destroy(gameObject);
             return;
         }
 
         laserLine.enabled = true;
-        Vector3 startPos = transform.position;
-        Vector3 endPos = targetCollider.bounds.center;
+        laserLine.SetPosition(0, transform.position);
+        laserLine.SetPosition(1, targetCollider.bounds.center);
 
-        laserLine.SetPosition(0, startPos);
-        laserLine.SetPosition(1, endPos);
-
-        if (isApplyingDamage && targetEnemy != null)
+        if (targetEnemy != null)
         {
-            float dmg = (damage + specialAbility) * Time.deltaTime;
-            targetEnemy.TakeDamage(dmg);
+            float damageThisFrame = damage * specialAbility * Time.deltaTime;
+            targetEnemy.TakeDamage(damageThisFrame);
         }
     }
 
     protected override void HitTarget()
     {
-        isApplyingDamage = false;
-        Destroy(gameObject);
-    }
-
-    private void OnDestroy()
-    {
-        isApplyingDamage = false;
     }
 }

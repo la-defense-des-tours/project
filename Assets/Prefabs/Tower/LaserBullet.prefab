@@ -113,5 +113,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 70
-  damageTickRate: 0.1
   laserMaterial: {fileID: 2100000, guid: b00c476cbd82ef44da2e9a0c27b91200, type: 2}
+  laserWidth: 0.35

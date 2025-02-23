@@ -1,44 +1,38 @@
 using UnityEngine;
 
-public class Shooter : MonoBehaviour
+public abstract class Shooter : MonoBehaviour
 {
     [Header("Tower Attributes")]
     [SerializeField] private float rotatingSpeed = 7f;
     [SerializeField] private Transform rotatingPart;
     [SerializeField] private float fireRate;
     [SerializeField] private float fireCountdown;
-    [SerializeField] private float lockOnAngle = 5f;
     private const string ENEMY_TAG = "Enemy";
-    private Transform target;
+    protected Transform target;
     private float range;
 
     [Header("Bullet Attributes")]
-    [SerializeField] private Bullet bullet;
-    [SerializeField] private Transform firePoint;
+    [SerializeField] protected Bullet bullet;
+    [SerializeField] protected Transform firePoint;
     private float damage;
     private float specialAbility;
 
-    void Start()
+    private void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
-    void Update()
+    private void Update()
     {
         RotateTurret();
     }
 
-    void RotateTurret()
+    private void RotateTurret()
     {
         if (target == null)
-        {
             return;
-        }
 
-        Vector3 direction = target.position - transform.position;
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-        Vector3 rotation = Quaternion.Lerp(rotatingPart.rotation, targetRotation, Time.deltaTime * rotatingSpeed).eulerAngles;
-        rotatingPart.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+        LockOnTarget();
 
         if (fireCountdown <= 0f)
         {
@@ -49,7 +43,7 @@ public class Shooter : MonoBehaviour
         fireCountdown -= Time.deltaTime;
     }
 
-    void UpdateTarget()
+    protected virtual void UpdateTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(ENEMY_TAG);
         float shortestDistance = Mathf.Infinity;
@@ -71,14 +65,17 @@ public class Shooter : MonoBehaviour
             target = null;
     }
 
-    void Shoot()
+    protected abstract void Shoot();
+
+    private void LockOnTarget()
     {
-        Bullet bulletInstance = Instantiate(bullet, firePoint.position, firePoint.rotation);
-        if (bulletInstance != null)
-            InitializeBullet(bulletInstance);
+        Vector3 direction = target.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        Vector3 rotation = Quaternion.Lerp(rotatingPart.rotation, lookRotation, Time.deltaTime * rotatingSpeed).eulerAngles;
+        rotatingPart.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
-    private void InitializeBullet(Bullet bullet)
+    protected void InitializeBullet(Bullet bullet)
     {
         bullet.Seek(target);
         bullet.SetDamage(damage);

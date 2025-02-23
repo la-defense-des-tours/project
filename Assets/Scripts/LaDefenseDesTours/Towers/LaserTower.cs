@@ -12,7 +12,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
         public LaserTower()
         {
             range = 50f;
-            damage = 0.25f;
+            damage = 25f;
             cost = 100;
         }
         public override void Start()
@@ -30,7 +30,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
                     // 1er upgrade
                     cost += 50;
                     damageOverTime += 1f;
-                    damage += 0.5f;
+                    damage += 5f;
                     range += 5f;
                     break;
 
@@ -38,7 +38,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
                     // 2eme upgrade
                     cost += 100;
                     damageOverTime += 2f;
-                    damage += 1f;
+                    damage += 10f;
                     range += 10f;
                     break;
 

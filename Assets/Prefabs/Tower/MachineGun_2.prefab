@@ -120,7 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5592781787644846949}
   - component: {fileID: 5790104110576652689}
-  - component: {fileID: 8455521830980940576}
+  - component: {fileID: -9213920500634161899}
   m_Layer: 0
   m_Name: MachineGun_2
   m_TagString: Untagged
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: 0
---- !u!114 &8455521830980940576
+--- !u!114 &-9213920500634161899
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 523101212692809868}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa95b2419f4b51240a2aedc639fdc3ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 98a6781d418245a43be2a041e4b24afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotatingSpeed: 7
