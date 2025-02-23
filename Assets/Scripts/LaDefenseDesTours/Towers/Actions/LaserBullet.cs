@@ -27,27 +27,17 @@ public class LaserBullet : Bullet
 
     protected override void HandleTrajectory()
     {
-        if (target == null || target.CompareTag("Untagged"))
+        if (target == null || !target.CompareTag(ENEMY_TAG))
         {
-            if (laserLine.enabled)
-                laserLine.enabled = false;
-                
+            laserLine.enabled = false;
             Destroy(gameObject);
             return;
         }
 
-        if (!target.CompareTag(ENEMY_TAG))
-        {
-            laserLine.enabled = false;
-            return;
-        }
-
-        if (!laserLine.enabled)
-            laserLine.enabled = true;
-
+        laserLine.enabled = true;
         Vector3 startPos = transform.position;
         Vector3 endPos = targetCollider.bounds.center;
-        
+
         laserLine.SetPosition(0, startPos);
         laserLine.SetPosition(1, endPos);
 

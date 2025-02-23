@@ -11,7 +11,6 @@ public class Shooter : MonoBehaviour
     private const string ENEMY_TAG = "Enemy";
     private Transform target;
     private float range;
-    private bool isLockedOn;
 
     [Header("Bullet Attributes")]
     [SerializeField] private Bullet bullet;
@@ -33,7 +32,6 @@ public class Shooter : MonoBehaviour
     {
         if (target == null)
         {
-            isLockedOn = false;
             return;
         }
 
@@ -42,10 +40,7 @@ public class Shooter : MonoBehaviour
         Vector3 rotation = Quaternion.Lerp(rotatingPart.rotation, targetRotation, Time.deltaTime * rotatingSpeed).eulerAngles;
         rotatingPart.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
-        float angle = Quaternion.Angle(rotatingPart.rotation, targetRotation);
-        isLockedOn = angle <= lockOnAngle;
-
-        if (isLockedOn && fireCountdown <= 0f)
+        if (fireCountdown <= 0f)
         {
             Shoot();
             fireCountdown = 1f / fireRate;
