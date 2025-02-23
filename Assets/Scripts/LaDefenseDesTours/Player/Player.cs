@@ -26,19 +26,24 @@ public sealed class Player : MonoBehaviour, Health
             return;
         }
         health = maxHealth;
-        Instance = this; 
+        Instance = this;
     }
 
     public static Player GetInstance()
     {
-        // Singleton pattern - useful for testing
-        if (Instance != null)
+        if (Instance == null)
+        {
             Instance = FindFirstObjectByType<Player>();
-        else
-            Instance = new GameObject("Player").AddComponent<Player>();
+            if (Instance == null)
+                Instance = new GameObject("Player").AddComponent<Player>();
+        }
+
+        if (Instance.health == 0)
+            Instance.health = Instance.maxHealth;
 
         return Instance;
     }
+
     public void TakeDamage(float damage)
     {
         health -= damage;
@@ -48,7 +53,7 @@ public sealed class Player : MonoBehaviour, Health
     private void CheckHeatlh()
     {
         if (health <= 0)
-        { 
+        {
             isDead = true;
             OnPlayerDeath?.Invoke();
             Debug.Log("Player is dead");
