@@ -13,7 +13,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual float health { get; set; }
         public virtual float speed { get; set; }
         public virtual float acceleration { get; set; }
-
         public int experiencePoints = 1000;
         public virtual float maxHealth { get; set; } = 100;
 

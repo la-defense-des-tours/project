@@ -4,6 +4,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
     public abstract class Tower : MonoBehaviour
     {
+        protected Shooter m_shooter;
         public virtual string towerName { get; }
         public virtual float range { get; set; }
         public virtual float damage { get; set; }
@@ -16,6 +17,13 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         protected float upgradeFireRate;
         protected float upgradeRange;
         protected int sellValue;
+
+        public virtual void Start()
+        {
+            m_shooter = GetComponent<Shooter>();
+            m_shooter.SetRange(range);
+            m_shooter.SetDamage(damage);
+        }
 
         public virtual void Upgrade()
         {

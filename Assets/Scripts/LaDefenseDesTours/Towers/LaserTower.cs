@@ -7,14 +7,19 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
     public class LaserTower : Tower
     {
         public override string towerName { get; } = "Laser Tower";
-        public float damageOverTime { get; set; } = 3f;
+        public float damageOverTime { get; set; } = 1f;
 
         public LaserTower()
         {
             currentLevel = 1;
             range = 50f;
-            damage = 0.25f;
+            damage = 25f;
             cost = 100;
+        }
+        public override void Start()
+        {
+            base.Start();
+            m_shooter.SetSpecialAbility(damageOverTime);
         }
         public override void Upgrade()
         {
@@ -25,16 +30,16 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
                 case 2:
                     // 1er upgrade
                     cost += 50;
-                    damageOverTime += 1.5f;
-                    damage += 0.3f;
+                    damageOverTime += 1f;
+                    damage += 5f;
                     range += 5f;
                     break;
 
                 case 3:
                     // 2eme upgrade
                     cost += 100;
-                    damageOverTime += 2.5f;
-                    damage += 1f;
+                    damageOverTime += 2f;
+                    damage += 10f;
                     range += 10f;
                     break;
 

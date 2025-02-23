@@ -10,7 +10,7 @@ public class CameraController : MonoBehaviour
     private Camera cam;
     private Bounds mapBounds;
     private bool doMovement = true;
-   private readonly float minZoom = 40f;
+    private readonly float minZoom = 40f;
     private readonly float maxZoom = 60f;
     private readonly Vector3 forward = new(1, 0, 0);
     private readonly Vector3 back = new(-1, 0, 0);
