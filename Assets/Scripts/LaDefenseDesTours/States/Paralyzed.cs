@@ -21,7 +21,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
                 enemy.SetupNavMeshAgent();
                 isApplied = false;
                 OnStateExit();
-            } 
+            }
         }
     }
 }

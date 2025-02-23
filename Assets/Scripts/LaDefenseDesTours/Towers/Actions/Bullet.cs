@@ -13,6 +13,10 @@ public abstract class Bullet : MonoBehaviour
     protected Collider targetCollider;
     protected Enemy targetEnemy;
 
+    // New field to store the effect type
+    protected string effectType;
+
+
     void Update()
     {
         HandleTrajectory();
@@ -57,5 +61,11 @@ public abstract class Bullet : MonoBehaviour
     public void SetSpecialAbility(float _specialAbility)
     {
         specialAbility = _specialAbility;
+    }
+
+    // New method to set the effect type
+    public void SetEffectType(string _effectType)
+    {
+        effectType = _effectType;
     }
 }
