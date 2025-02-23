@@ -126,10 +126,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// </summary>
         Camera m_Camera;
 
-        /// <summary>
-        /// Tracks if the ghost is in a valid location and the player can afford it
-        /// </summary>
-        bool m_GhostPlacementPossible;
 
 		/// <summary>
 		/// Gets the current selected tower
@@ -314,10 +310,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 			}
 			radiusVisualizerController.SetupRadiusVisualizers(tower);
 
-			if (selectionChanged != null)
-			{
-				selectionChanged(tower);
-			}
+			selectionChanged?.Invoke(tower);
 		}
 
 

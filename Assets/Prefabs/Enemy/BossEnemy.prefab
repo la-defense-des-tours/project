@@ -8662,7 +8662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d88d8a4c65dc740b439090447baed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 3717161180247153769}
+  experiencePoints: 1000
 --- !u!195 &9148210904242197121
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -12267,6 +12267,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBar
       objectReference: {fileID: 0}
+    - target: {fileID: 5154559751168713012, guid: 2e918aafb43a34847ae62e7a88dcbb5b, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5154559751168713012, guid: 2e918aafb43a34847ae62e7a88dcbb5b, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 260913484696261430}
+    - target: {fileID: 5154559751168713012, guid: 2e918aafb43a34847ae62e7a88dcbb5b, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_health
+      objectReference: {fileID: 0}
+    - target: {fileID: 5154559751168713012, guid: 2e918aafb43a34847ae62e7a88dcbb5b, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Assets.Scripts.LaDefenseDesTours.Interfaces.Enemy, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5843065045247279916, guid: 2e918aafb43a34847ae62e7a88dcbb5b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5843065045247279916, guid: 2e918aafb43a34847ae62e7a88dcbb5b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.25
+      objectReference: {fileID: 0}
     - target: {fileID: 7465632947547184236, guid: 2e918aafb43a34847ae62e7a88dcbb5b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -12347,11 +12371,44 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8058220207325880582, guid: 2e918aafb43a34847ae62e7a88dcbb5b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 8058220207325880582, guid: 2e918aafb43a34847ae62e7a88dcbb5b, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8058220207325880582, guid: 2e918aafb43a34847ae62e7a88dcbb5b, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8058220207325880582, guid: 2e918aafb43a34847ae62e7a88dcbb5b, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8147954166937103935, guid: 2e918aafb43a34847ae62e7a88dcbb5b, type: 3}
+      propertyPath: fadeSpeed
+      value: 1.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 8147954166937103935, guid: 2e918aafb43a34847ae62e7a88dcbb5b, type: 3}
+      propertyPath: canvasGroup
+      value: 
+      objectReference: {fileID: 484535760020258117}
+    - target: {fileID: 8147954166937103935, guid: 2e918aafb43a34847ae62e7a88dcbb5b, type: 3}
+      propertyPath: healthSlider
+      value: 
+      objectReference: {fileID: 3717161180247153769}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e918aafb43a34847ae62e7a88dcbb5b, type: 3}
+--- !u!225 &484535760020258117 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 8261787658801643544, guid: 2e918aafb43a34847ae62e7a88dcbb5b, type: 3}
+  m_PrefabInstance: {fileID: 8367317223075691869}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1406793459912646961 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7465632947547184236, guid: 2e918aafb43a34847ae62e7a88dcbb5b, type: 3}

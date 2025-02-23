@@ -249,10 +249,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
         /// </summary>
         protected virtual void SafelyCallLevelFailed()
 		{
-			if (levelFailed != null)
-			{
-				levelFailed();
-			}
+			levelFailed?.Invoke();
 		}
 	}
 }

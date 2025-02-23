@@ -22,7 +22,7 @@ public class TowerManager : MonoBehaviour
     private bool isPlacingTower = false;
     private bool isGhostPlacementValid = false;
 
-    private List<TowerSpawnButton> spawnButtons = new List<TowerSpawnButton>();
+    private readonly List<TowerSpawnButton> spawnButtons = new();
     private Cell selectedCell;
     public UpgradeMenu upgradeMenu;
 
@@ -216,9 +216,9 @@ public class TowerManager : MonoBehaviour
     private void MoveGhostToMouse()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
         {
             Cell cell = hit.collider.GetComponent<Cell>();
 
@@ -243,6 +243,7 @@ public class TowerManager : MonoBehaviour
     private void UpdateGhostVisual()
     {
         Renderer ghostRenderer = currentGhost?.GetComponent<Renderer>();
+
         if (ghostRenderer != null)
         {
             ghostRenderer.material.color = isGhostPlacementValid ? new Color(0, 1, 0, 0.5f) : new Color(1, 0, 0, 0.5f);
