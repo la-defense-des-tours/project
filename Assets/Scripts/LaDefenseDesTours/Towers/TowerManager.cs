@@ -6,6 +6,7 @@ using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using Assets.Scripts.LaDefenseDesTours.UI.HUD;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TowerManager : MonoBehaviour
 {
@@ -168,27 +169,26 @@ public class TowerManager : MonoBehaviour
         }
 
         selectedTowerData = towerData;
-
         switch (towerData.towerName)
         {
             case "Machine Gun":
                 selectedFactory = machineGunFactory;
-                currentGhost = Instantiate(machineGunGhostPrefab);
+                currentGhost = Instantiate(machineGunGhostPrefab, Input.mousePosition, Quaternion.identity);
                 break;
             case "Laser":
                 selectedFactory = laserFactory;
-                currentGhost = Instantiate(laserGhostPrefab);
+                currentGhost = Instantiate(laserGhostPrefab,Input.mousePosition, Quaternion.identity);
                 break;
             case "Canon":
                 selectedFactory = canonFactory;
-                currentGhost = Instantiate(canonGhostPrefab);
+                currentGhost = Instantiate(canonGhostPrefab,Input.mousePosition, Quaternion.identity);
                 break;
             default:
                 Debug.LogError("Invalid tower name");
                 return;
         }
 
-
+        MoveGhostToMouse(); 
 
         if (currentGhost != null)
         {

@@ -43,7 +43,9 @@ public class DrawCircle : MonoBehaviour
 
     private void Draw()
     {
-        if (lineRenderer == null) return; 
+        if (lineRenderer == null) return;
+
+        lineRenderer.positionCount = segments + 1;
 
         float angle = 0f;
         for (int i = 0; i <= segments; i++)
