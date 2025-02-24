@@ -1616,17 +1616,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 52409583037002847, guid: ae539673595b86743940dc8512850773, type: 3}
   m_PrefabInstance: {fileID: 7130800125884514734}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &952642617 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3850467148656889817, guid: 2eb1899defae34da2b354d8e1d91da35, type: 3}
-  m_PrefabInstance: {fileID: 1631441182}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ffe403c2464b394991efca760d71d58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &982107729 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 564566709522092766, guid: 6133513687dda5b4988eef49369c610b, type: 3}
@@ -2737,18 +2726,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Over
       objectReference: {fileID: 0}
-    - target: {fileID: 114456578896449128, guid: 2eb1899defae34da2b354d8e1d91da35, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 952642617}
-    - target: {fileID: 114456578896449128, guid: 2eb1899defae34da2b354d8e1d91da35, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 114456578896449128, guid: 2eb1899defae34da2b354d8e1d91da35, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TowerDefense.UI.SceneLoader, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 224039727441621502, guid: 2eb1899defae34da2b354d8e1d91da35, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3529,11 +3506,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1796101721625810578, guid: 445424def1cc43e45a96c78ec5fef9b7, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5173331288976677471, guid: 445424def1cc43e45a96c78ec5fef9b7, type: 3}
       propertyPath: m_Name
       value: Enviro_MeshCollider
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173331288976677471, guid: 445424def1cc43e45a96c78ec5fef9b7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5512561839443935461, guid: 445424def1cc43e45a96c78ec5fef9b7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4143,6 +4124,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1604393417}
     - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
+      propertyPath: rangeIndicatorPrefab
+      value: 
+      objectReference: {fileID: 5941440165500085248, guid: 9cd3e5c39074339498a8f3e4bc6a35e8, type: 3}
+    - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
       propertyPath: machineGunGhostPrefab
       value: 
       objectReference: {fileID: 7129850076736660284, guid: 90cd1367838ed104eb47bc69ddcf977a, type: 3}
@@ -4172,8 +4157,20 @@ PrefabInstance:
       value: PlayerBase
       objectReference: {fileID: 0}
     - target: {fileID: 2932296996785739639, guid: ae539673595b86743940dc8512850773, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2932296996785739639, guid: ae539673595b86743940dc8512850773, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2932296996785739639, guid: ae539673595b86743940dc8512850773, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 500
+      value: -700
+      objectReference: {fileID: 0}
+    - target: {fileID: 2932296996785739639, guid: ae539673595b86743940dc8512850773, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 3246984179853916659, guid: ae539673595b86743940dc8512850773, type: 3}
       propertyPath: m_LocalPosition.x

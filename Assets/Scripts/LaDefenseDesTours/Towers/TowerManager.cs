@@ -16,7 +16,7 @@ public class TowerManager : MonoBehaviour
     [SerializeField] private GameObject machineGunGhostPrefab;
     [SerializeField] private GameObject laserGhostPrefab;
     [SerializeField] private GameObject canonGhostPrefab;
-
+    private GameObject currentRangeIndicator;
     private TowerFactory selectedFactory;
     private GameObject currentGhost;
     private bool isPlacingTower = false;
@@ -73,10 +73,9 @@ public class TowerManager : MonoBehaviour
         if (!LevelManager.instance.currency.TryPurchase(selectedTowerData.cost))
         {
             Debug.Log("Pas assez d'argent !");
-            return; // Annuler le placement si pas assez d'argent
+            return; 
         }
 
-        // Achat validé, placer la tour
         Tower newTower = selectedFactory.CreateTower(cell.GetBuildPosition());
         if (newTower != null)
         {
@@ -194,7 +193,16 @@ public class TowerManager : MonoBehaviour
         if (currentGhost != null)
         {
             currentGhost.SetActive(true);
+
+            Transform rangeIndicator = currentGhost.transform.Find("rangeIndicator");
+            if (rangeIndicator != null)
+            {
+                currentRangeIndicator = rangeIndicator.gameObject;
+                currentRangeIndicator.SetActive(true);
+                UpdateRangeIndicator(selectedTowerData.range);
+            }
         }
+
 
         isPlacingTower = true;
         GameUI.instance.SetToBuildMode(towerData);
@@ -249,14 +257,30 @@ public class TowerManager : MonoBehaviour
             ghostRenderer.material.color = isGhostPlacementValid ? new Color(0, 1, 0, 0.5f) : new Color(1, 0, 0, 0.5f);
         }
     }
+    private void UpdateRangeIndicator(float range)
+    {
+        if (currentRangeIndicator != null)
+        {
+            DrawCircle drawCircle = currentRangeIndicator.GetComponent<DrawCircle>();
+            if (drawCircle != null)
+            {
+                drawCircle.SetRadius(range/2);
+            }
+        }
+    }
 
     public void CancelGhostPlacement()
     {
+        if (currentRangeIndicator != null)
+        {
+            currentRangeIndicator.SetActive(false);
+        }
         if (currentGhost != null)
         {
             Destroy(currentGhost);
         }
         currentGhost = null;
+        currentRangeIndicator = null;
         selectedFactory = null;
         isPlacingTower = false;
         isGhostPlacementValid = false;
