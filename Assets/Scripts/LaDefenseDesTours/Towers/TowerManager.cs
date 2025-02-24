@@ -6,6 +6,7 @@ using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using Assets.Scripts.LaDefenseDesTours.UI.HUD;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class TowerManager : MonoBehaviour
@@ -17,6 +18,8 @@ public class TowerManager : MonoBehaviour
     [SerializeField] private GameObject machineGunGhostPrefab;
     [SerializeField] private GameObject laserGhostPrefab;
     [SerializeField] private GameObject canonGhostPrefab;
+
+
     private GameObject currentRangeIndicator;
     private TowerFactory selectedFactory;
     private GameObject currentGhost;
@@ -64,7 +67,11 @@ public class TowerManager : MonoBehaviour
             Debug.Log("Can't place tower here!");
             return;
         }
-
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            Debug.Log("Impossible de placer une tour sur l'interface utilisateur !");
+            return;
+        }
         if (selectedTowerData == null)
         {
             Debug.LogError("No TowerData selected! Cannot determine cost.");
@@ -121,10 +128,8 @@ public class TowerManager : MonoBehaviour
             return;
         }
 
-        // Détruire l'ancienne tour
         Destroy(cell.tower.gameObject);
 
-        // Créer la tour améliorée via la factory de la cellule
         Tower upgradedTower = cell.currentFactory.UpgradeTower(cell.GetBuildPosition(), cell.tower.currentLevel, cell.tower);
 
         if (upgradedTower != null)
