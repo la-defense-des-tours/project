@@ -16,22 +16,17 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         public int experiencePoints = 1000;
         public virtual float maxHealth { get; set; } = 100;
+        public event Action OnHealthChanged;
 
-
-        [SerializeField] private Slider healthBar;
-        // Particle systems for state effects
         private ParticleSystem fireEffect;
         private ParticleSystem iceEffect;
         private ParticleSystem lightningEffect;
-        public event Action OnHealthChanged;
-
 
         public void Awake()
         {
             animator = GetComponent<Animator>();
             SetupNavMeshAgent();
 
-            // Initialize particle effects
             fireEffect = transform.Find("FireEffect")?.GetComponent<ParticleSystem>();
             iceEffect = transform.Find("IceEffect")?.GetComponent<ParticleSystem>();
             lightningEffect = transform.Find("LightningEffect")?.GetComponent<ParticleSystem>();
@@ -51,7 +46,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         {
             UpdateState();
 
-            // Debugging: Apply states via keyboard input
             switch (Input.inputString)
             {
                 case "s":
@@ -112,11 +106,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             health -= damage;
             OnHealthChanged?.Invoke();
 
-
-            if (healthBar != null)
-            {
-                healthBar.value = health;
-            }
             if (health <= 0)
             {
                 EnemyDeathEvent.EnemyDied(experiencePoints);
@@ -145,7 +134,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             currentState.SetContext(this);
             currentState.OnStateEnter();
 
-            // Play the corresponding particle effect
             PlayStateEffect(state);
         }
 
@@ -180,12 +168,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         private void PlayStateEffect(State state)
         {
-            // Stop all effects first
             if (fireEffect != null) fireEffect.Stop();
             if (iceEffect != null) iceEffect.Stop();
             if (lightningEffect != null) lightningEffect.Stop();
 
-            // Play the effect corresponding to the state
             if (state is Burned && fireEffect != null)
             {
                 fireEffect.Play();

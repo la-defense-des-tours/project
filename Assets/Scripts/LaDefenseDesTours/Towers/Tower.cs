@@ -21,6 +21,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         public virtual void Start()
         {
+            Debug.Log("Base tower start");
             m_shooter = GetComponent<Shooter>();
             m_shooter.SetRange(range);
             m_shooter.SetDamage(damage);
@@ -35,6 +36,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual void Attack()
         {
             Debug.Log("Base tower attack");
+        }
+
+        public Tower AttachEffect(TowerDecorator effect)
+        {
+            effect.SetTower(this);
+            return effect;
         }
     }
 }

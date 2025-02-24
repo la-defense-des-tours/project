@@ -1,4 +1,5 @@
 using UnityEngine;
+using Assets.Scripts.LaDefenseDesTours.Interfaces;
 
 public abstract class Shooter : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public abstract class Shooter : MonoBehaviour
     [SerializeField] private float fireCountdown;
 
     private const string ENEMY_TAG = "Enemy";
-    public Transform target;
+    protected Transform target;
     private float range;
 
     [Header("Bullet Attributes")]
@@ -18,13 +19,8 @@ public abstract class Shooter : MonoBehaviour
     private float damage;
     private float specialAbility;
 
-    [SerializeField] private float lockOnAngle = 5f;
-        private bool isLockedOn;
-
-    [Header("Bullet Attributes")]
-    [SerializeField] private Bullet bulletPrefab; // Base bullet prefab
-
-    private string effectType; // New field to store the effect type
+    protected Tower tower;
+    private string effectType;
 
     private void Start()
     {
@@ -39,23 +35,11 @@ public abstract class Shooter : MonoBehaviour
     private void RotateTurret()
     {
         if (target == null)
-        {
-            isLockedOn = false;
             return;
-        }
-
 
         LockOnTarget();
 
-        Vector3 direction = target.position - transform.position;
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-        Vector3 rotation = Quaternion.Lerp(rotatingPart.rotation, targetRotation, Time.deltaTime * rotatingSpeed).eulerAngles;
-        rotatingPart.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-
-        float angle = Quaternion.Angle(rotatingPart.rotation, targetRotation);
-        isLockedOn = angle <= lockOnAngle;
-
-        if (isLockedOn && fireCountdown <= 0f)
+        if (fireCountdown <= 0f)
         {
             Shoot();
             fireCountdown = 1f / fireRate;
@@ -94,14 +78,10 @@ public abstract class Shooter : MonoBehaviour
         rotatingPart.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
-    public void SetSpecialAbility(float _specialAbility)
-    {
-        specialAbility = _specialAbility;
-    }
-
     protected virtual void Shoot()
     {
-        Bullet bulletInstance = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        tower.Attack();
+        Bullet bulletInstance = Instantiate(bullet, firePoint.position, firePoint.rotation);
         if (bulletInstance != null)
             InitializeBullet(bulletInstance);
     }
@@ -112,22 +92,12 @@ public abstract class Shooter : MonoBehaviour
         bullet.SetDamage(damage);
         bullet.SetSpecialAbility(specialAbility);
 
-        // Set the effect type based on the tower's effect
-        switch (effectType)
-        {
-            case "Fire":
-                if (bullet is FireBullet fireBullet)
-                    fireBullet.SetEffectType(effectType);
-                break;
-            case "Ice":
-                if (bullet is IceBullet iceBullet)
-                    iceBullet.SetEffectType(effectType);
-                break;
-            case "Lightning":
-                if (bullet is LightningBullet lightningBullet)
-                    lightningBullet.SetEffectType(effectType);
-                break;
-        }
+        bullet.SetEffectType(effectType);
+    }
+
+    public void SetSpecialAbility(float _specialAbility)
+    {
+        specialAbility = _specialAbility;
     }
 
     public void SetRange(float _range)
@@ -140,7 +110,7 @@ public abstract class Shooter : MonoBehaviour
         damage = _damage;
     }
 
-    public void SetEffectType(string _effectType) // New method to set the effect type
+    public void SetEffectType(string _effectType)
     {
         effectType = _effectType;
     }
