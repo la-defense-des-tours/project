@@ -1616,17 +1616,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 52409583037002847, guid: ae539673595b86743940dc8512850773, type: 3}
   m_PrefabInstance: {fileID: 7130800125884514734}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &952642617 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3850467148656889817, guid: 2eb1899defae34da2b354d8e1d91da35, type: 3}
-  m_PrefabInstance: {fileID: 1631441182}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ffe403c2464b394991efca760d71d58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &982107729 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 564566709522092766, guid: 6133513687dda5b4988eef49369c610b, type: 3}
@@ -2736,18 +2725,6 @@ PrefabInstance:
     - target: {fileID: 1655237973467104, guid: 2eb1899defae34da2b354d8e1d91da35, type: 3}
       propertyPath: m_Name
       value: Game Over
-      objectReference: {fileID: 0}
-    - target: {fileID: 114456578896449128, guid: 2eb1899defae34da2b354d8e1d91da35, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 952642617}
-    - target: {fileID: 114456578896449128, guid: 2eb1899defae34da2b354d8e1d91da35, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 114456578896449128, guid: 2eb1899defae34da2b354d8e1d91da35, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TowerDefense.UI.SceneLoader, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 224039727441621502, guid: 2eb1899defae34da2b354d8e1d91da35, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4171,10 +4148,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerBase
       objectReference: {fileID: 0}
-    - target: {fileID: 2932296996785739639, guid: ae539673595b86743940dc8512850773, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 500
-      objectReference: {fileID: 0}
     - target: {fileID: 3246984179853916659, guid: ae539673595b86743940dc8512850773, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4217,14 +4190,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4360205787330908928, guid: ae539673595b86743940dc8512850773, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8427350957516813142, guid: ae539673595b86743940dc8512850773, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8427350957516813142, guid: ae539673595b86743940dc8512850773, type: 3}
-      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4271,7 +4236,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32f7ebb4ef7ef4a4cb28d8cd1cf177df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -279,13 +279,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 			radiusVisualizerController.SetupRadiusVisualizers(tower, ghost);
 		}
 
-		/// <summary>
-		/// Hides the radius visualizer
-		/// </summary>
-		public void HideRadiusVisualizer()
-		{
-			radiusVisualizerController.HideRadiusVisualizers();
-		}
 
 		/// <summary>
 		/// Activates the tower controller UI with the specific information
