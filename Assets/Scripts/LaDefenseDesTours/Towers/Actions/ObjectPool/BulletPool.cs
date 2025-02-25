@@ -43,31 +43,4 @@ public class BulletPool : MonoBehaviour
 
         return pools[poolKey].Get();
     }
-
-    public void ClearPools()
-    {
-        if (pools == null)
-            return;
-
-        foreach (var pool in pools.Values)
-        {
-            if (pool != null)
-            {
-                try
-                {
-                    pool.Clear();
-                }
-                catch (MissingReferenceException)
-                {
-                    continue;
-                }
-            }
-        }
-        pools.Clear();
-    }
-
-    private void OnDestroy()
-    {
-        ClearPools();
-    }
 }
