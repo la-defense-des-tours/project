@@ -386,6 +386,10 @@ public class TowerManager : MonoBehaviour
         cacheCell = cell; // Mise en cache pour éviter les appels répétés
         Debug.Log($"[MoveGhostToMouse] 📍 Nouvelle cellule détectée : {cell.gameObject.name}");
 
+        // ❌ Désactive le placement par défaut
+        isGhostPlacementValid = false;
+        UpdateGhostVisual();
+
         bool wasOccupied = cell.IsOccupied();
         Debug.Log($"[MoveGhostToMouse] 🔎 Occupation initiale : {wasOccupied}");
 
@@ -410,12 +414,14 @@ public class TowerManager : MonoBehaviour
 
         Debug.Log($"[MoveGhostToMouse] 🔥 Résultat IsPathBlocked après attente : {isBlocked}");
 
+        // ✅ Mise à jour finale : on valide uniquement si tout est bon
         bool isOccupied = wasOccupied;
         isGhostPlacementValid = !isOccupied && !isBlocked;
 
         Debug.Log($"[MoveGhostToMouse] ✅ État final de la cellule : {(isGhostPlacementValid ? "🟢 VALIDE" : "🔴 INVALID")}");
         UpdateGhostVisual();
     }
+
 
     private void MoveGhostToMouse()
     {
