@@ -20,13 +20,13 @@ public class CanonBullet : Bullet
                 ApplyEffect();
         }
 
-        Destroy(gameObject);
+        Release();
     }
     protected override void HandleTrajectory()
     {
         if (target == null)
         {
-            Destroy(gameObject);
+            Release();
             return;
         }
 
@@ -62,5 +62,10 @@ public class CanonBullet : Bullet
     {
         transform.position = updatePosition;
         transform.LookAt(targetCollider.bounds.center);
+    }
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        startPosition = Vector3.zero;
     }
 }

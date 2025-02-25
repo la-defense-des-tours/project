@@ -25,6 +25,12 @@ public abstract class Shooter : MonoBehaviour
     private void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
+
+        if (FindFirstObjectByType<BulletPool>() == null)
+        {
+            GameObject poolObj = new GameObject("BulletPool");
+            poolObj.AddComponent<BulletPool>();
+        }
     }
 
     private void Update()
@@ -34,12 +40,12 @@ public abstract class Shooter : MonoBehaviour
 
     private void RotateTurret()
     {
-        if (target == null)
+        if (target == null || !HasLineOfSight())
             return;
 
         LockOnTarget();
 
-        if (fireCountdown <= 0f && HasLineOfSight())
+        if (fireCountdown <= 0f)
         {
             Shoot();
             fireCountdown = 1f / fireRate;
@@ -113,6 +119,14 @@ public abstract class Shooter : MonoBehaviour
     public void SetSpecialAbility(float _specialAbility)
     {
         specialAbility = _specialAbility;
+    }
+
+    protected Bullet SpawnBullet()
+    {
+        Bullet spawnedBullet = BulletPool.Instance.GetBullet(bullet);
+        spawnedBullet.transform.position = firePoint.position;
+        spawnedBullet.transform.rotation = firePoint.rotation;
+        return spawnedBullet;
     }
 
     public void SetRange(float _range)
