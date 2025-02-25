@@ -1,3 +1,7 @@
+
+
+
+
 using System.Collections.Generic;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using Assets.Scripts.LaDefenseDesTours.Level;
@@ -6,6 +10,7 @@ using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using Assets.Scripts.LaDefenseDesTours.UI.HUD;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
@@ -78,10 +83,16 @@ public class TowerManager : MonoBehaviour
             return;
         }
 
+        if (IsPathBlocked(cell))
+        {
+            Debug.Log("Impossible de placer une tour ici, car elle bloque le passage des ennemis !");
+            return;
+        }
+
         if (!LevelManager.instance.currency.TryPurchase(selectedTowerData.cost))
         {
             Debug.Log("Pas assez d'argent !");
-            return; 
+            return;
         }
 
         Tower newTower = selectedFactory.CreateTower(cell.GetBuildPosition());
@@ -90,9 +101,9 @@ public class TowerManager : MonoBehaviour
             cell.SetTower(newTower, selectedFactory);
         }
 
-
         CancelGhostPlacement();
     }
+
 
     public void RegisterSpawnButton(TowerSpawnButton button)
     {
@@ -108,7 +119,6 @@ public class TowerManager : MonoBehaviour
     }
     private void OnTowerButtonTapped(TowerData towerData)
     {
-        Debug.Log($"Tower button clicked: {towerData.towerName}");
         StartPlacingTower(towerData);
 
 
@@ -138,12 +148,6 @@ public class TowerManager : MonoBehaviour
             cell.isUpgraded = true;
 
             upgradedTower.Upgrade();
-
-            Debug.Log($"New Tower upgraded to level: {upgradedTower.currentLevel}");
-            Debug.Log($"New Tower Name: {upgradedTower.towerName}");
-            Debug.Log($"New Tower Damage: {upgradedTower.damage}");
-            Debug.Log($"New Tower Range: {upgradedTower.range}");
-            Debug.Log($"New Tower Cost: {upgradedTower.cost}");
 
             // Afficher les spécificités selon le type de tour
             if (upgradedTower is LaserTower laserTower)
@@ -179,21 +183,22 @@ public class TowerManager : MonoBehaviour
             case "Machine Gun":
                 selectedFactory = machineGunFactory;
                 currentGhost = Instantiate(machineGunGhostPrefab, Input.mousePosition, Quaternion.identity);
+                currentGhost.GetComponent<Tower>().isGhost = true;
                 break;
             case "Laser":
                 selectedFactory = laserFactory;
-                currentGhost = Instantiate(laserGhostPrefab,Input.mousePosition, Quaternion.identity);
+                currentGhost = Instantiate(laserGhostPrefab, Input.mousePosition, Quaternion.identity);
+                currentGhost.GetComponent<Tower>().isGhost = true;
                 break;
             case "Canon":
                 selectedFactory = canonFactory;
-                currentGhost = Instantiate(canonGhostPrefab,Input.mousePosition, Quaternion.identity);
+                currentGhost = Instantiate(canonGhostPrefab, Input.mousePosition, Quaternion.identity);
+                currentGhost.GetComponent<Tower>().isGhost = true;
                 break;
             default:
                 Debug.LogError("Invalid tower name");
                 return;
         }
-
-        MoveGhostToMouse(); 
 
         if (currentGhost != null)
         {
@@ -213,6 +218,151 @@ public class TowerManager : MonoBehaviour
         GameUI.instance.SetToBuildMode(towerData);
     }
 
+    private Vector3 GetClosestNavMeshPoint(Vector3 position, float searchRadius = 10f)
+    {
+        NavMeshHit hit;
+        bool found = NavMesh.SamplePosition(position, out hit, searchRadius, NavMesh.AllAreas);
+
+        if (found)
+        {
+            return hit.position; 
+        }
+
+        for (float radius = searchRadius; radius <= 30f; radius += 5f)
+        {
+            if (NavMesh.SamplePosition(position, out hit, radius, NavMesh.AllAreas))
+            {
+                return hit.position;
+            }
+        }
+
+        return Vector3.zero; 
+    }
+
+
+
+    public bool IsPathBlocked(Cell cell)
+    {
+        Vector3 start = GetClosestNavMeshPoint(new Vector3(0, 0, 0));
+        Vector3 goal = GetClosestNavMeshPoint(LevelManager.instance.GetEnemyEndPoint());
+
+        Debug.Log($"[IsPathBlocked] Test de placement d'une tour sur {cell.gameObject.name}");
+
+        bool wasOccupied = cell.IsOccupied();
+        cell.SetTemporaryBlock(true);
+
+        bool pathExists = TestPathWithTemporaryAgent(start, goal);
+
+        cell.SetTemporaryBlock(wasOccupied);
+
+        Debug.Log($"[IsPathBlocked] Résultat : {(pathExists ? "Chemin valide" : "Chemin bloqué")}");
+        return !pathExists;
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        if (!Application.isPlaying) return;
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemyObj in enemies)
+        {
+            NavMeshAgent agent = enemyObj.GetComponent<NavMeshAgent>();
+            if (agent == null || !agent.hasPath) continue;
+
+            Gizmos.color = Color.cyan;
+            for (int i = 0; i < agent.path.corners.Length - 1; i++)
+            {
+                Gizmos.DrawLine(agent.path.corners[i], agent.path.corners[i + 1]);
+            }
+        }
+    }
+
+    private bool TestPathWithTemporaryAgent(Vector3 start, Vector3 goal)
+    {
+        GameObject tempAgentObj = new GameObject("TempNavMeshAgent_Debug");
+        NavMeshAgent tempAgent = tempAgentObj.AddComponent<NavMeshAgent>();
+
+        tempAgent.radius = 1.0f;  
+        tempAgent.height = 3.0f;
+        tempAgent.speed = 3.5f;
+
+        // ✅ Récupérer l'ID de la zone "Walkable"
+        int walkableArea = NavMesh.GetAreaFromName("Walkable");
+        if (walkableArea == -1)
+        {
+            Debug.LogError("[TestPathWithTemporaryAgent] ❌ L'aire 'Walkable' n'existe pas !");
+            Destroy(tempAgentObj);
+            return false;
+        }
+
+        tempAgent.areaMask = 1 << walkableArea; 
+
+        NavMeshHit hitStart, hitGoal;
+        bool startOnNavMesh = NavMesh.SamplePosition(start, out hitStart, 1.0f, tempAgent.areaMask);
+        bool goalOnNavMesh = NavMesh.SamplePosition(goal, out hitGoal, 1.0f, tempAgent.areaMask);
+
+        if (!startOnNavMesh)
+        {
+            Debug.LogError($"[TestPathWithTemporaryAgent] ❌ Le point de départ {start} n'est pas sur le NavMesh !");
+            Destroy(tempAgentObj);
+            return false;
+        }
+
+        if (!goalOnNavMesh)
+        {
+            Debug.LogError($"[TestPathWithTemporaryAgent] ❌ Le point d'arrivée {goal} n'est pas sur le NavMesh !");
+            Destroy(tempAgentObj);
+            return false;
+        }
+
+        // ✅ Déplacer l'agent au bon endroit
+        if (!tempAgent.Warp(hitStart.position))
+        {
+            Debug.LogError("[TestPathWithTemporaryAgent] ❌ L'agent temporaire n'a pas pu être placé sur le NavMesh !");
+            Destroy(tempAgentObj);
+            return false;
+        }
+
+        NavMeshPath path = new NavMeshPath();
+        bool hasPath = tempAgent.CalculatePath(hitGoal.position, path) && path.status == NavMeshPathStatus.PathComplete;
+
+        Destroy(tempAgentObj);
+
+        return hasPath;
+    }
+
+
+
+
+
+    private bool CanEnemyReachGoal(Enemy enemy, Vector3 goal)
+    {
+        NavMeshAgent agent = enemy.GetComponent<NavMeshAgent>();
+
+        if (agent == null)
+        {
+            Debug.LogError("[CanEnemyReachGoal] L'ennemi sélectionné n'a pas de NavMeshAgent !");
+            return false;
+        }
+
+        Debug.Log($"[CanEnemyReachGoal] Test du chemin pour {enemy.name} vers {goal}");
+
+        NavMeshPath path = new NavMeshPath();
+        bool hasPath = agent.CalculatePath(goal, path);
+
+        if (path.status != NavMeshPathStatus.PathComplete)
+        {
+            Debug.LogWarning($"[CanEnemyReachGoal] Path bloqué pour {enemy.name} ❌");
+            return false;
+        }
+
+        Debug.Log($"[CanEnemyReachGoal] Chemin disponible pour {enemy.name} ✅");
+
+        return true;
+    }
+
+
     private void Update()
     {
         if (isPlacingTower && currentGhost != null)
@@ -230,38 +380,61 @@ public class TowerManager : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
         {
             Cell cell = hit.collider.GetComponent<Cell>();
 
-            if (cell != null && !cell.IsOccupied())
+            if (cell != null)
             {
+                bool isBlocked = IsPathBlocked(cell);
+                bool isOccupied = cell.IsOccupied();
+
+                // ✅ Toujours déplacer le ghost pour qu'il suive la souris
                 currentGhost.transform.position = cell.GetBuildPosition();
-                isGhostPlacementValid = true;
-            }
-            else
-            {
-                isGhostPlacementValid = false;
+
+                if (!isOccupied && !isBlocked)
+                {
+                    isGhostPlacementValid = true;
+                    Debug.Log($"[MoveGhostToMouse] ✅ Ghost placé à {currentGhost.transform.position}");
+                }
+                else
+                {
+                    isGhostPlacementValid = false;
+                    Debug.Log($"[MoveGhostToMouse] ❌ Placement interdit - Occupé: {isOccupied}, Bloque chemin: {isBlocked}");
+                }
             }
         }
         else
         {
             isGhostPlacementValid = false;
+            Debug.Log("[MoveGhostToMouse] ❌ Aucun objet détecté sous la souris.");
         }
 
         UpdateGhostVisual();
     }
 
+
+
     private void UpdateGhostVisual()
     {
-        Renderer ghostRenderer = currentGhost?.GetComponent<Renderer>();
+        if (currentGhost == null) return;
 
-        if (ghostRenderer != null)
+        Renderer[] ghostRenderers = currentGhost.GetComponentsInChildren<Renderer>();
+
+        Color validColor = new Color(0, 1, 0, 0.5f); // ✅ Vert transparent
+        Color invalidColor = new Color(1, 0, 0, 0.5f); // ❌ Rouge transparent
+
+        foreach (Renderer renderer in ghostRenderers)
         {
-            ghostRenderer.material.color = isGhostPlacementValid ? new Color(0, 1, 0, 0.5f) : new Color(1, 0, 0, 0.5f);
+            if (renderer.material.HasProperty("_Color")) // Vérifie si le matériel a une propriété couleur
+            {
+                renderer.material.color = isGhostPlacementValid ? validColor : invalidColor;
+            }
         }
+
+        Debug.Log($"[UpdateGhostVisual] Couleur du ghost mise à jour : {(isGhostPlacementValid ? "VERT ✅" : "ROUGE ❌")}");
     }
+
     private void UpdateRangeIndicator(float range)
     {
         if (currentRangeIndicator != null)
@@ -269,7 +442,7 @@ public class TowerManager : MonoBehaviour
             DrawCircle drawCircle = currentRangeIndicator.GetComponent<DrawCircle>();
             if (drawCircle != null)
             {
-                drawCircle.SetRadius(range/2);
+                drawCircle.SetRadius(range / 2);
             }
         }
     }
@@ -292,3 +465,7 @@ public class TowerManager : MonoBehaviour
         GameUI.instance.CancelGhostPlacement();
     }
 }
+
+
+
+

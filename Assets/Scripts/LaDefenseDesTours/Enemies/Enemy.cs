@@ -141,10 +141,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         {
             if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
             {
-                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                if (agent.velocity.sqrMagnitude == 0f)
                 {
-                    DealDamage(health);
-                    TransitionTo(new Dead());
+                    //DealDamage(health);
+                    //TransitionTo(new Dead());
                 }
             }
         }

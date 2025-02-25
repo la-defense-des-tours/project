@@ -100,7 +100,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 			instance = this;
 			base.Awake();
 			waveManager = GetComponent<WaveManager>();
-			// Ne pas utiliser la fonction de changement d'état car on ne veut pas d'événement à ce moment
 			levelState = LevelState.Intro;
 
             currency = new Currency(startingCurrency);
@@ -131,6 +130,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
         {
             currentLevel = level;
         }
+
+		public Vector3 GetEnemyEndPoint()
+		{
+			return homeBase.transform.position;
+		}
 
         /// <summary>
         /// Récupère le niveau actuel

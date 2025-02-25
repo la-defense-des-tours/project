@@ -18,6 +18,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
         }
         public override void Start()
         {
+            if (isGhost) return;
             base.Start();
             m_shooter.SetSpecialAbility(areaOfEffect);
         }
