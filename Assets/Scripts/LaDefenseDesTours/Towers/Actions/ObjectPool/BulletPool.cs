@@ -50,8 +50,19 @@ public class BulletPool : MonoBehaviour
             return;
 
         foreach (var pool in pools.Values)
-            pool?.Clear();
-
+        {
+            if (pool != null)
+            {
+                try
+                {
+                    pool.Clear();
+                }
+                catch (MissingReferenceException)
+                {
+                    continue;
+                }
+            }
+        }
         pools.Clear();
     }
 
