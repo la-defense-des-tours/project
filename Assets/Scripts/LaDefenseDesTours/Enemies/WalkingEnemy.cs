@@ -6,8 +6,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
     {
         WalkingEnemy()
         {
-            maxHealth = 200f;
-            speed = 2.5f;
+            maxHealth = 2000000000000000000f;
+            speed = 4.5f;
             acceleration = 5f;
         }
         public override void SetupSpeed()

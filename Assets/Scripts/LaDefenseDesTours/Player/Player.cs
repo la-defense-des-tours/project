@@ -16,6 +16,8 @@ public sealed class Player : MonoBehaviour, Health
     public event Action OnPlayerDeath;
 
     public event Action OnHealthChanged;
+
+    public HealthBar healthBar;
     private void Awake()
     {
         // Unity Singleton pattern
@@ -25,6 +27,12 @@ public sealed class Player : MonoBehaviour, Health
             DestroyImmediate(gameObject);
             return;
         }
+        healthBar = FindFirstObjectByType<HealthBar>();
+        if (healthBar != null)
+        {
+            healthBar.SetTarget(this);
+        }
+
         health = maxHealth;
         Instance = this;
     }
@@ -54,6 +62,7 @@ public sealed class Player : MonoBehaviour, Health
     {
         if (health <= 0)
         {
+            healthBar.gameObject.SetActive(false);
             isDead = true;
             OnPlayerDeath?.Invoke();
             Debug.Log("Player is dead");

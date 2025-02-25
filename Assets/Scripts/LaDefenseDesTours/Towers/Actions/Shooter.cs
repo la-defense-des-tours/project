@@ -39,13 +39,28 @@ public abstract class Shooter : MonoBehaviour
 
         LockOnTarget();
 
-        if (fireCountdown <= 0f)
+        if (fireCountdown <= 0f && HasLineOfSight())
         {
             Shoot();
             fireCountdown = 1f / fireRate;
         }
 
         fireCountdown -= Time.deltaTime;
+    }
+
+    private bool HasLineOfSight()
+    {
+        if (target == null)
+            return false;
+
+        Collider targetCollider = target.GetComponent<Collider>();
+        if (targetCollider == null)
+            return false;
+
+        Vector3 targetPosition = targetCollider.bounds.center;
+        LayerMask environmentLayer = LayerMask.GetMask("Environment");
+
+        return !Physics.Linecast(firePoint.position, targetPosition, environmentLayer);
     }
 
     protected virtual void UpdateTarget()

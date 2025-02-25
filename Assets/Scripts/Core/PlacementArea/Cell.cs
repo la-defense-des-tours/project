@@ -53,6 +53,26 @@ public class Cell : MonoBehaviour
         towerManager.UpgradeTower(this);
     }
 
+    public void SetTemporaryBlock(bool block)
+    {
+        if (block)
+        {
+            if (tower == null || tower.gameObject.name != "TempTower")
+            {
+                tower = new GameObject("TempTower").AddComponent<MachineGunTower>();
+            }
+        }
+        else
+        {
+            if (tower != null && tower.gameObject.name == "TempTower")
+            {
+                Destroy(tower.gameObject);
+                tower = null;
+            }
+        }
+    }
+
+
     private void OnMouseEnter()
     {
         cellRenderer.material = hoverMaterial;

@@ -35,6 +35,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers.Data
         ///// </summary>
         //public TowerLevel[] levels;
 
+
+        /// <summary>
+        /// range of the tower
+        /// </summary>
+        public float range;
+
         /// <summary>
         /// The tower icon
         /// </summary>

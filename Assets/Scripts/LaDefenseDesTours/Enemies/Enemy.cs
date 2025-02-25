@@ -76,6 +76,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             SetupSpeed();
         }
 
+        public virtual NavMeshAgent GetNavMeshAgent()
+        {
+            return agent;
+        }
+
         public virtual void SetupSpeed()
         {
             agent.speed = speed;
@@ -156,14 +161,13 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         public virtual void CheckArrival()
         {
-            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+
+            if (transform.position.x <= -80f)
             {
-                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-                {
-                    DealDamage(health);
-                    TransitionTo(new Dead());
-                }
+                DealDamage(health);
+                TransitionTo(new Dead());
             }
+
         }
 
         private void PlayStateEffect(State state)
