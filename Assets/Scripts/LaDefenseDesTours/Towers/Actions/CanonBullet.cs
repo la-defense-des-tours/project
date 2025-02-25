@@ -62,4 +62,9 @@ public class CanonBullet : Bullet
         transform.position = updatePosition;
         transform.LookAt(targetCollider.bounds.center);
     }
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        startPosition = Vector3.zero;
+    }
 }

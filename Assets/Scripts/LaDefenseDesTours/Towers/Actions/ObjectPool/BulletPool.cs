@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.Pool;
+using System.Collections.Generic;
 
 public class BulletPool : MonoBehaviour
 {
     public static BulletPool Instance { get; private set; }
-    private ObjectPool<Bullet> pool;
+    private Dictionary<string, ObjectPool<Bullet>> pools = new Dictionary<string, ObjectPool<Bullet>>();
 
     private void Awake()
     {
@@ -16,13 +17,13 @@ public class BulletPool : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void Initialize(Bullet prefab)
+    private ObjectPool<Bullet> CreatePool(Bullet prefab)
     {
-        pool = new ObjectPool<Bullet>(
+        return new ObjectPool<Bullet>(
             createFunc: () =>
             {
                 Bullet bullet = Instantiate(prefab);
-                bullet.SetPool(pool);
+                bullet.SetPool(pools[prefab.name]);
                 return bullet;
             },
             actionOnGet: bullet => bullet.gameObject.SetActive(true),
@@ -35,8 +36,25 @@ public class BulletPool : MonoBehaviour
 
     public Bullet GetBullet(Bullet prefab)
     {
-        if (pool == null)
-            Initialize(prefab);
-        return pool.Get();
+        string poolKey = prefab.name;
+
+        if (!pools.ContainsKey(poolKey))
+            pools[poolKey] = CreatePool(prefab);
+
+        return pools[poolKey].Get();
+    }
+
+    public void ClearPools()
+    {
+        foreach (var pool in pools.Values)
+        {
+            pool.Clear();
+        }
+        pools.Clear();
+    }
+
+    private void OnDestroy()
+    {
+        ClearPools();
     }
 }
