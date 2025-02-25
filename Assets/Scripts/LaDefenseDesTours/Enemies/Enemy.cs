@@ -36,20 +36,18 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         {
             HealthBar healthBar = FindFirstObjectByType<HealthBar>();
             if (healthBar != null)
-            {
                 healthBar.SetTarget(this);
-            }
+
             health = maxHealth;
         }
 
         void Update()
         {
             UpdateState();
+
             int key = GetNumericKeyPressed();
             if (key != -1)
-            {
                 HandleEffect(key);
-            }
 
             if (currentState is not Dead)
                 CheckArrival();
@@ -70,22 +68,17 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             {
                 case 1:
                     TransitionTo(new Slowed());
-                    Debug.Log("Slowed effect applied");
                     break;
                 case 2:
                     TransitionTo(new Paralyzed());
-                    Debug.Log("Paralyzed effect applied");
                     break;
                 case 3:
-                    TransitionTo(new Dead());
-                    Debug.Log("Dead effect applied");
+                    TransitionTo(new Burned());
                     break;
                 case 4:
-                    TransitionTo(new Burned());
-                    Debug.Log("Burned effect applied");
+                    TransitionTo(new Dead());
                     break;
                 default:
-                    Debug.Log("Invalid key pressed. Use 1, 2, 3, or 4 to apply effects.");
                     break;
             }
         }
@@ -162,8 +155,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             currentState = state;
             currentState.SetContext(this);
             currentState.OnStateEnter();
-
-            PlayStateEffect(state);
         }
 
         public void UpdateState()
@@ -185,32 +176,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         public virtual void CheckArrival()
         {
-
             if (transform.position.x <= -80f)
             {
                 DealDamage(health);
                 TransitionTo(new Dead());
-            }
-
-        }
-
-        private void PlayStateEffect(State state)
-        {
-            if (fireEffect != null) fireEffect.Stop();
-            if (iceEffect != null) iceEffect.Stop();
-            if (lightningEffect != null) lightningEffect.Stop();
-
-            if (state is Burned && fireEffect != null)
-            {
-                fireEffect.Play();
-            }
-            else if (state is Paralyzed && iceEffect != null)
-            {
-                iceEffect.Play();
-            }
-            else if (state is Slowed && lightningEffect != null)
-            {
-                lightningEffect.Play();
             }
         }
     }
