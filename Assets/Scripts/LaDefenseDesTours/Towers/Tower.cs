@@ -27,6 +27,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             m_shooter.SetDamage(damage);
         }
 
+        public Shooter GetShooter()
+        {
+            return m_shooter;
+        }
+
         public virtual void Update()
         {
             switch (Input.inputString)
@@ -44,8 +49,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
                     fireEffect.Attack();
                     break;
                 case "l":
-                    AttachEffect(new LightningEffect(this));
+                    var lightningEffect = new LightningEffect(this);
+                    AttachEffect(lightningEffect);
                     Debug.Log("Lightning effect attached");
+                    lightningEffect.Attack();
                     break;
             }
         }

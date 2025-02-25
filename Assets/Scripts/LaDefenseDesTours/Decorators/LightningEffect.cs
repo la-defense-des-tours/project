@@ -6,6 +6,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
     {
         public LightningEffect(Tower tower) : base(tower)
         {
+            effectType = "Lightning";
             Debug.Log("Lightning Effect Applied");
         }
 
@@ -13,7 +14,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         {
             base.Attack();
             Debug.Log("Lightning effect is attacking");
-            m_shooter.SetEffectType("Lightning");
         }
     }
 }
