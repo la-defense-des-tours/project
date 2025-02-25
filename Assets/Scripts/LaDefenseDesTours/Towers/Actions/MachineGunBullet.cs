@@ -27,5 +27,6 @@ public class MachineGunBullet : Bullet
     {
         Destroy(gameObject);
         targetEnemy.TakeDamage(damage);
+        ApplyEffect();
     }
 }

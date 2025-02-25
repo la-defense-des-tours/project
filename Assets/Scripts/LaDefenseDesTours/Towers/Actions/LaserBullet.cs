@@ -33,6 +33,7 @@ public class LaserBullet : Bullet
         {
             float damageThisFrame = damage * specialAbility * Time.deltaTime;
             targetEnemy.TakeDamage(damageThisFrame);
+            ApplyEffect();
         }
     }
 

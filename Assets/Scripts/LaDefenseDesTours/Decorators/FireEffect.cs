@@ -4,9 +4,13 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
     public class FireEffect : TowerDecorator
     {
-        public FireEffect(Tower tower) : base(tower) { }
+        public FireEffect(Tower tower) : base(tower)
+        {
+            effectType = "Fire";
+            Debug.Log("Fire Effect Applied");
+        }
 
-        public new void Attack()
+        public override void Attack()
         {
             base.Attack();
             Debug.Log("Fire effect is attacking");

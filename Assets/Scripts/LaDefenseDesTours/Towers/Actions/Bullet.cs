@@ -8,10 +8,14 @@ public abstract class Bullet : MonoBehaviour
     protected virtual float specialAbility { get; set; }
     protected float damage;
 
+
     [Header("Target Settings")]
     protected Transform target;
     protected Collider targetCollider;
     protected Enemy targetEnemy;
+
+    protected string effectType;
+
 
     void Update()
     {
@@ -37,5 +41,29 @@ public abstract class Bullet : MonoBehaviour
     public void SetSpecialAbility(float _specialAbility)
     {
         specialAbility = _specialAbility;
+    }
+
+    public void SetEffectType(string _effectType)
+    {
+        effectType = _effectType;
+    }
+
+    protected void ApplyEffect()
+    {
+        if (targetEnemy != null)
+        {
+            switch (effectType)
+            {
+                case "Fire":
+                    targetEnemy.TransitionTo(new Burned());
+                    break;
+                case "Ice":
+                    targetEnemy.TransitionTo(new Slowed());
+                    break;
+                case "Lightning":
+                    targetEnemy.TransitionTo(new Paralyzed());
+                    break;
+            }
+        }
     }
 }

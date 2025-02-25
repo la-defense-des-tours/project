@@ -17,6 +17,7 @@ public class CanonBullet : Bullet
             Enemy enemy = collider.GetComponent<Enemy>();
             if (enemy != null)
                 enemy.TakeDamage(damage);
+                ApplyEffect();
         }
 
         Destroy(gameObject);
