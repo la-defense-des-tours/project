@@ -41,7 +41,17 @@ public class TowerManager : MonoBehaviour
     public static TowerManager Instance;
 
 
-    private NavMeshAgent tempAgent; // Agent temporaire unique
+    private NavMeshAgent tempAgent;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("Multiple TowerManager instances detected!");
+            return;
+        }
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -77,15 +87,7 @@ public class TowerManager : MonoBehaviour
         return hasPath;
     }
 
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-            Debug.LogError("Multiple TowerManager instances detected!");
-            return;
-        }
-        Instance = this;
-    }
+
 
     private void Update()
     {
@@ -133,15 +135,6 @@ public class TowerManager : MonoBehaviour
             return;
         }
 
-        bool wasOccupied = cell.IsOccupied();
-        cell.SetTemporaryBlock(true); 
-        bool isBlocked = IsPathBlocked(cell);
-        cell.SetTemporaryBlock(wasOccupied); 
-
-        if (isBlocked)
-        {
-            return;
-        }
 
         if (!LevelManager.instance.currency.TryPurchase(selectedTowerData.cost))
         {
@@ -156,6 +149,7 @@ public class TowerManager : MonoBehaviour
 
         CancelGhostPlacement();
     }
+
 
 
 
@@ -285,15 +279,11 @@ public class TowerManager : MonoBehaviour
         Vector3 start = GetClosestNavMeshPoint(new Vector3(0, 0, 0));
         Vector3 goal = GetClosestNavMeshPoint(LevelManager.instance.GetEnemyEndPoint());
 
-        bool wasOccupied = cell.IsOccupied();
-        cell.SetTemporaryBlock(true); 
-
         bool pathExists = TestPathWithTemporaryAgent(start, goal);
-
-        cell.SetTemporaryBlock(wasOccupied);
 
         return !pathExists;
     }
+
 
     private IEnumerator MoveGhostToMouseCoroutine(Cell cell)
     {
@@ -309,16 +299,13 @@ public class TowerManager : MonoBehaviour
         if (ghostObstacle != null)
         {
             ghostObstacle.enabled = false;
-            ghostObstacle.enabled = true;
+            ghostObstacle.enabled = true; 
             ghostObstacle.carving = true;
-
         }
 
         yield return WaitForNavMeshRecalculation();
 
-        cell.SetTemporaryBlock(true);
         bool isBlocked = IsPathBlocked(cell);
-        cell.SetTemporaryBlock(wasOccupied);
 
         if (ghostObstacle != null)
         {
@@ -331,9 +318,10 @@ public class TowerManager : MonoBehaviour
         UpdateGhostVisual();
     }
 
+
     private IEnumerator WaitForNavMeshRecalculation()
     {
-        float timeout = 1.0f; // Temps max d'attente (éviter blocage infini)
+        float timeout = 1.0f;
         float timer = 0f;
 
         while (!NavMeshIsReady() && timer < timeout)
