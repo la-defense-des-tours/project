@@ -322,65 +322,6 @@ public class TowerManager : MonoBehaviour
         return !pathExists;
     }
 
-
-
-
-
-
-    //private bool TestPathWithTemporaryAgent(Vector3 start, Vector3 goal)
-    //{
-    //    GameObject tempAgentObj = new GameObject("TempNavMeshAgent_Debug");
-    //    NavMeshAgent tempAgent = tempAgentObj.AddComponent<NavMeshAgent>();
-
-    //    tempAgent.radius = 1.0f;  
-    //    tempAgent.height = 3.0f;
-    //    tempAgent.speed = 3.5f;
-
-    //    // ✅ Récupérer l'ID de la zone "Walkable"
-    //    int walkableArea = NavMesh.GetAreaFromName("Walkable");
-    //    if (walkableArea == -1)
-    //    {
-    //        Debug.LogError("[TestPathWithTemporaryAgent] ❌ L'aire 'Walkable' n'existe pas !");
-    //        Destroy(tempAgentObj);
-    //        return false;
-    //    }
-
-    //    tempAgent.areaMask = 1 << walkableArea; 
-
-    //    NavMeshHit hitStart, hitGoal;
-    //    bool startOnNavMesh = NavMesh.SamplePosition(start, out hitStart, 1.0f, tempAgent.areaMask);
-    //    bool goalOnNavMesh = NavMesh.SamplePosition(goal, out hitGoal, 1.0f, tempAgent.areaMask);
-
-    //    if (!startOnNavMesh)
-    //    {
-    //        Debug.LogError($"[TestPathWithTemporaryAgent] ❌ Le point de départ {start} n'est pas sur le NavMesh !");
-    //        Destroy(tempAgentObj);
-    //        return false;
-    //    }
-
-    //    if (!goalOnNavMesh)
-    //    {
-    //        Debug.LogError($"[TestPathWithTemporaryAgent] ❌ Le point d'arrivée {goal} n'est pas sur le NavMesh !");
-    //        Destroy(tempAgentObj);
-    //        return false;
-    //    }
-
-    //    // ✅ Déplacer l'agent au bon endroit
-    //    if (!tempAgent.Warp(hitStart.position))
-    //    {
-    //        Debug.LogError("[TestPathWithTemporaryAgent] ❌ L'agent temporaire n'a pas pu être placé sur le NavMesh !");
-    //        Destroy(tempAgentObj);
-    //        return false;
-    //    }
-
-    //    NavMeshPath path = new NavMeshPath();
-    //    bool hasPath = tempAgent.CalculatePath(hitGoal.position, path) && path.status == NavMeshPathStatus.PathComplete;
-
-    //    Destroy(tempAgentObj);
-
-    //    return hasPath;
-    //}
-
     private IEnumerator MoveGhostToMouseCoroutine(Cell cell)
     {
         cacheCell = cell; // Mise en cache pour éviter les appels répétés
