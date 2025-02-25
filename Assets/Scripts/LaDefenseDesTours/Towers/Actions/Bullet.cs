@@ -70,6 +70,8 @@ public abstract class Bullet : MonoBehaviour
         targetEnemy = null;
         damage = 0;
         specialAbility = 0;
+    }
+
     public void SetEffectType(string _effectType)
     {
         effectType = _effectType;
