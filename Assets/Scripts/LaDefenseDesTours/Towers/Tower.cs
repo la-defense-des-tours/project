@@ -1,4 +1,5 @@
 
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.Scripts.LaDefenseDesTours.Interfaces
@@ -21,10 +22,32 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         public virtual void Start()
         {
-            Debug.Log("Base tower start");
             m_shooter = GetComponent<Shooter>();
             m_shooter.SetRange(range);
             m_shooter.SetDamage(damage);
+        }
+
+        public virtual void Update()
+        {
+            switch (Input.inputString)
+            {
+                case "i":
+                    var iceEffect = new IceEffect(this);
+                    AttachEffect(iceEffect);
+                    Debug.Log("Ice effect attached");
+                    iceEffect.Attack();
+                    break;
+                case "f":
+                    var fireEffect = new FireEffect(this);
+                    AttachEffect(fireEffect);
+                    Debug.Log("Fire effect attached");
+                    fireEffect.Attack();
+                    break;
+                case "l":
+                    AttachEffect(new LightningEffect(this));
+                    Debug.Log("Lightning effect attached");
+                    break;
+            }
         }
 
         public virtual void Upgrade()
