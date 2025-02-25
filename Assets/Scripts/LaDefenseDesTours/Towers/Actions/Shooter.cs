@@ -99,13 +99,7 @@ public abstract class Shooter : MonoBehaviour
         rotatingPart.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
-    protected virtual void Shoot()
-    {
-        tower.Attack();
-        Bullet bulletInstance = Instantiate(bullet, firePoint.position, firePoint.rotation);
-        if (bulletInstance != null)
-            InitializeBullet(bulletInstance);
-    }
+    protected abstract void Shoot(); 
 
     public void InitializeBullet(Bullet bullet)
     {

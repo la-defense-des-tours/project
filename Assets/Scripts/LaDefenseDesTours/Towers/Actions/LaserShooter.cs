@@ -34,6 +34,7 @@ public class LaserShooter : Shooter
         if (currentLaser != null)
         {
             currentLaser.Release();
+            currentLaser = null;
         }
     }
 }

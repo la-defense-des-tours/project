@@ -63,7 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotatingSpeed: 7
   rotatingPart: {fileID: 4250892859355265069}
-  fireRate: 0
+  fireRate: 1
   fireCountdown: 0
   bullet: {fileID: -6296854728457005710, guid: 0aaabc7ca07a57627bcf553c17de475a, type: 3}
   firePoint: {fileID: 3896490135080864701}
