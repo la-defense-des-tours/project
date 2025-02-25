@@ -1,3 +1,5 @@
+
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.Scripts.LaDefenseDesTours.Interfaces
@@ -29,6 +31,36 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             m_shooter.SetDamage(damage);
         }
 
+        public Shooter GetShooter()
+        {
+            return m_shooter;
+        }
+
+        public virtual void Update()
+        {
+            switch (Input.inputString)
+            {
+                case "i":
+                    var iceEffect = new IceEffect(this);
+                    AttachEffect(iceEffect);
+                    Debug.Log("Ice effect attached");
+                    iceEffect.Attack();
+                    break;
+                case "f":
+                    var fireEffect = new FireEffect(this);
+                    AttachEffect(fireEffect);
+                    Debug.Log("Fire effect attached");
+                    fireEffect.Attack();
+                    break;
+                case "l":
+                    var lightningEffect = new LightningEffect(this);
+                    AttachEffect(lightningEffect);
+                    Debug.Log("Lightning effect attached");
+                    lightningEffect.Attack();
+                    break;
+            }
+        }
+
         public virtual void Upgrade()
         {
             Debug.Log("Upgrading base tower...");
@@ -38,6 +70,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual void Attack()
         {
             Debug.Log("Base tower attack");
+        }
+
+        public Tower AttachEffect(TowerDecorator effect)
+        {
+            effect.SetTower(this);
+            return effect;
         }
     }
 }

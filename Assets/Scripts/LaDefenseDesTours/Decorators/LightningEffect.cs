@@ -4,9 +4,13 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
     public class LightningEffect : TowerDecorator
     {
-        public LightningEffect(Tower tower) : base(tower) { }
+        public LightningEffect(Tower tower) : base(tower)
+        {
+            effectType = "Lightning";
+            Debug.Log("Lightning Effect Applied");
+        }
 
-        public new void Attack()
+        public override void Attack()
         {
             base.Attack();
             Debug.Log("Lightning effect is attacking");

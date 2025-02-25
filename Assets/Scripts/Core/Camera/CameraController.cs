@@ -48,17 +48,36 @@ public class CameraController : MonoBehaviour
     {
         Vector3 moveDirection = Vector3.zero;
 
-        if (Input.GetKey(KeyCode.UpArrow) || Input.mousePosition.y >= Screen.height - 10)
-            moveDirection += forward;
-        if (Input.GetKey(KeyCode.DownArrow) || Input.mousePosition.y <= 10)
-            moveDirection += back;
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.mousePosition.x <= 10)
-            moveDirection += left;
-        if (Input.GetKey(KeyCode.RightArrow) || Input.mousePosition.x >= Screen.width - 10)
-            moveDirection += right;
+        if (Input.GetKey(KeyCode.W)) moveDirection += GetMovementDirection(KeyCode.Z);
+        if (Input.GetKey(KeyCode.A)) moveDirection += GetMovementDirection(KeyCode.Q);
+        if (Input.GetKey(KeyCode.S)) moveDirection += GetMovementDirection(KeyCode.S);
+        if (Input.GetKey(KeyCode.D)) moveDirection += GetMovementDirection(KeyCode.D);
+
+        // Mouvements avec la souris
+        if (Input.mousePosition.y >= Screen.height - 10) moveDirection += forward;
+        if (Input.mousePosition.y <= 10) moveDirection += back;
+        if (Input.mousePosition.x <= 10) moveDirection += left;
+        if (Input.mousePosition.x >= Screen.width - 10) moveDirection += right;
 
         if (moveDirection != Vector3.zero)
             MoveCamera(moveDirection.normalized);
+    }
+
+    private Vector3 GetMovementDirection(KeyCode key)
+    {
+        switch (key)
+        {
+            case KeyCode.Z:
+                return forward;
+            case KeyCode.S:
+                return back;
+            case KeyCode.Q:
+                return left;
+            case KeyCode.D:
+                return right;
+            default:
+                return Vector3.zero;
+        }
     }
 
     void MoveCamera(Vector3 direction)

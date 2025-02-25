@@ -1,4 +1,5 @@
 using UnityEngine;
+using Assets.Scripts.LaDefenseDesTours.Interfaces;
 
 public abstract class Shooter : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public abstract class Shooter : MonoBehaviour
     [SerializeField] private Transform rotatingPart;
     [SerializeField] private float fireRate;
     [SerializeField] private float fireCountdown;
+
     private const string ENEMY_TAG = "Enemy";
     protected Transform target;
     private float range;
@@ -16,6 +18,9 @@ public abstract class Shooter : MonoBehaviour
     [SerializeField] protected Transform firePoint;
     private float damage;
     private float specialAbility;
+
+    protected Tower tower;
+    private string effectType;
 
     private void Start()
     {
@@ -86,8 +91,6 @@ public abstract class Shooter : MonoBehaviour
             target = null;
     }
 
-    protected abstract void Shoot();
-
     private void LockOnTarget()
     {
         Vector3 direction = target.position - transform.position;
@@ -96,11 +99,26 @@ public abstract class Shooter : MonoBehaviour
         rotatingPart.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
-    protected void InitializeBullet(Bullet bullet)
+    protected virtual void Shoot()
+    {
+        tower.Attack();
+        Bullet bulletInstance = Instantiate(bullet, firePoint.position, firePoint.rotation);
+        if (bulletInstance != null)
+            InitializeBullet(bulletInstance);
+    }
+
+    public void InitializeBullet(Bullet bullet)
     {
         bullet.Seek(target);
         bullet.SetDamage(damage);
         bullet.SetSpecialAbility(specialAbility);
+
+        bullet.SetEffectType(effectType);
+    }
+
+    public void SetSpecialAbility(float _specialAbility)
+    {
+        specialAbility = _specialAbility;
     }
 
     protected Bullet SpawnBullet()
@@ -121,9 +139,9 @@ public abstract class Shooter : MonoBehaviour
         damage = _damage;
     }
 
-    public void SetSpecialAbility(float _specialAbility)
+    public void SetEffectType(string _effectType)
     {
-        specialAbility = _specialAbility;
+        effectType = _effectType;
     }
 
     void OnDrawGizmosSelected()
