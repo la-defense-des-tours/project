@@ -45,25 +45,49 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         void Update()
         {
             UpdateState();
-
-            switch (Input.inputString)
+            int key = GetNumericKeyPressed();
+            if (key != -1)
             {
-                case "s":
-                    TransitionTo(new Slowed());
-                    break;
-                case "p":
-                    TransitionTo(new Paralyzed());
-                    break;
-                case "d":
-                    TransitionTo(new Dead());
-                    break;
-                case "b":
-                    TransitionTo(new Burned());
-                    break;
+                HandleEffect(key);
             }
 
             if (currentState is not Dead)
                 CheckArrival();
+        }
+
+        private int GetNumericKeyPressed()
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1)) return 1;
+            if (Input.GetKeyDown(KeyCode.Alpha2)) return 2;
+            if (Input.GetKeyDown(KeyCode.Alpha3)) return 3;
+            if (Input.GetKeyDown(KeyCode.Alpha4)) return 4;
+            return -1;
+        }
+
+        private void HandleEffect(int key)
+        {
+            switch (key)
+            {
+                case 1:
+                    TransitionTo(new Slowed());
+                    Debug.Log("Slowed effect applied");
+                    break;
+                case 2:
+                    TransitionTo(new Paralyzed());
+                    Debug.Log("Paralyzed effect applied");
+                    break;
+                case 3:
+                    TransitionTo(new Dead());
+                    Debug.Log("Dead effect applied");
+                    break;
+                case 4:
+                    TransitionTo(new Burned());
+                    Debug.Log("Burned effect applied");
+                    break;
+                default:
+                    Debug.Log("Invalid key pressed. Use 1, 2, 3, or 4 to apply effects.");
+                    break;
+            }
         }
 
         public virtual void SetupNavMeshAgent()
