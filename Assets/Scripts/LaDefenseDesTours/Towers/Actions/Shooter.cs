@@ -43,7 +43,7 @@ public abstract class Shooter : MonoBehaviour
         fireCountdown -= Time.deltaTime;
     }
 
-    protected bool HasLineOfSight()
+    private bool HasLineOfSight()
     {
         if (target == null)
             return false;
