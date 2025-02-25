@@ -19,13 +19,13 @@ public class CanonBullet : Bullet
                 enemy.TakeDamage(damage);
         }
 
-        Destroy(gameObject);
+        Release();
     }
     protected override void HandleTrajectory()
     {
         if (target == null)
         {
-            Destroy(gameObject);
+            Release();
             return;
         }
 

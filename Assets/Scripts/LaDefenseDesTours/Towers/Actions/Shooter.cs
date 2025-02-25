@@ -20,6 +20,12 @@ public abstract class Shooter : MonoBehaviour
     private void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
+
+        if (FindFirstObjectByType<BulletPool>() == null)
+        {
+            GameObject poolObj = new GameObject("BulletPool");
+            poolObj.AddComponent<BulletPool>();
+        }
     }
 
     private void Update()
@@ -95,6 +101,14 @@ public abstract class Shooter : MonoBehaviour
         bullet.Seek(target);
         bullet.SetDamage(damage);
         bullet.SetSpecialAbility(specialAbility);
+    }
+
+    protected Bullet SpawnBullet()
+    {
+        Bullet spawnedBullet = BulletPool.Instance.GetBullet(bullet);
+        spawnedBullet.transform.position = firePoint.position;
+        spawnedBullet.transform.rotation = firePoint.rotation;
+        return spawnedBullet;
     }
 
     public void SetRange(float _range)
