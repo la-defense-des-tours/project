@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: 6068234123625582227}
   - component: {fileID: -6725260411263244965}
   - component: {fileID: 4159015513222131200}
+  - component: {fileID: 7359085181106988546}
   m_Layer: 0
   m_Name: Canon_3
   m_TagString: Untagged
@@ -206,6 +207,22 @@ MonoBehaviour:
   fireCountdown: 0
   bullet: {fileID: 6275715922120870924, guid: db7b742c14606944b852667c9c6f0e1b, type: 3}
   firePoint: {fileID: 403614934741154548}
+--- !u!208 &7359085181106988546
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6716405184063055180}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.75, y: 0.5, z: 0.75}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &7078624341193540202
 GameObject:
   m_ObjectHideFlags: 0
