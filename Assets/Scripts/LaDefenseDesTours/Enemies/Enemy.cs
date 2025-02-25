@@ -151,6 +151,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             if (currentState is Dead)
                 return;
 
+            if (currentState != null && currentState.GetType() == state.GetType())
+                return;
+
             currentState?.OnStateExit();
             currentState = state;
             currentState.SetContext(this);
