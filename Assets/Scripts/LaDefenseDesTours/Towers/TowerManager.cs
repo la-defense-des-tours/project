@@ -38,6 +38,7 @@ public class TowerManager : MonoBehaviour
     public UpgradeMenu upgradeMenu;
 
     private TowerData selectedTowerData;
+
     public static TowerManager Instance;
 
 
@@ -399,6 +400,30 @@ public class TowerManager : MonoBehaviour
             }
         }
     }
+    private void OnEnable()
+    {
+        if (GameUI.instance != null)
+        {
+            GameUI.instance.stateChanged += OnGameStateChanged;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (GameUI.instance != null)
+        {
+            GameUI.instance.stateChanged -= OnGameStateChanged;
+        }
+    }
+    private void OnGameStateChanged(GameUI.State oldState, GameUI.State newState)
+    {
+        if (newState == GameUI.State.Paused || newState == GameUI.State.GameOver)
+        {
+            Debug.Log("[TowerManager] Annulation du Ghost car le jeu est en pause ou terminé.");
+            CancelGhostPlacement();
+        }
+    }
+
 
     public void CancelGhostPlacement()
     {
