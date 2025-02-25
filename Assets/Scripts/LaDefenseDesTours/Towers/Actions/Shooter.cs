@@ -29,12 +29,12 @@ public abstract class Shooter : MonoBehaviour
 
     private void RotateTurret()
     {
-        if (target == null)
+        if (target == null || !HasLineOfSight())
             return;
 
         LockOnTarget();
 
-        if (fireCountdown <= 0f && HasLineOfSight())
+        if (fireCountdown <= 0f)
         {
             Shoot();
             fireCountdown = 1f / fireRate;
