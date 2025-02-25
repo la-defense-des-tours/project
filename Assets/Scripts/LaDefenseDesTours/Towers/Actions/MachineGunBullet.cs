@@ -6,7 +6,7 @@ public class MachineGunBullet : Bullet
     {
         if (target == null)
         {
-            Destroy(gameObject);
+            Release();
             return;
         }
 
@@ -25,7 +25,7 @@ public class MachineGunBullet : Bullet
     }
     protected override void HitTarget()
     {
-        Destroy(gameObject);
         targetEnemy.TakeDamage(damage);
+        Release();
     }
 }
