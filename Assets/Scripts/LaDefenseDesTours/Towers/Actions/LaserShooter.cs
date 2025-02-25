@@ -23,6 +23,15 @@ public class LaserShooter : Shooter
         base.UpdateTarget();
 
         if (target != oldTarget && currentLaser != null)
+        {
+            Destroy(currentLaser.gameObject);
             currentLaser = null;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (currentLaser != null)
+            Destroy(currentLaser.gameObject);
     }
 }
