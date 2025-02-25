@@ -155,8 +155,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             currentState = state;
             currentState.SetContext(this);
             currentState.OnStateEnter();
-
-            PlayStateEffect(state);
         }
 
         public void UpdateState()
@@ -178,32 +176,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         public virtual void CheckArrival()
         {
-
             if (transform.position.x <= -80f)
             {
                 DealDamage(health);
                 TransitionTo(new Dead());
-            }
-
-        }
-
-        private void PlayStateEffect(State state)
-        {
-            if (fireEffect != null) fireEffect.Stop();
-            if (iceEffect != null) iceEffect.Stop();
-            if (lightningEffect != null) lightningEffect.Stop();
-
-            if (state is Burned && fireEffect != null)
-            {
-                fireEffect.Play();
-            }
-            else if (state is Paralyzed && iceEffect != null)
-            {
-                iceEffect.Play();
-            }
-            else if (state is Slowed && lightningEffect != null)
-            {
-                lightningEffect.Play();
             }
         }
     }
