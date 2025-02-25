@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 3119963224667280803}
   - component: {fileID: 1581645643603749909}
   - component: {fileID: 8167796448262217090}
+  - component: {fileID: -6418825883810637289}
   m_Layer: 0
   m_Name: MachineGun_1
   m_TagString: Untagged
@@ -316,6 +317,22 @@ MonoBehaviour:
   fireCountdown: 0
   bullet: {fileID: 178726760221476399, guid: 0c0e6c6dd14c7fc019b6552dd254f299, type: 3}
   firePoint: {fileID: 4208258262680981007}
+--- !u!208 &-6418825883810637289
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7129850076736660284}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.75, y: 0.5, z: 0.75}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &6186534649064713251
 PrefabInstance:
   m_ObjectHideFlags: 0

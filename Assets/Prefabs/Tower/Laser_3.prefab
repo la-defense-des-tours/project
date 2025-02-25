@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 825898929448360408}
   - component: {fileID: -7995590564768954988}
   - component: {fileID: 5318737150082344170}
+  - component: {fileID: 1689415559090151707}
   m_Layer: 0
   m_Name: Laser_3
   m_TagString: Untagged
@@ -66,6 +67,22 @@ MonoBehaviour:
   fireCountdown: 0
   bullet: {fileID: -6296854728457005710, guid: 0aaabc7ca07a57627bcf553c17de475a, type: 3}
   firePoint: {fileID: 3896490135080864701}
+--- !u!208 &1689415559090151707
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 228994677753866313}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.75, y: 0.5, z: 0.75}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1998717965066965306
 GameObject:
   m_ObjectHideFlags: 0

@@ -65,8 +65,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
             SetupSpeed();
         }
-
-
+        public virtual NavMeshAgent GetNavMeshAgent()
+        {
+            return agent;
+        }
         public virtual void SetupSpeed()
         {
             agent.speed = speed;
