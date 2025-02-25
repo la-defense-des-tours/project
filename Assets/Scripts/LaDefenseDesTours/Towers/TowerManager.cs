@@ -118,7 +118,7 @@ public class TowerManager : MonoBehaviour
 
     public void TryPlaceTowerOnCell(Cell cell)
     {
-        if (!isPlacingTower || selectedFactory == null || cell.IsOccupied())
+        if (!isPlacingTower || selectedFactory == null || cell.IsOccupied() || !isGhostPlacementValid)
         {
             return;
         }
@@ -208,7 +208,7 @@ public class TowerManager : MonoBehaviour
         }
     }
 
-
+    
     public void StartPlacingTower(TowerData towerData)
     {
         if (currentGhost != null)
@@ -311,9 +311,10 @@ public class TowerManager : MonoBehaviour
             ghostObstacle.enabled = false;
             ghostObstacle.enabled = true;
             ghostObstacle.carving = true;
+
         }
 
-        yield return new WaitForSeconds(0.1f);
+        yield return WaitForNavMeshRecalculation();
 
         cell.SetTemporaryBlock(true);
         bool isBlocked = IsPathBlocked(cell);
@@ -330,6 +331,26 @@ public class TowerManager : MonoBehaviour
         UpdateGhostVisual();
     }
 
+    private IEnumerator WaitForNavMeshRecalculation()
+    {
+        float timeout = 1.0f; // Temps max d'attente (éviter blocage infini)
+        float timer = 0f;
+
+        while (!NavMeshIsReady() && timer < timeout)
+        {
+            yield return new WaitForEndOfFrame();
+            timer += Time.deltaTime;
+        }
+
+        if (timer >= timeout)
+        {
+            Debug.LogWarning("⏳ Attente NavMesh dépassée !");
+        }
+    }
+    private bool NavMeshIsReady()
+    {
+        return !NavMesh.pathfindingIterationsPerFrame.Equals(0);
+    }
 
     private void MoveGhostToMouse()
     {
