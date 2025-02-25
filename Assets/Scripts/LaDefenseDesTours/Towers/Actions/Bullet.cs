@@ -27,27 +27,7 @@ public abstract class Bullet : MonoBehaviour
 
     protected abstract void HitTarget();
 
-    protected virtual void HandleTrajectory()
-    {
-        if (target == null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Vector3 targetCenter = targetCollider.bounds.center;
-        Vector3 direction = targetCenter - transform.position;
-        float distanceThisFrame = speed * Time.deltaTime;
-
-        if (direction.magnitude <= distanceThisFrame)
-        {
-            HitTarget();
-            return;
-        }
-
-        transform.Translate(direction.normalized * distanceThisFrame, Space.World);
-        transform.LookAt(targetCenter);
-    }
+    protected abstract void HandleTrajectory(); 
 
     public void SetDamage(float _damage)
     {
