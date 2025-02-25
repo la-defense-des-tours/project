@@ -30,7 +30,7 @@ public class BulletPool : MonoBehaviour
             actionOnRelease: bullet => bullet.gameObject.SetActive(false),
             actionOnDestroy: bullet => Destroy(bullet.gameObject),
             defaultCapacity: 20,
-            maxSize: 100
+            maxSize: 200
         );
     }
 

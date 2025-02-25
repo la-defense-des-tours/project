@@ -8,7 +8,7 @@ public class LaserShooter : Shooter
     {
         if (currentLaser == null)
         {
-            currentLaser = SpawnBullet();
+            currentLaser = Instantiate(bullet, firePoint.position, firePoint.rotation);
             if (currentLaser != null)
             {
                 currentLaser.transform.SetParent(firePoint);
@@ -23,18 +23,6 @@ public class LaserShooter : Shooter
         base.UpdateTarget();
 
         if (target != oldTarget && currentLaser != null)
-        {
-            currentLaser.Release();
             currentLaser = null;
-        }
-    }
-
-    private void OnDestroy()
-    {
-        if (currentLaser != null)
-        {
-            currentLaser.Release();
-            currentLaser = null;
-        }
     }
 }
