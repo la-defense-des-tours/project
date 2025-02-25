@@ -413,6 +413,11 @@ public class TowerManager : MonoBehaviour
         cell.SetTemporaryBlock(wasOccupied);
 
         Debug.Log($"[MoveGhostToMouse] 🔥 Résultat IsPathBlocked après attente : {isBlocked}");
+        if (ghostObstacle != null)
+        {
+            Debug.Log("[MoveGhostToMouse] 🔄 Désactivation du NavMeshObstacle du ghost après le test");
+            ghostObstacle.enabled = false;
+        }
 
         // ✅ Mise à jour finale : on valide uniquement si tout est bon
         bool isOccupied = wasOccupied;
