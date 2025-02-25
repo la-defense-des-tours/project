@@ -66,14 +66,13 @@ public class TowerManager : MonoBehaviour
 
         if (!tempAgent.Warp(start))
         {
-            Debug.LogError("[TestPathWithTemporaryAgent] Impossible de positionner l'agent temporaire !");
             return false;
         }
 
         NavMeshPath path = new NavMeshPath();
         bool hasPath = tempAgent.CalculatePath(goal, path) && path.status == NavMeshPathStatus.PathComplete;
 
-        tempAgent.gameObject.SetActive(false); // On le désactive après l'utilisation
+        tempAgent.gameObject.SetActive(false);
 
         return hasPath;
     }
@@ -121,41 +120,34 @@ public class TowerManager : MonoBehaviour
     {
         if (!isPlacingTower || selectedFactory == null || cell.IsOccupied())
         {
-            Debug.Log("❌ Impossible de placer la tour ici !");
             return;
         }
 
         if (EventSystem.current.IsPointerOverGameObject())
         {
-            Debug.Log("❌ Impossible de placer une tour sur l'interface utilisateur !");
             return;
         }
 
         if (selectedTowerData == null)
         {
-            Debug.LogError("❌ Aucune TowerData sélectionnée ! Impossible de déterminer le coût.");
             return;
         }
 
-        // Vérification correcte du blocage de chemin
         bool wasOccupied = cell.IsOccupied();
-        cell.SetTemporaryBlock(true); // Bloque temporairement la cellule pour tester
+        cell.SetTemporaryBlock(true); 
         bool isBlocked = IsPathBlocked(cell);
-        cell.SetTemporaryBlock(wasOccupied); // Rétablit l'état initial
+        cell.SetTemporaryBlock(wasOccupied); 
 
         if (isBlocked)
         {
-            Debug.Log("❌ Impossible de placer une tour ici, car elle bloque le passage des ennemis !");
             return;
         }
 
         if (!LevelManager.instance.currency.TryPurchase(selectedTowerData.cost))
         {
-            Debug.Log("❌ Pas assez d'argent !");
             return;
         }
 
-        // Création de la tour après toutes les vérifications
         Tower newTower = selectedFactory.CreateTower(cell.GetBuildPosition());
         if (newTower != null)
         {
@@ -177,7 +169,6 @@ public class TowerManager : MonoBehaviour
 
         spawnButtons.Add(button);
         button.buttonTapped += OnTowerButtonTapped;
-        Debug.Log($"Button registered: {button.name}, total buttons: {spawnButtons.Count}");
     }
     private void OnTowerButtonTapped(TowerData towerData)
     {
@@ -210,20 +201,6 @@ public class TowerManager : MonoBehaviour
             cell.isUpgraded = true;
 
             upgradedTower.Upgrade();
-
-            // Afficher les spécificités selon le type de tour
-            if (upgradedTower is LaserTower laserTower)
-            {
-                Debug.Log($"New Tower Damage Over Time: {laserTower.damageOverTime}");
-            }
-            else if (upgradedTower is CanonTower canonTower)
-            {
-                Debug.Log($"New Area of Effect: {canonTower.areaOfEffect}");
-            }
-            else if (upgradedTower is MachineGunTower machineGunTower)
-            {
-                Debug.Log($"New Attack Per Second: {machineGunTower.attackPerSecond}");
-            }
         }
         else
         {
@@ -308,63 +285,48 @@ public class TowerManager : MonoBehaviour
         Vector3 start = GetClosestNavMeshPoint(new Vector3(0, 0, 0));
         Vector3 goal = GetClosestNavMeshPoint(LevelManager.instance.GetEnemyEndPoint());
 
-        Debug.Log($"[IsPathBlocked] 🏗 Test de placement d'une tour sur {cell.gameObject.name}");
-
         bool wasOccupied = cell.IsOccupied();
-        cell.SetTemporaryBlock(true); // Bloquer temporairement la cellule
+        cell.SetTemporaryBlock(true); 
 
         bool pathExists = TestPathWithTemporaryAgent(start, goal);
 
-        cell.SetTemporaryBlock(wasOccupied); // Rétablir l'état initial
-
-        Debug.Log($"[IsPathBlocked] 🔥 Résultat : {(pathExists ? "🟢 Chemin valide" : "🔴 Chemin bloqué")}");
+        cell.SetTemporaryBlock(wasOccupied);
 
         return !pathExists;
     }
 
     private IEnumerator MoveGhostToMouseCoroutine(Cell cell)
     {
-        cacheCell = cell; // Mise en cache pour éviter les appels répétés
-        Debug.Log($"[MoveGhostToMouse] 📍 Nouvelle cellule détectée : {cell.gameObject.name}");
-
-        // ❌ Désactive le placement par défaut
+        cacheCell = cell;
         isGhostPlacementValid = false;
         UpdateGhostVisual();
 
         bool wasOccupied = cell.IsOccupied();
-        Debug.Log($"[MoveGhostToMouse] 🔎 Occupation initiale : {wasOccupied}");
 
         currentGhost.transform.position = cell.GetBuildPosition();
 
-        // ✅ Mise à jour du NavMeshObstacle
         NavMeshObstacle ghostObstacle = currentGhost.GetComponent<NavMeshObstacle>();
         if (ghostObstacle != null)
         {
-            Debug.Log("[MoveGhostToMouse] 🔄 Mise à jour du NavMeshObstacle du ghost");
             ghostObstacle.enabled = false;
             ghostObstacle.enabled = true;
             ghostObstacle.carving = true;
         }
 
-        // 🕒 Attente pour que le NavMesh se mette à jour avant de tester IsPathBlocked()
         yield return new WaitForSeconds(0.1f);
 
         cell.SetTemporaryBlock(true);
         bool isBlocked = IsPathBlocked(cell);
         cell.SetTemporaryBlock(wasOccupied);
 
-        Debug.Log($"[MoveGhostToMouse] 🔥 Résultat IsPathBlocked après attente : {isBlocked}");
         if (ghostObstacle != null)
         {
-            Debug.Log("[MoveGhostToMouse] 🔄 Désactivation du NavMeshObstacle du ghost après le test");
             ghostObstacle.enabled = false;
         }
 
-        // ✅ Mise à jour finale : on valide uniquement si tout est bon
         bool isOccupied = wasOccupied;
         isGhostPlacementValid = !isOccupied && !isBlocked;
 
-        Debug.Log($"[MoveGhostToMouse] ✅ État final de la cellule : {(isGhostPlacementValid ? "🟢 VALIDE" : "🔴 INVALID")}");
         UpdateGhostVisual();
     }
 
@@ -379,13 +341,11 @@ public class TowerManager : MonoBehaviour
 
             if (cell == null)
             {
-                Debug.Log("[MoveGhostToMouse] ❌ Aucune cellule détectée !");
                 return;
             }
 
             if (cell == cacheCell)
             {
-                Debug.Log($"[MoveGhostToMouse] 🚫 Cellule inchangée: {cell.gameObject.name}");
                 return;
             }
 
@@ -407,18 +367,16 @@ public class TowerManager : MonoBehaviour
 
         Renderer[] ghostRenderers = currentGhost.GetComponentsInChildren<Renderer>();
 
-        Color validColor = new Color(0, 1, 0, 0.5f); // ✅ Vert transparent
-        Color invalidColor = new Color(1, 0, 0, 0.5f); // ❌ Rouge transparent
+        Color validColor = new Color(0, 1, 0, 0.5f); 
+        Color invalidColor = new Color(1, 0, 0, 0.5f); 
 
         foreach (Renderer renderer in ghostRenderers)
         {
-            if (renderer.material.HasProperty("_Color")) // Vérifie si le matériel a une propriété couleur
+            if (renderer.material.HasProperty("_Color")) 
             {
                 renderer.material.color = isGhostPlacementValid ? validColor : invalidColor;
             }
         }
-
-        Debug.Log($"[UpdateGhostVisual] Couleur du ghost mise à jour : {(isGhostPlacementValid ? "VERT ✅" : "ROUGE ❌")}");
     }
 
     private void UpdateRangeIndicator(float range)
