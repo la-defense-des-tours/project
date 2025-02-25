@@ -46,10 +46,12 @@ public class BulletPool : MonoBehaviour
 
     public void ClearPools()
     {
+        if (pools == null)
+            return;
+
         foreach (var pool in pools.Values)
-        {
-            pool.Clear();
-        }
+            pool?.Clear();
+
         pools.Clear();
     }
 
