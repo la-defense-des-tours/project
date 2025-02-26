@@ -8,17 +8,15 @@ public abstract class Shooter : MonoBehaviour
     [SerializeField] private Transform rotatingPart;
     [SerializeField] private float fireRate;
     [SerializeField] private float fireCountdown;
-
     protected Transform target;
     private float range;
+    private const string ENEMY_TAG = "Enemy";
 
     [Header("Bullet Attributes")]
     [SerializeField] protected Bullet bullet;
     [SerializeField] protected Transform firePoint;
     private float damage;
     private float specialAbility;
-
-    protected Tower tower;
     private string effectType;
 
     private void Start()
@@ -84,7 +82,7 @@ public abstract class Shooter : MonoBehaviour
             }
         }
 
-        if (nearestEnemy != null)
+        if (nearestEnemy != null && nearestEnemy.gameObject.CompareTag(ENEMY_TAG))
             target = nearestEnemy.transform;
         else
             target = null;
