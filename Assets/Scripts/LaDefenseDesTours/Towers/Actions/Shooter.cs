@@ -9,7 +9,6 @@ public abstract class Shooter : MonoBehaviour
     [SerializeField] private float fireRate;
     [SerializeField] private float fireCountdown;
 
-    private const string ENEMY_TAG = "Enemy";
     protected Transform target;
     private float range;
 
@@ -106,7 +105,6 @@ public abstract class Shooter : MonoBehaviour
         bullet.Seek(target);
         bullet.SetDamage(damage);
         bullet.SetSpecialAbility(specialAbility);
-
         bullet.SetEffectType(effectType);
     }
 
@@ -118,8 +116,7 @@ public abstract class Shooter : MonoBehaviour
     protected Bullet SpawnBullet()
     {
         Bullet spawnedBullet = BulletPool.Instance.GetBullet(bullet);
-        spawnedBullet.transform.position = firePoint.position;
-        spawnedBullet.transform.rotation = firePoint.rotation;
+        spawnedBullet.transform.SetPositionAndRotation(firePoint.position, firePoint.rotation);
         return spawnedBullet;
     }
 
