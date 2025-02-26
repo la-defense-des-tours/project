@@ -138,7 +138,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public void DealDamage(float _damage)
         {
             Player.GetInstance().TakeDamage(_damage);
-            Debug.Log($"Player took {_damage} damage. Player health: {Player.GetInstance().health}");
         }
 
         public virtual void Die()
