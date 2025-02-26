@@ -9,7 +9,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         public override void ApplyEffect()
         {
-           if (!isApplied)
+            if (!isApplied)
             {
                 enemy.SetSpeed(0);
                 isApplied = true;

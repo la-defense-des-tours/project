@@ -18,18 +18,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual float maxHealth { get; set; } = 100;
         public event Action OnHealthChanged;
 
-        private ParticleSystem fireEffect;
-        private ParticleSystem iceEffect;
-        private ParticleSystem lightningEffect;
-
         public void Awake()
         {
             animator = GetComponent<Animator>();
             SetupNavMeshAgent();
-
-            fireEffect = transform.Find("FireEffect")?.GetComponent<ParticleSystem>();
-            iceEffect = transform.Find("IceEffect")?.GetComponent<ParticleSystem>();
-            lightningEffect = transform.Find("LightningEffect")?.GetComponent<ParticleSystem>();
         }
 
         private void Start()
