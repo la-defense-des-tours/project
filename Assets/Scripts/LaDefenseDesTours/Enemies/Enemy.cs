@@ -18,18 +18,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual float maxHealth { get; set; } = 100;
         public event Action OnHealthChanged;
 
-        private ParticleSystem fireEffect;
-        private ParticleSystem iceEffect;
-        private ParticleSystem lightningEffect;
-
         public void Awake()
         {
             animator = GetComponent<Animator>();
             SetupNavMeshAgent();
-
-            fireEffect = transform.Find("FireEffect")?.GetComponent<ParticleSystem>();
-            iceEffect = transform.Find("IceEffect")?.GetComponent<ParticleSystem>();
-            lightningEffect = transform.Find("LightningEffect")?.GetComponent<ParticleSystem>();
         }
 
         private void Start()
@@ -148,10 +140,16 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public void TransitionTo(State state)
         {
             if (currentState is Dead)
+            {
+                Debug.Log("Dead state transition");
                 return;
+            }
 
             if (currentState != null && currentState.GetType() == state.GetType())
+            {
+                Debug.Log("Same state transition");
                 return;
+            }
 
             currentState?.OnStateExit();
             currentState = state;

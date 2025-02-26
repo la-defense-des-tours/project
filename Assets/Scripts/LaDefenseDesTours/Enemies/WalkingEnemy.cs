@@ -14,12 +14,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         {
             agent.speed = speed;
             agent.acceleration = acceleration;
-            animator.speed = speed;
+            animator.speed = speed / 2;
         }
         public override void SetSpeed(float _speed)
         {
             agent.speed = _speed;
-            animator.speed = _speed;
+            animator.speed = _speed / 2;
         }
     }
 }

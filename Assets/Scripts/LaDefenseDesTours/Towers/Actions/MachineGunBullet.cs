@@ -26,7 +26,7 @@ public class MachineGunBullet : Bullet
     protected override void HitTarget()
     {
         targetEnemy.TakeDamage(damage);
-        Release();
         ApplyEffect();
+        Release();
     }
 }

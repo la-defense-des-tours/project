@@ -8,10 +8,5 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         {
             effectType = "Lightning";
         }
-
-        public override void Attack()
-        {
-            base.Attack();
-        }
     }
 }
