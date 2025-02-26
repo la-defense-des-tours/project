@@ -99,7 +99,7 @@ public abstract class Shooter : MonoBehaviour
         rotatingPart.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
-    protected abstract void Shoot(); 
+    protected abstract void Shoot();
 
     public void InitializeBullet(Bullet bullet)
     {
@@ -133,7 +133,7 @@ public abstract class Shooter : MonoBehaviour
         damage = _damage;
     }
 
-    public void SetEffectType(string _effectType)
+    public virtual void SetEffectType(string _effectType)
     {
         effectType = _effectType;
     }

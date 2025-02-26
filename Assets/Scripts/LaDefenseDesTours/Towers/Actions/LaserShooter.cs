@@ -29,6 +29,16 @@ public class LaserShooter : Shooter
         }
     }
 
+    public override void SetEffectType(string _effectType)
+    {
+        base.SetEffectType(_effectType);
+
+        if (currentLaser != null)
+        {
+            InitializeBullet(currentLaser);
+        }
+    }
+
     private void OnDestroy()
     {
         if (currentLaser != null)
