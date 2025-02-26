@@ -1960,7 +1960,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1859314423797376618, guid: bf153303ae916364a9990f77d1f1d63d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -26
+      value: -26.09
       objectReference: {fileID: 0}
     - target: {fileID: 1859314423797376618, guid: bf153303ae916364a9990f77d1f1d63d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2000,7 +2000,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7807329685703462301, guid: bf153303ae916364a9990f77d1f1d63d, type: 3}
       propertyPath: height
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7807329685703462301, guid: bf153303ae916364a9990f77d1f1d63d, type: 3}
       propertyPath: cellSize
@@ -2188,7 +2188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7807329685703462301, guid: bf153303ae916364a9990f77d1f1d63d, type: 3}
       propertyPath: height
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7807329685703462301, guid: bf153303ae916364a9990f77d1f1d63d, type: 3}
       propertyPath: cellSize
@@ -2654,7 +2654,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1859314423797376618, guid: bf153303ae916364a9990f77d1f1d63d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 30
+      value: 25.95
       objectReference: {fileID: 0}
     - target: {fileID: 1859314423797376618, guid: bf153303ae916364a9990f77d1f1d63d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2694,7 +2694,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7807329685703462301, guid: bf153303ae916364a9990f77d1f1d63d, type: 3}
       propertyPath: height
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7807329685703462301, guid: bf153303ae916364a9990f77d1f1d63d, type: 3}
       propertyPath: cellSize
@@ -3935,11 +3935,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 5, y: 2.5, z: 12.75}
+  m_Extents: {x: 4.8, y: 2.5, z: 12.25}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 0
-  m_Center: {x: -0.9, y: 0, z: -0.2}
+  m_Center: {x: -0.9, y: 0, z: 0}
   m_TimeToStationary: 0.5
 --- !u!1001 &5372732949584366341
 PrefabInstance:
