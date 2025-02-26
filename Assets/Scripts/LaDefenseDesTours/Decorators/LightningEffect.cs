@@ -7,13 +7,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public LightningEffect(Tower tower) : base(tower)
         {
             effectType = "Lightning";
-            Debug.Log("Lightning Effect Applied");
-        }
-
-        public override void Attack()
-        {
-            base.Attack();
-            Debug.Log("Lightning effect is attacking");
         }
     }
 }
