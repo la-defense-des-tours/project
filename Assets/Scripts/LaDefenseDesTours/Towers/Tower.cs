@@ -1,3 +1,5 @@
+
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.Scripts.LaDefenseDesTours.Interfaces
@@ -10,6 +12,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual float damage { get; set; }
         public virtual int cost { get; set; }
         public int currentLevel { get; set; } = 1;
+        public bool isGhost { get; set; } = false;
 
         protected float fireRate;
         protected int upgradeCost;
@@ -18,11 +21,38 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         protected float upgradeRange;
         protected int sellValue;
 
+
         public virtual void Start()
         {
+            if (isGhost) return;
+
             m_shooter = GetComponent<Shooter>();
             m_shooter.SetRange(range);
             m_shooter.SetDamage(damage);
+        }
+
+        public Shooter GetShooter()
+        {
+            return m_shooter;
+        }
+
+        public virtual void Update()
+        {
+            switch (Input.inputString)
+            {
+                case "i":
+                    var iceEffect = new IceEffect(this);
+                    iceEffect.Attack();
+                    break;
+                case "f":
+                    var fireEffect = new FireEffect(this);
+                    fireEffect.Attack();
+                    break;
+                case "l":
+                    var lightningEffect = new LightningEffect(this);
+                    lightningEffect.Attack();
+                    break;
+            }
         }
 
         public virtual void Upgrade()

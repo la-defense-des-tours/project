@@ -17,4 +17,5 @@ MonoBehaviour:
     un souffle"
   upgradeDescription: Description upgrade tower 2
   cost: 150
+  range: 20
   icon: {fileID: 21300000, guid: 53652022b1d444a5c9e9630488e44e13, type: 3}

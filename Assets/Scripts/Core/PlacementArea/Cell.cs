@@ -53,6 +53,7 @@ public class Cell : MonoBehaviour
         towerManager.UpgradeTower(this);
     }
 
+
     private void OnMouseEnter()
     {
         cellRenderer.material = hoverMaterial;

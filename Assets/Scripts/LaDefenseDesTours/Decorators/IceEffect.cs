@@ -4,12 +4,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
     public class IceEffect : TowerDecorator
     {
-        public IceEffect(Tower tower) : base(tower) { }
-
-        public new void Attack()
+        public IceEffect(Tower tower) : base(tower)
         {
-            base.Attack();
-            Debug.Log("Ice effect is attacking");
+            effectType = "Ice";
         }
     }
 }

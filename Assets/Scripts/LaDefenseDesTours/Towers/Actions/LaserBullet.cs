@@ -29,14 +29,16 @@ public class LaserBullet : Bullet
         laserLine.SetPosition(0, transform.position);
         laserLine.SetPosition(1, targetCollider.bounds.center);
 
-        if (targetEnemy != null)
-        {
-            float damageThisFrame = damage * specialAbility * Time.deltaTime;
-            targetEnemy.TakeDamage(damageThisFrame);
-        }
+        HitTarget();
     }
 
     protected override void HitTarget()
     {
+        if (targetEnemy != null)
+        {
+            float damageThisFrame = damage * specialAbility * Time.deltaTime;
+            targetEnemy.TakeDamage(damageThisFrame);
+            ApplyEffect();
+        }
     }
 }

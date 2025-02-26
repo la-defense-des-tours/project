@@ -1,4 +1,5 @@
 using UnityEngine;
+using Assets.Scripts.LaDefenseDesTours.Interfaces;
 
 public abstract class Shooter : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public abstract class Shooter : MonoBehaviour
     [SerializeField] private Transform rotatingPart;
     [SerializeField] private float fireRate;
     [SerializeField] private float fireCountdown;
+
     private const string ENEMY_TAG = "Enemy";
     protected Transform target;
     private float range;
@@ -17,9 +19,18 @@ public abstract class Shooter : MonoBehaviour
     private float damage;
     private float specialAbility;
 
+    protected Tower tower;
+    private string effectType;
+
     private void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
+
+        if (FindFirstObjectByType<BulletPool>() == null)
+        {
+            GameObject poolObj = new GameObject("BulletPool");
+            poolObj.AddComponent<BulletPool>();
+        }
     }
 
     private void Update()
@@ -29,7 +40,7 @@ public abstract class Shooter : MonoBehaviour
 
     private void RotateTurret()
     {
-        if (target == null)
+        if (target == null || !HasLineOfSight())
             return;
 
         LockOnTarget();
@@ -41,6 +52,21 @@ public abstract class Shooter : MonoBehaviour
         }
 
         fireCountdown -= Time.deltaTime;
+    }
+
+    private bool HasLineOfSight()
+    {
+        if (target == null)
+            return false;
+
+        Collider targetCollider = target.GetComponent<Collider>();
+        if (targetCollider == null)
+            return false;
+
+        Vector3 targetPosition = targetCollider.bounds.center;
+        LayerMask environmentLayer = LayerMask.GetMask("Environment");
+
+        return !Physics.Linecast(firePoint.position, targetPosition, environmentLayer);
     }
 
     protected virtual void UpdateTarget()
@@ -65,8 +91,6 @@ public abstract class Shooter : MonoBehaviour
             target = null;
     }
 
-    protected abstract void Shoot();
-
     private void LockOnTarget()
     {
         Vector3 direction = target.position - transform.position;
@@ -75,11 +99,28 @@ public abstract class Shooter : MonoBehaviour
         rotatingPart.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
-    protected void InitializeBullet(Bullet bullet)
+    protected abstract void Shoot();
+
+    public void InitializeBullet(Bullet bullet)
     {
         bullet.Seek(target);
         bullet.SetDamage(damage);
         bullet.SetSpecialAbility(specialAbility);
+
+        bullet.SetEffectType(effectType);
+    }
+
+    public void SetSpecialAbility(float _specialAbility)
+    {
+        specialAbility = _specialAbility;
+    }
+
+    protected Bullet SpawnBullet()
+    {
+        Bullet spawnedBullet = BulletPool.Instance.GetBullet(bullet);
+        spawnedBullet.transform.position = firePoint.position;
+        spawnedBullet.transform.rotation = firePoint.rotation;
+        return spawnedBullet;
     }
 
     public void SetRange(float _range)
@@ -92,9 +133,9 @@ public abstract class Shooter : MonoBehaviour
         damage = _damage;
     }
 
-    public void SetSpecialAbility(float _specialAbility)
+    public virtual void SetEffectType(string _effectType)
     {
-        specialAbility = _specialAbility;
+        effectType = _effectType;
     }
 
     void OnDrawGizmosSelected()

@@ -27,14 +27,14 @@ namespace Assets.Scripts.LaDefenseDesTours
                 healthSlider.maxValue = target.maxHealth;
                 healthSlider.value = target.health;
                 HandleHealthBarVisibility();
-                target.OnHealthChanged += UpdateHealthBar; 
+                target.OnHealthChanged += UpdateHealthBar;
             }
         }
 
         private void OnDestroy()
         {
             if (target != null)
-                target.OnHealthChanged -= UpdateHealthBar; 
+                target.OnHealthChanged -= UpdateHealthBar;
         }
 
         private void UpdateHealthBar()
@@ -78,9 +78,8 @@ namespace Assets.Scripts.LaDefenseDesTours
             else
             {
                 canvasGroup.alpha = 0f;
-                gameObject.SetActive(false); 
+                gameObject.SetActive(false);
             }
         }
     }
 }
-
