@@ -7,13 +7,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public FireEffect(Tower tower) : base(tower)
         {
             effectType = "Fire";
-            Debug.Log("Fire Effect Applied");
         }
 
         public override void Attack()
         {
             base.Attack();
-            Debug.Log("Fire effect is attacking");
         }
     }
 }

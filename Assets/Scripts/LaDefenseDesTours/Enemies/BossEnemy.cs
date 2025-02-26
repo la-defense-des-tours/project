@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using UnityEngine;
 
 namespace Assets.Scripts.LaDefenseDesTours.Enemies
 {
@@ -6,7 +7,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
     {
         public BossEnemy()
         {
-            maxHealth = 10000000000000000f;
+            maxHealth = Mathf.Infinity;
             speed = 1;
             acceleration = 3;
         }

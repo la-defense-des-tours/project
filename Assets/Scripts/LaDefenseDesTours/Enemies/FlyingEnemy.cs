@@ -4,7 +4,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
 {
     public class FlyingEnemy : Enemy
     {
-
         FlyingEnemy()
         {
             maxHealth = 100f;

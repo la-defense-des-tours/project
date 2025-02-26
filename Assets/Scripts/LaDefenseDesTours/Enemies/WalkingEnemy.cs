@@ -16,7 +16,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
             agent.acceleration = acceleration;
             animator.speed = speed;
         }
-
         public override void SetSpeed(float _speed)
         {
             agent.speed = _speed;

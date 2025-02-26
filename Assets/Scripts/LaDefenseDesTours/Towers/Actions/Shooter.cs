@@ -71,11 +71,11 @@ public abstract class Shooter : MonoBehaviour
 
     protected virtual void UpdateTarget()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(ENEMY_TAG);
+        Enemy[] enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
         float shortestDistance = Mathf.Infinity;
-        GameObject nearestEnemy = null;
+        Enemy nearestEnemy = null;
 
-        foreach (GameObject enemy in enemies)
+        foreach (Enemy enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
             if (distanceToEnemy < shortestDistance && distanceToEnemy <= range)
