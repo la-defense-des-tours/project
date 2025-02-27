@@ -7,7 +7,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
     {
         public BossEnemy()
         {
-            maxHealth = Mathf.Infinity;
+            maxHealth = 1000;
             speed = 1;
             acceleration = 3;
         }

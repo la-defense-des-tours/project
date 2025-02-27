@@ -8,7 +8,6 @@ public class TestWave : Wave
     public TestWave GetNextWave() => (TestWave)nextWave;
     public Vector3 GetTargetPosition() => targetPosition;
     public bool IsSpawning() => isSpawning;
-    public int GetDifficulty() => difficulty;
 
     public override void SpawnEnemies(Vector3 targetPosition)
     {

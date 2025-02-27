@@ -94,6 +94,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		/// </summary>
 		public event Action homeBaseDestroyed;
 
+		private int difficulty = 1;
 
 		protected override void Awake()
 		{
@@ -255,5 +256,22 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		{
 			levelFailed?.Invoke();
 		}
+
+		public int GetLevel()
+		{
+			return difficulty;
+		}
+
+		public void NextLevel()
+		{
+			difficulty++;
+		}
+
+		public int GetTotalEnemies()
+		{
+			return 20 * difficulty;
+		}
+		
+		
 	}
 }

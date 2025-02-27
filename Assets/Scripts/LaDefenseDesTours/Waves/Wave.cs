@@ -8,7 +8,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
     {
         protected MonoBehaviour coroutineRunner;
         protected Wave nextWave;
-        protected int difficulty;
         protected bool isSpawning = false;
         protected int totalEnemies;
         protected float timeBetweenSpawns = 2f;

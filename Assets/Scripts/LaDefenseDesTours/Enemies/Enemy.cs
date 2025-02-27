@@ -140,16 +140,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public void TransitionTo(State state)
         {
             if (currentState is Dead)
-            {
-                Debug.Log("Dead state transition");
                 return;
-            }
 
             if (currentState != null && currentState.GetType() == state.GetType())
-            {
-                Debug.Log("Same state transition");
                 return;
-            }
 
             currentState?.OnStateExit();
             currentState = state;

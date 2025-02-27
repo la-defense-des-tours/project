@@ -21,6 +21,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             if (isGhost) return;
 
             m_shooter = GetComponent<Shooter>();
+            
             if (m_shooter != null)
                 m_shooter.Initialize(range, damage, specialAbility, effectType);
         }

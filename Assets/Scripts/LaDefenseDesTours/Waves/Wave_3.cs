@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Level;
 
 namespace Assets.Scripts.LaDefenseDesTours.Waves
 {
@@ -12,7 +13,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
 
         public Wave_3(EnemyFactory walkingEnemyFactory, EnemyFactory flyingEnemyFactory, EnemyFactory tankEnemyFactory, MonoBehaviour coroutineRunner)
         {
-            difficulty = 1;
             this.walkingEnemyFactory = walkingEnemyFactory;
             this.flyingEnemyFactory = flyingEnemyFactory;
             this.tankEnemyFactory = tankEnemyFactory;
@@ -30,7 +30,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
 
         private IEnumerator SpawnWaveRoutine(Vector3 targetPosition)
         {
-            totalEnemies = 6 * difficulty;
+            totalEnemies = 6 * LevelManager.instance.GetLevel();
             int enemiesSpawned = 0;
 
             while (enemiesSpawned < totalEnemies)
@@ -56,7 +56,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
             }
 
             isSpawning = false;
-            difficulty++;
             OnWaveCompleted();
         }
     }
