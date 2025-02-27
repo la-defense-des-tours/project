@@ -1,7 +1,7 @@
 using System;
+using Assets.Scripts.LaDefenseDesTours.Level;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
 
 namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
@@ -11,11 +11,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         protected NavMeshAgent agent;
         protected Animator animator;
         public virtual float health { get; set; }
-        public virtual float speed { get; set; }
-        public virtual float acceleration { get; set; }
-
-        public int experiencePoints = 1000;
-        public virtual float maxHealth { get; set; } = 100;
+        protected float speed { get; set; }
+        protected float acceleration { get; set; }
+        private int experiencePoints { get; set; }
+        public virtual float maxHealth { get; set; }
         public event Action OnHealthChanged;
 
         public void Awake()
@@ -31,6 +30,15 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
                 healthBar.SetTarget(this);
 
             health = maxHealth;
+            TransitionTo(new Normal());
+        }
+        
+        protected void InitializeStats(float baseHealth, float healthFactor, float baseSpeed, float speedFactor, float baseAcceleration, float accelerationFactor)
+        {
+            maxHealth = baseHealth * Mathf.Pow(healthFactor, LevelManager.instance.GetLevel() - 1);
+            speed = baseSpeed + (speedFactor * (LevelManager.instance.GetLevel() - 1));
+            acceleration = baseAcceleration + (accelerationFactor * (LevelManager.instance.GetLevel() - 1));
+            experiencePoints = (int)maxHealth;
         }
 
         void Update()
@@ -70,8 +78,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
                 case 4:
                     TransitionTo(new Dead());
                     break;
-                default:
-                    break;
             }
         }
 
@@ -103,13 +109,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         {
             if (currentState is not Paralyzed)
                 agent.SetDestination(destination);
-        }
-
-        public Enemy Clone(Transform spawnPoint)
-        {
-            Enemy clone = Instantiate(this, spawnPoint.position, Quaternion.identity);
-            clone.SetupNavMeshAgent();
-            return clone;
         }
 
         public virtual void TakeDamage(float damage)

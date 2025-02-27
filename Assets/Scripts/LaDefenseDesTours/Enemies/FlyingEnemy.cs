@@ -4,11 +4,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
 {
     public class FlyingEnemy : Enemy
     {
-        FlyingEnemy()
+        public FlyingEnemy()
         {
-            maxHealth = 100f;
-            speed = 4;
-            acceleration = 8;
+            InitializeStats(100f, 1.1f, 6f, 0.3f, 8f, 0.9f);
         }
         public override void SetupSpeed()
         {

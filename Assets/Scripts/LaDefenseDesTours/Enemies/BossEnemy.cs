@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.LaDefenseDesTours.Interfaces;
-using UnityEngine;
 
 namespace Assets.Scripts.LaDefenseDesTours.Enemies
 {
@@ -7,9 +6,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
     {
         public BossEnemy()
         {
-            maxHealth = 1000;
-            speed = 1;
-            acceleration = 3;
+            InitializeStats(1000f, 1.5f, 1f, 0.2f, 3f, 0.5f);
         }
     }
 }
