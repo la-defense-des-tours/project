@@ -6,7 +6,7 @@ public abstract class Bullet : MonoBehaviour
 {
     [Header("Bullet Settings")]
     [SerializeField] protected float speed = 70f;
-    protected virtual float specialAbility { get; set; }
+    protected float specialAbility { get; set; }
     protected float damage;
 
 
@@ -28,27 +28,17 @@ public abstract class Bullet : MonoBehaviour
         }
         HandleTrajectory();
     }
-
-    public void Seek(Transform _target)
+    
+    public void Initialize(Transform target, float damage, float specialAbility, string effectType)
     {
-        target = _target;
-        targetCollider = _target.GetComponent<Collider>();
-        targetEnemy = _target.GetComponent<Enemy>();
+        this.target = target;
+        this.damage = damage;
+        this.specialAbility = specialAbility;
+        this.effectType = effectType;
+        Seek(target);
     }
-
-    protected abstract void HitTarget();
 
     protected abstract void HandleTrajectory();
-
-    public void SetDamage(float _damage)
-    {
-        damage = _damage;
-    }
-
-    public void SetSpecialAbility(float _specialAbility)
-    {
-        specialAbility = _specialAbility;
-    }
 
     public void SetPool(IObjectPool<Bullet> _pool)
     {
@@ -72,11 +62,6 @@ public abstract class Bullet : MonoBehaviour
         specialAbility = 0;
     }
 
-    public void SetEffectType(string _effectType)
-    {
-        effectType = _effectType;
-    }
-
     protected void ApplyEffect()
     {
         if (targetEnemy != null)
@@ -93,6 +78,15 @@ public abstract class Bullet : MonoBehaviour
                     targetEnemy.TransitionTo(new Paralyzed());
                     break;
             }
+        }
+    }
+
+    private void Seek(Transform _target)
+    {
+        if (_target != null)
+        {
+            targetCollider = _target.GetComponent<Collider>();
+            targetEnemy = _target.GetComponent<Enemy>();
         }
     }
 }

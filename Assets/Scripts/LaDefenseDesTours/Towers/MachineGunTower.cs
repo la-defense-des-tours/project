@@ -23,7 +23,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             switch (currentLevel)
             {
                 case 2:
-                    // 1er upgrade
                     cost += 40;
                     damage += 40f;
                     range += 5f;
@@ -31,7 +30,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
                     break;
 
                 case 3:
-                    // 2eme upgrade
                     cost += 80;
                     damage += 60f;
                     range += 10f;
@@ -42,13 +40,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
                     Debug.LogError("Max upgrade level reached!");
                     break;
             }
-
-            Debug.Log($"Machine Gun Tower upgraded to level {currentLevel}. New Stats - Damage: {damage}, Range: {range}, Cost: {cost}, Attack per second: {attackPerSecond}");
-        }
-
-        public override void Attack()
-        {
-            Debug.Log("Machine Gun Tower is attacking");
         }
     }
 }

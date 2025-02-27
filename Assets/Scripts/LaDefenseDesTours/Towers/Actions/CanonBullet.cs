@@ -8,7 +8,7 @@ public class CanonBullet : Bullet
     private float totalDistance;
     private float startTime;
 
-    protected override void HitTarget()
+    protected virtual void HitTarget()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, specialAbility);
 
@@ -16,8 +16,10 @@ public class CanonBullet : Bullet
         {
             Enemy enemy = collider.GetComponent<Enemy>();
             if (enemy != null)
+            {
                 enemy.TakeDamage(damage);
                 ApplyEffect();
+            }
         }
 
         Release();

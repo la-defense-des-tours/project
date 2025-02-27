@@ -31,7 +31,7 @@ public class LaserBullet : Bullet
         HitTarget();
     }
 
-    protected override void HitTarget()
+    protected virtual void HitTarget()
     {
         if (targetEnemy != null)
         {

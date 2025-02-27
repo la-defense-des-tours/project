@@ -15,9 +15,9 @@ public abstract class Shooter : MonoBehaviour
     [Header("Bullet Attributes")]
     [SerializeField] protected Bullet bullet;
     [SerializeField] protected Transform firePoint;
-    private float damage;
-    private float specialAbility;
-    private string effectType;
+    protected float damage;
+    protected float specialAbility;
+    protected string effectType;
 
     private void Start()
     {
@@ -33,6 +33,14 @@ public abstract class Shooter : MonoBehaviour
     private void Update()
     {
         RotateTurret();
+    }
+    
+    public void Initialize(float range, float damage, float specialAbility, string effectType)
+    {
+        this.range = range;
+        this.damage = damage;
+        this.specialAbility = specialAbility;
+        this.effectType = effectType;
     }
 
     private void RotateTurret()
@@ -98,39 +106,11 @@ public abstract class Shooter : MonoBehaviour
 
     protected abstract void Shoot();
 
-    public void InitializeBullet(Bullet bullet)
-    {
-        bullet.Seek(target);
-        bullet.SetDamage(damage);
-        bullet.SetSpecialAbility(specialAbility);
-        bullet.SetEffectType(effectType);
-    }
-
-    public void SetSpecialAbility(float _specialAbility)
-    {
-        specialAbility = _specialAbility;
-    }
-
     protected Bullet SpawnBullet()
     {
         Bullet spawnedBullet = BulletPool.Instance.GetBullet(bullet);
         spawnedBullet.transform.SetPositionAndRotation(firePoint.position, firePoint.rotation);
         return spawnedBullet;
-    }
-
-    public void SetRange(float _range)
-    {
-        range = _range;
-    }
-
-    public void SetDamage(float _damage)
-    {
-        damage = _damage;
-    }
-
-    public virtual void SetEffectType(string _effectType)
-    {
-        effectType = _effectType;
     }
 
     void OnDrawGizmosSelected()

@@ -34,12 +34,12 @@ public class BulletPool : MonoBehaviour
         );
     }
 
-    public Bullet GetBullet(Bullet prefab)
+    public Bullet GetBullet(Bullet bullet)
     {
-        string poolKey = prefab.name;
+        string poolKey = bullet.name;
 
         if (!pools.ContainsKey(poolKey))
-            pools[poolKey] = CreatePool(prefab);
+            pools[poolKey] = CreatePool(bullet);
 
         return pools[poolKey].Get();
     }

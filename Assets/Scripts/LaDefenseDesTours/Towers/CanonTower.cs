@@ -15,12 +15,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             range = 20f;
             damage = 100f;
             cost = 120;
+            specialAbility = areaOfEffect;
         }
         public override void Start()
         {
             if (isGhost) return;
             base.Start();
-            m_shooter.SetSpecialAbility(areaOfEffect);
         }
         public override void Upgrade()
         {
@@ -29,7 +29,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             switch (currentLevel)
             {
                 case 2:
-                    // 1er upgrade
                     cost += 25;
                     areaOfEffect += 5f;
                     damage += 15f;
@@ -37,7 +36,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
                     break;
 
                 case 3:
-                    // 2eme upgrade
                     cost += 50;
                     areaOfEffect += 10f;
                     damage += 25f;
@@ -48,13 +46,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
                     Debug.LogError("Max upgrade level reached!");
                     break;
             }
-
-            Debug.Log($"Canon Tower upgraded to level {currentLevel}. New Stats - Damage: {damage}, Range: {range}, Cost: {cost}, Area of effect: {areaOfEffect}");
-        }
-
-        public override void Attack()
-        {
-            Debug.Log("Canon Tower is attacking");
         }
     }
 

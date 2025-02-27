@@ -15,12 +15,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             range = 50f;
             damage = 25f;
             cost = 100;
+            specialAbility = damageOverTime;
         }
         public override void Start()
         {
             if (isGhost) return;
             base.Start();
-            m_shooter.SetSpecialAbility(damageOverTime);
         }
         public override void Upgrade()
         {
@@ -29,7 +29,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             switch (currentLevel)
             {
                 case 2:
-                    // 1er upgrade
                     cost += 50;
                     damageOverTime += 1f;
                     damage += 5f;
@@ -37,7 +36,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
                     break;
 
                 case 3:
-                    // 2eme upgrade
                     cost += 100;
                     damageOverTime += 2f;
                     damage += 10f;
@@ -48,13 +46,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
                     Debug.LogError("Max upgrade level reached!");
                     break;
             }
-
-            Debug.Log($"Laser Tower upgraded to level {currentLevel}. New Stats - Damage: {damage}, Range: {range}, Cost: {cost}, Damage Over Time: {damageOverTime}");
-        }
-
-        public override void Attack()
-        {
-            Debug.Log("Laser Tower is attacking");
         }
     }
 }
