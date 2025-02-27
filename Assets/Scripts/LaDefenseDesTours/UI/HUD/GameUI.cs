@@ -304,7 +304,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             {
                 throw new InvalidOperationException("Trying to select whilst not in a normal state");
             }
-            //DeselectTower();
             currentSelectedTower = tower;
             if (currentSelectedTower != null)
             {

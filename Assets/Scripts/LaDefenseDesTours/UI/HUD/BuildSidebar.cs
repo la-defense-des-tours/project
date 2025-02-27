@@ -93,10 +93,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             {
                 LevelManager.instance.BuildingCompleted();
             }
-            if (GameUI.instanceExists)
-            {
-                GameUI.instance.StartTimer();
-            }
         }
     }
 }

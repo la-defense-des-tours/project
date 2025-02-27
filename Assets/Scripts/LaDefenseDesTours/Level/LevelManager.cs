@@ -140,7 +140,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 
             Debug.Log("[LevelManager] Construction terminée, passage à SpawningEnemies...");
 
-        ChangeLevelState(LevelState.SpawningEnemies);
+			ChangeLevelState(LevelState.SpawningEnemies);
 		}
 
 
