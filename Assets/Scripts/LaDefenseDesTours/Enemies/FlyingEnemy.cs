@@ -4,7 +4,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
 {
     public class FlyingEnemy : Enemy
     {
-        public FlyingEnemy()
+        FlyingEnemy()
         {
             InitializeStats(100f, 1.1f, 6f, 0.3f, 8f, 0.9f);
         }

@@ -1,7 +1,7 @@
 using System;
-using Assets.Scripts.LaDefenseDesTours.Level;
 using UnityEngine;
 using UnityEngine.AI;
+using Assets.Scripts.LaDefenseDesTours.Level;
 
 namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
@@ -32,12 +32,13 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             health = maxHealth;
             TransitionTo(new Normal());
         }
-        
-        protected void InitializeStats(float baseHealth, float healthFactor, float baseSpeed, float speedFactor, float baseAcceleration, float accelerationFactor)
+
+        public void InitializeStats(float baseHealth, float healthFactor, float baseSpeed, float speedFactor, float baseAcceleration, float accelerationFactor)
         {
-            maxHealth = baseHealth * Mathf.Pow(healthFactor, LevelManager.instance.GetLevel() - 1);
-            speed = baseSpeed + (speedFactor * (LevelManager.instance.GetLevel() - 1));
-            acceleration = baseAcceleration + (accelerationFactor * (LevelManager.instance.GetLevel() - 1));
+            int level = 1;
+            maxHealth = baseHealth * Mathf.Pow(healthFactor, level - 1);
+            speed = baseSpeed + (speedFactor * (level - 1));
+            acceleration = baseAcceleration + (accelerationFactor * (level - 1));
             experiencePoints = (int)maxHealth;
         }
 

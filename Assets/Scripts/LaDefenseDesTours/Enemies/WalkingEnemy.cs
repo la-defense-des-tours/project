@@ -4,7 +4,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
 {
     public class WalkingEnemy : Enemy
     {
-        public WalkingEnemy()
+        WalkingEnemy()
         {
             InitializeStats(200f, 1.15f, 4.5f, 0.2f, 5f, 0.5f);
         }

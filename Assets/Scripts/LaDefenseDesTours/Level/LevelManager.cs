@@ -15,8 +15,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
     [RequireComponent(typeof(WaveManager))]
 	public class LevelManager : Singleton<LevelManager>
 	{
-        public static new LevelManager instance;
-
+		public static new LevelManager instance;
         /// <summary>
         /// The configured level intro. If this is null the LevelManager will fall through to the gameplay state (i.e. SpawningEnemies)
         /// </summary>
@@ -75,7 +74,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 			get { return (levelState == LevelState.Lose); }
 		}
 
-
 		/// <summary>
 		/// Fired when all of the home bases are destroyed
 		/// </summary>
@@ -85,7 +83,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		/// Fired when the level state is changed - first parameter is the old state, second parameter is the new state
 		/// </summary>
 		public event Action<LevelState, LevelState> levelStateChanged;
-
 
 		/// <summary>
 		/// Event for home base being destroyed
@@ -135,23 +132,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		/// <summary>
 		/// Completes building phase, setting state to spawn enemies
 		/// </summary>
-		public virtual void BuildingCompleted()
+		public void BuildingCompleted()
 		{
-
             Debug.Log("[LevelManager] Construction terminée, passage à SpawningEnemies...");
-
-        ChangeLevelState(LevelState.SpawningEnemies);
-		}
-
-
-
-		/// <summary>
-		/// Updates the currency gain controller
-		/// </summary>
-		protected virtual void Update()
-		{
-
-
+			ChangeLevelState(LevelState.SpawningEnemies);
 		}
 
 		public float GetRatio()
@@ -184,7 +168,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
         /// <summary>
         /// Fired when Intro is completed or immediately, if no intro is specified
         /// </summary>
-        protected virtual void IntroCompleted()
+        private void IntroCompleted()
 		{
 			ChangeLevelState(LevelState.Building);
 		}
@@ -194,7 +178,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		/// Changes the state and broadcasts the event
 		/// </summary>
 		/// <param name="newState">The new state to transitioned to</param>
-		protected virtual void ChangeLevelState(LevelState newState)
+		private void ChangeLevelState(LevelState newState)
 		{
 			// If the state hasn't changed then return
 			if (levelState == newState)
@@ -223,18 +207,14 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		/// <summary>
 		/// Fired when a home base is destroyed
 		/// </summary>
-		protected virtual void OnHomeBaseDestroyed()
+		private void OnHomeBaseDestroyed()
 		{
-
             homeBaseDestroyed?.Invoke();
-
-
             if (!isGameOver)
 			{
 				ChangeLevelState(LevelState.Lose);
 			}
 		}
-
 
         // Gère la mort d'un ennemi
         private void HandleEnemyDeath(int rewardAmount)
@@ -254,13 +234,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             }
         }
 
-
-
-
         /// <summary>
         /// Calls the <see cref="levelFailed"/> event
         /// </summary>
-        protected virtual void SafelyCallLevelFailed()
+        private void SafelyCallLevelFailed()
 		{
 			levelFailed?.Invoke();
 		}
@@ -269,9 +246,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		{
 			return currentLevel;
 		}
-
-
-
 
         public void NextLevel()
 		{
