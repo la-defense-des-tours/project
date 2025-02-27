@@ -11,8 +11,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public void SetContext(Enemy enemy)
         {
             this.enemy = enemy;
-            stateEffect = enemy.transform.Find(GetType().Name + "Effect").GetComponentInChildren<ParticleSystem>();
+            
+            Transform particleTransform = enemy.transform.Find(GetType().Name + "Effect");
+            stateEffect = (particleTransform != null) ? particleTransform.GetComponentInChildren<ParticleSystem>() : null;
         }
+
         public virtual void OnStateEnter()
         {
             if (stateEffect != null)

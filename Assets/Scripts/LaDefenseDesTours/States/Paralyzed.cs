@@ -18,9 +18,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             duration -= Time.deltaTime;
             if (duration <= 0)
             {
-                enemy.SetupNavMeshAgent();
                 isApplied = false;
                 OnStateExit();
+                enemy.TransitionTo(new Normal());
             }
         }
     }
