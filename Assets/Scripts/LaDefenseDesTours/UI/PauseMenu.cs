@@ -66,42 +66,10 @@ namespace Assets.Scripts.LaDefenseDesTours.UI
         {
             SetPauseMenuCanvas(true);
 
-            LevelItem level = GetAllInfo();
-
-            if (level == null)
-            {
-                Debug.LogWarning("No level info found, skipping title update.");
-                return;
-            }
-
-            if (titleText != null)
-            {
-                titleText.text = level.name;
-            }
-
             // Mettre à jour l'état
             m_State = State.Open;
         }
 
-        /// <summary>
-        /// Récupère les informations du niveau actuel
-        /// </summary>
-        /// <returns>Un objet LevelItem contenant les informations du niveau</returns>
-        private LevelItem GetAllInfo()
-    {
-        // Remplacez cela par la logique spécifique à votre jeu
-        // Exemple : Si le gestionnaire de niveau est accessible globalement
-        LevelManager levelManager = FindFirstObjectByType<LevelManager>();
-
-        if (levelManager != null)
-        {
-            return levelManager.GetCurrentLevel(); // Méthode fictive pour obtenir le niveau actuel
-        }
-
-        Debug.LogWarning("LevelManager introuvable ou niveau actuel non défini.");
-        return null;
-    }
-    
 
     /// <summary>
     /// Fired when GameUI's State changes

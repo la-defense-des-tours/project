@@ -62,25 +62,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
             spawnedEnemies.Add(boss);
             Debug.Log("Wave 4: Spawned Boss");
             yield return new WaitForSeconds(timeBetweenSpawns);
-
             isSpawning = false;
-            LevelManager.instance.NextLevel();
-            coroutineRunner.StartCoroutine(CheckWaveCompleted());
-        }
-
-        private IEnumerator CheckWaveCompleted()
-        {
-            while (true)
-            {
-                GameObject[] enemies = GameObject.FindGameObjectsWithTag(ENEMY_TAG);
-                Debug.Log($"Wave 4: {enemies.Length} enemies left");
-                if (enemies.Length == 0)
-                {
-                    OnWaveCompleted();
-                    yield break;
-                }
-                yield return new WaitForSeconds(1f);
-            }
         }
     }
 }

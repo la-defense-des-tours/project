@@ -17,8 +17,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 	{
         public static new LevelManager instance;
 
-        [SerializeField]
-        private LevelItem currentLevel;
         /// <summary>
         /// The configured level intro. If this is null the LevelManager will fall through to the gameplay state (i.e. SpawningEnemies)
         /// </summary>
@@ -94,9 +92,14 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		/// </summary>
 		public event Action homeBaseDestroyed;
 
-		private int difficulty = 1;
+		public event Action OnLevelChanged;
 
-		protected override void Awake()
+        public int currentLevel = 1;
+
+        private int remainingEnemiesByLevel;
+
+
+        protected override void Awake()
 		{
 			instance = this;
 			base.Awake();
@@ -106,6 +109,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             currency = new Currency(startingCurrency);
 
             EnemyDeathEvent.OnEnemyDeath += HandleEnemyDeath;
+
+            remainingEnemiesByLevel = GetTotalEnemies();
 
             if (intro != null)
 			{
@@ -122,37 +127,20 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 			}
 		}
 
-
-        /// <summary>
-        /// Définit le niveau actuel
-        /// </summary>
-        /// <param name="level">L'élément de niveau à définir</param>
-        public void SetCurrentLevel(LevelItem level)
-        {
-            currentLevel = level;
-        }
-
 		public Vector3 GetEnemyEndPoint()
 		{
 			return homeBase.transform.position;
 		}
-
-        /// <summary>
-        /// Récupère le niveau actuel
-        /// </summary>
-        /// <returns>Le niveau actuel</returns>
-        public LevelItem GetCurrentLevel()
-        {
-            return currentLevel;
-        }
-
 
 		/// <summary>
 		/// Completes building phase, setting state to spawn enemies
 		/// </summary>
 		public virtual void BuildingCompleted()
 		{
-			ChangeLevelState(LevelState.SpawningEnemies);
+
+            Debug.Log("[LevelManager] Construction terminée, passage à SpawningEnemies...");
+
+        ChangeLevelState(LevelState.SpawningEnemies);
 		}
 
 
@@ -165,6 +153,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 
 
 		}
+
+		public float GetRatio()
+		{
+            return (float)remainingEnemiesByLevel / GetTotalEnemies();
+        }
 
 		/// <summary>
 		/// Unsubscribes from events
@@ -185,7 +178,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
                 playerHomeBase.OnPlayerDeath -= OnHomeBaseDestroyed;
             }
 
-            EnemyDeathEvent.OnEnemyDeath -= HandleEnemyDeath;
+			EnemyDeathEvent.OnEnemyDeath -= HandleEnemyDeath;
         }
 
         /// <summary>
@@ -218,8 +211,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             switch (newState)
 			{
 				case LevelState.SpawningEnemies:
-					waveManager.StartWave();
-					break;
+                    OnLevelChanged?.Invoke();
+                    waveManager.StartWave();
+                    break;
 				case LevelState.Lose:
 					SafelyCallLevelFailed();
 					break;
@@ -247,7 +241,21 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
         {
             currency.AddCurrency(rewardAmount);
             Debug.Log($"Gagné {rewardAmount} currency ! Total: {currency.currentCurrency}");
+
+            remainingEnemiesByLevel--;
+
+            if (remainingEnemiesByLevel <= 0)
+            {
+                NextLevel(); 
+                remainingEnemiesByLevel = GetTotalEnemies(); 
+				waveManager.StartWave();
+
+                Debug.Log($"Niveau {currentLevel} atteint ! Nouveaux ennemis : {remainingEnemiesByLevel}");
+            }
         }
+
+
+
 
         /// <summary>
         /// Calls the <see cref="levelFailed"/> event
@@ -259,17 +267,22 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 
 		public int GetLevel()
 		{
-			return difficulty;
+			return currentLevel;
 		}
 
-		public void NextLevel()
-		{
-			difficulty++;
-		}
 
-		public int GetTotalEnemies()
+
+
+        public void NextLevel()
 		{
-			return 20 * difficulty;
+            currentLevel++;
+            OnLevelChanged?.Invoke();
+
+        }
+
+        public int GetTotalEnemies()
+		{
+			return 20 * currentLevel + 1 ;
 		}
 		
 		
