@@ -1,4 +1,5 @@
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Level;
 
 namespace Assets.Scripts.LaDefenseDesTours.Enemies
 {
@@ -6,7 +7,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
     {
         WalkingEnemy()
         {
-            InitializeStats(200f, 1.15f, 4.5f, 0.2f, 5f, 0.5f);
+            InitializeStats(200f, 1.15f, 4.5f, 0.2f, 5f, 0.5f,
+                LevelManager.instance != null ? LevelManager.instance.GetLevel() : 1);
         }
         public override void SetupSpeed()
         {

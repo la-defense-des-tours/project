@@ -28,17 +28,16 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             HealthBar healthBar = FindFirstObjectByType<HealthBar>();
             if (healthBar != null)
                 healthBar.SetTarget(this);
-
+            
             health = maxHealth;
             TransitionTo(new Normal());
         }
 
-        public void InitializeStats(float baseHealth, float healthFactor, float baseSpeed, float speedFactor, float baseAcceleration, float accelerationFactor)
+        public void InitializeStats(float baseHealth, float healthFactor, float baseSpeed, float speedFactor, float baseAcceleration, float accelerationFactor, int currentLevel)
         {
-            int level = 1;
-            maxHealth = baseHealth * Mathf.Pow(healthFactor, level - 1);
-            speed = baseSpeed + (speedFactor * (level - 1));
-            acceleration = baseAcceleration + (accelerationFactor * (level - 1));
+            maxHealth = baseHealth * Mathf.Pow(healthFactor, currentLevel - 1);
+            speed = baseSpeed + (speedFactor * (currentLevel - 1));
+            acceleration = baseAcceleration + (accelerationFactor * (currentLevel - 1));
             experiencePoints = (int)maxHealth;
         }
 
