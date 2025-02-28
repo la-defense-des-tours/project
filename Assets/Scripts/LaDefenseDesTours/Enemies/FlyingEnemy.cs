@@ -1,4 +1,5 @@
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Level;
 
 namespace Assets.Scripts.LaDefenseDesTours.Enemies
 {
@@ -6,9 +7,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
     {
         FlyingEnemy()
         {
-            maxHealth = 100f;
-            speed = 4;
-            acceleration = 8;
+            InitializeStats(100f, 1.1f, 6f, 0.3f, 8f, 0.9f, 
+                LevelManager.instance != null ? LevelManager.instance.GetLevel() : 1);
         }
         public override void SetupSpeed()
         {
