@@ -51,7 +51,7 @@ public class TowerManager : MonoBehaviour
             Debug.LogError("Multiple TowerManager instances detected!");
             return;
         }
-        Instance = this;
+            Instance = this;
     }
 
     private void Start()

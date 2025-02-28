@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
-    public class LightningEffect : TowerDecorator
+    public sealed class LightningEffect : TowerDecorator
     {
         public LightningEffect(Tower tower) : base(tower)
         {
-            effectType = "Lightning";
+            tower.effectType = "Lightning";
         }
     }
 }

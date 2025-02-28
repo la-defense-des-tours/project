@@ -1,4 +1,7 @@
 ﻿//using TowerDefense.Level;
+using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Level;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,25 +20,19 @@ namespace TowerDefense.UI.HUD
 
 		public Image waveFillImage;
 
-		/// <summary>
-		/// The total amount of waves for this level
-		/// </summary>
-		protected int m_TotalWaves;
-
 		protected Canvas m_Canvas;
 
-		/// <summary>
-		/// cache the total amount of waves
-		/// Update the display 
-		/// and Subscribe to waveChanged
-		/// </summary>
-		protected virtual void Start()
+        /// <summary>
+        /// cache the total amount of waves
+        /// Update the display 
+        /// and Subscribe to waveChanged
+        /// </summary>
+        protected virtual void Start()
 		{
 			m_Canvas = GetComponent<Canvas>();
 			m_Canvas.enabled = false;
-			//m_TotalWaves = LevelManager.instance.waveManager.totalWaves;
-			//LevelManager.instance.waveManager.waveChanged += UpdateDisplay;
-		}
+			LevelManager.instance.OnLevelChanged += UpdateDisplay;
+        }
 
 		/// <summary>
 		/// Write the current wave amount to the display
@@ -43,25 +40,21 @@ namespace TowerDefense.UI.HUD
 		protected void UpdateDisplay()
 		{
 			m_Canvas.enabled = true;
-			//int currentWave = LevelManager.instance.waveManager.waveNumber;
-			//string output = string.Format("{0}/{1}", currentWave, m_TotalWaves);
-			//display.text = output;
+			string output = string.Format("{0}", LevelManager.instance.currentLevel);
+			display.text = output;
 		}
 
 		protected virtual void Update()
 		{
-			//waveFillImage.fillAmount = LevelManager.instance.waveManager.waveProgress;
-		}
+			waveFillImage.fillAmount = LevelManager.instance.GetRatio();
+        }
 
-		/// <summary>
-		/// Unsubscribe from events
-		/// </summary>
-		protected void OnDestroy()
+        /// <summary>
+        /// Unsubscribe from events
+        /// </summary>
+        protected void OnDestroy()
 		{
-			//if (LevelManager.instanceExists)
-			//{
-			//	LevelManager.instance.waveManager.waveChanged -= UpdateDisplay;
-			//}
-		}
+			LevelManager.instance.OnLevelChanged -= UpdateDisplay;
+        }
 	}
 }

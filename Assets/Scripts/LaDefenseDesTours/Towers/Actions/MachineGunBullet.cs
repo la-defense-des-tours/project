@@ -23,7 +23,7 @@ public class MachineGunBullet : Bullet
         transform.Translate(direction.normalized * distanceThisFrame, Space.World);
         transform.LookAt(targetCenter);
     }
-    protected override void HitTarget()
+    protected virtual void HitTarget()
     {
         targetEnemy.TakeDamage(damage);
         ApplyEffect();

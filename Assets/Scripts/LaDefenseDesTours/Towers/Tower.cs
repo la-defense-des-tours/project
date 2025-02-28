@@ -10,30 +10,20 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual string towerName { get; }
         public virtual float range { get; set; }
         public virtual float damage { get; set; }
+        protected virtual float specialAbility { get; set; }
+        public virtual string effectType { get; set; }
         public virtual int cost { get; set; }
         public int currentLevel { get; set; } = 1;
         public bool isGhost { get; set; } = false;
-
-        protected float fireRate;
-        protected int upgradeCost;
-        protected float upgradeDamage;
-        protected float upgradeFireRate;
-        protected float upgradeRange;
-        protected int sellValue;
-
 
         public virtual void Start()
         {
             if (isGhost) return;
 
             m_shooter = GetComponent<Shooter>();
-            m_shooter.SetRange(range);
-            m_shooter.SetDamage(damage);
-        }
-
-        public Shooter GetShooter()
-        {
-            return m_shooter;
+            
+            if (m_shooter != null)
+                m_shooter.Initialize(range, damage, specialAbility, effectType);
         }
 
         public virtual void Update()
@@ -41,16 +31,13 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             switch (Input.inputString)
             {
                 case "i":
-                    var iceEffect = new IceEffect(this);
-                    iceEffect.Attack();
+                    ApplyEffect(new IceEffect(this));
                     break;
                 case "f":
-                    var fireEffect = new FireEffect(this);
-                    fireEffect.Attack();
+                    ApplyEffect(new FireEffect(this));
                     break;
                 case "l":
-                    var lightningEffect = new LightningEffect(this);
-                    lightningEffect.Attack();
+                    ApplyEffect(new LightningEffect(this));
                     break;
             }
         }
@@ -61,9 +48,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             currentLevel++;
         }
 
-        public virtual void Attack()
+        private void ApplyEffect(TowerDecorator decorator)
         {
-            Debug.Log("Base tower attack");
+            effectType = decorator.effectType;
+            m_shooter.Initialize(range, damage, specialAbility, effectType);
         }
     }
 }

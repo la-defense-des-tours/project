@@ -1,4 +1,5 @@
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Level;
 
 namespace Assets.Scripts.LaDefenseDesTours.Enemies
 {
@@ -6,21 +7,19 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
     {
         WalkingEnemy()
         {
-            maxHealth = 200f;
-            speed = 3f;
-            acceleration = 5f;
+            InitializeStats(200f, 1.15f, 4.5f, 0.2f, 5f, 0.5f,
+                LevelManager.instance != null ? LevelManager.instance.GetLevel() : 1);
         }
         public override void SetupSpeed()
         {
             agent.speed = speed;
             agent.acceleration = acceleration;
-            animator.speed = speed / 2;
+            animator.speed = speed / 3.5f;
         }
-
         public override void SetSpeed(float _speed)
         {
             agent.speed = _speed;
-            animator.speed = _speed / 2;
+            animator.speed = _speed / 3.5f;
         }
     }
 }

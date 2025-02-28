@@ -5,7 +5,6 @@ public class LaserBullet : Bullet
     private LineRenderer laserLine;
     [SerializeField] private Material laserMaterial;
     [SerializeField] private float laserWidth = 0.25f;
-    private const string ENEMY_TAG = "Enemy";
 
     private void Awake()
     {
@@ -19,7 +18,7 @@ public class LaserBullet : Bullet
 
     protected override void HandleTrajectory()
     {
-        if (target == null || !target.CompareTag(ENEMY_TAG))
+        if (target == null)
         {
             laserLine.enabled = false;
             return;
@@ -32,7 +31,7 @@ public class LaserBullet : Bullet
         HitTarget();
     }
 
-    protected override void HitTarget()
+    protected virtual void HitTarget()
     {
         if (targetEnemy != null)
         {

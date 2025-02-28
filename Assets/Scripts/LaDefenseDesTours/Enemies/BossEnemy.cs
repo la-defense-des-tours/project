@@ -1,14 +1,14 @@
 ﻿using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Level;
 
 namespace Assets.Scripts.LaDefenseDesTours.Enemies
 {
     public class BossEnemy : Enemy
     {
-        public BossEnemy()
+        BossEnemy()
         {
-            maxHealth = 10000000000000000f;
-            speed = 1;
-            acceleration = 3;
+            InitializeStats(1000f, 1.5f, 1f, 0.2f, 3f, 0.5f,
+                LevelManager.instance != null ? LevelManager.instance.GetLevel() : 1);
         }
     }
 }

@@ -9,9 +9,9 @@ namespace Assets.Scripts.LaDefenseDesTours
 {
     public interface Health
     {
-    float maxHealth { get; set; }
-    float health { get; set; }
+        float maxHealth { get; set; }
+        float health { get; set; }
 
-    event Action OnHealthChanged;
+        event Action OnHealthChanged;
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Level;
 
 namespace Assets.Scripts.LaDefenseDesTours.Waves
 {
@@ -14,7 +15,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
 
         public Wave_4(EnemyFactory walkingEnemyFactory, EnemyFactory flyingEnemyFactory, EnemyFactory tankEnemyFactory, EnemyFactory bossEnemyFactory, MonoBehaviour coroutineRunner)
         {
-            difficulty = 1;
             this.walkingEnemyFactory = walkingEnemyFactory;
             this.flyingEnemyFactory = flyingEnemyFactory;
             this.tankEnemyFactory = tankEnemyFactory;
@@ -33,7 +33,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
 
         private IEnumerator SpawnWaveRoutine(Vector3 targetPosition)
         {
-            totalEnemies = 8 * difficulty;
+            totalEnemies = 8 * LevelManager.instance.GetLevel();
             int enemiesSpawned = 0;
 
             while (enemiesSpawned < totalEnemies)
@@ -62,25 +62,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
             spawnedEnemies.Add(boss);
             Debug.Log("Wave 4: Spawned Boss");
             yield return new WaitForSeconds(timeBetweenSpawns);
-
             isSpawning = false;
-            difficulty++;
-            coroutineRunner.StartCoroutine(CheckWaveCompleted());
-        }
-
-        private IEnumerator CheckWaveCompleted()
-        {
-            while (true)
-            {
-                GameObject[] enemies = GameObject.FindGameObjectsWithTag(ENEMY_TAG);
-                Debug.Log($"Wave 4: {enemies.Length} enemies left");
-                if (enemies.Length == 0)
-                {
-                    OnWaveCompleted();
-                    yield break;
-                }
-                yield return new WaitForSeconds(1f);
-            }
         }
     }
 }

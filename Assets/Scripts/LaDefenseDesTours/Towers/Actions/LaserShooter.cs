@@ -12,8 +12,12 @@ public class LaserShooter : Shooter
             if (currentLaser != null)
             {
                 currentLaser.transform.SetParent(firePoint);
-                InitializeBullet(currentLaser);
+                currentLaser.Initialize(target, damage, specialAbility, effectType);
             }
+        }
+        else
+        {
+            currentLaser.Initialize(target, damage, specialAbility, effectType);
         }
     }
 
@@ -26,16 +30,6 @@ public class LaserShooter : Shooter
         {
             Destroy(currentLaser.gameObject);
             currentLaser = null;
-        }
-    }
-
-    public override void SetEffectType(string _effectType)
-    {
-        base.SetEffectType(_effectType);
-
-        if (currentLaser != null)
-        {
-            InitializeBullet(currentLaser);
         }
     }
 

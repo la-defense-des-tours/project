@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
+using Assets.Scripts.LaDefenseDesTours.Level;
 
 namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
@@ -11,14 +11,13 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         protected NavMeshAgent agent;
         protected Animator animator;
         public virtual float health { get; set; }
-        public virtual float speed { get; set; }
-        public virtual float acceleration { get; set; }
-
-        public int experiencePoints = 1000;
-        public virtual float maxHealth { get; set; } = 100;
+        protected float speed { get; set; }
+        protected float acceleration { get; set; }
+        private int experiencePoints { get; set; }
+        public virtual float maxHealth { get; set; }
         public event Action OnHealthChanged;
 
-        public void Awake()
+        private void Awake()
         {
             animator = GetComponent<Animator>();
             SetupNavMeshAgent();
@@ -29,8 +28,17 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             HealthBar healthBar = FindFirstObjectByType<HealthBar>();
             if (healthBar != null)
                 healthBar.SetTarget(this);
-
+            
             health = maxHealth;
+            TransitionTo(new Normal());
+        }
+
+        protected void InitializeStats(float baseHealth, float healthFactor, float baseSpeed, float speedFactor, float baseAcceleration, float accelerationFactor, int currentLevel)
+        {
+            maxHealth = Mathf.RoundToInt(baseHealth * Mathf.Pow(healthFactor, currentLevel - 1));
+            speed = baseSpeed + (speedFactor * (currentLevel - 1));
+            acceleration = baseAcceleration + (accelerationFactor * (currentLevel - 1));
+            experiencePoints = (int)maxHealth;
         }
 
         void Update()
@@ -70,24 +78,13 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
                 case 4:
                     TransitionTo(new Dead());
                     break;
-                default:
-                    break;
             }
         }
 
-        public virtual void SetupNavMeshAgent()
+        protected virtual void SetupNavMeshAgent()
         {
-            if (gameObject.GetComponent<NavMeshAgent>() == null)
-                agent = gameObject.AddComponent<NavMeshAgent>();
-            else
-                agent = gameObject.GetComponent<NavMeshAgent>();
-
+            agent = gameObject.GetComponent<NavMeshAgent>() == null ? gameObject.AddComponent<NavMeshAgent>() : gameObject.GetComponent<NavMeshAgent>();
             SetupSpeed();
-        }
-
-        public virtual NavMeshAgent GetNavMeshAgent()
-        {
-            return agent;
         }
 
         public virtual void SetupSpeed()
@@ -103,13 +100,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         {
             if (currentState is not Paralyzed)
                 agent.SetDestination(destination);
-        }
-
-        public Enemy Clone(Transform spawnPoint)
-        {
-            Enemy clone = Instantiate(this, spawnPoint.position, Quaternion.identity);
-            clone.SetupNavMeshAgent();
-            return clone;
         }
 
         public virtual void TakeDamage(float damage)
@@ -130,7 +120,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public void DealDamage(float _damage)
         {
             Player.GetInstance().TakeDamage(_damage);
-            Debug.Log($"Player took {_damage} damage. Player health: {Player.GetInstance().health}");
         }
 
         public virtual void Die()
@@ -141,16 +130,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public void TransitionTo(State state)
         {
             if (currentState is Dead)
-            {
-                Debug.Log("Dead state transition");
                 return;
-            }
 
             if (currentState != null && currentState.GetType() == state.GetType())
-            {
-                Debug.Log("Same state transition");
                 return;
-            }
 
             currentState?.OnStateExit();
             currentState = state;
@@ -158,7 +141,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             currentState.OnStateEnter();
         }
 
-        public void UpdateState()
+        private void UpdateState()
         {
             currentState?.ApplyEffect();
         }
@@ -175,12 +158,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
                 animator.speed = _speed;
         }
 
-        public virtual void CheckArrival()
+        protected virtual void CheckArrival()
         {
             if (transform.position.x <= -80f)
             {
                 DealDamage(health);
-                TransitionTo(new Dead());
+                TakeDamage(health);
             }
         }
     }
