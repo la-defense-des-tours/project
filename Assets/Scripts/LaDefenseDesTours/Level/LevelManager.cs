@@ -97,11 +97,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 
 
         protected override void Awake()
-		{
-			instance = this;
-			base.Awake();
-			waveManager = GetComponent<WaveManager>();
-			levelState = LevelState.Intro;
+      {
+        instance = this;
+        base.Awake();
+        waveManager = GetComponent<WaveManager>();
+        levelState = LevelState.Intro;
 
             currency = new Currency(startingCurrency);
 
@@ -134,7 +134,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		/// </summary>
 		public void BuildingCompleted()
 		{
-            Debug.Log("[LevelManager] Construction terminée, passage à SpawningEnemies...");
+      Debug.Log("[LevelManager] Construction terminée, passage à SpawningEnemies...");
 			ChangeLevelState(LevelState.SpawningEnemies);
 		}
 
