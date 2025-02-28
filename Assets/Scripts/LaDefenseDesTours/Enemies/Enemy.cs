@@ -173,7 +173,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             if (transform.position.x <= -80f)
             {
                 DealDamage(health);
-                TransitionTo(new Dead());
+                TakeDamage(health);
             }
         }
     }
