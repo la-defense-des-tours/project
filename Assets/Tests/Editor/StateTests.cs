@@ -21,7 +21,7 @@ public class StateTests
             DestroyImmediate(gameObject);
         }
 
-        public override void SetupNavMeshAgent()
+        protected override void SetupNavMeshAgent()
         {
         }
 
@@ -29,7 +29,7 @@ public class StateTests
         {
         }
 
-        public override void CheckArrival()
+        protected override void CheckArrival()
         {
         }
 

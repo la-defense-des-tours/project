@@ -17,7 +17,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual float maxHealth { get; set; }
         public event Action OnHealthChanged;
 
-        public void Awake()
+        private void Awake()
         {
             animator = GetComponent<Animator>();
             SetupNavMeshAgent();
@@ -33,9 +33,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             TransitionTo(new Normal());
         }
 
-        public void InitializeStats(float baseHealth, float healthFactor, float baseSpeed, float speedFactor, float baseAcceleration, float accelerationFactor, int currentLevel)
+        protected void InitializeStats(float baseHealth, float healthFactor, float baseSpeed, float speedFactor, float baseAcceleration, float accelerationFactor, int currentLevel)
         {
-            maxHealth = baseHealth * Mathf.Pow(healthFactor, currentLevel - 1);
+            maxHealth = Mathf.RoundToInt(baseHealth * Mathf.Pow(healthFactor, currentLevel - 1));
             speed = baseSpeed + (speedFactor * (currentLevel - 1));
             acceleration = baseAcceleration + (accelerationFactor * (currentLevel - 1));
             experiencePoints = (int)maxHealth;
@@ -81,19 +81,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             }
         }
 
-        public virtual void SetupNavMeshAgent()
+        protected virtual void SetupNavMeshAgent()
         {
-            if (gameObject.GetComponent<NavMeshAgent>() == null)
-                agent = gameObject.AddComponent<NavMeshAgent>();
-            else
-                agent = gameObject.GetComponent<NavMeshAgent>();
-
+            agent = gameObject.GetComponent<NavMeshAgent>() == null ? gameObject.AddComponent<NavMeshAgent>() : gameObject.GetComponent<NavMeshAgent>();
             SetupSpeed();
-        }
-
-        public virtual NavMeshAgent GetNavMeshAgent()
-        {
-            return agent;
         }
 
         public virtual void SetupSpeed()
@@ -150,7 +141,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             currentState.OnStateEnter();
         }
 
-        public void UpdateState()
+        private void UpdateState()
         {
             currentState?.ApplyEffect();
         }
@@ -167,7 +158,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
                 animator.speed = _speed;
         }
 
-        public virtual void CheckArrival()
+        protected virtual void CheckArrival()
         {
             if (transform.position.x <= -80f)
             {

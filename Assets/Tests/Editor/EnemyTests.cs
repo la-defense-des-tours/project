@@ -20,13 +20,13 @@ public class EnemyTests
             isDead = true;
             DestroyImmediate(gameObject);
         }
-        public override void SetupNavMeshAgent()
+        protected override void SetupNavMeshAgent()
         {
         }
         public override void Move(Vector3 destination)
         {
         }
-        public override void CheckArrival()
+        protected override void CheckArrival()
         {
         }
         public override void TakeDamage(float damage)
