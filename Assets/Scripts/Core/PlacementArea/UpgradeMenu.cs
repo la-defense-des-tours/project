@@ -42,7 +42,7 @@ public class UpgradeMenu : MonoBehaviour
             return;
         }
 
-        TowerManager.Instance.UpgradeTower(target);
+        TowerManager.instance.UpgradeTower(target);
         Hide();
     }
 }

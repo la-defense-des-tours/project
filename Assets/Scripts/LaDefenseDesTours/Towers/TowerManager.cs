@@ -1,7 +1,3 @@
-
-
-
-
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
@@ -38,20 +34,20 @@ public class TowerManager : MonoBehaviour
     public UpgradeMenu upgradeMenu;
 
     private TowerData selectedTowerData;
-
-    public static TowerManager Instance;
+    public static TowerManager instance { get; private set; }
 
 
     private NavMeshAgent tempAgent;
 
     private void Awake()
     {
-        if (Instance != null)
+        if (instance != null)
         {
             Debug.LogError("Multiple TowerManager instances detected!");
             return;
         }
-            Instance = this;
+
+        instance = this;
     }
 
     private void Start()
@@ -88,8 +84,6 @@ public class TowerManager : MonoBehaviour
         return hasPath;
     }
 
-
-
     private void Update()
     {
         if (isPlacingTower && currentGhost != null)
@@ -102,6 +96,7 @@ public class TowerManager : MonoBehaviour
             CancelGhostPlacement();
         }
     }
+
     public void SelectCell(Cell cell)
     {
         if (cell == selectedCell)
@@ -109,11 +104,12 @@ public class TowerManager : MonoBehaviour
             DeselectCell();
             return;
         }
+
         selectedCell = cell;
         upgradeMenu.SetTarget(cell);
     }
 
-    public void DeselectCell()
+    private void DeselectCell()
     {
         selectedCell = null;
         upgradeMenu.Hide();
@@ -151,9 +147,6 @@ public class TowerManager : MonoBehaviour
         CancelGhostPlacement();
     }
 
-
-
-
     public void RegisterSpawnButton(TowerSpawnButton button)
     {
         if (button == null)
@@ -165,11 +158,10 @@ public class TowerManager : MonoBehaviour
         spawnButtons.Add(button);
         button.buttonTapped += OnTowerButtonTapped;
     }
+
     private void OnTowerButtonTapped(TowerData towerData)
     {
         StartPlacingTower(towerData);
-
-
     }
 
     public void UpgradeTower(Cell cell)
@@ -188,7 +180,8 @@ public class TowerManager : MonoBehaviour
 
         Destroy(cell.tower.gameObject);
 
-        Tower upgradedTower = cell.currentFactory.UpgradeTower(cell.GetBuildPosition(), cell.tower.currentLevel, cell.tower);
+        Tower upgradedTower =
+            cell.currentFactory.UpgradeTower(cell.GetBuildPosition(), cell.tower.currentLevel, cell.tower);
 
         if (upgradedTower != null)
         {
@@ -203,8 +196,7 @@ public class TowerManager : MonoBehaviour
         }
     }
 
-    
-    public void StartPlacingTower(TowerData towerData)
+    private void StartPlacingTower(TowerData towerData)
     {
         if (currentGhost != null)
         {
@@ -259,7 +251,7 @@ public class TowerManager : MonoBehaviour
 
         if (found)
         {
-            return hit.position; 
+            return hit.position;
         }
 
         for (float radius = searchRadius; radius <= 30f; radius += 5f)
@@ -270,9 +262,8 @@ public class TowerManager : MonoBehaviour
             }
         }
 
-        return Vector3.zero; 
+        return Vector3.zero;
     }
-
 
 
     public bool IsPathBlocked(Cell cell)
@@ -300,7 +291,7 @@ public class TowerManager : MonoBehaviour
         if (ghostObstacle != null)
         {
             ghostObstacle.enabled = false;
-            ghostObstacle.enabled = true; 
+            ghostObstacle.enabled = true;
             ghostObstacle.carving = true;
         }
 
@@ -336,6 +327,7 @@ public class TowerManager : MonoBehaviour
             Debug.LogWarning("⏳ Attente NavMesh dépassée !");
         }
     }
+
     private bool NavMeshIsReady()
     {
         return !NavMesh.pathfindingIterationsPerFrame.Equals(0);
@@ -370,19 +362,18 @@ public class TowerManager : MonoBehaviour
     }
 
 
-
     private void UpdateGhostVisual()
     {
         if (currentGhost == null) return;
 
         Renderer[] ghostRenderers = currentGhost.GetComponentsInChildren<Renderer>();
 
-        Color validColor = new Color(0, 1, 0, 0.5f); 
-        Color invalidColor = new Color(1, 0, 0, 0.5f); 
+        Color validColor = new Color(0, 1, 0, 0.5f);
+        Color invalidColor = new Color(1, 0, 0, 0.5f);
 
         foreach (Renderer renderer in ghostRenderers)
         {
-            if (renderer.material.HasProperty("_Color")) 
+            if (renderer.material.HasProperty("_Color"))
             {
                 renderer.material.color = isGhostPlacementValid ? validColor : invalidColor;
             }
@@ -400,6 +391,7 @@ public class TowerManager : MonoBehaviour
             }
         }
     }
+
     private void OnEnable()
     {
         if (GameUI.instance != null)
@@ -415,6 +407,7 @@ public class TowerManager : MonoBehaviour
             GameUI.instance.stateChanged -= OnGameStateChanged;
         }
     }
+
     private void OnGameStateChanged(GameUI.State oldState, GameUI.State newState)
     {
         if (newState == GameUI.State.Paused || newState == GameUI.State.GameOver)
@@ -431,10 +424,12 @@ public class TowerManager : MonoBehaviour
         {
             currentRangeIndicator.SetActive(false);
         }
+
         if (currentGhost != null)
         {
             Destroy(currentGhost);
         }
+
         currentGhost = null;
         currentRangeIndicator = null;
         selectedFactory = null;
@@ -443,7 +438,3 @@ public class TowerManager : MonoBehaviour
         GameUI.instance.CancelGhostPlacement();
     }
 }
-
-
-
-

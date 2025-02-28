@@ -18,7 +18,7 @@ public class Cell : MonoBehaviour
     {
         cellRenderer = GetComponent<Renderer>();
         defaultMaterial = cellRenderer.material;
-        towerManager = TowerManager.Instance;
+        towerManager = TowerManager.instance;
     }
 
     public Vector3 GetBuildPosition()
