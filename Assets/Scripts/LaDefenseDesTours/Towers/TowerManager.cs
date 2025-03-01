@@ -97,7 +97,6 @@ public class TowerManager : MonoBehaviour
         CancelGhostPlacement();
     }
 
-
     public void RegisterSpawnButton(TowerSpawnButton button)
     {
         if (button == null)
