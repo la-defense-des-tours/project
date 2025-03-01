@@ -28,7 +28,7 @@ public class PlacementValidator : MonoBehaviour
 
     private IEnumerator WaitForNavMeshRecalculation()
     {
-        float timeout = 1.5f;
+        float timeout = 1f;
         float timer = 0f;
         while (!NavMeshIsReady() && timer < timeout)
         {

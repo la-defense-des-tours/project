@@ -16,10 +16,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         private int experiencePoints { get; set; }
         public virtual float maxHealth { get; set; }
         public event Action OnHealthChanged;
-
+        private Vector3 attackPosition;
+        
         private void Awake()
         {
             animator = GetComponent<Animator>();
+            attackPosition = GameObject.Find("AttackFalcon!").transform.position;
             SetupNavMeshAgent();
         }
 
@@ -160,7 +162,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         protected virtual void CheckArrival()
         {
-            if (transform.position.x <= -80f)
+            if (transform.position.x <= attackPosition.x)
             {
                 DealDamage(health);
                 TakeDamage(health);
