@@ -13,18 +13,18 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
     /// The level manager - handles the level states and tracks the player's currency
     /// </summary>
     [RequireComponent(typeof(WaveManager))]
-	public class LevelManager : Singleton<LevelManager>
-	{
-		public static new LevelManager instance;
+    public class LevelManager : Singleton<LevelManager>
+    {
+        public static new LevelManager instance;
         /// <summary>
         /// The configured level intro. If this is null the LevelManager will fall through to the gameplay state (i.e. SpawningEnemies)
         /// </summary>
         public LevelIntro intro;
 
-		///// <summary>
-		///// The tower library for this level
-		///// </summary>
-		public TowerLibrary towerLibrary;
+        ///// <summary>
+        ///// The tower library for this level
+        ///// </summary>
+        public TowerLibrary towerLibrary;
 
 
         /// <summary>
@@ -39,69 +39,70 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
         public Player homeBase;
 
 
-		/// <summary>
-		/// The attached wave manager
-		/// </summary>
-		public WaveManager waveManager { get; protected set; }
+        /// <summary>
+        /// The attached wave manager
+        /// </summary>
+        public WaveManager waveManager { get; protected set; }
 
 
-		/// <summary>
-		/// The current state of the level
-		/// </summary>
+        /// <summary>
+        /// The current state of the level
+        /// </summary>
 
-		public LevelState levelState { get; protected set; }
+        public LevelState levelState { get; protected set; }
 
-		/// <summary>
-		/// The currency controller
-		/// </summary>
-		public Currency currency { get; protected set; }
+        /// <summary>
+        /// The currency controller
+        /// </summary>
+        public Currency currency { get; protected set; }
 
 
 
-		///// <summary>
-		///// An accessor for the home bases
-		///// </summary>
-		public Player playerHomeBase
-		{
-			get { return homeBase; }
-		}
+        ///// <summary>
+        ///// An accessor for the home bases
+        ///// </summary>
+        public Player playerHomeBase
+        {
+            get { return homeBase; }
+        }
 
-		/// <summary>
-		/// If the game is over
-		/// </summary>
-		public bool isGameOver
-		{
-			get { return (levelState == LevelState.Lose); }
-		}
+        /// <summary>
+        /// If the game is over
+        /// </summary>
+        public bool isGameOver
+        {
+            get { return (levelState == LevelState.Lose); }
+        }
 
-		/// <summary>
-		/// Fired when all of the home bases are destroyed
-		/// </summary>
-		public event Action levelFailed;
+        /// <summary>
+        /// Fired when all of the home bases are destroyed
+        /// </summary>
+        public event Action levelFailed;
 
-		/// <summary>
-		/// Fired when the level state is changed - first parameter is the old state, second parameter is the new state
-		/// </summary>
-		public event Action<LevelState, LevelState> levelStateChanged;
+        /// <summary>
+        /// Fired when the level state is changed - first parameter is the old state, second parameter is the new state
+        /// </summary>
+        public event Action<LevelState, LevelState> levelStateChanged;
 
-		/// <summary>
-		/// Event for home base being destroyed
-		/// </summary>
-		public event Action homeBaseDestroyed;
+        /// <summary>
+        /// Event for home base being destroyed
+        /// </summary>
+        public event Action homeBaseDestroyed;
 
-		public event Action OnLevelChanged;
+        public event Action OnLevelChanged;
 
         public int currentLevel = 1;
 
         private int remainingEnemiesByLevel;
 
+        public Leaderboard leaderboard;
 
         protected override void Awake()
-      {
-        instance = this;
-        base.Awake();
-        waveManager = GetComponent<WaveManager>();
-        levelState = LevelState.Intro;
+        {
+            instance = this;
+            base.Awake();
+            waveManager = GetComponent<WaveManager>();
+            levelState = LevelState.Intro;
 
             currency = new Currency(startingCurrency);
 
@@ -110,50 +111,53 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             remainingEnemiesByLevel = GetTotalEnemies();
 
             if (intro != null)
-			{
-				intro.introCompleted += IntroCompleted;
-			}
-			else
-			{
-				IntroCompleted();
-			}
+            {
+                intro.introCompleted += IntroCompleted;
+            }
+            else
+            {
+                IntroCompleted();
+            }
 
-			if (playerHomeBase)
-			{
-				playerHomeBase.OnPlayerDeath += OnHomeBaseDestroyed;
-			}
-		}
+            if (playerHomeBase)
+            {
+                playerHomeBase.OnPlayerDeath += OnHomeBaseDestroyed;
+            }
 
-		public Vector3 GetEnemyEndPoint()
-		{
-			return homeBase.transform.position;
-		}
+            leaderboard = new Leaderboard();
+            leaderboard.Load();
+        }
 
-		/// <summary>
-		/// Completes building phase, setting state to spawn enemies
-		/// </summary>
-		public void BuildingCompleted()
-		{
-      Debug.Log("[LevelManager] Construction terminée, passage à SpawningEnemies...");
-			ChangeLevelState(LevelState.SpawningEnemies);
-		}
+        public Vector3 GetEnemyEndPoint()
+        {
+            return homeBase.transform.position;
+        }
 
-		public float GetRatio()
-		{
+        /// <summary>
+        /// Completes building phase, setting state to spawn enemies
+        /// </summary>
+        public void BuildingCompleted()
+        {
+            Debug.Log("[LevelManager] Construction terminée, passage à SpawningEnemies...");
+            ChangeLevelState(LevelState.SpawningEnemies);
+        }
+
+        public float GetRatio()
+        {
             return (float)remainingEnemiesByLevel / GetTotalEnemies();
         }
 
-		/// <summary>
-		/// Unsubscribes from events
-		/// </summary>
-		protected override void OnDestroy()
-		{
-			base.OnDestroy();
+        /// <summary>
+        /// Unsubscribes from events
+        /// </summary>
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
 
-			if (intro != null)
-			{
-				intro.introCompleted -= IntroCompleted;
-			}
+            if (intro != null)
+            {
+                intro.introCompleted -= IntroCompleted;
+            }
 
             // Il faut détruire la base pour lancer l'événement
 
@@ -162,59 +166,66 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
                 playerHomeBase.OnPlayerDeath -= OnHomeBaseDestroyed;
             }
 
-			EnemyDeathEvent.OnEnemyDeath -= HandleEnemyDeath;
+            EnemyDeathEvent.OnEnemyDeath -= HandleEnemyDeath;
         }
 
         /// <summary>
         /// Fired when Intro is completed or immediately, if no intro is specified
         /// </summary>
         private void IntroCompleted()
-		{
-			ChangeLevelState(LevelState.Building);
-		}
+        {
+            ChangeLevelState(LevelState.Building);
+        }
 
 
-		/// <summary>
-		/// Changes the state and broadcasts the event
-		/// </summary>
-		/// <param name="newState">The new state to transitioned to</param>
-		private void ChangeLevelState(LevelState newState)
-		{
-			// If the state hasn't changed then return
-			if (levelState == newState)
-			{
-				return;
-			}
+        /// <summary>
+        /// Changes the state and broadcasts the event
+        /// </summary>
+        /// <param name="newState">The new state to transitioned to</param>
+        private void ChangeLevelState(LevelState newState)
+        {
+            // If the state hasn't changed then return
+            if (levelState == newState)
+            {
+                return;
+            }
 
-			LevelState oldState = levelState;
-			levelState = newState;
+            LevelState oldState = levelState;
+            levelState = newState;
 
             levelStateChanged?.Invoke(oldState, newState);
 
 
             switch (newState)
-			{
-				case LevelState.SpawningEnemies:
+            {
+                case LevelState.SpawningEnemies:
                     OnLevelChanged?.Invoke();
                     waveManager.StartWave();
                     break;
-				case LevelState.Lose:
-					SafelyCallLevelFailed();
-					break;
-			}
-		}
+                case LevelState.Lose:
+                    SafelyCallLevelFailed();
+                    break;
+            }
+        }
 
-		/// <summary>
-		/// Fired when a home base is destroyed
-		/// </summary>
-		private void OnHomeBaseDestroyed()
-		{
+        /// <summary>
+        /// Fired when a home base is destroyed
+        /// </summary>
+        private void OnHomeBaseDestroyed()
+        {
+            string playerName = Player.GetInstance().Name;
+            int levelReached = currentLevel;
+            float timeSurvived = Time.timeSinceLevelLoad; // Or use a custom timer
+
+            leaderboard.AddEntry(playerName, levelReached, timeSurvived);
+            leaderboard.Save(); // Save the updated leaderboard
+
             homeBaseDestroyed?.Invoke();
             if (!isGameOver)
-			{
-				ChangeLevelState(LevelState.Lose);
-			}
-		}
+            {
+                ChangeLevelState(LevelState.Lose);
+            }
+        }
 
         // Gère la mort d'un ennemi
         private void HandleEnemyDeath(int rewardAmount)
@@ -226,9 +237,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 
             if (remainingEnemiesByLevel <= 0)
             {
-                NextLevel(); 
-                remainingEnemiesByLevel = GetTotalEnemies(); 
-				waveManager.StartWave();
+                NextLevel();
+                remainingEnemiesByLevel = GetTotalEnemies();
+                waveManager.StartWave();
 
                 Debug.Log($"Niveau {currentLevel} atteint ! Nouveaux ennemis : {remainingEnemiesByLevel}");
             }
@@ -238,27 +249,27 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
         /// Calls the <see cref="levelFailed"/> event
         /// </summary>
         private void SafelyCallLevelFailed()
-		{
-			levelFailed?.Invoke();
-		}
+        {
+            levelFailed?.Invoke();
+        }
 
-		public int GetLevel()
-		{
-			return currentLevel;
-		}
+        public int GetLevel()
+        {
+            return currentLevel;
+        }
 
         public void NextLevel()
-		{
+        {
             currentLevel++;
             OnLevelChanged?.Invoke();
 
         }
 
         public int GetTotalEnemies()
-		{
-			return 20 * currentLevel + 1 ;
-		}
-		
-		
-	}
+        {
+            return 20 * currentLevel + 1;
+        }
+
+
+    }
 }
