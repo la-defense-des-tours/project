@@ -123,6 +123,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             return homeBase.transform.position;
         }
 
+        public Vector3 GetEnemyStartPoint()
+        {
+            return waveManager.GetSpawnPoint();
+        }
+
         /// <summary>
         /// Completes building phase, setting state to spawn enemies
         /// </summary>
