@@ -36,9 +36,6 @@ public class TowerManager : MonoBehaviour
     private TowerData selectedTowerData;
     public static TowerManager instance { get; private set; }
 
-
-    private NavMeshAgent tempAgent;
-
     private void Awake()
     {
         if (instance != null)
@@ -50,36 +47,10 @@ public class TowerManager : MonoBehaviour
         instance = this;
     }
 
-    private void Start()
+    private bool HasPath(Vector3 start, Vector3 goal)
     {
-        CreateTemporaryAgent();
-    }
-
-    private void CreateTemporaryAgent()
-    {
-        tempAgent = new GameObject("TempNavMeshAgent").AddComponent<NavMeshAgent>();
-        tempAgent.radius = 1.0f;
-        tempAgent.height = 3.0f;
-        tempAgent.speed = 3.5f;
-        tempAgent.areaMask = 1 << NavMesh.GetAreaFromName("Walkable");
-        tempAgent.gameObject.SetActive(false);
-    }
-
-    private bool TestPathWithTemporaryAgent(Vector3 start, Vector3 goal)
-    {
-        if (tempAgent == null) CreateTemporaryAgent();
-
-        tempAgent.gameObject.SetActive(true);
-
-        if (!tempAgent.Warp(start))
-        {
-            return false;
-        }
-
         NavMeshPath path = new NavMeshPath();
-        bool hasPath = tempAgent.CalculatePath(goal, path) && path.status == NavMeshPathStatus.PathComplete;
-
-        tempAgent.gameObject.SetActive(false);
+        bool hasPath = NavMesh.CalculatePath(start, goal, NavMesh.AllAreas, path) && path.status == NavMeshPathStatus.PathComplete;
 
         return hasPath;
     }
@@ -266,12 +237,12 @@ public class TowerManager : MonoBehaviour
     }
 
 
-    public bool IsPathBlocked(Cell cell)
+    public bool IsPathBlocked()
     {
-        Vector3 start = GetClosestNavMeshPoint(new Vector3(0, 0, 0));
+        Vector3 start = GetClosestNavMeshPoint(Vector3.zero);
         Vector3 goal = GetClosestNavMeshPoint(LevelManager.instance.GetEnemyEndPoint());
 
-        bool pathExists = TestPathWithTemporaryAgent(start, goal);
+        bool pathExists = HasPath(start, goal);
 
         return !pathExists;
     }
@@ -283,29 +254,22 @@ public class TowerManager : MonoBehaviour
         isGhostPlacementValid = false;
         UpdateGhostVisual();
 
-        bool wasOccupied = cell.IsOccupied();
-
         currentGhost.transform.position = cell.GetBuildPosition();
 
         NavMeshObstacle ghostObstacle = currentGhost.GetComponent<NavMeshObstacle>();
         if (ghostObstacle != null)
         {
-            ghostObstacle.enabled = false;
             ghostObstacle.enabled = true;
-            ghostObstacle.carving = true;
         }
 
         yield return WaitForNavMeshRecalculation();
-
-        bool isBlocked = IsPathBlocked(cell);
 
         if (ghostObstacle != null)
         {
             ghostObstacle.enabled = false;
         }
 
-        bool isOccupied = wasOccupied;
-        isGhostPlacementValid = !isOccupied && !isBlocked;
+        isGhostPlacementValid = !cell.IsOccupied() && !IsPathBlocked();
 
         UpdateGhostVisual();
     }
