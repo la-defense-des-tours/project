@@ -14,37 +14,14 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers.Data
     {
 
         public string towerName;
-        /// <summary>
-        /// A description of the tower for displaying on the UI
-        /// </summary>
         public string description;
-
-        /// <summary>
-        /// A description of the tower for displaying on the UI
-        /// </summary>
         public string upgradeDescription;
-
-
-        /// <summary>
-        /// Price of the tower
-        /// </summary>
         public int cost;
-
-        ///// <summary>
-        ///// The tower levels associated with this tower
-        ///// </summary>
-        //public TowerLevel[] levels;
-
-
-        /// <summary>
-        /// range of the tower
-        /// </summary>
+        public int dps;
+        public int sellCost;
         public float range;
-
-        /// <summary>
-        /// The tower icon
-        /// </summary>
         public Sprite icon;
+        
     }
 
 }

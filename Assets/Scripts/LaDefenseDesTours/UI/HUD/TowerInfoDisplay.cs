@@ -29,15 +29,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// </summary>
 		public Text level;
 
-		/// <summary>
-		/// The text component for the health
-		/// </summary>
-		public Text health;
-
-		/// <summary>
-		/// The text component for the dimensions
-		/// </summary>
-		public Text dimensions;
 
 		/// <summary>
 		/// The text component for the dimensions
@@ -63,7 +54,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             //}
             DisplayText(towerName, tower.towerName);
             DisplayText(description, tower.description);
-            //DisplayText(dps, towerLevel.GetTowerDps().ToString("f2"));
+            DisplayText(dps, tower.dps.ToString());
             //DisplayText(health, string.Format("{0}/{1}", tower.configuration.currentHealth, towerLevel.maxHealth));
             //DisplayText(level, (levelOfTower + 1).ToString());
             //DisplayText(dimensions, string.Format("{0}, {1}", tower.dimensions.x, tower.dimensions.y));

@@ -10,22 +10,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers.Data
     [CreateAssetMenu(fileName = "TowerLibrary.asset", menuName = "La défense des tours/Tower Library", order = 1)]
     public class TowerLibrary : ScriptableObject, IList<TowerData>, IDictionary<string, TowerData>
     {
-        /// <summary>
-        /// The list of all the towers
-        /// </summary>
         public List<TowerData> configurations;
-
-        /// <summary>
-        /// The internal reference to the dictionary made from the list of towers
-        /// with the name of tower as the key
-        /// </summary>
         Dictionary<string, TowerData> m_ConfigurationDictionary;
 
-
-        /// <summary>
-        /// The accessor to the towers by index
-        /// </summary>
-        /// <param name="index"></param>
         public TowerData this[int index]
         {
             get { return configurations[index]; }
