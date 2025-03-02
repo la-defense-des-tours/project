@@ -15,5 +15,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         {
             this.tower = tower;
         }
+
+        public void ApplyEffect()
+        {
+            this.tower.effectType = effectType;
+            this.tower.InitialiseBullet(effectType);
+        }
     }
 }

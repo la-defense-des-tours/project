@@ -93,8 +93,8 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 			Debug.Log("Fire effect");
             if (m_Tower != null)
             {
-				m_Tower.ApplyEffect(new FireEffect(m_Tower));
-				Hide();
+                FireEffect effect = new(m_Tower);
+                effect.ApplyEffect(); Hide();
             }
         }
 
@@ -102,7 +102,8 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		{
             if (m_Tower != null)
             {
-                m_Tower.ApplyEffect(new IceEffect(m_Tower));
+                IceEffect effect = new(m_Tower);
+				effect.ApplyEffect();
                 Hide();
             }
         }
@@ -111,7 +112,8 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		{
             if (m_Tower != null)
             {
-                m_Tower.ApplyEffect(new LightningEffect(m_Tower));
+                LightningEffect effect = new(m_Tower);
+				effect.ApplyEffect();
                 Hide();
             }
         }

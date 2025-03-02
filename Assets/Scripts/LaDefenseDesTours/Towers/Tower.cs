@@ -33,18 +33,18 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         public virtual void Update()
         {
-            switch (Input.inputString)
-            {
-                case "i":
-                    ApplyEffect(new IceEffect(this));
-                    break;
-                case "f":
-                    ApplyEffect(new FireEffect(this));
-                    break;
-                case "l":
-                    ApplyEffect(new LightningEffect(this));
-                    break;
-            }
+            //switch (Input.inputString)
+            //{
+            //    case "i":
+            //        new IceEffect(this);
+            //        break;
+            //    case "f":
+            //        new FireEffect(this);
+            //        break;
+            //    case "l":
+            //        new LightningEffect(this);
+            //        break;
+            //}
         }
 
         public virtual void Upgrade()
@@ -52,10 +52,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             currentLevel++;
         }
 
-        public void ApplyEffect(TowerDecorator decorator)
+        public void InitialiseBullet(string effect)
         {
-            effectType = decorator.effectType;
-            m_shooter.Initialize(range, damage, specialAbility, effectType);
+            m_shooter.Initialize(range, damage, specialAbility, effect);
         }
     }
 }
