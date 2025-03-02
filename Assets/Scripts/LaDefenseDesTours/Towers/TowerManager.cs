@@ -24,10 +24,9 @@ public class TowerManager : MonoBehaviour
 
     private readonly List<TowerSpawnButton> spawnButtons = new();
     private Cell cacheCell;
-    public TowerUI upgradeMenu;
     private Tower selectedTower;
     private PlacementValidator placementValidator;
-    public static TowerManager Instance;
+    public static TowerManager instance;
     private void Awake()
     {
         if (instance != null)
@@ -47,9 +46,6 @@ public class TowerManager : MonoBehaviour
             CancelGhostPlacement();
     }
 
-    public void SelectCell(Cell cell)
-        }
-    }
     public void SelectCell(Cell cell, Tower tower)
     {
         GameUI.instance.towerUI.Show(tower);
@@ -61,7 +57,7 @@ public class TowerManager : MonoBehaviour
             return;
         if (selectedFactory == null)
             return;
-        if (selectedTowerData == null)
+        if (selectedTower == null)
             return;
         if (cell.IsOccupied())
             return;
@@ -69,12 +65,7 @@ public class TowerManager : MonoBehaviour
             return;
         if (EventSystem.current.IsPointerOverGameObject())
             return;
-        if (!LevelManager.instance.currency.TryPurchase(selectedTowerData.cost))
-        }
-
-
         if (!LevelManager.instance.currency.TryPurchase(selectedTower.towerData.cost))
-        {
             return;
 
         Tower newTower = selectedFactory.CreateTower(cell.GetBuildPosition());
@@ -132,7 +123,6 @@ public class TowerManager : MonoBehaviour
     {
         if (currentGhost != null)
             CancelGhostPlacement();
-        }
 
         selectedTower = tower;
         switch (selectedTower.towerData.towerName)
@@ -182,6 +172,7 @@ public class TowerManager : MonoBehaviour
             if (cell == cacheCell)
                 return;
             cacheCell = cell;
+            Debug.Log("[MoveGhostToMouse] Detected cell: " + cell.name);
             StartCoroutine(placementValidator.ValidatePlacement(cell, currentGhost, (isValid) =>
             {
                 isGhostPlacementValid = isValid;
