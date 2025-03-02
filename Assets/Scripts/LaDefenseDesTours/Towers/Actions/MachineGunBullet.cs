@@ -25,6 +25,7 @@ public class MachineGunBullet : Bullet
     }
     protected virtual void HitTarget()
     {
+        SpawnImpactEffect();
         targetEnemy.TakeDamage(damage);
         ApplyEffect();
         Release();
