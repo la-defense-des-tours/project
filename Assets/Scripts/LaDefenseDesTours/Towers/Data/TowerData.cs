@@ -19,6 +19,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers.Data
         public int cost;
         public int dps;
         public int sellCost;
+        public int currentLevel;
         public float range;
         public Sprite icon;
         

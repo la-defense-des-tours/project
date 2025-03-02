@@ -85,9 +85,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             return waveManager.GetSpawnPoint();
         }
 
-        /// <summary>
-        /// Completes building phase, setting state to spawn enemies
-        /// </summary>
         public void BuildingCompleted()
         {
             Debug.Log("[LevelManager] Construction terminée, passage à SpawningEnemies...");
@@ -108,8 +105,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
                 intro.introCompleted -= IntroCompleted;
             }
 
-            // Il faut détruire la base pour lancer l'événement
-
             if (playerHomeBase != null)
             {
                 playerHomeBase.OnPlayerDeath -= OnHomeBaseDestroyed;
@@ -127,7 +122,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 
 		private void ChangeLevelState(LevelState newState)
 		{
-			// If the state hasn't changed then return
 			if (levelState == newState)
 			{
 				return;

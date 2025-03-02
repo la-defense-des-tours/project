@@ -13,7 +13,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual float damage { get; set; }
         protected virtual float specialAbility { get; set; }
         public virtual string effectType { get; set; }
-        public int currentLevel { get; set; } = 1;
         public bool isAtMaxLevel { get; set; } = false;
         public bool isGhost { get; set; } = false;
 
@@ -58,15 +57,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         public virtual void Upgrade()
         {
+
             if (isAtMaxLevel) return;
-
-            currentLevel++;
-
-            if (currentLevel >= 3)
-            {
-                isAtMaxLevel = true;
-                return;
-            }
 
             GameObject nextPrefab = towerPrefabs;
 
@@ -77,15 +69,16 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             Cell parentCell = GetComponentInParent<Cell>();
             if (parentCell == null)
             {
-                Debug.LogError("Impossible de trouver la cellule parente !");
                 return;
             }
-
             GameObject newTowerObj = Instantiate(nextPrefab, transform.position, transform.rotation);
             Tower newTower = newTowerObj.GetComponent<Tower>();
-
             newTower.transform.SetParent(parentCell.transform);
-
+            
+            if (newTower.towerData.currentLevel >= 3)
+            {
+                newTower.isAtMaxLevel = true;
+            }
             Destroy(gameObject);
         }
 

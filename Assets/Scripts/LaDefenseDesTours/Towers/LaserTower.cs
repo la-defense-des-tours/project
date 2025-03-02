@@ -9,7 +9,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
 
         public LaserTower()
         {
-            currentLevel = 1;
             range = 50f;
             damage = 25f;
             specialAbility = damageOverTime;

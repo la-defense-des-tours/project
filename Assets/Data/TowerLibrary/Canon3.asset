@@ -19,5 +19,6 @@ MonoBehaviour:
   cost: 800
   dps: 150
   sellCost: 50
+  currentLevel: 3
   range: 30
   icon: {fileID: 21300000, guid: 53652022b1d444a5c9e9630488e44e13, type: 3}
