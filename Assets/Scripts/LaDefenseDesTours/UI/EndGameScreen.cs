@@ -48,9 +48,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI
         ///
         protected LevelManager m_LevelManager;
 
-        [SerializeField] private Text leaderboardText;
-        [SerializeField] private InputField playerNameInput;
-
         /// <summary>
         /// Safely unsubscribes from <see cref="LevelManager" /> events.
         /// Go back to the main menu scene
@@ -111,42 +108,10 @@ namespace Assets.Scripts.LaDefenseDesTours.UI
         {
             OpenEndGameScreen();
 
-            playerNameInput.text = Player.GetInstance().Name;
-            DisplayLeaderboard();
             if ((defeatSound != null) && (audioSource != null))
             {
                 audioSource.PlayOneShot(defeatSound);
             }
-        }
-
-        public void OnPlayerNameSubmitted()
-        {
-            string playerName = playerNameInput.text;
-            if (!string.IsNullOrEmpty(playerName))
-            {
-                Player.GetInstance().Name = playerName;
-            }
-        }
-
-        private void DisplayLeaderboard()
-        {
-            if (leaderboardText == null)
-            {
-                Debug.LogError("Leaderboard Text is not assigned!");
-                return;
-            }
-
-            var leaderboard = LevelManager.instance.leaderboard;
-            var entries = leaderboard.GetEntries();
-
-            string leaderboardString = "Leaderboard:\n";
-            for (int i = 0; i < entries.Count; i++)
-            {
-                var entry = entries[i];
-                leaderboardString += $"{i + 1}. {entry.playerName} - Level {entry.levelReached} - {entry.timeSurvived:F1}s\n";
-            }
-
-            leaderboardText.text = leaderboardString;
         }
 
         /// <summary>

@@ -9,11 +9,20 @@ public class LeaderboardEntry
     public string playerName;
     public int levelReached;
     public float timeSurvived;
+    public string formattedTime; 
 
     public LeaderboardEntry(string name, int level, float time)
     {
         playerName = name;
         levelReached = level;
         timeSurvived = time;
+        formattedTime = FormatTime(time);
+    }
+
+    private string FormatTime(float timeInSeconds)
+    {
+        int minutes = Mathf.FloorToInt(timeInSeconds / 60);
+        int seconds = Mathf.FloorToInt(timeInSeconds % 60);
+        return $"{minutes:00}:{seconds:00}";
     }
 }

@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using UnityEngine;
-using Assets.Scripts.LaDefenseDesTours.Interfaces;
 
 public class Leaderboard
 {
@@ -13,11 +13,12 @@ public class Leaderboard
         var entry = new LeaderboardEntry(playerName, levelReached, timeSurvived);
         entries.Add(entry);
 
-        // Sort the leaderboard by level (descending) and time (descending)
         entries = entries
             .OrderByDescending(e => e.levelReached)
             .ThenByDescending(e => e.timeSurvived)
             .ToList();
+
+        SaveToJson();
     }
 
     public List<LeaderboardEntry> GetEntries()
@@ -25,24 +26,46 @@ public class Leaderboard
         return entries;
     }
 
-    public void Save()
+    private void SaveToJson()
     {
-        string json = JsonUtility.ToJson(new LeaderboardDataWrapper(entries));
-        PlayerPrefs.SetString("Leaderboard", json);
-        PlayerPrefs.Save();
-    }
+        string filePath = Path.Combine(Application.persistentDataPath, "leaderboard.json");
 
-    public void Load()
-    {
-        if (PlayerPrefs.HasKey("Leaderboard"))
+        try
         {
-            string json = PlayerPrefs.GetString("Leaderboard");
-            var wrapper = JsonUtility.FromJson<LeaderboardDataWrapper>(json);
-            entries = wrapper.entries;
+            List<LeaderboardEntry> allEntries = LoadExistingEntries(filePath);
+            allEntries.AddRange(entries);
+
+            LeaderboardDataWrapper dataWrapper = new LeaderboardDataWrapper(allEntries);
+            string json = JsonUtility.ToJson(dataWrapper, true);
+            File.WriteAllText(filePath, json);
+            Debug.Log("Leaderboard saved to file: " + filePath);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("Failed to save leaderboard to file: " + ex.Message);
         }
     }
 
-    // Wrapper class for serialization
+    private List<LeaderboardEntry> LoadExistingEntries(string filePath)
+    {
+        if (!File.Exists(filePath))
+        {
+            return new List<LeaderboardEntry>();
+        }
+
+        try
+        {
+            string json = File.ReadAllText(filePath);
+            LeaderboardDataWrapper dataWrapper = JsonUtility.FromJson<LeaderboardDataWrapper>(json);
+            return dataWrapper?.entries ?? new List<LeaderboardEntry>();
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("Failed to load existing leaderboard entries: " + ex.Message);
+            return new List<LeaderboardEntry>();
+        }
+    }
+
     [System.Serializable]
     private class LeaderboardDataWrapper
     {

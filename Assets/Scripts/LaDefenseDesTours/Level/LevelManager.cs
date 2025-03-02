@@ -125,7 +125,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             }
 
             leaderboard = new Leaderboard();
-            leaderboard.Load();
         }
 
         public Vector3 GetEnemyEndPoint()
@@ -215,10 +214,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
         {
             string playerName = Player.GetInstance().Name;
             int levelReached = currentLevel;
-            float timeSurvived = Time.timeSinceLevelLoad; // Or use a custom timer
+            float timeSurvived = Time.timeSinceLevelLoad;
 
             leaderboard.AddEntry(playerName, levelReached, timeSurvived);
-            leaderboard.Save(); // Save the updated leaderboard
 
             homeBaseDestroyed?.Invoke();
             if (!isGameOver)
