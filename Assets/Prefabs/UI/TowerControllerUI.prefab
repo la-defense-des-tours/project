@@ -1443,7 +1443,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1695329477412330}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1474,6 +1474,9 @@ MonoBehaviour:
   upgradeDescription: {fileID: 114925602260884202}
   sellButton: {fileID: 114181706082431000}
   upgradeButton: {fileID: 114940264827616956}
+  fireButton: {fileID: 9076152049952981914}
+  iceButton: {fileID: 2369923325904966237}
+  lightButton: {fileID: 8295299309489697275}
   towerInfoDisplay: {fileID: 114190039087685638}
   panelRectTransform: {fileID: 224032478147228008}
   confirmationButtons:
@@ -1492,7 +1495,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerName: {fileID: 114132115020132514}
   description: {fileID: 0}
-  dps: {fileID: 114421794240661270}
+  dps: {fileID: 114233244959261686}
   level: {fileID: 0}
   upgradeCost: {fileID: 114866793945417814}
   sellPrice: {fileID: 114273590324288892}
@@ -2394,8 +2397,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 114623870853810010}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: UpgradeButtonClick
+        m_TargetAssemblyTypeName: Assets.Scripts.LaDefenseDesTours.UI.HUD.TowerUI,
+          Assembly-CSharp
+        m_MethodName: IceEffect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3354,8 +3358,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 114623870853810010}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: UpgradeButtonClick
+        m_TargetAssemblyTypeName: Assets.Scripts.LaDefenseDesTours.UI.HUD.TowerUI,
+          Assembly-CSharp
+        m_MethodName: FireEffect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3502,8 +3507,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 114623870853810010}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: UpgradeButtonClick
+        m_TargetAssemblyTypeName: Assets.Scripts.LaDefenseDesTours.UI.HUD.TowerUI,
+          Assembly-CSharp
+        m_MethodName: LigthningEffect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
