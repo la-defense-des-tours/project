@@ -195,7 +195,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 82, y: 31}
+  m_AnchoredPosition: {x: 79.930176, y: 26.899902}
   m_SizeDelta: {x: 160, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4026619479384060780
@@ -284,7 +284,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 45.2, y: 0}
+  m_AnchoredPosition: {x: 36.3, y: 0}
   m_SizeDelta: {x: 63, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4219563873395610095
@@ -530,8 +530,6 @@ MonoBehaviour:
   description: {fileID: 7212270804362715190}
   dps: {fileID: 1347839066509108590}
   level: {fileID: 0}
-  health: {fileID: 0}
-  dimensions: {fileID: 0}
   upgradeCost: {fileID: 0}
   sellPrice: {fileID: 0}
 --- !u!111 &6827686331128447612
@@ -580,10 +578,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerName: {fileID: 6261229378230372096}
-  description: {fileID: 7212270804362715190}
   upgradeDescription: {fileID: 0}
+  firePrice: {fileID: 0}
+  icePrice: {fileID: 0}
+  lightPrice: {fileID: 0}
+  UpgradePrice: {fileID: 0}
+  SellPrice: {fileID: 0}
   sellButton: {fileID: 0}
   upgradeButton: {fileID: 0}
+  fireButton: {fileID: 0}
+  iceButton: {fileID: 0}
+  lightButton: {fileID: 0}
   towerInfoDisplay: {fileID: 2457023736564053750}
   panelRectTransform: {fileID: 468287296156074049}
   confirmationButtons: []
@@ -827,8 +832,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 3}
-  m_SizeDelta: {x: -60, y: 50}
+  m_AnchoredPosition: {x: 15, y: 3}
+  m_SizeDelta: {x: -30, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &416048421819165601
 CanvasRenderer:
@@ -974,7 +979,7 @@ RectTransform:
   m_GameObject: {fileID: 7452964265370934464}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 340140364260858551}
@@ -1064,7 +1069,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -30, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7754151366149212427
 GameObject:
@@ -1103,8 +1108,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -63.7, y: 0}
-  m_SizeDelta: {x: 200, y: 60}
+  m_AnchoredPosition: {x: -65, y: 0}
+  m_SizeDelta: {x: 250, y: 60}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &5575289389358465750
 CanvasRenderer:
@@ -1216,6 +1221,19 @@ MonoBehaviour:
       - m_Target: {fileID: 8214770380503930098}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Assets.Scripts.LaDefenseDesTours.UI.HUD.GameUI,
+          Assembly-CSharp
+        m_MethodName: StartTimer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
