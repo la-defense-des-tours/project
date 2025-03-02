@@ -59,4 +59,9 @@ public class LaserBullet : Bullet
                 break;
         }
     }
+
+    protected override void SpawnImpactEffect()
+    {
+        
+    }
 }
