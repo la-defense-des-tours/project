@@ -6,6 +6,10 @@ public abstract class Bullet : MonoBehaviour
 {
     [Header("Bullet Settings")]
     [SerializeField] protected float speed = 70f;
+    [SerializeField] protected Material defaultMaterial;
+    [SerializeField] protected Material fireMaterial;
+    [SerializeField] protected Material lightningMaterial;
+    [SerializeField] protected Material iceMaterial;
     protected float specialAbility { get; set; }
     protected float damage;
 
@@ -21,14 +25,17 @@ public abstract class Bullet : MonoBehaviour
 
     void Update()
     {
+        ApplyEffectMaterial();
+
         if (target == null)
         {
             Release();
             return;
         }
+
         HandleTrajectory();
     }
-    
+
     public void Initialize(Transform target, float damage, float specialAbility, string effectType)
     {
         this.target = target;
@@ -87,6 +94,25 @@ public abstract class Bullet : MonoBehaviour
         {
             targetCollider = _target.GetComponent<Collider>();
             targetEnemy = _target.GetComponent<Enemy>();
+        }
+    }
+
+    protected virtual void ApplyEffectMaterial()
+    {
+        switch (effectType)
+        {
+            case "Fire":
+                GetComponent<Renderer>().material = fireMaterial;
+                break;
+            case "Ice":
+                GetComponent<Renderer>().material = iceMaterial;
+                break;
+            case "Lightning":
+                GetComponent<Renderer>().material = lightningMaterial;
+                break;
+            default:
+                GetComponent<Renderer>().material = defaultMaterial;
+                break;
         }
     }
 }

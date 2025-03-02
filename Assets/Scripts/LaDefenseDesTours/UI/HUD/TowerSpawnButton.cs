@@ -59,9 +59,9 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         {
             Debug.Log($"TowerSpawnButton {gameObject.name} initialized");
 
-            if (TowerManager.Instance != null)
+            if (TowerManager.instance != null)
             {
-                TowerManager.Instance.RegisterSpawnButton(this); 
+                TowerManager.instance.RegisterSpawnButton(this); 
             }
             else
             {
