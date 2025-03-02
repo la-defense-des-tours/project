@@ -83,7 +83,8 @@ public class CanonBullet : Bullet
         if (ps != null)
         {
             var shape = ps.shape;
-            shape.radius *= specialAbility;
+            shape.radiusSpread = specialAbility;
+            ps.GetComponent<Renderer>().material = GetComponent<Renderer>().material;
         }
         Destroy(effect, impactEffectDuration);
     }
