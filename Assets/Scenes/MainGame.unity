@@ -1213,6 +1213,7 @@ GameObject:
   - component: {fileID: 387907643}
   - component: {fileID: 387907642}
   - component: {fileID: 387907641}
+  - component: {fileID: 387907645}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -1310,6 +1311,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &387907645
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387907640}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 5, y: 0.00001, z: 5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -4136,6 +4153,14 @@ PrefabInstance:
       propertyPath: m_NavMeshData
       value: 
       objectReference: {fileID: 23800000, guid: 1f3225a229fe1a94b8f9fa8124399c16, type: 2}
+    - target: {fileID: 6542366997270324441, guid: 6133513687dda5b4988eef49369c610b, type: 3}
+      propertyPath: m_GenerateLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6542366997270324441, guid: 6133513687dda5b4988eef49369c610b, type: 3}
+      propertyPath: m_LayerMask.m_Bits
+      value: 127
+      objectReference: {fileID: 0}
     - target: {fileID: 6780963004036180469, guid: 6133513687dda5b4988eef49369c610b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 

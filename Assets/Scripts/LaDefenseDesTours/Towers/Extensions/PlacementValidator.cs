@@ -28,20 +28,7 @@ public class PlacementValidator : MonoBehaviour
 
     private IEnumerator WaitForNavMeshRecalculation()
     {
-        float timeout = 1f;
-        float timer = 0f;
-        while (!NavMeshIsReady() && timer < timeout)
-        {
-            yield return new WaitForEndOfFrame();
-            timer += Time.deltaTime;
-        }
-        if (timer >= timeout)
-            Debug.LogWarning("NavMesh recalculation timeout");
-    }
-
-    private bool NavMeshIsReady()
-    {
-        return NavMesh.pathfindingIterationsPerFrame != 0;
+        yield return new WaitForEndOfFrame();
     }
 
     private bool IsPathBlocked()
@@ -56,9 +43,11 @@ public class PlacementValidator : MonoBehaviour
         NavMeshHit hit;
         if (NavMesh.SamplePosition(position, out hit, searchRadius, NavMesh.AllAreas))
             return hit.position;
+
         for (float radius = searchRadius; radius <= 30f; radius += 5f)
             if (NavMesh.SamplePosition(position, out hit, radius, NavMesh.AllAreas))
                 return hit.position;
+
         return Vector3.zero;
     }
 
@@ -72,8 +61,10 @@ public class PlacementValidator : MonoBehaviour
     public void UpdateGhostVisual(GameObject ghost, bool isValid)
     {
         Renderer[] renderers = ghost.GetComponentsInChildren<Renderer>();
+
         Color validColor = new Color(0, 1, 0, 0.35f);
         Color invalidColor = new Color(1, 0, 0, 0.35f);
+
         foreach (Renderer renderer in renderers)
             if (renderer.material.HasProperty("_Color"))
                 renderer.material.color = isValid ? validColor : invalidColor;
