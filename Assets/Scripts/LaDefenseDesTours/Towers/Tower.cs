@@ -106,7 +106,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             {
                 if (renderer.material.HasProperty("_Color"))
                 {
-                    renderer.material.color = hoverColor; // Appliquer le bleu semi-transparent
+                    renderer.material.color = hoverColor; 
                 }
             }
         }
@@ -117,7 +117,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             {
                 if (renderer.material.HasProperty("_Color"))
                 {
-                    renderer.material.color = defaultColor; // Réinitialiser la couleur d'origine
+                    renderer.material.color = defaultColor; 
                 }
             }
         }
