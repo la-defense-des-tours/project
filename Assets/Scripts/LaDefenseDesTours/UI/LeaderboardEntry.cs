@@ -8,15 +8,13 @@ public class LeaderboardEntry
 {
     public string playerName;
     public int levelReached;
-    public float timeSurvived;
-    public string formattedTime; 
+    public string timeSurvived; 
 
     public LeaderboardEntry(string name, int level, float time)
     {
         playerName = name;
         levelReached = level;
-        timeSurvived = time;
-        formattedTime = FormatTime(time);
+        timeSurvived = FormatTime(time);
     }
 
     private string FormatTime(float timeInSeconds)
