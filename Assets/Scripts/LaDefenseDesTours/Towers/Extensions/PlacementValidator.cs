@@ -29,6 +29,7 @@ public class PlacementValidator : MonoBehaviour
     private IEnumerator WaitForNavMeshRecalculation()
     {
         yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
     }
 
     private bool IsPathBlocked()
