@@ -49,11 +49,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         public virtual void Upgrade()
         {
-            Debug.Log("Upgrading base tower...");
             currentLevel++;
         }
 
-        private void ApplyEffect(TowerDecorator decorator)
+        public void ApplyEffect(TowerDecorator decorator)
         {
             effectType = decorator.effectType;
             m_shooter.Initialize(range, damage, specialAbility, effectType);
