@@ -10,6 +10,8 @@ public class CanonBullet : Bullet
 
     protected virtual void HitTarget()
     {
+        SpawnImpactEffect();
+        
         Collider[] colliders = Physics.OverlapSphere(transform.position, specialAbility);
 
         foreach (Collider collider in colliders)
@@ -69,5 +71,20 @@ public class CanonBullet : Bullet
     {
         base.OnDisable();
         startPosition = Vector3.zero;
+    }
+
+    protected override void SpawnImpactEffect()
+    {
+        if (impactEffect == null)
+            return;
+        
+        GameObject effect = Instantiate(impactEffect, transform.position, Quaternion.identity);
+        ParticleSystem ps = effect.GetComponent<ParticleSystem>();
+        if (ps != null)
+        {
+            var shape = ps.shape;
+            shape.radius *= specialAbility;
+        }
+        Destroy(effect, impactEffectDuration);
     }
 }

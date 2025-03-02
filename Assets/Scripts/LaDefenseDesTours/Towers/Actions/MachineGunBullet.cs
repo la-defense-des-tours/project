@@ -29,4 +29,9 @@ public class MachineGunBullet : Bullet
         ApplyEffect();
         Release();
     }
+
+    protected override void SpawnImpactEffect()
+    {
+        
+    }
 }
