@@ -35,7 +35,7 @@ public class TowerManager : MonoBehaviour
     private readonly List<TowerSpawnButton> spawnButtons = new();
     private Cell selectedCell;
     private Cell cacheCell;
-    public UpgradeMenu upgradeMenu;
+    public TowerUI upgradeMenu;
 
     private TowerData selectedTowerData;
 
@@ -102,7 +102,7 @@ public class TowerManager : MonoBehaviour
             CancelGhostPlacement();
         }
     }
-    public void SelectCell(Cell cell)
+    public void SelectCell(Cell cell, Tower tower)
     {
         if (cell == selectedCell)
         {
@@ -110,7 +110,7 @@ public class TowerManager : MonoBehaviour
             return;
         }
         selectedCell = cell;
-        upgradeMenu.SetTarget(cell);
+        upgradeMenu.Show(tower);
     }
 
     public void DeselectCell()

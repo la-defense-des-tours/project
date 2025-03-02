@@ -30,7 +30,7 @@ public class Cell : MonoBehaviour
     {
         if (tower != null)
         {
-            towerManager.SelectCell(this);
+            towerManager.SelectCell(this, tower);
             return;
         }
 

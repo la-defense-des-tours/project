@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Level;
 using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using UnityEngine;
 using UnityEngine.UI;
@@ -50,7 +51,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <summary>
 		/// The current tower to draw
 		/// </summary>
-		protected TowerData m_Tower;
+		protected Tower m_Tower;
 
 		/// <summary>
 		/// The canvas attached to the gameObject
@@ -63,7 +64,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <param name="towerToShow">
 		/// The tower to gain info from
 		/// </param>
-		public virtual void Show(TowerData towerToShow)
+		public virtual void Show(Tower towerToShow)
 		{
 			if (towerToShow == null)
 			{
@@ -74,15 +75,15 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 
 			m_Canvas.enabled = true;
 
-			//int sellValue = m_Tower.GetSellLevel();
+			int sellValue = m_Tower.towerData.sellCost;
 			if (sellButton != null)
 			{
-				//sellButton.gameObject.SetActive(sellValue > 0);
+				sellButton.gameObject.SetActive(sellValue > 0);
 			}
 			if (upgradeButton != null)
 			{
 				//upgradeButton.interactable =
-					//LevelManager.instance.currency.CanAfford(m_Tower.GetCostForNextLevel());
+				//	LevelManager.instance.currency.CanAfford(m_Tower.GetCostForNextLevel());
 				//bool maxLevel = m_Tower.isAtMaxLevel;
 				//upgradeButton.gameObject.SetActive(!maxLevel);
 				//if (!maxLevel)
@@ -91,8 +92,8 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 				//		m_Tower.levels[m_Tower.currentLevel + 1].upgradeDescription.ToUpper();
 				//}
 			}
-			//LevelManager.instance.currency.currencyChanged += OnCurrencyChanged;
-			towerInfoDisplay.Show(towerToShow);
+			LevelManager.instance.currency.currencyChanged += OnCurrencyChanged;
+			towerInfoDisplay.Show(towerToShow.towerData);
 			foreach (var button in confirmationButtons)
 			{
 				button.SetActive(false);
@@ -110,7 +111,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 				//GameUI.instance.HideRadiusVisualizer();
 			}
 			m_Canvas.enabled = false;
-			//LevelManager.instance.currency.currencyChanged -= OnCurrencyChanged;
+			LevelManager.instance.currency.currencyChanged -= OnCurrencyChanged;
 		}
 
 		/// <summary>
@@ -143,7 +144,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <param name="newTower"></param>
 		protected virtual void OnUISelectionChanged(TowerData newTower)
 		{
-			if (newTower != null)
+            if (newTower != null)
 			{
 				Show(newTower);
 			}
@@ -162,7 +163,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 			m_Canvas.enabled = false;
 			if (GameUI.instanceExists)
 			{
-				//GameUI.instance.selectionChanged += OnUISelectionChanged;
+				GameUI.instance.selectionChanged += OnUISelectionChanged;
 				GameUI.instance.stateChanged += OnGameUIStateChanged;
 			}
 		}
@@ -195,9 +196,9 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 			{
 				return;
 			}
-			//Vector3 point = m_GameCamera.WorldToScreenPoint(m_Tower.position);
-			//point.z = 0;
-			//panelRectTransform.transform.position = point;
+			Vector3 point = m_GameCamera.WorldToScreenPoint(m_Tower.transform.position);
+			point.z = 0;
+			panelRectTransform.transform.position = point;
 		}
 
 		/// <summary>

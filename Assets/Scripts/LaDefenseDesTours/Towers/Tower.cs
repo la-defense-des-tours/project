@@ -1,4 +1,5 @@
 
+using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -15,6 +16,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual int cost { get; set; }
         public int currentLevel { get; set; } = 1;
         public bool isGhost { get; set; } = false;
+
+        public TowerData towerData;
 
         public virtual void Start()
         {

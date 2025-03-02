@@ -647,7 +647,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 48.98, y: 0}
   m_SizeDelta: {x: 380, y: 320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &222953431498457158
@@ -1470,6 +1470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerName: {fileID: 114132115020132514}
+  description: {fileID: 0}
   upgradeDescription: {fileID: 114925602260884202}
   sellButton: {fileID: 114181706082431000}
   upgradeButton: {fileID: 114940264827616956}
@@ -1493,8 +1494,6 @@ MonoBehaviour:
   description: {fileID: 0}
   dps: {fileID: 114421794240661270}
   level: {fileID: 0}
-  health: {fileID: 0}
-  dimensions: {fileID: 0}
   upgradeCost: {fileID: 114866793945417814}
   sellPrice: {fileID: 114273590324288892}
 --- !u!223 &223991189361826780
