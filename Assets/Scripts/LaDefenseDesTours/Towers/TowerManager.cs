@@ -191,6 +191,7 @@ public class TowerManager : MonoBehaviour
             if (cell == cacheCell)
                 return;
             cacheCell = cell;
+            
             StartCoroutine(placementValidator.ValidatePlacement(cell, currentGhost, (isValid) =>
             {
                 isGhostPlacementValid = isValid;
