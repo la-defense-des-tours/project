@@ -10,7 +10,7 @@ public class PlacementValidator : MonoBehaviour
     {
         ghost.transform.position = cell.GetBuildPosition();
         NavMeshObstacle obstacle = ghost.GetComponent<NavMeshObstacle>();
-        if (obstacle != null)
+        if (obstacle)
         {
             obstacle.carving = true;
             obstacle.carveOnlyStationary = false;
@@ -20,7 +20,7 @@ public class PlacementValidator : MonoBehaviour
         yield return WaitForNavMeshRecalculation();
 
         bool isValid = !cell.IsOccupied() && !IsPathBlocked();
-        if (obstacle != null)
+        if (obstacle)
             obstacle.enabled = false;
 
         callback(isValid);
