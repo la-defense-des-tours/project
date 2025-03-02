@@ -536,6 +536,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerControllerUI
       objectReference: {fileID: 0}
+    - target: {fileID: 114623870853810010, guid: 68efc9a9705510c4cb63b6e5a75b64c9, type: 3}
+      propertyPath: SellPrice
+      value: 
+      objectReference: {fileID: 389876199}
+    - target: {fileID: 114623870853810010, guid: 68efc9a9705510c4cb63b6e5a75b64c9, type: 3}
+      propertyPath: UpgradePrice
+      value: 
+      objectReference: {fileID: 357587110}
     - target: {fileID: 224176417992533086, guid: 68efc9a9705510c4cb63b6e5a75b64c9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1130,6 +1138,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224460643181073094, guid: 74e7eb92d59aff04fb60e4f3f43dfd0c, type: 3}
   m_PrefabInstance: {fileID: 330879772}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &357587110 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114866793945417814, guid: 68efc9a9705510c4cb63b6e5a75b64c9, type: 3}
+  m_PrefabInstance: {fileID: 183422330}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &387907640
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,6 +1258,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &389876199 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114273590324288892, guid: 68efc9a9705510c4cb63b6e5a75b64c9, type: 3}
+  m_PrefabInstance: {fileID: 183422330}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0

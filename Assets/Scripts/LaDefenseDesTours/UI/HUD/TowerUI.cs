@@ -13,11 +13,13 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 	public class TowerUI : MonoBehaviour
 	{
 		public Text towerName;
-		public Text description;
 		public Text upgradeDescription;
-
-
-		public Button sellButton;
+		public Text firePrice;
+        public Text icePrice;
+        public Text lightPrice;
+		public Text UpgradePrice;
+		public Text SellPrice;
+        public Button sellButton;
 		public Button upgradeButton;
 		public Button fireButton;
         public Button iceButton;
@@ -46,10 +48,12 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 			m_Canvas.enabled = true;
 
 			int sellValue = m_Tower.towerData.sellCost;
+			
 			if (sellButton != null)
 			{
 				sellButton.gameObject.SetActive(sellValue > 0);
-			}
+				SellPrice.text = sellValue.ToString();
+            }
 			if (upgradeButton != null)
 			{
 				upgradeButton.interactable =
@@ -60,9 +64,26 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 				{
 					upgradeDescription.text =
 						m_Tower.towerData.upgradeDescription.ToUpper();
-				}
+                    UpgradePrice.text = m_Tower.towerData.upgradeCost.ToString();
+                }
 			}
-			LevelManager.instance.currency.currencyChanged += OnCurrencyChanged;
+			if (fireButton != null)
+            {
+				fireButton.interactable = LevelManager.instance.currency.CanAfford(m_Tower.firePrice);
+                firePrice.text = m_Tower.firePrice.ToString();
+            }
+            if (iceButton != null)
+            {
+                iceButton.interactable = LevelManager.instance.currency.CanAfford(m_Tower.icePrice);
+                icePrice.text = m_Tower.icePrice.ToString();
+            }
+            if (lightButton != null)
+            {
+                lightButton.interactable = LevelManager.instance.currency.CanAfford(m_Tower.lightPrice);
+                lightPrice.text = m_Tower.lightPrice.ToString();
+            }
+
+            LevelManager.instance.currency.currencyChanged += OnCurrencyChanged;
 			towerInfoDisplay.Show(towerToShow);
 			foreach (var button in confirmationButtons)
 			{

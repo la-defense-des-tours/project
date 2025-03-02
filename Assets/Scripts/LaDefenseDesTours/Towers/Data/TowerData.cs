@@ -16,6 +16,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers.Data
         public string towerName;
         public string description;
         public string upgradeDescription;
+        public int upgradeCost;
         public int cost;
         public int dps;
         public int sellCost;

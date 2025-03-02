@@ -15,7 +15,8 @@ MonoBehaviour:
   towerName: Laser
   description: "Un rayon br\xFBlant qui transperce tout sur son passage, rapide,
     pr\xE9cis, mortel."
-  upgradeDescription: 1
+  upgradeDescription: Range +3, Damage +50
+  upgradeCost: 400
   cost: 100
   dps: 10
   sellCost: 50

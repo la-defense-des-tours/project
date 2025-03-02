@@ -60,10 +60,22 @@ public class Cell : MonoBehaviour
     private void OnMouseEnter()
     {
         cellRenderer.material = hoverMaterial;
+        Tower detectedTower = FindTowerInCell();
+        if (detectedTower != null)
+        {
+            detectedTower.ApplyHoverColor();
+        }
     }
 
     private void OnMouseExit()
     {
         cellRenderer.material = defaultMaterial;
+
+        Tower detectedTower = FindTowerInCell();
+        if (detectedTower != null)
+        {
+            detectedTower.ResetColor();
+        }
     }
 }
+

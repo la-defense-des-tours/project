@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Machine Gun 2
   m_EditorClassIdentifier: 
   towerName: Machine Gun
-  description: "Une pluie de plomb ininterrompue qui d\xE9chiquette tout ce qui bouge."
-  upgradeDescription: Envoie des trucs de fou
+  description: 
+  upgradeDescription: 
+  upgradeCost: 0
   cost: 100
   dps: 30
   sellCost: 50

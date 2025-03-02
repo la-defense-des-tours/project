@@ -15,7 +15,8 @@ MonoBehaviour:
   towerName: Canon
   description: "Une explosion titanesque qui pulv\xE9rise les lignes ennemies en
     un souffle"
-  upgradeDescription: Description upgrade tower 2
+  upgradeDescription: Range +1, Damage +50
+  upgradeCost: 1800
   cost: 500
   dps: 75
   sellCost: 50

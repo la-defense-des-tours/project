@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Canon3
   m_EditorClassIdentifier: 
   towerName: Canon
-  description: "Une explosion titanesque qui pulv\xE9rise les lignes ennemies en
-    un souffle"
-  upgradeDescription: Description upgrade tower 2
+  description: 
+  upgradeDescription: 
+  upgradeCost: 0
   cost: 800
   dps: 150
   sellCost: 50

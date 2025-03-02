@@ -16,6 +16,16 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public bool isAtMaxLevel { get; set; } = false;
         public bool isGhost { get; set; } = false;
 
+        public int firePrice { get; set; } = 5000;
+        public int icePrice { get; set; } = 5000;
+        public int lightPrice { get; set; } = 15000;
+
+        private Renderer[] renderers;
+        private Color defaultColor;
+
+        private Color hoverColor = new Color(0f, 0.8f, 0.8f, 0.35f); 
+
+
         public TowerData towerData;
 
         [SerializeField] public GameObject towerPrefabs;
@@ -28,6 +38,13 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             
             if (m_shooter != null)
                 m_shooter.Initialize(range, damage, specialAbility, effectType);
+
+            renderers = GetComponentsInChildren<Renderer>();
+
+            if (renderers.Length > 0 && renderers[0].material.HasProperty("_Color"))
+            {
+                defaultColor = renderers[0].material.color; // Stocker la couleur d'origine
+            }
         }
 
         public virtual void Update()
@@ -62,15 +79,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
             GameObject nextPrefab = towerPrefabs;
 
-            if (nextPrefab == null)
-            {
-                return;
-            }
+            if (nextPrefab == null) return; 
+
             Cell parentCell = GetComponentInParent<Cell>();
-            if (parentCell == null)
-            {
-                return;
-            }
+            if (parentCell == null) return;
+
             GameObject newTowerObj = Instantiate(nextPrefab, transform.position, transform.rotation);
             Tower newTower = newTowerObj.GetComponent<Tower>();
             newTower.transform.SetParent(parentCell.transform);
@@ -82,11 +95,32 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             Destroy(gameObject);
         }
 
-
-
         public void InitialiseBullet(string effect)
         {
             m_shooter.Initialize(range, damage, specialAbility, effect);
         }
+
+        public void ApplyHoverColor()
+        {
+            foreach (Renderer renderer in renderers)
+            {
+                if (renderer.material.HasProperty("_Color"))
+                {
+                    renderer.material.color = hoverColor; // Appliquer le bleu semi-transparent
+                }
+            }
+        }
+
+        public void ResetColor()
+        {
+            foreach (Renderer renderer in renderers)
+            {
+                if (renderer.material.HasProperty("_Color"))
+                {
+                    renderer.material.color = defaultColor; // Réinitialiser la couleur d'origine
+                }
+            }
+        }
+
     }
 }
