@@ -8,8 +8,6 @@ public class Cell : MonoBehaviour
     public Vector3 positionOffset;
     private Renderer cellRenderer;
     private Material defaultMaterial;
-
-    [HideInInspector] public Tower tower;
     public bool isUpgraded = false;
     private TowerManager towerManager;
 
@@ -52,7 +50,11 @@ public class Cell : MonoBehaviour
     }
     public bool IsOccupied()
     {
-        return tower != null;
+        if (FindTowerInCell() != null)
+        {
+            return true;
+        }
+        return false;
     }
 
     private void OnMouseEnter()
