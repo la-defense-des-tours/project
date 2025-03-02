@@ -80,6 +80,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7efa5adb37be047a8e026265fae5d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerData: {fileID: 11400000, guid: ee4ce8c2809d36e499b9360fc44028b4, type: 2}
+  towerPrefabs: {fileID: 6716405184063055180, guid: 6c9dc11aeb36f7749855e75ea18ee34f, type: 3}
 --- !u!114 &-7574856565463809048
 MonoBehaviour:
   m_ObjectHideFlags: 0

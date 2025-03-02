@@ -45,7 +45,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers.Data
             {
                 return;
             }
-            m_ConfigurationDictionary = configurations.ToDictionary(t => t.towerName);
+            m_ConfigurationDictionary = configurations.ToDictionary(t => t.towerData.towerName);
         }
 
         public bool ContainsKey(string key)
@@ -110,7 +110,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers.Data
             for (int i = arrayIndex; i < count; i++)
             {
                 Tower config = configurations[i - arrayIndex];
-                KeyValuePair<string, Tower> current = new KeyValuePair<string, Tower>(config.towerName, config);
+                KeyValuePair<string, Tower> current = new KeyValuePair<string, Tower>(config.towerData.towerName, config);
                 array[i] = current;
             }
         }

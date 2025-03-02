@@ -46,8 +46,9 @@ public class TowerManager : MonoBehaviour
             CancelGhostPlacement();
     }
 
-    public void SelectCell(Cell cell, Tower tower)
+    public void SelectCell(Tower tower)
     {
+
         GameUI.instance.towerUI.Show(tower);
     }
 
@@ -70,8 +71,9 @@ public class TowerManager : MonoBehaviour
 
         Tower newTower = selectedFactory.CreateTower(cell.GetBuildPosition());
         if (newTower != null)
-            cell.SetTower(newTower, selectedFactory);
-
+        {
+            newTower.transform.SetParent(cell.transform);
+        }
         CancelGhostPlacement();
     }
 
@@ -91,34 +93,6 @@ public class TowerManager : MonoBehaviour
 
 
     }
-
-    public void UpgradeTower(Cell cell)
-    {
-        if (cell.currentFactory == null)
-        {
-            Debug.LogError("No factory stored in this cell! Cannot upgrade.");
-            return;
-        }
-        if (cell.tower == null)
-        {
-            Debug.LogError("No tower in this cell! Cannot upgrade.");
-            return;
-        }
-        Destroy(cell.tower.gameObject);
-        Tower upgradedTower = cell.currentFactory.UpgradeTower(cell.GetBuildPosition(), cell.tower.currentLevel, cell.tower);
-        if (upgradedTower != null)
-        {
-            cell.SetTower(upgradedTower, cell.currentFactory);
-            cell.isUpgraded = true;
-            upgradedTower.Upgrade();
-        }
-        else
-        {
-            Debug.LogError("Upgrade failed!");
-        }
-    }
-
-    
     public void StartPlacingTower(Tower tower)
     {
         if (currentGhost != null)
@@ -216,7 +190,6 @@ public class TowerManager : MonoBehaviour
             CancelGhostPlacement();
         }
     }
-
     public void CancelGhostPlacement()
     {
         currentRangeIndicator?.SetActive(false);

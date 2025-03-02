@@ -119,12 +119,12 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             }
 
             // Enable button
-            if (m_Currency.CanAfford(m_Tower.cost) && !buyButton.interactable)
+            if (m_Currency.CanAfford(m_Tower.towerData.cost) && !buyButton.interactable)
             {
                 buyButton.interactable = true;
                 energyIcon.color = energyDefaultColor;
             }
-            else if (!m_Currency.CanAfford(m_Tower.cost) && buyButton.interactable)
+            else if (!m_Currency.CanAfford(m_Tower.towerData.cost) && buyButton.interactable)
             {
                 buyButton.interactable = false;
                 energyIcon.color = energyInvalidColor;

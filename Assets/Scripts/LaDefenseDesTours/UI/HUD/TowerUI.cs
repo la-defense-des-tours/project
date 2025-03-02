@@ -53,13 +53,13 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 			if (upgradeButton != null)
 			{
 				upgradeButton.interactable =
-					LevelManager.instance.currency.CanAfford(m_Tower.cost);
+					LevelManager.instance.currency.CanAfford(m_Tower.towerData.cost);
 				bool maxLevel = m_Tower.isAtMaxLevel;
 				upgradeButton.gameObject.SetActive(!maxLevel);
 				if (!maxLevel)
 				{
-					//upgradeDescription.text =
-					//	m_Tower.levels[m_Tower.currentLevel + 1].upgradeDescription.ToUpper();
+					upgradeDescription.text =
+						m_Tower.towerData.upgradeDescription.ToUpper();
 				}
 			}
 			LevelManager.instance.currency.currencyChanged += OnCurrencyChanged;
@@ -79,13 +79,21 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 
 		public void UpgradeButtonClick()
 		{
-			//GameUI.instance.UpgradeSelectedTower();
-		}
+			if (LevelManager.instance.currency.CanAfford(m_Tower.towerData.cost))
+			{ 
+                m_Tower.Upgrade();
+                Hide();
+            }
+
+
+        }
 
 		public void SellButtonClick()
 		{
-			//GameUI.instance.SellSelectedTower();
-		}
+            LevelManager.instance.currency.AddCurrency(m_Tower.towerData.sellCost);
+			m_Tower.Sell();
+			Hide();
+        }
 
 
         public void FireEffect()
