@@ -4191,18 +4191,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 7130800125884514735}
-    - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
-      propertyPath: upgradeMenu
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
       propertyPath: canonFactory
       value: 
       objectReference: {fileID: 840072553}
@@ -4211,29 +4199,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1065354752}
     - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
-      propertyPath: canonGhostPrefab
-      value: 
-      objectReference: {fileID: 5059962892274874607, guid: c22b6379b55adaa48aa842b44781a98a, type: 3}
-    - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
-      propertyPath: laserGhostPrefab
-      value: 
-      objectReference: {fileID: 8951942140004569536, guid: c65d1ab510ebeb34b955a31ae47b9191, type: 3}
-    - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
       propertyPath: machineGunFactory
       value: 
       objectReference: {fileID: 1604393417}
-    - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
-      propertyPath: rangeIndicatorPrefab
-      value: 
-      objectReference: {fileID: 5941440165500085248, guid: 9cd3e5c39074339498a8f3e4bc6a35e8, type: 3}
-    - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
-      propertyPath: machineGunGhostPrefab
-      value: 
-      objectReference: {fileID: 7129850076736660284, guid: 90cd1367838ed104eb47bc69ddcf977a, type: 3}
-    - target: {fileID: 1533240475809799185, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
-      propertyPath: placementAreaMask.m_Bits
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 2125444469714331958, guid: 2416f15b1e7e53640838cdb87bbcfbf0, type: 3}
       propertyPath: m_Name
       value: TowerManager
