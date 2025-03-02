@@ -34,6 +34,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
                     damage += 60f;
                     range += 10f;
                     attackPerSecond += 1f;
+                    isAtMaxLevel = true;
                     break;
 
                 default:

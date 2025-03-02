@@ -82,18 +82,18 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 			}
 			if (upgradeButton != null)
 			{
-				//upgradeButton.interactable =
-				//	LevelManager.instance.currency.CanAfford(m_Tower.GetCostForNextLevel());
-				//bool maxLevel = m_Tower.isAtMaxLevel;
-				//upgradeButton.gameObject.SetActive(!maxLevel);
-				//if (!maxLevel)
-				//{
-				//	upgradeDescription.text =
-				//		m_Tower.levels[m_Tower.currentLevel + 1].upgradeDescription.ToUpper();
-				//}
+				upgradeButton.interactable =
+					LevelManager.instance.currency.CanAfford(m_Tower.cost);
+				bool maxLevel = m_Tower.isAtMaxLevel;
+				upgradeButton.gameObject.SetActive(!maxLevel);
+				if (!maxLevel)
+				{
+					//upgradeDescription.text =
+					//	m_Tower.levels[m_Tower.currentLevel + 1].upgradeDescription.ToUpper();
+				}
 			}
 			LevelManager.instance.currency.currencyChanged += OnCurrencyChanged;
-			towerInfoDisplay.Show(towerToShow.towerData);
+			towerInfoDisplay.Show(towerToShow);
 			foreach (var button in confirmationButtons)
 			{
 				button.SetActive(false);
@@ -106,10 +106,10 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		public virtual void Hide()
 		{
 			m_Tower = null;
-			if (GameUI.instanceExists)
-			{
-				//GameUI.instance.HideRadiusVisualizer();
-			}
+			//if (GameUI.instanceExists)
+			//{
+			//	//GameUI.instance.HideRadiusVisualizer();
+			//}
 			m_Canvas.enabled = false;
 			LevelManager.instance.currency.currencyChanged -= OnCurrencyChanged;
 		}
@@ -142,7 +142,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// Fires when tower is selected/deselected
 		/// </summary>
 		/// <param name="newTower"></param>
-		protected virtual void OnUISelectionChanged(TowerData newTower)
+		protected virtual void OnUISelectionChanged(Tower newTower)
 		{
             if (newTower != null)
 			{
@@ -181,10 +181,10 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// </summary>
 		protected virtual void OnDisable()
 		{
-			//if (LevelManager.instanceExists)
-			//{
-			//	LevelManager.instance.currency.currencyChanged -= OnCurrencyChanged;
-			//}
+			if (LevelManager.instanceExists)
+			{
+				LevelManager.instance.currency.currencyChanged -= OnCurrencyChanged;
+			}
 		}
 
 		/// <summary>
@@ -220,11 +220,11 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// </summary>
 		void OnCurrencyChanged()
 		{
-			//if (m_Tower != null && upgradeButton != null)
-			//{
-			//	upgradeButton.interactable = 
-			//		LevelManager.instance.currency.CanAfford(m_Tower.GetCostForNextLevel());
-			//}
+			if (m_Tower != null && upgradeButton != null)
+			{
+				upgradeButton.interactable =
+					LevelManager.instance.currency.CanAfford(m_Tower.towerData.cost);
+			}
 		}
 
 		/// <summary>

@@ -40,6 +40,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
                     damageOverTime += 2f;
                     damage += 10f;
                     range += 10f;
+                    isAtMaxLevel = true;
                     break;
 
                 default:

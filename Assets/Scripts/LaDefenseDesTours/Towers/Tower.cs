@@ -15,6 +15,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual string effectType { get; set; }
         public virtual int cost { get; set; }
         public int currentLevel { get; set; } = 1;
+
+        public bool isAtMaxLevel { get; set; } = false;
         public bool isGhost { get; set; } = false;
 
         public TowerData towerData;

@@ -36,12 +36,12 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// <summary>
         /// Fires when the button is tapped
         /// </summary>
-        public event Action<TowerData> buttonTapped;
+        public event Action<Tower> buttonTapped;
 
         /// <summary>
         /// The tower controller that defines the button
         /// </summary>
-        TowerData m_Tower;
+        Tower m_Tower;
 
         /// <summary>
         /// Cached reference to level currency
@@ -77,12 +77,12 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// <param name="towerData">
         /// The tower to initialize the button with
         /// </param>
-        public void InitializeButton(TowerData towerData)
+        public void InitializeButton(Tower towerData)
         {
             m_Tower = towerData;
 
-            buttonText.text = m_Tower.cost.ToString();
-            towerIcon.sprite = m_Tower.icon;
+            buttonText.text = m_Tower.towerData.cost.ToString();
+            towerIcon.sprite = m_Tower.towerData.icon;
 
 
             if (LevelManager.instanceExists)

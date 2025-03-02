@@ -33,11 +33,9 @@ public class TowerManager : MonoBehaviour
     private bool isGhostPlacementValid = false;
 
     private readonly List<TowerSpawnButton> spawnButtons = new();
-    private Cell selectedCell;
     private Cell cacheCell;
     public TowerUI upgradeMenu;
-
-    private TowerData selectedTowerData;
+    private Tower selectedTower;
 
     public static TowerManager Instance;
 
@@ -104,25 +102,15 @@ public class TowerManager : MonoBehaviour
     }
     public void SelectCell(Cell cell, Tower tower)
     {
-        if (cell == selectedCell)
-        {
-            DeselectCell();
-            return;
-        }
-        selectedCell = cell;
-        upgradeMenu.Show(tower);
-    }
-
-    public void DeselectCell()
-    {
-        selectedCell = null;
-        upgradeMenu.Hide();
+        GameUI.instance.towerUI.Show(tower);
     }
 
     public void TryPlaceTowerOnCell(Cell cell)
     {
+        Debug.Log("Trying to place tower on cell...");
         if (!isPlacingTower || selectedFactory == null || cell.IsOccupied() || !isGhostPlacementValid)
         {
+            Debug.Log("Failed to place tower on cell.");
             return;
         }
 
@@ -131,13 +119,14 @@ public class TowerManager : MonoBehaviour
             return;
         }
 
-        if (selectedTowerData == null)
+        if (selectedTower == null)
         {
+            Debug.LogError("No tower selected!");
             return;
         }
 
 
-        if (!LevelManager.instance.currency.TryPurchase(selectedTowerData.cost))
+        if (!LevelManager.instance.currency.TryPurchase(selectedTower.towerData.cost))
         {
             return;
         }
@@ -165,9 +154,9 @@ public class TowerManager : MonoBehaviour
         spawnButtons.Add(button);
         button.buttonTapped += OnTowerButtonTapped;
     }
-    private void OnTowerButtonTapped(TowerData towerData)
+    private void OnTowerButtonTapped(Tower tower)
     {
-        StartPlacingTower(towerData);
+        StartPlacingTower(tower);
 
 
     }
@@ -204,15 +193,15 @@ public class TowerManager : MonoBehaviour
     }
 
     
-    public void StartPlacingTower(TowerData towerData)
+    public void StartPlacingTower(Tower tower)
     {
         if (currentGhost != null)
         {
             CancelGhostPlacement();
         }
 
-        selectedTowerData = towerData;
-        switch (towerData.towerName)
+        selectedTower = tower;
+        switch (selectedTower.towerData.towerName)
         {
             case "Machine Gun":
                 selectedFactory = machineGunFactory;
@@ -243,13 +232,13 @@ public class TowerManager : MonoBehaviour
             {
                 currentRangeIndicator = rangeIndicator.gameObject;
                 currentRangeIndicator.SetActive(true);
-                UpdateRangeIndicator(selectedTowerData.range);
+                UpdateRangeIndicator(selectedTower.towerData.range);
             }
         }
 
 
         isPlacingTower = true;
-        GameUI.instance.SetToBuildMode(towerData);
+        GameUI.instance.SetToBuildMode(tower);
     }
 
     private Vector3 GetClosestNavMeshPoint(Vector3 position, float searchRadius = 10f)

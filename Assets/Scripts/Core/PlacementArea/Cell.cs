@@ -33,7 +33,6 @@ public class Cell : MonoBehaviour
             towerManager.SelectCell(this, tower);
             return;
         }
-
         towerManager.TryPlaceTowerOnCell(this);
     }
 

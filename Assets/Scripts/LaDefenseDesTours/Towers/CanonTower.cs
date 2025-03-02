@@ -40,6 +40,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
                     areaOfEffect += 10f;
                     damage += 25f;
                     range += 5f;
+                    isAtMaxLevel = true;
                     break;
 
                 default:
