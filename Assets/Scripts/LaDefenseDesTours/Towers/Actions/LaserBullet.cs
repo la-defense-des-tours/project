@@ -64,4 +64,9 @@ public class LaserBullet : Bullet
     {
         
     }
+
+    private void SetupParticles(ParticleSystem ps)
+    {
+        ps.GetComponent<Renderer>().material = GetComponent<Renderer>().material;
+    }
 }

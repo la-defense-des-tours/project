@@ -41,7 +41,7 @@ public class MachineGunBullet : Bullet
         ParticleSystem ps = effect.GetComponent<ParticleSystem>();
         if (ps != null)
             SetupParticles(ps);
-
+ 
         Destroy(effect, impactEffectDuration);
     }
 
