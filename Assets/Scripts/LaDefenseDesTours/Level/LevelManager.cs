@@ -13,14 +13,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 	public class LevelManager : Singleton<LevelManager>
 	{
 		public static new LevelManager instance;
-
         public LevelIntro intro;
-
 		public TowerLibrary towerLibrary;
-
-
         public int startingCurrency;
-
         public Player homeBase;
 		public WaveManager waveManager { get; protected set; }
 		public LevelState levelState { get; protected set; }
@@ -29,24 +24,16 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 		{
 			get { return homeBase; }
 		}
-
 		public bool isGameOver
 		{
 			get { return (levelState == LevelState.Lose); }
 		}
-
 		public event Action levelFailed;
-
 		public event Action<LevelState, LevelState> levelStateChanged;
-
 		public event Action homeBaseDestroyed;
-
         public event Action OnLevelChanged;
-
         public int currentLevel = 1;
-
         private int remainingEnemiesByLevel;
-
         public Leaderboard leaderboard;
 
         protected override void Awake()
@@ -85,7 +72,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             return homeBase.transform.position;
         }
 
-
         public Vector3 GetEnemyStartPoint()
         {
             return waveManager.GetSpawnPoint();
@@ -118,12 +104,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             EnemyDeathEvent.OnEnemyDeath -= HandleEnemyDeath;
         }
 
-
         private void IntroCompleted()
         {
             ChangeLevelState(LevelState.Building);
         }
-
 
 		private void ChangeLevelState(LevelState newState)
 		{
@@ -137,7 +121,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 
             levelStateChanged?.Invoke(oldState, newState);
 
-
             switch (newState)
             {
                 case LevelState.SpawningEnemies:
@@ -149,7 +132,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
                     break;
             }
         }
-
 
 		private void OnHomeBaseDestroyed()
 		{
@@ -176,6 +158,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
                 Debug.Log($"Niveau {currentLevel} atteint ! Nouveaux ennemis : {remainingEnemiesByLevel}");
             }
         }
+
         private void SafelyCallLevelFailed()
         {
             levelFailed?.Invoke();
@@ -186,8 +169,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             return currentLevel;
         }
 
-        public void NextLevel()
-
+        private void NextLevel()
         {
             currentLevel++;
             OnLevelChanged?.Invoke();
