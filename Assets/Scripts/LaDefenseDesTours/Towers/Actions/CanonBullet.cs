@@ -82,10 +82,15 @@ public class CanonBullet : Bullet
         ParticleSystem ps = effect.GetComponent<ParticleSystem>();
         if (ps != null)
         {
-            var shape = ps.shape;
-            shape.radiusSpread = specialAbility;
-            ps.GetComponent<Renderer>().material = GetComponent<Renderer>().material;
+            SetupParticles(ps);
         }
         Destroy(effect, impactEffectDuration);
+    }
+
+    private void SetupParticles(ParticleSystem ps)
+    {
+        var shape = ps.shape;
+        shape.radiusSpread = specialAbility;
+        ps.GetComponent<Renderer>().material = GetComponent<Renderer>().material;
     }
 }
