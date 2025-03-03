@@ -7,7 +7,6 @@ using TowerDefense.Level;
 using UnityEngine;
 
 namespace Assets.Scripts.LaDefenseDesTours.Level
-
 {
     [RequireComponent(typeof(WaveManager))]
 	public class LevelManager : Singleton<LevelManager>
