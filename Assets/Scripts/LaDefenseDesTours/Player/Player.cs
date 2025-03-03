@@ -18,6 +18,8 @@ public sealed class Player : MonoBehaviour, Health
     public event Action OnHealthChanged;
 
     public HealthBar healthBar;
+
+    public int wavesSurvived { get; private set; } = 0;
     private void Awake()
     {
         // Unity Singleton pattern
@@ -67,5 +69,14 @@ public sealed class Player : MonoBehaviour, Health
             OnPlayerDeath?.Invoke();
             Debug.Log("Player is dead");
         }
+    }
+    public void IncrementWavesSurvived()
+    {
+        wavesSurvived++;
+    }
+
+    public void OnWaveCompleted()
+    {
+        IncrementWavesSurvived();
     }
 }

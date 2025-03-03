@@ -18,6 +18,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 
 		public TowerLibrary towerLibrary;
 
+
         public int startingCurrency;
 
         public Player homeBase;
@@ -46,6 +47,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 
         private int remainingEnemiesByLevel;
 
+        public Leaderboard leaderboard;
 
         protected override void Awake()
         {
@@ -73,12 +75,16 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             {
                 playerHomeBase.OnPlayerDeath += OnHomeBaseDestroyed;
             }
+
+            leaderboard = new Leaderboard();
+
         }
 
         public Vector3 GetEnemyEndPoint()
         {
             return homeBase.transform.position;
         }
+
 
         public Vector3 GetEnemyStartPoint()
         {
@@ -95,7 +101,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
         {
             return (float)remainingEnemiesByLevel / GetTotalEnemies();
         }
-
 		protected override void OnDestroy()
 		{
 			base.OnDestroy();
@@ -145,6 +150,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             }
         }
 
+
 		private void OnHomeBaseDestroyed()
 		{
             homeBaseDestroyed?.Invoke();
@@ -180,7 +186,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             return currentLevel;
         }
 
-        private void NextLevel()
+        public void NextLevel()
+
         {
             currentLevel++;
             OnLevelChanged?.Invoke();
