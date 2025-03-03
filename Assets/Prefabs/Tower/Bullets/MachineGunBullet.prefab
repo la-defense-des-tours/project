@@ -126,5 +126,5 @@ MonoBehaviour:
   fireMaterial: {fileID: 2100000, guid: cced9bfde2b940d4a89b99c8e87ed342, type: 2}
   lightningMaterial: {fileID: 2100000, guid: 31c771229cbdcb94db2e66f44e8951f3, type: 2}
   iceMaterial: {fileID: 2100000, guid: 7647093e4e961a54a8fe480b65a4cf0d, type: 2}
-  impactEffect: {fileID: 3019899031911953700, guid: 2954b7ca78ce18542bfdedce1c09d696, type: 3}
-  impactEffectDuration: 0
+  impactEffect: {fileID: 3019899031911953700, guid: cadedba1c628e971797ebe16a18d5fbe, type: 3}
+  impactEffectDuration: 1

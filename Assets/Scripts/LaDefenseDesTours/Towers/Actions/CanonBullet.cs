@@ -81,9 +81,8 @@ public class CanonBullet : Bullet
         GameObject effect = Instantiate(impactEffect, transform.position, Quaternion.identity);
         ParticleSystem ps = effect.GetComponent<ParticleSystem>();
         if (ps != null)
-        {
             SetupParticles(ps);
-        }
+        
         Destroy(effect, impactEffectDuration);
     }
 
