@@ -1,4 +1,4 @@
-using Assets.Scripts.LaDefenseDesTours.Interfaces;
+﻿using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using Assets.Scripts.LaDefenseDesTours.Towers;
 using UnityEngine;
 
@@ -8,9 +8,6 @@ public class Cell : MonoBehaviour
     public Vector3 positionOffset;
     private Renderer cellRenderer;
     private Material defaultMaterial;
-
-    [HideInInspector] public Tower tower;
-    [HideInInspector] public TowerFactory currentFactory;
     public bool isUpgraded = false;
     private TowerManager towerManager;
 
@@ -18,7 +15,7 @@ public class Cell : MonoBehaviour
     {
         cellRenderer = GetComponent<Renderer>();
         defaultMaterial = cellRenderer.material;
-        towerManager = TowerManager.Instance;
+        towerManager = TowerManager.instance;
     }
 
     public Vector3 GetBuildPosition()
@@ -26,41 +23,59 @@ public class Cell : MonoBehaviour
         return transform.position + positionOffset;
     }
 
+    private Tower FindTowerInCell()
+    {
+        Tower foundTower = GetComponentInChildren<Tower>();
+        if (foundTower != null)
+        {
+            return foundTower;
+        }
+        return null;
+    }
+
     private void OnMouseDown()
     {
-        if (tower != null)
+        Debug.Log("Cell clicked");
+
+        Tower detectedTower = FindTowerInCell(); 
+
+        if (detectedTower != null)
         {
-            towerManager.SelectCell(this);
+            Debug.Log("Cell is occupied");
+            towerManager.SelectCell(detectedTower);
             return;
         }
-
+        Debug.Log("Cell is not occupied");
         towerManager.TryPlaceTowerOnCell(this);
     }
-
-    public void SetTower(Tower newTower, TowerFactory factory)
-    {
-        tower = newTower;
-        currentFactory = factory;
-    }
-
     public bool IsOccupied()
     {
-        return tower != null;
+        if (FindTowerInCell() != null)
+        {
+            return true;
+        }
+        return false;
     }
-
-    public void RequestUpgrade()
-    {
-        towerManager.UpgradeTower(this);
-    }
-
 
     private void OnMouseEnter()
     {
         cellRenderer.material = hoverMaterial;
+        Tower detectedTower = FindTowerInCell();
+        if (detectedTower != null)
+        {
+            detectedTower.ApplyHoverColor();
+        }
     }
 
     private void OnMouseExit()
     {
         cellRenderer.material = defaultMaterial;
+
+        Tower detectedTower = FindTowerInCell();
+        if (detectedTower != null)
+        {
+            detectedTower.ResetColor();
+        }
     }
 }
+

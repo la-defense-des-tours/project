@@ -35228,12 +35228,12 @@ NavMeshAgent:
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
+  m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 1
-  m_AutoRepath: 1
+  m_AutoRepath: 0
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!65 &7459241576225373022
 BoxCollider:
@@ -35268,7 +35268,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2b73347be3ec1c4b920ee110e2e406e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 1000
 --- !u!1 &8677312531047991441
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,13 +9,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 {
-    /// <summary>
-    /// Tower placement "ghost" that indicates the position of the tower to be placed and its validity for placement.
-    /// This is built with mouse in mind for testing, but it should be possible to abstract a lot of this into a child 
-    /// class for the purposes of a touch UI.
-    /// 
-    /// Should exist on its own layer to ensure best placement.
-    /// </summary>
+
     [RequireComponent(typeof(Collider))]
     public class TowerPlacementGhost : MonoBehaviour
     {
@@ -75,10 +69,10 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// Initialize this ghost
         /// </summary>
         /// <param name="tower">The tower controller we're a ghost of</param>
-        public virtual void Initialize(TowerData tower)
+        public virtual void Initialize(Tower tower)
         {
             m_MeshRenderers = GetComponentsInChildren<MeshRenderer>();
-            controller = tower;
+            controller = tower.towerData;
             if (GameUI.instanceExists)
             {
                 GameUI.instance.SetupRadiusVisualizer(controller, transform);

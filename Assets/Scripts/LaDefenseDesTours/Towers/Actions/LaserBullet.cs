@@ -3,7 +3,6 @@ using UnityEngine;
 public class LaserBullet : Bullet
 {
     private LineRenderer laserLine;
-    [SerializeField] private Material laserMaterial;
     [SerializeField] private float laserWidth = 0.25f;
 
     private void Awake()
@@ -12,7 +11,7 @@ public class LaserBullet : Bullet
         laserLine.positionCount = 2;
         laserLine.startWidth = laserWidth;
         laserLine.endWidth = laserWidth;
-        laserLine.material = laserMaterial;
+        laserLine.material = defaultMaterial;
         laserLine.useWorldSpace = true;
     }
 
@@ -38,6 +37,26 @@ public class LaserBullet : Bullet
             float damageThisFrame = damage * specialAbility * Time.deltaTime;
             targetEnemy.TakeDamage(damageThisFrame);
             ApplyEffect();
+        }
+    }
+
+    protected override void ApplyEffectMaterial()
+    {
+        base.ApplyEffectMaterial();
+        switch (effectType)
+        {
+            case "Fire":
+                laserLine.material = fireMaterial;
+                break;
+            case "Ice":
+                laserLine.material = iceMaterial;
+                break;
+            case "Lightning":
+                laserLine.material = lightningMaterial;
+                break;
+            default:
+                laserLine.material = defaultMaterial;
+                break;
         }
     }
 }

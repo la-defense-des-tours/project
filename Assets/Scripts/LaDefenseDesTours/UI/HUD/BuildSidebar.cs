@@ -39,7 +39,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             }
             else
             {
-                foreach (TowerData tower in LevelManager.instance.towerLibrary)
+                foreach (Tower tower in LevelManager.instance.towerLibrary)
                 {
                     if (tower == null)
                     {
@@ -59,7 +59,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// Sets the GameUI to build mode with the <see cref="towerData"/>
         /// </summary>
         /// <param name="towerData"></param>
-        void OnButtonTapped(TowerData towerData)
+        void OnButtonTapped(Tower tower)
         {
             var gameUI = GameUI.instance;
             if (gameUI.isBuilding)
@@ -67,7 +67,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
                 gameUI.CancelGhostPlacement();
 
             }
-            gameUI.SetToBuildMode(towerData);
+            gameUI.SetToBuildMode(tower);
         }
 
 

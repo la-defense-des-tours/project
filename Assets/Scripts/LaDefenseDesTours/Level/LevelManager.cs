@@ -9,85 +9,37 @@ using UnityEngine;
 namespace Assets.Scripts.LaDefenseDesTours.Level
 
 {
-    /// <summary>
-    /// The level manager - handles the level states and tracks the player's currency
-    /// </summary>
     [RequireComponent(typeof(WaveManager))]
-    public class LevelManager : Singleton<LevelManager>
-    {
-        public static new LevelManager instance;
-        /// <summary>
-        /// The configured level intro. If this is null the LevelManager will fall through to the gameplay state (i.e. SpawningEnemies)
-        /// </summary>
+	public class LevelManager : Singleton<LevelManager>
+	{
+		public static new LevelManager instance;
+
         public LevelIntro intro;
 
-        ///// <summary>
-        ///// The tower library for this level
-        ///// </summary>
-        public TowerLibrary towerLibrary;
+		public TowerLibrary towerLibrary;
 
 
-        /// <summary>
-        /// The currency that the player starts with
-        /// </summary>
         public int startingCurrency;
 
-
-        ///// <summary>
-        ///// The home bases that the player must defend
-        ///// </summary>
         public Player homeBase;
+		public WaveManager waveManager { get; protected set; }
+		public LevelState levelState { get; protected set; }
+		public Currency currency { get; protected set; }
+		public Player playerHomeBase
+		{
+			get { return homeBase; }
+		}
 
+		public bool isGameOver
+		{
+			get { return (levelState == LevelState.Lose); }
+		}
 
-        /// <summary>
-        /// The attached wave manager
-        /// </summary>
-        public WaveManager waveManager { get; protected set; }
+		public event Action levelFailed;
 
+		public event Action<LevelState, LevelState> levelStateChanged;
 
-        /// <summary>
-        /// The current state of the level
-        /// </summary>
-
-        public LevelState levelState { get; protected set; }
-
-        /// <summary>
-        /// The currency controller
-        /// </summary>
-        public Currency currency { get; protected set; }
-
-
-
-        ///// <summary>
-        ///// An accessor for the home bases
-        ///// </summary>
-        public Player playerHomeBase
-        {
-            get { return homeBase; }
-        }
-
-        /// <summary>
-        /// If the game is over
-        /// </summary>
-        public bool isGameOver
-        {
-            get { return (levelState == LevelState.Lose); }
-        }
-
-        /// <summary>
-        /// Fired when all of the home bases are destroyed
-        /// </summary>
-        public event Action levelFailed;
-
-        /// <summary>
-        /// Fired when the level state is changed - first parameter is the old state, second parameter is the new state
-        /// </summary>
-        public event Action<LevelState, LevelState> levelStateChanged;
-
-        /// <summary>
-        /// Event for home base being destroyed
-        /// </summary>
-        public event Action homeBaseDestroyed;
+		public event Action homeBaseDestroyed;
 
         public event Action OnLevelChanged;
 
@@ -125,6 +77,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             }
 
             leaderboard = new Leaderboard();
+
         }
 
         public Vector3 GetEnemyEndPoint()
@@ -132,9 +85,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             return homeBase.transform.position;
         }
 
-        /// <summary>
-        /// Completes building phase, setting state to spawn enemies
-        /// </summary>
+
+        public Vector3 GetEnemyStartPoint()
+        {
+            return waveManager.GetSpawnPoint();
+        }
+
         public void BuildingCompleted()
         {
             Debug.Log("[LevelManager] Construction terminée, passage à SpawningEnemies...");
@@ -145,20 +101,14 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
         {
             return (float)remainingEnemiesByLevel / GetTotalEnemies();
         }
-
-        /// <summary>
-        /// Unsubscribes from events
-        /// </summary>
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
+		protected override void OnDestroy()
+		{
+			base.OnDestroy();
 
             if (intro != null)
             {
                 intro.introCompleted -= IntroCompleted;
             }
-
-            // Il faut détruire la base pour lancer l'événement
 
             if (playerHomeBase != null)
             {
@@ -168,26 +118,19 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             EnemyDeathEvent.OnEnemyDeath -= HandleEnemyDeath;
         }
 
-        /// <summary>
-        /// Fired when Intro is completed or immediately, if no intro is specified
-        /// </summary>
+
         private void IntroCompleted()
         {
             ChangeLevelState(LevelState.Building);
         }
 
 
-        /// <summary>
-        /// Changes the state and broadcasts the event
-        /// </summary>
-        /// <param name="newState">The new state to transitioned to</param>
-        private void ChangeLevelState(LevelState newState)
-        {
-            // If the state hasn't changed then return
-            if (levelState == newState)
-            {
-                return;
-            }
+		private void ChangeLevelState(LevelState newState)
+		{
+			if (levelState == newState)
+			{
+				return;
+			}
 
             LevelState oldState = levelState;
             levelState = newState;
@@ -207,17 +150,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             }
         }
 
-        /// <summary>
-        /// Fired when a home base is destroyed
-        /// </summary>
-        private void OnHomeBaseDestroyed()
-        {
-            string playerName = Player.GetInstance().Name;
-            int levelReached = currentLevel;
-            float timeSurvived = Time.timeSinceLevelLoad;
 
-            leaderboard.AddEntry(playerName, levelReached, timeSurvived);
-
+		private void OnHomeBaseDestroyed()
+		{
             homeBaseDestroyed?.Invoke();
             if (!isGameOver)
             {
@@ -225,7 +160,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             }
         }
 
-        // Gère la mort d'un ennemi
         private void HandleEnemyDeath(int rewardAmount)
         {
             currency.AddCurrency(rewardAmount);
@@ -242,10 +176,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
                 Debug.Log($"Niveau {currentLevel} atteint ! Nouveaux ennemis : {remainingEnemiesByLevel}");
             }
         }
-
-        /// <summary>
-        /// Calls the <see cref="levelFailed"/> event
-        /// </summary>
         private void SafelyCallLevelFailed()
         {
             levelFailed?.Invoke();
@@ -257,17 +187,15 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
         }
 
         public void NextLevel()
+
         {
             currentLevel++;
             OnLevelChanged?.Invoke();
-
         }
 
-        public int GetTotalEnemies()
+        private int GetTotalEnemies()
         {
             return 20 * currentLevel + 1;
         }
-
-
     }
 }

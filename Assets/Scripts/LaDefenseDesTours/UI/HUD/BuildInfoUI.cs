@@ -94,7 +94,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// <param name="controller">
         /// The tower information to display
         /// </param>
-        public virtual void Show(TowerData controller) 
+        public virtual void Show(Tower controller) 
         {
 			m_TowerUI.Show(controller);
 			if (m_State == AnimationState.Shown)

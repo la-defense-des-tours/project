@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerName: Machine Gun
   description: "Une pluie de plomb ininterrompue qui d\xE9chiquette tout ce qui bouge."
-  upgradeDescription: Envoie des trucs de fou
+  upgradeDescription: Range +3, Damage +50
+  upgradeCost: 500
   cost: 100
+  dps: 30
+  sellCost: 50
+  currentLevel: 1
   range: 30
   icon: {fileID: 21300000, guid: fa91237b5487541158165bfce6ebfa0c, type: 3}

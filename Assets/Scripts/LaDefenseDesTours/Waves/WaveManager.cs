@@ -40,4 +40,9 @@ public class WaveManager : MonoBehaviour
     {
         wave.GenerateWave(target.position);
     }
+
+    public Vector3 GetSpawnPoint()
+    {
+        return transform.position;
+    }
 }
