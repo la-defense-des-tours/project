@@ -129,8 +129,9 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 
 		public void IceEffect()
 		{
-            if (m_Tower != null)
+            if (m_Tower != null && LevelManager.instance.currency.TryPurchase(m_Tower.icePrice))
             {
+
                 IceEffect effect = new(m_Tower);
 				effect.ApplyEffect();
                 Hide();
@@ -139,7 +140,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 
 		public void LigthningEffect()
 		{
-            if (m_Tower != null)
+            if (m_Tower != null && LevelManager.instance.currency.TryPurchase(m_Tower.lightPrice))
             {
                 LightningEffect effect = new(m_Tower);
 				effect.ApplyEffect();
@@ -154,7 +155,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 
 		protected virtual void OnUISelectionChanged(Tower newTower)
 		{
-            if (newTower != null)
+            if (m_Tower != null && LevelManager.instance.currency.TryPurchase(m_Tower.firePrice))
 			{
 				Show(newTower);
 			}

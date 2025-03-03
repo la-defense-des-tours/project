@@ -153,6 +153,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 
 		private void OnHomeBaseDestroyed()
 		{
+
+            string playerName = Player.GetInstance().Name;
+            int levelReached = currentLevel;
+            float timeSurvived = Time.timeSinceLevelLoad;
+
+            leaderboard.AddEntry(playerName, levelReached, timeSurvived);
             homeBaseDestroyed?.Invoke();
             if (!isGameOver)
             {

@@ -3,42 +3,25 @@ using UnityEngine;
 
 namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 {
-	/// <summary>
-	/// Main menu implementation for tower defense
-	/// </summary>
 	public class TowerDefenseMainMenu : MainMenu
 	{
-		/// <summary>
-		/// Reference to options menu
-		/// </summary>
-		public OptionsMenu optionsMenu;
-		
-		/// <summary>
-		/// Reference to title menu
-		/// </summary>
-		public SimpleMainMenuPage titleMenu;
-		
-		/// <summary>
-		/// Reference to level select menu
-		/// </summary>
-		//public LevelSelectScreen levelSelectMenu;
 
-		/// <summary>
-		/// Bring up the options menu
-		/// </summary>
+		public OptionsMenu optionsMenu;
+		public SimpleMainMenuPage titleMenu;
+		public LeaderboardMenuPage leaderboardMenu;
+
+
 		public void ShowOptionsMenu()
 		{
 			ChangePage(optionsMenu);
 		}
-		
-		/// <summary>
-		/// Bring up the options menu
-		/// </summary>
-		//public void ShowLevelSelectMenu()
-		//{
-		//	ChangePage(levelSelectMenu);
-		//}
-		
+
+
+		public void ShowLevelboardMenu()
+		{
+			ChangePage(leaderboardMenu);
+		}
+
 		/// <summary>
 		/// Returns to the title screen
 		/// </summary>
