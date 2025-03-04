@@ -136,7 +136,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             if (oldState == State.Paused || oldState == State.GameOver)
             {
                 Time.timeScale = 1f;
-                CancelGhostPlacement();
             }
 
             switch (newState)
