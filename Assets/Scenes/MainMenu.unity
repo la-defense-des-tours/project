@@ -7049,6 +7049,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5753189370502088427, guid: b56cbf005fca8a747992f35ac36ca5db, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 287e08255a9ab764fbc8d7ea7c5d631d, type: 3}
+    - target: {fileID: 5753189370502088427, guid: b56cbf005fca8a747992f35ac36ca5db, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 287e08255a9ab764fbc8d7ea7c5d631d, type: 3}
     - target: {fileID: 7873316802192242399, guid: b56cbf005fca8a747992f35ac36ca5db, type: 3}
       propertyPath: m_Name
       value: MenuMusic
