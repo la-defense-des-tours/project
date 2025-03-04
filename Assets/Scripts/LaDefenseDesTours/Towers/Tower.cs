@@ -1,6 +1,7 @@
 
 using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using System.Collections.Generic;
+using LaDefenseDesTours.Strategy;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -15,35 +16,30 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual string effectType { get; set; }
         public bool isAtMaxLevel { get; set; } = false;
         public bool isGhost { get; set; } = false;
-
         public int firePrice { get; set; } = 5000;
         public int icePrice { get; set; } = 5000;
         public int lightPrice { get; set; } = 15000;
-
         private Renderer[] renderers;
         private Color defaultColor;
-
-        private Color hoverColor = new Color(0f, 0.8f, 0.8f, 0.35f); 
-
-
+        private readonly Color hoverColor = new(0f, 0.8f, 0.8f, 0.35f); 
         public TowerData towerData;
-
         [SerializeField] public GameObject towerPrefabs;
+        private IStrategy strategy;
 
         public virtual void Start()
         {
             if (isGhost) return;
-
-            m_shooter = GetComponent<Shooter>();
             
+            m_shooter = GetComponent<Shooter>();
             if (m_shooter != null)
-                m_shooter.Initialize(range, damage, specialAbility, effectType);
-
+            {
+                m_shooter.Initialize(range, damage, specialAbility, effectType, strategy);
+            }
+            
             renderers = GetComponentsInChildren<Renderer>();
-
             if (renderers.Length > 0 && renderers[0].material.HasProperty("_Color"))
             {
-                defaultColor = renderers[0].material.color; // Stocker la couleur d'origine
+                defaultColor = renderers[0].material.color;
             }
         }
 
@@ -67,12 +63,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             }
         }
 
-        public virtual void Sell()
+        public void Sell()
         {
             Destroy(gameObject);
         }
 
-        public virtual void Upgrade()
+        public void Upgrade()
         {
 
             if (isAtMaxLevel) return;
@@ -97,7 +93,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         public void InitialiseBullet(string effect)
         {
-            m_shooter.Initialize(range, damage, specialAbility, effect);
+            m_shooter.Initialize(range, damage, specialAbility, effect, strategy);
         }
 
         public void ApplyHoverColor()

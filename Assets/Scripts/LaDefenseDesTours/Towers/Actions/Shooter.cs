@@ -1,5 +1,6 @@
 using UnityEngine;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using LaDefenseDesTours.Strategy;
 
 public abstract class Shooter : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public abstract class Shooter : MonoBehaviour
     [SerializeField] private float fireRate;
     [SerializeField] private float fireCountdown;
     protected Transform target;
+    private IStrategy strategy;
     private float range;
     private const string ENEMY_TAG = "Enemy";
 
@@ -35,12 +37,13 @@ public abstract class Shooter : MonoBehaviour
         RotateTurret();
     }
     
-    public void Initialize(float range, float damage, float specialAbility, string effectType)
+    public void Initialize(float range, float damage, float specialAbility, string effectType, IStrategy strategy)
     {
         this.range = range;
         this.damage = damage;
         this.specialAbility = specialAbility;
         this.effectType = effectType;
+        this.strategy = strategy;
     }
 
     private void RotateTurret()
@@ -77,23 +80,10 @@ public abstract class Shooter : MonoBehaviour
     protected virtual void UpdateTarget()
     {
         Enemy[] enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
-        float shortestDistance = Mathf.Infinity;
-        Enemy nearestEnemy = null;
-
-        foreach (Enemy enemy in enemies)
-        {
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < shortestDistance && distanceToEnemy <= range)
-            {
-                shortestDistance = distanceToEnemy;
-                nearestEnemy = enemy;
-            }
-        }
-
-        if (nearestEnemy != null && nearestEnemy.gameObject.CompareTag(ENEMY_TAG))
-            target = nearestEnemy.transform;
-        else
-            target = null;
+        if (strategy == null)
+            strategy = new NearestEnemy();
+        
+        target = strategy.SelectTarget(enemies, transform.position, range);
     }
 
     private void LockOnTarget()
