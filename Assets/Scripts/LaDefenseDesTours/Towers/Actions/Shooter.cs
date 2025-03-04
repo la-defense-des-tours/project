@@ -1,5 +1,6 @@
 using UnityEngine;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Level;
 using LaDefenseDesTours.Strategy;
 
 public abstract class Shooter : MonoBehaviour
@@ -81,7 +82,7 @@ public abstract class Shooter : MonoBehaviour
     {
         Enemy[] enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
         if (strategy == null)
-            strategy = new NearestEnemy();
+            strategy = new NearestBase(LevelManager.instance.GetEnemyEndPoint());
         
         target = strategy.SelectTarget(enemies, transform.position, range);
     }
