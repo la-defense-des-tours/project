@@ -2,11 +2,12 @@ using UnityEngine;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using System;
 using Assets.Scripts.LaDefenseDesTours;
+using Assets.Scripts.LaDefenseDesTours.Game;
 
 public sealed class Player : MonoBehaviour, Health
 {
     private static Player Instance { get; set; }
-    public string Name { get; set; } = "Han Solo";
+    public string Name { get; set; } 
     public float health { get; set; }
     public float maxHealth { get; set; } = 1000;
     public float score { get; set; } = 0;
@@ -29,6 +30,9 @@ public sealed class Player : MonoBehaviour, Health
             DestroyImmediate(gameObject);
             return;
         }
+
+        Name = PlayerPrefs.GetString("PlayerName", "Han Solo");
+
         healthBar = FindFirstObjectByType<HealthBar>();
         if (healthBar != null)
         {
