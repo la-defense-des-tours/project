@@ -10,6 +10,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         [SerializeField] private Transform leaderboardContainer; 
         [SerializeField] private GameObject entryPrefab;
         [SerializeField] private ScrollRect scrollRect;
+        [SerializeField] private Text rankText;
         private void Start()
         {
             LoadLeaderboard();
@@ -25,16 +26,18 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 
             for (int i = 0; i < entries.Count; i++)
             {
+                int rank = i + startIndex;
+
                 if (i + 1 < existingCount)
                 {
                     Transform entryTransform = leaderboardContainer.GetChild(i + 1);
                     LeaderboardEntryUI entryUI = entryTransform.GetComponent<LeaderboardEntryUI>();
-                    entryUI.SetEntry(entries[i]);
+                    entryUI.SetEntry(entries[i], rank);
                 }
                 else
                 {
                     GameObject entryObject = Instantiate(entryPrefab, leaderboardContainer);
-                    entryObject.GetComponent<LeaderboardEntryUI>().SetEntry(entries[i]);
+                    entryObject.GetComponent<LeaderboardEntryUI>().SetEntry(entries[i], rank);
                 }
             }
 
@@ -44,14 +47,5 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             }
         }
 
-
-        private void CheckScrollbarVisibility()
-        {
-            RectTransform contentRect = leaderboardContainer.GetComponent<RectTransform>();
-            RectTransform viewportRect = scrollRect.viewport;
-
-            bool needsScrollbar = contentRect.rect.height > viewportRect.rect.height;
-            scrollRect.verticalScrollbar.gameObject.SetActive(needsScrollbar);
-        }
     }
 }
