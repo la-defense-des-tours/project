@@ -32,7 +32,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6516741436784352557}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6131787064069047553
@@ -126,3 +127,36 @@ MonoBehaviour:
   fireMaterial: {fileID: 2100000, guid: cced9bfde2b940d4a89b99c8e87ed342, type: 2}
   lightningMaterial: {fileID: 2100000, guid: 31c771229cbdcb94db2e66f44e8951f3, type: 2}
   iceMaterial: {fileID: 2100000, guid: 7647093e4e961a54a8fe480b65a4cf0d, type: 2}
+  impactEffect: {fileID: 3019899031911953700, guid: 38b25ad1180fd4448af73d49c5c2f75f, type: 3}
+  impactEffectDuration: 1.5
+--- !u!1 &8334844791409618827
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6516741436784352557}
+  m_Layer: 0
+  m_Name: HitEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6516741436784352557
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8334844791409618827}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4139171693521873447}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

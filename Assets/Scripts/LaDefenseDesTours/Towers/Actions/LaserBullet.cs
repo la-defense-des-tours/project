@@ -59,4 +59,14 @@ public class LaserBullet : Bullet
                 break;
         }
     }
+
+    protected override void SpawnImpactEffect()
+    {
+        
+    }
+
+    private void SetupParticles(ParticleSystem ps)
+    {
+        ps.GetComponent<Renderer>().material = GetComponent<Renderer>().material;
+    }
 }

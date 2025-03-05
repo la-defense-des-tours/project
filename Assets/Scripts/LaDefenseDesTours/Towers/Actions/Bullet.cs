@@ -10,6 +10,8 @@ public abstract class Bullet : MonoBehaviour
     [SerializeField] protected Material fireMaterial;
     [SerializeField] protected Material lightningMaterial;
     [SerializeField] protected Material iceMaterial;
+    [SerializeField] protected GameObject impactEffect;
+    [SerializeField] protected float impactEffectDuration = 0.5f;
     protected float specialAbility { get; set; }
     protected float damage;
 
@@ -46,6 +48,8 @@ public abstract class Bullet : MonoBehaviour
     }
 
     protected abstract void HandleTrajectory();
+        
+    protected abstract void SpawnImpactEffect();
 
     public void SetPool(IObjectPool<Bullet> _pool)
     {
