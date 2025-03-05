@@ -268,6 +268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db400459deef55940aa411678844ce66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerData: {fileID: 11400000, guid: e82f78e7090ed1a41baf2af35c60e1eb, type: 2}
+  towerPrefabs: {fileID: 228994677753866313, guid: 5ff5b74a14d09b142a14bfd9a6d49cca, type: 3}
 --- !u!114 &-8147723791831392110
 MonoBehaviour:
   m_ObjectHideFlags: 0

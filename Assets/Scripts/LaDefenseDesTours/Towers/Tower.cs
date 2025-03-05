@@ -104,8 +104,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
                 }
             }
         }
-
-        private void SetStrategy(IStrategy _strategy)
+        public void SetStrategy(IStrategy _strategy)
         {
             this.strategy = _strategy;
             m_shooter.Initialize(range, damage, specialAbility, effectType, _strategy);
