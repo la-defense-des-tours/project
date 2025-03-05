@@ -143,7 +143,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
                 case "7":
                     SetStrategy(new HighestHP());
                     break;
-                default:
+                case "8":
                     SetStrategy(new NearestEnemy());
                     break;
             }
