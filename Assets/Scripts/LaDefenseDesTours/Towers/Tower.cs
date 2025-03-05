@@ -132,7 +132,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         private void TestStrategies()
         {
-            switch (Input.inputString)
+            switch (Input.inputString) // a modifier, ça marche pas le raccourci
             {
                 case "5":
                     SetStrategy(new NearestBase());

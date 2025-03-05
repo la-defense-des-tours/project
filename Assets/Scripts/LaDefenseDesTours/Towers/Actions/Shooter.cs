@@ -81,7 +81,8 @@ public abstract class Shooter : MonoBehaviour
     protected virtual void UpdateTarget()
     {
         Enemy[] enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
-        target = strategy.SelectTarget(enemies, transform.position, range);
+        if (strategy != null)
+            target = strategy.SelectTarget(enemies, transform.position, range);
     }
 
     private void LockOnTarget()
