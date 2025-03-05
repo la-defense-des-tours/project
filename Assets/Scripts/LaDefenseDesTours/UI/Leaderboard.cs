@@ -23,7 +23,7 @@ public class Leaderboard
 
     public List<LeaderboardEntry> GetEntries()
     {
-        return entries;
+        return LoadExistingEntries(Path.Combine(Application.persistentDataPath, "leaderboard.json"));
     }
 
     private void SaveToJson()

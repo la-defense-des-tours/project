@@ -38,6 +38,12 @@ public class TowerManager : MonoBehaviour
         placementValidator = GetComponent<PlacementValidator>();
     }
 
+    private void Start()
+    {
+        if (GameUI.instance != null)
+            GameUI.instance.stateChanged += OnGameStateChanged;
+    }
+
     private void Update()
     {
         if (isPlacingTower && currentGhost != null)
@@ -200,6 +206,7 @@ public class TowerManager : MonoBehaviour
         selectedFactory = null;
         isPlacingTower = false;
         isGhostPlacementValid = false;
+
         GameUI.instance.CancelGhostPlacement();
     }
 }

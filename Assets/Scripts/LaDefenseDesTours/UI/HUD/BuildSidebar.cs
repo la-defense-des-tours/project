@@ -1,28 +1,13 @@
 ﻿using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using Assets.Scripts.LaDefenseDesTours.Level;
-using Assets.Scripts.LaDefenseDesTours.Towers.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 {
-    /// <summary>
-    /// UI component that displays towers that can be built on this level.
-    /// </summary>
     public class BuildSidebar : MonoBehaviour
     {
-        /// <summary>
-        /// The prefab spawned for each button
-        /// </summary>
         public TowerSpawnButton towerSpawnButton;
 
-        /// <summary>
-        /// Initialize the tower spawn buttons
-        /// </summary>
         protected virtual void Start()
         {
             if (!LevelManager.instanceExists || LevelManager.instance == null)
@@ -43,7 +28,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
                 {
                     if (tower == null)
                     {
-                        Debug.LogError("[UI] A TowerData entry in towerLibrary is null!");
                         continue;
                     }
 
@@ -54,11 +38,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             }
         }
 
-
-        /// <summary>
-        /// Sets the GameUI to build mode with the <see cref="towerData"/>
-        /// </summary>
-        /// <param name="towerData"></param>
         void OnButtonTapped(Tower tower)
         {
             var gameUI = GameUI.instance;
@@ -71,9 +50,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         }
 
 
-        /// <summary>
-        /// Unsubscribes from all the tower spawn buttons
-        /// </summary>
         void OnDestroy()
         {
             TowerSpawnButton[] childButtons = GetComponentsInChildren<TowerSpawnButton>();
@@ -83,10 +59,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
                 towerButton.buttonTapped -= OnButtonTapped;
             }
         }
-
-        /// <summary>
-        /// Called by start wave button in scene
-        /// </summary>
         public void StartWaveButtonPressed()
         {
             if (LevelManager.instanceExists)
