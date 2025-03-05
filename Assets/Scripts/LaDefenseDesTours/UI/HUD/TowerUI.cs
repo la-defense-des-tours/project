@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Level;
 using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,59 +12,31 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 	[RequireComponent(typeof(Canvas))]
 	public class TowerUI : MonoBehaviour
 	{
-		/// <summary>
-		/// The text object for the name
-		/// </summary>
 		public Text towerName;
-
-		/// <summary>
-		/// The text object for the description
-		/// </summary>
-		public Text description;
-		
 		public Text upgradeDescription;
-
-		/// <summary>
-		/// The attached sell button
-		/// </summary>
-		public Button sellButton;
-
-		/// <summary>
-		/// The attached upgrade button
-		/// </summary>
+		public Text firePrice;
+        public Text icePrice;
+        public Text lightPrice;
+		public Text UpgradePrice;
+		public Text SellPrice;
+        public Button sellButton;
 		public Button upgradeButton;
-
-		/// <summary>
-		/// Component to display the relevant information of the tower
-		/// </summary>
-		public TowerInfoDisplay towerInfoDisplay;
+		public Button fireButton;
+        public Button iceButton;
+        public Button lightButton;
+        public TowerInfoDisplay towerInfoDisplay;
 
 		public RectTransform panelRectTransform;
 
 		public GameObject[] confirmationButtons;
 
-		/// <summary>
-		/// The main game camera
-		/// </summary>
 		protected Camera m_GameCamera;
 
-		/// <summary>
-		/// The current tower to draw
-		/// </summary>
-		protected TowerData m_Tower;
+		protected Tower m_Tower;
 
-		/// <summary>
-		/// The canvas attached to the gameObject
-		/// </summary>
 		protected Canvas m_Canvas;
 
-		/// <summary>
-		/// Draws the tower data on to the canvas
-		/// </summary>
-		/// <param name="towerToShow">
-		/// The tower to gain info from
-		/// </param>
-		public virtual void Show(TowerData towerToShow)
+		public virtual void Show(Tower towerToShow)
 		{
 			if (towerToShow == null)
 			{
@@ -74,24 +47,43 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 
 			m_Canvas.enabled = true;
 
-			//int sellValue = m_Tower.GetSellLevel();
+			int sellValue = m_Tower.towerData.sellCost;
+			
 			if (sellButton != null)
 			{
-				//sellButton.gameObject.SetActive(sellValue > 0);
-			}
+				sellButton.gameObject.SetActive(sellValue > 0);
+				SellPrice.text = sellValue.ToString();
+            }
 			if (upgradeButton != null)
 			{
-				//upgradeButton.interactable =
-					//LevelManager.instance.currency.CanAfford(m_Tower.GetCostForNextLevel());
-				//bool maxLevel = m_Tower.isAtMaxLevel;
-				//upgradeButton.gameObject.SetActive(!maxLevel);
-				//if (!maxLevel)
-				//{
-				//	upgradeDescription.text =
-				//		m_Tower.levels[m_Tower.currentLevel + 1].upgradeDescription.ToUpper();
-				//}
+				upgradeButton.interactable =
+					LevelManager.instance.currency.CanAfford(m_Tower.towerData.cost);
+				bool maxLevel = m_Tower.isAtMaxLevel;
+				upgradeButton.gameObject.SetActive(!maxLevel);
+				if (!maxLevel)
+				{
+					upgradeDescription.text =
+						m_Tower.towerData.upgradeDescription.ToUpper();
+                    UpgradePrice.text = m_Tower.towerData.upgradeCost.ToString();
+                }
 			}
-			//LevelManager.instance.currency.currencyChanged += OnCurrencyChanged;
+			if (fireButton != null)
+            {
+				fireButton.interactable = LevelManager.instance.currency.CanAfford(m_Tower.firePrice);
+                firePrice.text = m_Tower.firePrice.ToString();
+            }
+            if (iceButton != null)
+            {
+                iceButton.interactable = LevelManager.instance.currency.CanAfford(m_Tower.icePrice);
+                icePrice.text = m_Tower.icePrice.ToString();
+            }
+            if (lightButton != null)
+            {
+                lightButton.interactable = LevelManager.instance.currency.CanAfford(m_Tower.lightPrice);
+                lightPrice.text = m_Tower.lightPrice.ToString();
+            }
+
+            LevelManager.instance.currency.currencyChanged += OnCurrencyChanged;
 			towerInfoDisplay.Show(towerToShow);
 			foreach (var button in confirmationButtons)
 			{
@@ -99,51 +91,71 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 			}
 		}
 
-		/// <summary>
-		/// Hides the tower info UI and the radius visualizer
-		/// </summary>
 		public virtual void Hide()
 		{
 			m_Tower = null;
-			if (GameUI.instanceExists)
-			{
-				//GameUI.instance.HideRadiusVisualizer();
-			}
 			m_Canvas.enabled = false;
-			//LevelManager.instance.currency.currencyChanged -= OnCurrencyChanged;
+			LevelManager.instance.currency.currencyChanged -= OnCurrencyChanged;
 		}
 
-		/// <summary>
-		/// Upgrades the tower through <see cref="GameUI"/>
-		/// </summary>
 		public void UpgradeButtonClick()
 		{
-			//GameUI.instance.UpgradeSelectedTower();
-		}
+			if (LevelManager.instance.currency.CanAfford(m_Tower.towerData.cost))
+			{ 
+                m_Tower.Upgrade();
+                Hide();
+            }
 
-		/// <summary>
-		/// Sells the tower through <see cref="GameUI"/>
-		/// </summary>
+
+        }
+
 		public void SellButtonClick()
 		{
-			//GameUI.instance.SellSelectedTower();
-		}
+            LevelManager.instance.currency.AddCurrency(m_Tower.towerData.sellCost);
+			m_Tower.Sell();
+			Hide();
+        }
 
-		/// <summary>
-		/// Get the text attached to the buttons
-		/// </summary>
-		protected virtual void Awake()
+
+        public void FireEffect()
+        {
+			Debug.Log("Fire effect");
+            if (m_Tower != null)
+            {
+                FireEffect effect = new(m_Tower);
+                effect.ApplyEffect(); Hide();
+            }
+        }
+
+		public void IceEffect()
+		{
+            if (m_Tower != null && LevelManager.instance.currency.TryPurchase(m_Tower.icePrice))
+            {
+
+                IceEffect effect = new(m_Tower);
+				effect.ApplyEffect();
+                Hide();
+            }
+        }
+
+		public void LigthningEffect()
+		{
+            if (m_Tower != null && LevelManager.instance.currency.TryPurchase(m_Tower.lightPrice))
+            {
+                LightningEffect effect = new(m_Tower);
+				effect.ApplyEffect();
+                Hide();
+            }
+        }
+        
+        protected virtual void Awake()
 		{
 			m_Canvas = GetComponent<Canvas>();
 		}
 
-		/// <summary>
-		/// Fires when tower is selected/deselected
-		/// </summary>
-		/// <param name="newTower"></param>
-		protected virtual void OnUISelectionChanged(TowerData newTower)
+		protected virtual void OnUISelectionChanged(Tower newTower)
 		{
-			if (newTower != null)
+            if (m_Tower != null && LevelManager.instance.currency.TryPurchase(m_Tower.firePrice))
 			{
 				Show(newTower);
 			}
@@ -153,59 +165,41 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 			}
 		}
 
-		/// <summary>
-		/// Subscribe to mouse button action
-		/// </summary>
 		protected virtual void Start()
 		{
 			m_GameCamera = Camera.main;
 			m_Canvas.enabled = false;
 			if (GameUI.instanceExists)
 			{
-				//GameUI.instance.selectionChanged += OnUISelectionChanged;
+				GameUI.instance.selectionChanged += OnUISelectionChanged;
 				GameUI.instance.stateChanged += OnGameUIStateChanged;
 			}
 		}
 
-		/// <summary>
-		/// Adjust position when the camera moves
-		/// </summary>
 		protected virtual void Update()
 		{
 			AdjustPosition();
 		}
 
-		/// <summary>
-		/// Unsubscribe from currencyChanged
-		/// </summary>
 		protected virtual void OnDisable()
 		{
-			//if (LevelManager.instanceExists)
-			//{
-			//	LevelManager.instance.currency.currencyChanged -= OnCurrencyChanged;
-			//}
+			if (LevelManager.instanceExists)
+			{
+				LevelManager.instance.currency.currencyChanged -= OnCurrencyChanged;
+			}
 		}
-
-		/// <summary>
-		/// Adjust the position of the UI
-		/// </summary>
 		protected void AdjustPosition()
 		{
 			if (m_Tower == null)
 			{
 				return;
 			}
-			//Vector3 point = m_GameCamera.WorldToScreenPoint(m_Tower.position);
-			//point.z = 0;
-			//panelRectTransform.transform.position = point;
+			Vector3 point = m_GameCamera.WorldToScreenPoint(m_Tower.transform.position);
+			point.z = 0;
+			panelRectTransform.transform.position = point;
 		}
 
-		/// <summary>
-		/// Fired when the <see cref="GameUI"/> state changes
-		/// If the new state is <see cref="GameUI.State.GameOver"/> we need to hide the <see cref="TowerUI"/>
-		/// </summary>
-		/// <param name="oldState">The previous state</param>
-		/// <param name="newState">The state to transition to</param>
+
 		protected void OnGameUIStateChanged(GameUI.State oldState, GameUI.State newState)
 		{
 			if (newState == GameUI.State.GameOver)
@@ -214,21 +208,16 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 			}
 		}
 
-		/// <summary>
-		/// Check if player can afford upgrade on currency changed
-		/// </summary>
+
 		void OnCurrencyChanged()
 		{
-			//if (m_Tower != null && upgradeButton != null)
-			//{
-			//	upgradeButton.interactable = 
-			//		LevelManager.instance.currency.CanAfford(m_Tower.GetCostForNextLevel());
-			//}
+			if (m_Tower != null && upgradeButton != null)
+			{
+				upgradeButton.interactable =
+					LevelManager.instance.currency.CanAfford(m_Tower.towerData.cost);
+			}
 		}
 
-		/// <summary>
-		/// Unsubscribe from GameUI selectionChanged and stateChanged
-		/// </summary>
 		void OnDestroy()
 		{
 			if (GameUI.instanceExists)

@@ -16,51 +16,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             return instance.GetComponent<LaserTower>();
         }
 
-        public override Tower UpgradeTower(Vector3 position, int upgradeLevel, Tower currentTower)
-        {
-            if ((upgradeLevel == 1 && laserTowerUpgrade == null) ||
-                (upgradeLevel == 2 && laserTowerUpgrade2 == null))
-            {
-                Debug.LogError("Laser Tower Upgrade prefab is not assigned!");
-                return null;
-            }
-
-            GameObject instance;
-            LaserTower upgradedTower;
-
-            // Utilisation d'un switch pour gérer les différents niveaux d'amélioration
-            switch (upgradeLevel)
-            {
-                case 1:
-                    Debug.Log("Laser Tower has been upgraded to level 2");
-                    instance = Instantiate(laserTowerUpgrade.gameObject, position, Quaternion.identity);
-                    upgradedTower = instance.GetComponent<LaserTower>();
-                    break;
-
-                case 2:
-                    Debug.Log("Laser Tower has been upgraded to level 3");
-                    instance = Instantiate(laserTowerUpgrade2.gameObject, position, Quaternion.identity);
-                    upgradedTower = instance.GetComponent<LaserTower>();
-                    break;
-
-                default:
-                    Debug.LogError("Max upgrade level reached!");
-                    return null;
-            }
-
-            // Transfert des propriétés de la tour actuelle à la tour améliorée
-            if (currentTower != null)
-            {
-                upgradedTower.currentLevel = currentTower.currentLevel;
-                upgradedTower.damage = currentTower.damage;
-                upgradedTower.range = currentTower.range;
-                upgradedTower.cost = currentTower.cost;
-                upgradedTower.damageOverTime = (currentTower as LaserTower).damageOverTime = 0f;
-            }
-
-            return upgradedTower;
-        }
-
         public override void Notify()
         {
             Debug.Log("Laser Tower Created");

@@ -5,15 +5,20 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
     public abstract class TowerDecorator : Tower
     {
-        protected Tower tower;
-        public override string towerName => tower.towerName;
+        private Tower tower;
         public override float range => tower.range;
         public override float damage => tower.damage;
         public override string effectType => tower.effectType;
 
-        public TowerDecorator(Tower tower)
+        protected TowerDecorator(Tower tower)
         {
             this.tower = tower;
+        }
+
+        public void ApplyEffect()
+        {
+            this.tower.effectType = effectType;
+            this.tower.InitialiseBullet(effectType);
         }
     }
 }

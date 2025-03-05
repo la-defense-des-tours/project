@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.LaDefenseDesTours.Towers.Data;
+﻿using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,15 +30,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// </summary>
 		public Text level;
 
-		/// <summary>
-		/// The text component for the health
-		/// </summary>
-		public Text health;
-
-		/// <summary>
-		/// The text component for the dimensions
-		/// </summary>
-		public Text dimensions;
 
 		/// <summary>
 		/// The text component for the dimensions
@@ -55,15 +47,15 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		/// <param name="tower">
 		/// The tower to gain info from
 		/// </param>
-		public void Show(TowerData tower)
+		public void Show(Tower tower)
 		{
             //if (levelOfTower >= tower.levels.Length)
             //{
             //	return;
             //}
-            DisplayText(towerName, tower.towerName);
-            DisplayText(description, tower.description);
-            //DisplayText(dps, towerLevel.GetTowerDps().ToString("f2"));
+            DisplayText(towerName, tower.towerData.towerName);
+            DisplayText(description, tower.towerData.description);
+            DisplayText(dps, tower.towerData.dps.ToString());
             //DisplayText(health, string.Format("{0}/{1}", tower.configuration.currentHealth, towerLevel.maxHealth));
             //DisplayText(level, (levelOfTower + 1).ToString());
             //DisplayText(dimensions, string.Format("{0}, {1}", tower.dimensions.x, tower.dimensions.y));

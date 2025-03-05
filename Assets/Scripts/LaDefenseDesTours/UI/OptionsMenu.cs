@@ -28,9 +28,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI
 			}
 		}
 
-		/// <summary>
-		/// Set initial slider values
-		/// </summary>
 		public override void Show()
 		{
 			if (GameManager.instanceExists)

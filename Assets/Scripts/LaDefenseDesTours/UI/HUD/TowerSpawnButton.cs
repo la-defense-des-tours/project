@@ -36,12 +36,12 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// <summary>
         /// Fires when the button is tapped
         /// </summary>
-        public event Action<TowerData> buttonTapped;
+        public event Action<Tower> buttonTapped;
 
         /// <summary>
         /// The tower controller that defines the button
         /// </summary>
-        TowerData m_Tower;
+        Tower m_Tower;
 
         /// <summary>
         /// Cached reference to level currency
@@ -59,9 +59,9 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         {
             Debug.Log($"TowerSpawnButton {gameObject.name} initialized");
 
-            if (TowerManager.Instance != null)
+            if (TowerManager.instance != null)
             {
-                TowerManager.Instance.RegisterSpawnButton(this); 
+                TowerManager.instance.RegisterSpawnButton(this); 
             }
             else
             {
@@ -77,12 +77,12 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// <param name="towerData">
         /// The tower to initialize the button with
         /// </param>
-        public void InitializeButton(TowerData towerData)
+        public void InitializeButton(Tower towerData)
         {
             m_Tower = towerData;
 
-            buttonText.text = m_Tower.cost.ToString();
-            towerIcon.sprite = m_Tower.icon;
+            buttonText.text = m_Tower.towerData.cost.ToString();
+            towerIcon.sprite = m_Tower.towerData.icon;
 
 
             if (LevelManager.instanceExists)
@@ -119,12 +119,12 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             }
 
             // Enable button
-            if (m_Currency.CanAfford(m_Tower.cost) && !buyButton.interactable)
+            if (m_Currency.CanAfford(m_Tower.towerData.cost) && !buyButton.interactable)
             {
                 buyButton.interactable = true;
                 energyIcon.color = energyDefaultColor;
             }
-            else if (!m_Currency.CanAfford(m_Tower.cost) && buyButton.interactable)
+            else if (!m_Currency.CanAfford(m_Tower.towerData.cost) && buyButton.interactable)
             {
                 buyButton.interactable = false;
                 energyIcon.color = energyInvalidColor;

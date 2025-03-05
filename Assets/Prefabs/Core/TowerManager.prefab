@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 40109713624291518}
   - component: {fileID: 1533240475809799185}
+  - component: {fileID: 7510797833618840872}
   m_Layer: 0
   m_Name: TowerManager
   m_TagString: Untagged
@@ -47,11 +48,18 @@ MonoBehaviour:
   machineGunFactory: {fileID: 0}
   laserFactory: {fileID: 0}
   canonFactory: {fileID: 0}
-  target: {fileID: 0}
-  placementZoneLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  gridManager: {fileID: 184147756340080889, guid: db960d29839c9724aaf99e25bf40b47b, type: 3}
-  machineGunButton: {fileID: 0}
-  laserButton: {fileID: 0}
-  canonButton: {fileID: 0}
+  machineGunGhostPrefab: {fileID: 7129850076736660284, guid: 90cd1367838ed104eb47bc69ddcf977a, type: 3}
+  laserGhostPrefab: {fileID: 8951942140004569536, guid: c65d1ab510ebeb34b955a31ae47b9191, type: 3}
+  canonGhostPrefab: {fileID: 5059962892274874607, guid: c22b6379b55adaa48aa842b44781a98a, type: 3}
+--- !u!114 &7510797833618840872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125444469714331958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e83f0adb778779a4fae3f1032323457a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

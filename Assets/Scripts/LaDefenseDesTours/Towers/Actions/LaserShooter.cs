@@ -25,8 +25,12 @@ public class LaserShooter : Shooter
     {
         Transform oldTarget = target;
         base.UpdateTarget();
-
-        if (target != oldTarget && currentLaser != null)
+        if (target != oldTarget && currentLaser)
+        {
+            Destroy(currentLaser.gameObject);
+            currentLaser = null;
+        }
+        if (currentLaser && (!target || !HasLineOfSight()))
         {
             Destroy(currentLaser.gameObject);
             currentLaser = null;

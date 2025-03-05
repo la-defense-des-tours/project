@@ -12,6 +12,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Game
 	/// </summary>
 	public class GameManager : GameManagerBase<GameManager, GameDataStore>
 	{
+        public string playerName;
 
         /// <summary>
         /// Set sleep timeout to never sleep
@@ -22,6 +23,16 @@ namespace Assets.Scripts.LaDefenseDesTours.Game
 			base.Awake();
 		}
 
+        public void SetPlayerName(string name)
+        {
+            playerName = name;
+        }
 
-	}
+        public string GetPlayerName()
+        {
+            return playerName;
+        }
+
+
+    }
 }
