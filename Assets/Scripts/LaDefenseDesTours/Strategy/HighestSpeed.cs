@@ -3,24 +3,27 @@ using UnityEngine;
 
 namespace LaDefenseDesTours.Strategy
 {
-    public class NearestEnemy : IStrategy
+    public class HighestSpeed : IStrategy
     {
         private readonly string ENEMY_TAG = "Enemy";
+
         public Transform SelectTarget(Enemy[] enemies, Vector3 towerPosition, float range)
         {
-            float shortestDistance = Mathf.Infinity;
             Enemy selected = null;
+            float highestSpeed = float.MinValue;
             foreach (Enemy enemy in enemies)
             {
                 float distance = Vector3.Distance(towerPosition, enemy.transform.position);
-                if (distance < shortestDistance && distance <= range)
+                float enemySpeed = enemy.GetSpeed();
+                
+                if (distance <= range && enemySpeed > highestSpeed)
                 {
-                    shortestDistance = distance;
+                    highestSpeed = enemySpeed;
                     selected = enemy;
                 }
             }
-            
-            return selected != null && selected.gameObject.CompareTag(ENEMY_TAG) ? selected.transform : null;
+
+            return selected && selected.gameObject.CompareTag(ENEMY_TAG) ? selected.transform : null;
         }
     }
 }

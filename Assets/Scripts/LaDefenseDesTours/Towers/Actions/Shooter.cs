@@ -63,7 +63,7 @@ public abstract class Shooter : MonoBehaviour
         fireCountdown -= Time.deltaTime;
     }
 
-    private bool HasLineOfSight()
+    protected bool HasLineOfSight()
     {
         if (target == null)
             return false;
@@ -81,9 +81,6 @@ public abstract class Shooter : MonoBehaviour
     protected virtual void UpdateTarget()
     {
         Enemy[] enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
-        if (strategy == null)
-            strategy = new NearestBase(LevelManager.instance.GetEnemyEndPoint());
-        
         target = strategy.SelectTarget(enemies, transform.position, range);
     }
 

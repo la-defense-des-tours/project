@@ -1,4 +1,3 @@
-
 using Assets.Scripts.LaDefenseDesTours.Towers.Data;
 using System.Collections.Generic;
 using LaDefenseDesTours.Strategy;
@@ -9,7 +8,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
     public abstract class Tower : MonoBehaviour
     {
-        protected Shooter m_shooter;
+        private Shooter m_shooter;
         public virtual float range { get; set; }
         public virtual float damage { get; set; }
         protected virtual float specialAbility { get; set; }
@@ -21,7 +20,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public int lightPrice { get; set; } = 15000;
         private Renderer[] renderers;
         private Color defaultColor;
-        private readonly Color hoverColor = new(0f, 0.8f, 0.8f, 0.35f); 
+        private readonly Color hoverColor = new(0f, 0.8f, 0.8f, 0.35f);
         public TowerData towerData;
         [SerializeField] public GameObject towerPrefabs;
         private IStrategy strategy;
@@ -29,13 +28,15 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual void Start()
         {
             if (isGhost) return;
-            
+
+            strategy = new NearestEnemy();
+
             m_shooter = GetComponent<Shooter>();
             if (m_shooter != null)
             {
                 m_shooter.Initialize(range, damage, specialAbility, effectType, strategy);
             }
-            
+
             renderers = GetComponentsInChildren<Renderer>();
             if (renderers.Length > 0 && renderers[0].material.HasProperty("_Color"))
             {
@@ -44,6 +45,73 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         }
 
         public virtual void Update()
+        {
+            TestDecorators();
+            TestStrategies();
+        }
+
+        public void Sell()
+        {
+            Destroy(gameObject);
+        }
+
+        public void Upgrade()
+        {
+            if (isAtMaxLevel) return;
+
+            GameObject nextPrefab = towerPrefabs;
+
+            if (nextPrefab == null) return;
+
+            Cell parentCell = GetComponentInParent<Cell>();
+            if (parentCell == null) return;
+
+            GameObject newTowerObj = Instantiate(nextPrefab, transform.position, transform.rotation);
+            Tower newTower = newTowerObj.GetComponent<Tower>();
+            newTower.transform.SetParent(parentCell.transform);
+
+            if (newTower.towerData.currentLevel >= 3)
+            {
+                newTower.isAtMaxLevel = true;
+            }
+
+            Destroy(gameObject);
+        }
+
+        public void InitialiseBullet(string effect)
+        {
+            m_shooter.Initialize(range, damage, specialAbility, effect, strategy);
+        }
+
+        public void ApplyHoverColor()
+        {
+            foreach (Renderer renderer in renderers)
+            {
+                if (renderer.material.HasProperty("_Color"))
+                {
+                    renderer.material.color = hoverColor;
+                }
+            }
+        }
+
+        public void ResetColor()
+        {
+            foreach (Renderer renderer in renderers)
+            {
+                if (renderer.material.HasProperty("_Color"))
+                {
+                    renderer.material.color = defaultColor;
+                }
+            }
+        }
+
+        private void SetStrategy(IStrategy _strategy)
+        {
+            this.strategy = _strategy;
+            m_shooter.Initialize(range, damage, specialAbility, effectType, _strategy);
+        }
+
+        private void TestDecorators()
         {
             switch (Input.inputString)
             {
@@ -59,64 +127,26 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
                 case "n":
                     Upgrade();
                     break;
-
             }
         }
 
-        public void Sell()
+        private void TestStrategies()
         {
-            Destroy(gameObject);
-        }
-
-        public void Upgrade()
-        {
-
-            if (isAtMaxLevel) return;
-
-            GameObject nextPrefab = towerPrefabs;
-
-            if (nextPrefab == null) return; 
-
-            Cell parentCell = GetComponentInParent<Cell>();
-            if (parentCell == null) return;
-
-            GameObject newTowerObj = Instantiate(nextPrefab, transform.position, transform.rotation);
-            Tower newTower = newTowerObj.GetComponent<Tower>();
-            newTower.transform.SetParent(parentCell.transform);
-            
-            if (newTower.towerData.currentLevel >= 3)
+            switch (Input.inputString)
             {
-                newTower.isAtMaxLevel = true;
-            }
-            Destroy(gameObject);
-        }
-
-        public void InitialiseBullet(string effect)
-        {
-            m_shooter.Initialize(range, damage, specialAbility, effect, strategy);
-        }
-
-        public void ApplyHoverColor()
-        {
-            foreach (Renderer renderer in renderers)
-            {
-                if (renderer.material.HasProperty("_Color"))
-                {
-                    renderer.material.color = hoverColor; 
-                }
+                case "5":
+                    SetStrategy(new NearestBase());
+                    break;
+                case "6":
+                    SetStrategy(new HighestSpeed());
+                    break;
+                case "7":
+                    SetStrategy(new HighestHP());
+                    break;
+                default:
+                    SetStrategy(new NearestEnemy());
+                    break;
             }
         }
-
-        public void ResetColor()
-        {
-            foreach (Renderer renderer in renderers)
-            {
-                if (renderer.material.HasProperty("_Color"))
-                {
-                    renderer.material.color = defaultColor; 
-                }
-            }
-        }
-
     }
 }

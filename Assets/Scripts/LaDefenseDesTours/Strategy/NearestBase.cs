@@ -1,32 +1,26 @@
 ﻿using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Level;
 using UnityEngine;
 
 namespace LaDefenseDesTours.Strategy
 {
     public class NearestBase : IStrategy
     {
-        private readonly Vector3 basePosition;
         private readonly string ENEMY_TAG = "Enemy";
-
-        public NearestBase(Vector3 basePos)
-        {
-            basePosition = basePos;
-        }
 
         public Transform SelectTarget(Enemy[] enemies, Vector3 towerPosition, float range)
         {
             Enemy selected = null;
             float shortestDistanceToBase = Mathf.Infinity;
+            
             foreach (Enemy enemy in enemies)
             {
-                if (Vector3.Distance(towerPosition, enemy.transform.position) <= range)
+                float distance = Vector3.Distance(towerPosition, enemy.transform.position);
+                float distanceToBase = Vector3.Distance(enemy.transform.position, LevelManager.instance.GetEnemyEndPoint());
+                if (distance <= range && distanceToBase < shortestDistanceToBase)
                 {
-                    float distanceToBase = Vector3.Distance(enemy.transform.position, basePosition);
-                    if (distanceToBase < shortestDistanceToBase)
-                    {
-                        shortestDistanceToBase = distanceToBase;
-                        selected = enemy;
-                    }
+                    shortestDistanceToBase = distanceToBase;
+                    selected = enemy;
                 }
             }
 
