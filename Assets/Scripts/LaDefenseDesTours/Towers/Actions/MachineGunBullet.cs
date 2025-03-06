@@ -37,7 +37,7 @@ public class MachineGunBullet : Bullet
         if (impactEffect == null)
             return;
 
-        GameObject effect = Instantiate(impactEffect, transform.position, transform.rotation);
+        GameObject effect = Instantiate(impactEffect, transform.position, transform.rotation, BulletPool.Instance.transform);
         ParticleSystem ps = effect.GetComponent<ParticleSystem>();
         if (ps != null)
             SetupParticles(ps);
