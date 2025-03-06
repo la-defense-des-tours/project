@@ -17,6 +17,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         {
             this.tower.effectType = effectType;
             this.tower.InitialiseBullet(effectType);
+            this.tower.ChangeMaterial(effectType);
         }
     }
 }

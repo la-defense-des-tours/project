@@ -46,7 +46,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual void Update()
         {
             TestDecorators();
-            TestStrategies();
         }
 
         public void Sell()
@@ -128,22 +127,22 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             }
         }
 
-        private void TestStrategies()
+        public void ChangeMaterial(string effectType)
         {
-            switch (Input.inputString) // a modifier, ça marche pas le raccourci
+            if (towerData == null || towerData.materials == null)
+                return;
+
+            renderers = GetComponentsInChildren<Renderer>();
+            Material materialToApply = towerData.materials.GetMaterial(effectType);
+
+            if (materialToApply != null)
             {
-                case "5":
-                    SetStrategy(new NearestBase());
-                    break;
-                case "6":
-                    SetStrategy(new HighestSpeed());
-                    break;
-                case "7":
-                    SetStrategy(new HighestHP());
-                    break;
-                case "8":
-                    SetStrategy(new NearestEnemy());
-                    break;
+                foreach (Renderer r in renderers)
+                {
+                    r.material = materialToApply;
+                    if (r.material.HasProperty("_Color"))
+                        defaultColor = r.material.color;
+                }
             }
         }
     }
