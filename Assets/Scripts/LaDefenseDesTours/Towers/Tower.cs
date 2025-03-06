@@ -96,10 +96,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
                 }
             }
         }
+
         public void SetStrategy(IStrategy _strategy)
         {
             this.strategy = _strategy;
-            m_shooter.Initialize(towerData.range, towerData.dps, specialAbility, effectType, _strategy, towerData.fireRate);
+            m_shooter.Initialize(towerData.range, towerData.dps, specialAbility, effectType, _strategy,
+                towerData.fireRate);
         }
 
         private void TestDecorators()
@@ -126,7 +128,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             if (towerData == null || towerData.materials == null)
                 return;
 
-            renderers = GetComponentsInChildren<Renderer>();
             Material materialToApply = towerData.materials.GetMaterial(effectType);
 
             if (materialToApply != null)
