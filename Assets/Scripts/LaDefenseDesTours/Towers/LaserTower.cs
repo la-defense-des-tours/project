@@ -11,11 +11,5 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
         {
             specialAbility = damageOverTime;
         }
-        public override void Start()
-        {
-            if (isGhost) return;
-            base.Start();
-        }
-       
     }
 }

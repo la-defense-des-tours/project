@@ -24,26 +24,20 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         [SerializeField] public GameObject towerPrefabs;
         private IStrategy strategy;
 
-        public virtual void Start()
+        void Start()
         {
-            if (isGhost) return;
+            if (isGhost)
+                return;
 
             strategy = new NearestEnemy();
 
             m_shooter = GetComponent<Shooter>();
-            if (m_shooter != null)
-            {
-                m_shooter.Initialize(towerData.range, towerData.dps, specialAbility, effectType, strategy, towerData.fireRate);
-            }
+            m_shooter?.Initialize(towerData.range, towerData.dps, specialAbility, effectType, strategy, towerData.fireRate);
 
-            renderers = GetComponentsInChildren<Renderer>();
-            if (renderers.Length > 0 && renderers[0].material.HasProperty("_Color"))
-            {
-                defaultColor = renderers[0].material.color;
-            }
+            SetDefaultColor();
         }
 
-        public virtual void Update()
+        void Update()
         {
             TestDecorators();
         }
@@ -144,6 +138,13 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
                         defaultColor = r.material.color;
                 }
             }
+        }
+
+        private void SetDefaultColor()
+        {
+            renderers = GetComponentsInChildren<Renderer>();
+            if (renderers.Length > 0 && renderers[0].material.HasProperty("_Color"))
+                defaultColor = renderers[0].material.color;
         }
     }
 }

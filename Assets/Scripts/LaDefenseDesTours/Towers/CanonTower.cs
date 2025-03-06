@@ -11,12 +11,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
         {
             specialAbility = areaOfEffect;
         }
-        public override void Start()
-        {
-            if (isGhost) return;
-            base.Start();
-        }
-    
     }
 
 }
