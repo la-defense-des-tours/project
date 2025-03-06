@@ -127,7 +127,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         {
             if (towerData == null || towerData.materials == null)
                 return;
-
+            
             Material materialToApply = towerData.materials.GetMaterial(effectType);
 
             if (materialToApply != null)
