@@ -59,7 +59,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 			if (upgradeButton != null)
 			{
 				upgradeButton.interactable =
-					LevelManager.instance.currency.CanAfford(m_Tower.towerData.cost);
+					LevelManager.instance.currency.CanAfford(m_Tower.towerData.upgradeCost);
 				bool maxLevel = m_Tower.isAtMaxLevel;
 				upgradeButton.gameObject.SetActive(!maxLevel);
 				if (!maxLevel)
@@ -114,7 +114,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 
 		public void UpgradeButtonClick()
 		{
-			if (LevelManager.instance.currency.CanAfford(m_Tower.towerData.cost))
+			if (LevelManager.instance.currency.TryPurchase(m_Tower.towerData.upgradeCost))
 			{ 
                 m_Tower.Upgrade();
                 Hide();
@@ -250,7 +250,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 			if (m_Tower != null && upgradeButton != null)
 			{
 				upgradeButton.interactable =
-					LevelManager.instance.currency.CanAfford(m_Tower.towerData.cost);
+					LevelManager.instance.currency.CanAfford(m_Tower.towerData.upgradeCost);
 			}
 		}
 
