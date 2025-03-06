@@ -300,6 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerData: {fileID: 11400000, guid: fc4ba38eef0a57944adb0529af91174b, type: 2}
+  towerPrefabs: {fileID: 5790424651677087611, guid: 73ad0c0d1fb5fe049a73d81a3cc5d58e, type: 3}
 --- !u!114 &318568588235045296
 MonoBehaviour:
   m_ObjectHideFlags: 0

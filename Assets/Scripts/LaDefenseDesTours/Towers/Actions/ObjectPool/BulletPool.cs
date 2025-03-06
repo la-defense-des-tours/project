@@ -22,7 +22,7 @@ public class BulletPool : MonoBehaviour
         return new ObjectPool<Bullet>(
             createFunc: () =>
             {
-                Bullet bullet = Instantiate(prefab);
+                Bullet bullet = Instantiate(prefab, transform);
                 bullet.SetPool(pools[prefab.name]);
                 return bullet;
             },

@@ -1,6 +1,8 @@
 ﻿using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using Assets.Scripts.LaDefenseDesTours.Level;
 using Assets.Scripts.LaDefenseDesTours.Towers.Data;
+using LaDefenseDesTours.Strategy;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,8 +35,8 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 		protected Camera m_GameCamera;
 
 		protected Tower m_Tower;
-
-		protected Canvas m_Canvas;
+        public Dropdown dropdown; 
+        protected Canvas m_Canvas;
 
 		public virtual void Show(Tower towerToShow)
 		{
@@ -83,6 +85,11 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
                 lightPrice.text = m_Tower.lightPrice.ToString();
             }
 
+            if (dropdown != null)
+            {
+                dropdown.onValueChanged.AddListener(OnDropdownValueChanged);
+            }
+
             LevelManager.instance.currency.currencyChanged += OnCurrencyChanged;
 			towerInfoDisplay.Show(towerToShow);
 			foreach (var button in confirmationButtons)
@@ -91,7 +98,14 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 			}
 		}
 
-		public virtual void Hide()
+        void OnDropdownValueChanged(int index)
+        {
+            string selectedOption = dropdown.options[index].text;
+            SetStrategy(selectedOption);
+        }
+
+
+        public virtual void Hide()
 		{
 			m_Tower = null;
 			m_Canvas.enabled = false;
@@ -197,6 +211,28 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 			Vector3 point = m_GameCamera.WorldToScreenPoint(m_Tower.transform.position);
 			point.z = 0;
 			panelRectTransform.transform.position = point;
+		}
+
+		public void SetStrategy(string strategy)
+		{
+            if (m_Tower != null)
+            {
+                switch (strategy)
+				{
+					case "Highest Hp":
+						m_Tower.SetStrategy(new HighestHP());
+						break;
+					case "Highest Speed":
+						m_Tower.SetStrategy(new HighestSpeed());
+						break;
+					case "Nearest Base":
+						m_Tower.SetStrategy(new NearestBase());
+						break;
+					case "Nearest Enemy":
+						m_Tower.SetStrategy(new NearestEnemy());
+						break;
+				}
+			}
 		}
 
 
