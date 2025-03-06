@@ -10,6 +10,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         protected State currentState;
         protected NavMeshAgent agent;
         protected Animator animator;
+        private AudioSource audioSource;
+
         public virtual float health { get; set; }
         protected float speed { get; set; }
         protected float acceleration { get; set; }
@@ -21,6 +23,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         private void Awake()
         {
             animator = GetComponent<Animator>();
+            audioSource = GetComponent<AudioSource>();
             attackPosition = GameObject.Find("AttackFalcon!").transform.position;
             SetupNavMeshAgent();
         }
@@ -115,6 +118,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             if (health <= 0)
             {
                 EnemyDeathEvent.EnemyDied(experiencePoints);
+
                 TransitionTo(new Dead());
             }
         }
@@ -136,13 +140,24 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
             if (currentState != null && currentState.GetType() == state.GetType())
                 return;
-
+            if (state is Dead)
+            {
+                StartCoroutine(PlayDeathSound());
+            }
             currentState?.OnStateExit();
             currentState = state;
             currentState.SetContext(this);
             currentState.OnStateEnter();
         }
 
+        private System.Collections.IEnumerator PlayDeathSound()
+        {
+            if (audioSource != null && audioSource.clip != null)
+            {
+                audioSource.Play();
+                yield return new WaitForSeconds(audioSource.clip.length);
+            }
+        }
         private void UpdateState()
         {
             currentState?.ApplyEffect();
