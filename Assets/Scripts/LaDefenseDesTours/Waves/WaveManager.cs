@@ -1,6 +1,7 @@
 using UnityEngine;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using Assets.Scripts.LaDefenseDesTours.Waves;
+using System;
 
 public class WaveManager : MonoBehaviour
 {
@@ -10,13 +11,14 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private EnemyFactory bossEnemyFactory;
     [SerializeField] private Transform target;
     private Wave wave1, wave2, wave3, wave4;
+    public Action OnBossWaveStarted;
 
     public void Start()
     {
         SetupWaves();
     }
 
-    [ContextMenu("Start Wave")] // Pour mes tests sur scène Prototype
+    [ContextMenu("Start Wave")] 
     public void StartWave()
     {
         Generate(wave1);
@@ -29,15 +31,16 @@ public class WaveManager : MonoBehaviour
         wave3 = new Wave_3(walkingEnemyFactory, flyingEnemyFactory, tankEnemyFactory, this);
         wave4 = new Wave_4(walkingEnemyFactory, flyingEnemyFactory, tankEnemyFactory, bossEnemyFactory, this);
 
-        // Chain of responsibility pattern : wave1 -> wave2 -> wave3 -> wave4 -> wave1
+        wave4.onBossWaveStarted += () => OnBossWaveStarted?.Invoke();
+
         wave1.SetNext(wave2);
         wave2.SetNext(wave3);
         wave3.SetNext(wave4);
-        wave4.SetNext(wave1);
     }
 
     public void Generate(Wave wave)
     {
+
         wave.GenerateWave(target.position);
     }
 

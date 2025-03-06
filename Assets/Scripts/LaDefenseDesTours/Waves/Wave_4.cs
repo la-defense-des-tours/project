@@ -56,6 +56,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
                 Debug.Log($"Wave 4: Spawned enemy {enemiesSpawned}/{totalEnemies}");
                 yield return new WaitForSeconds(timeBetweenSpawns);
             }
+            onBossWaveStarted?.Invoke();
 
             Enemy boss = bossEnemyFactory.CreateEnemy();
             boss.Move(targetPosition);
