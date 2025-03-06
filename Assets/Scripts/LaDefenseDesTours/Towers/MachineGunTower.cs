@@ -9,8 +9,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
 
         public MachineGunTower()
         {
-            range = 30f;
-            damage = 30f;
         }
       
     }

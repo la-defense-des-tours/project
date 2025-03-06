@@ -9,8 +9,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
     public abstract class Tower : MonoBehaviour
     {
         private Shooter m_shooter;
-        public virtual float range { get; set; }
-        public virtual float damage { get; set; }
         protected virtual float specialAbility { get; set; }
         public virtual string effectType { get; set; }
         public bool isAtMaxLevel { get; set; } = false;
@@ -18,6 +16,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public int firePrice { get; set; } = 5000;
         public int icePrice { get; set; } = 5000;
         public int lightPrice { get; set; } = 15000;
+
         private Renderer[] renderers;
         private Color defaultColor;
         private readonly Color hoverColor = new(0f, 0.8f, 0.8f, 0.35f);
@@ -34,7 +33,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             m_shooter = GetComponent<Shooter>();
             if (m_shooter != null)
             {
-                m_shooter.Initialize(range, damage, specialAbility, effectType, strategy);
+                m_shooter.Initialize(towerData.range, towerData.dps, specialAbility, effectType, strategy, towerData.fireRate);
             }
 
             renderers = GetComponentsInChildren<Renderer>();
@@ -80,7 +79,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         public void InitialiseBullet(string effect)
         {
-            m_shooter.Initialize(range, damage, specialAbility, effect, strategy);
+            m_shooter.Initialize(towerData.range, towerData.dps, specialAbility, effect, strategy, towerData.fireRate);
         }
 
         public void ApplyHoverColor()
@@ -107,7 +106,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public void SetStrategy(IStrategy _strategy)
         {
             this.strategy = _strategy;
-            m_shooter.Initialize(range, damage, specialAbility, effectType, _strategy);
+            m_shooter.Initialize(towerData.range, towerData.dps, specialAbility, effectType, _strategy, towerData.fireRate);
         }
 
         private void TestDecorators()

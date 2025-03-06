@@ -9,8 +9,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
 
         public LaserTower()
         {
-            range = 50f;
-            damage = 25f;
             specialAbility = damageOverTime;
         }
         public override void Start()

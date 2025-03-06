@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerName: Canon
   description: 
-  upgradeDescription: 
+  upgradeDescription: 0
   upgradeCost: 0
-  cost: 800
+  cost: 0
   dps: 150
   sellCost: 50
   currentLevel: 3
-  range: 30
+  range: 25
+  fireRate: 1
   icon: {fileID: 21300000, guid: 53652022b1d444a5c9e9630488e44e13, type: 3}

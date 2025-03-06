@@ -7,7 +7,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
     {
         FlyingEnemy()
         {
-            InitializeStats(100f, 1.1f, 6f, 0.3f, 8f, 0.9f, 
+            InitializeStats(200f, 1.1f, 8f, 0.3f, 8f, 0.9f, 
                 LevelManager.instance != null ? LevelManager.instance.GetLevel() : 1);
         }
         public override void SetupSpeed()

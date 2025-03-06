@@ -22,6 +22,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers.Data
         public int sellCost;
         public int currentLevel;
         public float range;
+        public float fireRate;
         public Sprite icon;
         
     }

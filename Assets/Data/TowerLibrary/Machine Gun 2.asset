@@ -16,9 +16,10 @@ MonoBehaviour:
   description: 
   upgradeDescription: 
   upgradeCost: 0
-  cost: 100
-  dps: 30
+  cost: 0
+  dps: 40
   sellCost: 50
   currentLevel: 3
   range: 30
+  fireRate: 6
   icon: {fileID: 21300000, guid: fa91237b5487541158165bfce6ebfa0c, type: 3}

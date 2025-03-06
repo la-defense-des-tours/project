@@ -16,10 +16,11 @@ MonoBehaviour:
   description: "Un rayon br\xFBlant qui transperce tout sur son passage, rapide,
     pr\xE9cis, mortel."
   upgradeDescription: Range +3, Damage +50
-  upgradeCost: 400
-  cost: 100
-  dps: 10
+  upgradeCost: 1000
+  cost: 0
+  dps: 15
   sellCost: 50
   currentLevel: 2
-  range: 50
+  range: 40
+  fireRate: 1
   icon: {fileID: 21300000, guid: 3631244dc04164d079a3302a39dbc0c6, type: 3}

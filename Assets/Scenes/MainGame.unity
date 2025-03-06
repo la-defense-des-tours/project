@@ -3929,9 +3929,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intro: {fileID: 5372732949584366344}
   towerLibrary: {fileID: 11400000, guid: b905b328055fdf545903865cde03118f, type: 2}
-  startingCurrency: 1000
+  startingCurrency: 1500
   homeBase: {fileID: 7130800125884514737}
-  currentLevel: 1
+  currentLevel: 50
 --- !u!114 &5372732949584366344
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,8 +9,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
 
         public CanonTower()
         {
-            range = 20f;
-            damage = 100f;
             specialAbility = areaOfEffect;
         }
         public override void Start()
@@ -18,32 +16,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
             if (isGhost) return;
             base.Start();
         }
-        //public override void Upgrade()
-        //{
-            //currentLevel++;
-
-            //switch (currentLevel)
-            //{
-            //    case 2:
-            //        cost += 25;
-            //        areaOfEffect += 5f;
-            //        damage += 15f;
-            //        range += 5f;
-            //        break;
-
-            //    case 3:
-            //        cost += 50;
-            //        areaOfEffect += 10f;
-            //        damage += 25f;
-            //        range += 5f;
-            //        isAtMaxLevel = true;
-            //        break;
-
-            //    default:
-            //        Debug.LogError("Max upgrade level reached!");
-            //        break;
-            //}
-        //}
+    
     }
 
 }

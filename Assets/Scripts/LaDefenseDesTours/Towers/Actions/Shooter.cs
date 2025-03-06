@@ -8,13 +8,12 @@ public abstract class Shooter : MonoBehaviour
     [Header("Tower Attributes")]
     [SerializeField] private float rotatingSpeed = 7f;
     [SerializeField] private Transform rotatingPart;
-    [SerializeField] private float fireRate;
     [SerializeField] private float fireCountdown;
     protected Transform target;
     private IStrategy strategy;
     private float range;
     private const string ENEMY_TAG = "Enemy";
-
+    private float fireRate;
     [Header("Bullet Attributes")]
     [SerializeField] protected Bullet bullet;
     [SerializeField] protected Transform firePoint;
@@ -37,14 +36,15 @@ public abstract class Shooter : MonoBehaviour
     {
         RotateTurret();
     }
-    
-    public void Initialize(float range, float damage, float specialAbility, string effectType, IStrategy strategy)
+
+    public void Initialize(float range, float damage, float specialAbility, string effectType, IStrategy strategy, float fireRate)
     {
         this.range = range;
         this.damage = damage;
         this.specialAbility = specialAbility;
         this.effectType = effectType;
         this.strategy = strategy;
+        this.fireRate = fireRate;
     }
 
     private void RotateTurret()

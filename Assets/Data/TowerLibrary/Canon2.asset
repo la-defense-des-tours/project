@@ -16,10 +16,11 @@ MonoBehaviour:
   description: "Une explosion titanesque qui pulv\xE9rise les lignes ennemies en
     un souffle"
   upgradeDescription: Range +1, Damage +50
-  upgradeCost: 1800
-  cost: 500
+  upgradeCost: 1200
+  cost: 0
   dps: 75
   sellCost: 50
   currentLevel: 2
-  range: 25
+  range: 15
+  fireRate: 0.5
   icon: {fileID: 21300000, guid: 53652022b1d444a5c9e9630488e44e13, type: 3}
