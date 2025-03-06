@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1e456e191d83004ca4d450a7c937649, type: 3}
+  m_Name: Laser3
+  m_EditorClassIdentifier: 
+  defaultMaterial: {fileID: 2100000, guid: cd7bd8a01f6cbc04f81cb3952246cc13, type: 2}
+  materials:
+  - effectType: Fire
+    material: {fileID: 2100000, guid: 4e28cef02ac99614b9c9b1f1c4f2b1ba, type: 2}
+  - effectType: Ice
+    material: {fileID: 2100000, guid: 06cbdeb12bfb53d4db483c933522fc56, type: 2}
+  - effectType: Lightning
+    material: {fileID: 2100000, guid: b9b5e4e231fced74a974ff3a4097935b, type: 2}

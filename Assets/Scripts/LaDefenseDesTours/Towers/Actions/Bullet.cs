@@ -56,10 +56,8 @@ public abstract class Bullet : MonoBehaviour
         pool = _pool;
     }
 
-    public void Release()
+    protected void Release()
     {
-        
-
         if (pool != null)
             pool.Release(this);
         else

@@ -12,7 +12,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers.Data
     [CreateAssetMenu(fileName = "TowerData.asset", menuName = "La défense des tours/Tower Configuration", order = 1)]
     public class TowerData : ScriptableObject
     {
-
         public string towerName;
         public string description;
         public string upgradeDescription;
@@ -24,7 +23,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers.Data
         public float range;
         public float fireRate;
         public Sprite icon;
-        
+        public TowerMaterial materials;
     }
 
 }
