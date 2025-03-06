@@ -164,6 +164,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         {
             if (transform.position.x <= attackPosition.x)
             {
+                experiencePoints = 0;
                 DealDamage(health);
                 TakeDamage(health);
             }
