@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Assets.Scripts.Core;
 using Assets.Scripts.Core.Utilities;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
@@ -34,6 +35,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
         public int currentLevel = 1;
         private int remainingEnemiesByLevel;
         public Leaderboard leaderboard;
+        private AudioSource audioSource;
+        public AudioClip normalMusic; 
+        public AudioClip bossMusic;
+        public AudioClip victoryMusic;
+        private Coroutine fadeCoroutine;
+
 
         protected override void Awake()
         {
@@ -45,6 +52,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             currency = new Currency(startingCurrency);
 
             EnemyDeathEvent.OnEnemyDeath += HandleEnemyDeath;
+
 
             remainingEnemiesByLevel = GetTotalEnemies();
 
@@ -63,6 +71,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             }
 
             leaderboard = new Leaderboard();
+            audioSource = GetComponent<AudioSource>();
+
+            waveManager.OnBossWaveStarted += OnBossSpawned;
+
 
         }
 
@@ -75,6 +87,20 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
         {
             return waveManager.GetSpawnPoint();
         }
+        private IEnumerator FadeMusic(AudioClip newClip)
+        {
+            if (audioSource == null || newClip == null) yield break;
+
+            float startVolume = audioSource.volume;
+
+            audioSource.clip = newClip;
+            audioSource.Play();
+
+            audioSource.volume = startVolume;
+        }
+
+
+
 
         public void BuildingCompleted()
         {
@@ -101,12 +127,16 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             }
 
             EnemyDeathEvent.OnEnemyDeath -= HandleEnemyDeath;
+            waveManager.OnBossWaveStarted -= OnBossSpawned;
         }
 
         private void IntroCompleted()
         {
             ChangeLevelState(LevelState.Building);
         }
+
+
+
 
 		private void ChangeLevelState(LevelState newState)
 		{
@@ -156,12 +186,47 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 
             if (remainingEnemiesByLevel <= 0)
             {
+                if (fadeCoroutine != null)
+                {
+                    StopCoroutine(fadeCoroutine);
+                }
+                fadeCoroutine = StartCoroutine(PlayVictoryThenNormalMusic());
+
+
+                StartCoroutine(WaitAndStartWave());
                 NextLevel();
+
                 remainingEnemiesByLevel = GetTotalEnemies();
-                waveManager.StartWave();
+
+                
 
                 Debug.Log($"Niveau {currentLevel} atteint ! Nouveaux ennemis : {remainingEnemiesByLevel}");
             }
+        }
+
+        private IEnumerator PlayVictoryThenNormalMusic()
+        {
+            yield return StartCoroutine(FadeMusic(victoryMusic));
+            yield return new WaitForSeconds(victoryMusic.length); 
+            yield return StartCoroutine(FadeMusic(normalMusic));
+        }
+
+        private void OnBossSpawned()
+        {
+            Debug.Log("Boss wave started !");
+            if (fadeCoroutine != null)
+            {
+                StopCoroutine(fadeCoroutine);
+            }
+            fadeCoroutine = StartCoroutine(FadeMusic(bossMusic));
+        }
+
+        private IEnumerator WaitAndStartWave()
+        {
+            Debug.Log("Attente avant la prochaine vague...");
+            yield return new WaitForSeconds(5f);
+            waveManager.StartWave();
+            Debug.Log($"Niveau {currentLevel} atteint ! Nouveaux ennemis : {remainingEnemiesByLevel}");
         }
 
         private void SafelyCallLevelFailed()

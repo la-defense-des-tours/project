@@ -15,6 +15,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         protected float timeBetweenWave = 5f;
         protected Vector3 targetPosition;
         public List<Enemy> spawnedEnemies = new List<Enemy>();
+        public Action onBossWaveStarted;
 
         // Chaine de responsabilité
         public Wave SetNext(Wave nextWave)

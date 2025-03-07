@@ -232,6 +232,24 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             isTimerRunning = false;
             gameTimer = 0f;
             UpdateTimerUI();
+            stateChanged += OnGameStateChanged;
+        }
+
+        private void OnGameStateChanged(State oldState, State newState)
+        {
+            if (LevelManager.instance == null) return;
+
+            AudioSource audioSource = LevelManager.instance.GetComponent<AudioSource>();
+            if (audioSource == null) return;
+
+            if (newState == State.Paused || newState == State.GameOver)
+            {
+                audioSource.Pause();
+            }
+            else if (oldState == State.Paused && newState == State.Normal)
+            {
+                audioSource.UnPause();
+            }
         }
 
         private void Update()
@@ -333,12 +351,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             {
                 throw new ArgumentNullException("towerToBuild");
             }
-
-            //m_CurrentTower = Instantiate(towerToBuild.towerGhostPrefab);
-            //m_CurrentTower.Initialize(towerToBuild);
-            //m_CurrentTower.Hide();
-
-            ////activate build info
             if (buildInfoUI != null)
             {
                 buildInfoUI.Show(towerToBuild);
