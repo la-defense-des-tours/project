@@ -67,9 +67,9 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
                 }
             }
 
-            UpdateEffectButton(fireButton, firePrice, m_Tower.firePrice);
-            UpdateEffectButton(iceButton, icePrice, m_Tower.icePrice);
-            UpdateEffectButton(lightButton, lightPrice, m_Tower.lightPrice);
+            UpdateEffectButton(fireButton, firePrice, m_Tower.firePrice, "Fire");
+            UpdateEffectButton(iceButton, icePrice, m_Tower.icePrice, "Ice");
+            UpdateEffectButton(lightButton, lightPrice, m_Tower.lightPrice, "Lightning");
         }
 
         private void SetDropdownSelection()
@@ -85,11 +85,11 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             }
         }
 
-        private void UpdateEffectButton(Button button, Text priceText, int price)
+        private void UpdateEffectButton(Button button, Text priceText, int price, string effectType)
         {
             if (button != null)
             {
-                button.interactable = LevelManager.instance.currency.CanAfford(price);
+                button.interactable = LevelManager.instance.currency.CanAfford(price) && m_Tower.effectType != effectType;
                 priceText.text = price.ToString();
             }
         }
