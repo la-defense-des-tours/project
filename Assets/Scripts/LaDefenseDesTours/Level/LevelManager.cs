@@ -126,6 +126,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
                 StartCoroutine(soundManager.PlayVictoryThenNormalMusic());
                 StartCoroutine(WaitAndStartWave());
                 NextLevel();
+                if (currentLevel % 5 == 0) 
+                    Player.GetInstance().UpgradeLife();
                 remainingEnemiesByLevel = GetTotalEnemies();
                 Debug.Log($"Niveau {currentLevel} atteint ! Nouveaux ennemis : {remainingEnemiesByLevel}");
             }
