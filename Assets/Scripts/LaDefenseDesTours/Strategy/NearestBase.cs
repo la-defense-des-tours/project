@@ -7,6 +7,10 @@ namespace LaDefenseDesTours.Strategy
     public class NearestBase : IStrategy
     {
         private readonly string ENEMY_TAG = "Enemy";
+        public string GetStrategyName()
+        {
+            return "Nearest Base";
+        }
 
         public Transform SelectTarget(Enemy[] enemies, Vector3 towerPosition, float range)
         {

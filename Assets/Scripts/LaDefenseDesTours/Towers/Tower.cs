@@ -43,6 +43,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             }
         }
 
+
         public virtual void Update()
         {
             TestDecorators();
@@ -51,6 +52,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public void Sell()
         {
             Destroy(gameObject);
+        }
+
+
+        public string GetStrategyType()
+        {
+            return strategy.GetStrategyName();
         }
 
         public void Upgrade()

@@ -6,6 +6,10 @@ namespace LaDefenseDesTours.Strategy
     public class HighestHP : IStrategy
     {
         private readonly string ENEMY_TAG = "Enemy";
+        public string GetStrategyName()
+        {
+            return "Highest Hp";
+        }
 
         public Transform SelectTarget(Enemy[] enemies, Vector3 towerPosition, float range)
         {
