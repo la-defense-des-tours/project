@@ -21,7 +21,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         private Color defaultColor;
         private readonly Color hoverColor = new(0f, 0.8f, 0.8f, 0.35f);
         public TowerData towerData;
-        [SerializeField] public GameObject towerPrefabs;
         private IStrategy strategy;
 
         public virtual void Start()
@@ -64,15 +63,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         {
             if (isAtMaxLevel) return;
 
-            GameObject nextPrefab = towerPrefabs;
-
-            if (nextPrefab == null) return;
-
             Cell parentCell = GetComponentInParent<Cell>();
             if (parentCell == null) return;
 
-            GameObject newTowerObj = Instantiate(nextPrefab, transform.position, transform.rotation);
-            Tower newTower = newTowerObj.GetComponent<Tower>();
+            Tower newTower = towerData.factories.CreateTower(transform.position, towerData.currentLevel + 1);
             newTower.transform.SetParent(parentCell.transform);
 
             if (newTower.towerData.currentLevel >= 3)
