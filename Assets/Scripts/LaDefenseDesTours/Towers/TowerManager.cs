@@ -55,6 +55,13 @@ public class TowerManager : MonoBehaviour
     public void SelectCell(Tower tower)
     {
 
+
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            Debug.Log("Impossible de placer une tour sur l'interface utilisateur !");
+            return;
+        }
+
         GameUI.instance.towerUI.Show(tower);
     }
 
