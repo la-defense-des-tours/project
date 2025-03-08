@@ -8,5 +8,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         {
             tower.effectType = "Ice";
         }
+
+        protected override float DamageModifier()
+        {
+            return 0.75f;
+        }
     }
 }
