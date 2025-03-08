@@ -38,6 +38,9 @@ public class MachineGunBullet : Bullet
             return;
 
         GameObject effect = Instantiate(impactEffect, transform.position, transform.rotation, BulletPool.Instance.transform);
+        AudioSource audioSource = effect.GetComponent<AudioSource>();
+        if (audioSource != null)
+            audioSource.Play();
         ParticleSystem ps = effect.GetComponent<ParticleSystem>();
         if (ps != null)
             SetupParticles(ps);
