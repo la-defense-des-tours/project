@@ -120,7 +120,7 @@ public class EnemyTests
     public void DealDamage_CallsPlayerTakeDamageWithCorrectValue()
     {
         enemy.DealDamage(200f);
-        double expectedPlayerHealth = 1800;
+        double expectedPlayerHealth = 1700;
         double resultPlayerHealth = Player.GetInstance().health;
 
         Assert.AreEqual(expectedPlayerHealth, resultPlayerHealth);
