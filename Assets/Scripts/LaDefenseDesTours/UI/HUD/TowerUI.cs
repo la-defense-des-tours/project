@@ -18,9 +18,9 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         public GameObject[] confirmationButtons;
         public Dropdown dropdown;
 
-        protected Camera m_GameCamera;
-        protected Tower m_Tower;
-        protected Canvas m_Canvas;
+        private Camera m_GameCamera;
+        private Tower m_Tower;
+        private Canvas m_Canvas;
 
         public virtual void Show(Tower towerToShow)
         {
@@ -184,7 +184,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             }
         }
 
-        protected void AdjustPosition()
+        private void AdjustPosition()
         {
             if (m_Tower == null) return;
 
@@ -215,7 +215,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             }
         }
 
-        protected void OnGameUIStateChanged(GameUI.State oldState, GameUI.State newState)
+        private void OnGameUIStateChanged(GameUI.State oldState, GameUI.State newState)
         {
             if (newState == GameUI.State.GameOver)
             {

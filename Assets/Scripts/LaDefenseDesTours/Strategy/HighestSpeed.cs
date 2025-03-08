@@ -11,7 +11,7 @@ namespace LaDefenseDesTours.Strategy
             return "Highest Speed";
         }
 
-        public Transform SelectTarget(Enemy[] enemies, Vector3 towerPosition, float range)
+        public Enemy SelectTarget(Enemy[] enemies, Vector3 towerPosition, float range)
         {
             Enemy selected = null;
             float highestSpeed = float.MinValue;
@@ -19,7 +19,7 @@ namespace LaDefenseDesTours.Strategy
             {
                 float distance = Vector3.Distance(towerPosition, enemy.transform.position);
                 float enemySpeed = enemy.GetSpeed();
-                
+
                 if (distance <= range && enemySpeed > highestSpeed)
                 {
                     highestSpeed = enemySpeed;
@@ -27,7 +27,7 @@ namespace LaDefenseDesTours.Strategy
                 }
             }
 
-            return selected && selected.gameObject.CompareTag(ENEMY_TAG) ? selected.transform : null;
+            return selected && selected.gameObject.CompareTag(ENEMY_TAG) ? selected : null;
         }
     }
 }

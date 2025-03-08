@@ -11,7 +11,7 @@ namespace LaDefenseDesTours.Strategy
         {
             return "Nearest Enemy";
         }
-        public Transform SelectTarget(Enemy[] enemies, Vector3 towerPosition, float range)
+        public Enemy SelectTarget(Enemy[] enemies, Vector3 towerPosition, float range)
         {
             float shortestDistance = Mathf.Infinity;
             Enemy selected = null;
@@ -26,7 +26,7 @@ namespace LaDefenseDesTours.Strategy
                 }
             }
 
-            return selected != null && selected.gameObject.CompareTag(ENEMY_TAG) ? selected.transform : null;
+            return selected != null && selected.gameObject.CompareTag(ENEMY_TAG) ? selected : null;
         }
     }
 }
