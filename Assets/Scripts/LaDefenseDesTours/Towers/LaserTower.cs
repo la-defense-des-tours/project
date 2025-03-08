@@ -5,7 +5,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
 {
     public class LaserTower : Tower
     {
-        public float damageOverTime { get; set; } = 1f;
+        private float damageOverTime { get; set; } = 1f;
 
         public LaserTower()
         {
