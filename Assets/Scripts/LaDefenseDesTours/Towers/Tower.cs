@@ -72,7 +72,21 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         public void InitialiseBullet(string effect)
         {
-            m_shooter.Initialize(towerData.range, towerData.dps, specialAbility, effect, strategy, towerData.fireRate);
+            float damage = towerData.dps;
+            switch (effect)
+            {
+                case "Fire":
+                    damage *= 1.25f;
+                    break;
+                case "Ice":
+                    damage *= 0.75f;
+                    break;
+                case "Lightning":
+                    damage *= 0.5f;
+                    break;
+            }
+
+            m_shooter?.Initialize(towerData.range, damage, specialAbility, effect, strategy, towerData.fireRate);
         }
 
         public void ApplyHoverColor()
@@ -127,7 +141,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         {
             if (towerData == null || towerData.materials == null)
                 return;
-            
+
             Material materialToApply = towerData.materials.GetMaterial(effectType);
 
             if (materialToApply != null)
