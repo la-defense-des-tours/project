@@ -37,7 +37,7 @@ namespace Assets.Scripts.Core.Utilities
             audioSource.Play();
             audioSource.Stop();
         }
-        private IEnumerator FadeMusic(AudioClip newClip)
+        private IEnumerator FadeMusic(AudioClip newClip,bool isLoop)
         {
             if (audioSource == null || newClip == null) yield break;
 
@@ -45,6 +45,7 @@ namespace Assets.Scripts.Core.Utilities
 
             audioSource.clip = newClip;
             audioSource.Play();
+            audioSource.loop = isLoop;
             audioSource.volume = startVolume;
         }
 
@@ -54,7 +55,7 @@ namespace Assets.Scripts.Core.Utilities
             {
                 StopCoroutine(fadeCoroutine);
             }
-            fadeCoroutine = StartCoroutine(FadeMusic(normalMusic));
+            fadeCoroutine = StartCoroutine(FadeMusic(normalMusic, true));
         }
 
         public void PlayBossMusic()
@@ -63,14 +64,14 @@ namespace Assets.Scripts.Core.Utilities
             {
                 StopCoroutine(fadeCoroutine);
             }
-            fadeCoroutine = StartCoroutine(FadeMusic(bossMusic));
+            fadeCoroutine = StartCoroutine(FadeMusic(bossMusic, false));
         }
 
         public IEnumerator PlayVictoryThenNormalMusic()
         {
-            yield return StartCoroutine(FadeMusic(victoryMusic));
+            yield return StartCoroutine(FadeMusic(victoryMusic, false));
             yield return new WaitForSeconds(victoryMusic.length);
-            yield return StartCoroutine(FadeMusic(normalMusic));
+            yield return StartCoroutine(FadeMusic(normalMusic, true));
         }
     }
 }
