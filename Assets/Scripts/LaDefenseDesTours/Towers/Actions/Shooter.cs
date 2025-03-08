@@ -49,7 +49,7 @@ public abstract class Shooter : MonoBehaviour
 
     private void RotateTurret()
     {
-        if (target == null || !HasLineOfSight())
+        if (!target || !HasLineOfSight())
             return;
 
         LockOnTarget();
@@ -65,11 +65,11 @@ public abstract class Shooter : MonoBehaviour
 
     protected bool HasLineOfSight()
     {
-        if (target == null)
+        if (!target)
             return false;
 
         Collider targetCollider = target.GetComponent<Collider>();
-        if (targetCollider == null)
+        if (!targetCollider)
             return false;
 
         Vector3 targetPosition = targetCollider.bounds.center;
@@ -86,16 +86,16 @@ public abstract class Shooter : MonoBehaviour
         if (strategy != null)
         {
             Enemy selectedEnemy = strategy.SelectTarget(enemies, transform.position, range);
-            Transform newTarget = selectedEnemy != null ? selectedEnemy.transform : null;
+            Transform newTarget = selectedEnemy ? selectedEnemy.transform : null;
 
-            if (newTarget != null || target == null || !IsTargetValid(target))
+            if (newTarget || !target || !IsTargetValid(target))
             {
                 target = newTarget;
-                if (target != null && target != oldTarget)
+                if (target && target != oldTarget)
                     fireCountdown = 0f;
             }
         }
-        else if (target == null || !IsTargetValid(target))
+        else if (!target || !IsTargetValid(target))
         {
             target = null;
         }
@@ -103,11 +103,11 @@ public abstract class Shooter : MonoBehaviour
 
     private bool IsTargetValid(Transform checkTarget)
     {
-        if (checkTarget == null)
+        if (!checkTarget)
             return false;
 
         Enemy enemy = checkTarget.GetComponent<Enemy>();
-        if (enemy == null || enemy.tag != ENEMY_TAG)
+        if (!enemy || !enemy.CompareTag(ENEMY_TAG))
             return false;
 
         float distance = Vector3.Distance(transform.position, checkTarget.position);
