@@ -31,7 +31,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             m_Canvas.enabled = true;
 
             UpdateUIElements();
-
             if (dropdown != null)
             {
                 dropdown.onValueChanged.AddListener(OnDropdownValueChanged);

@@ -22,6 +22,6 @@ MonoBehaviour:
   currentLevel: 3
   range: 25
   fireRate: 1
-  icon: {fileID: 21300000, guid: 53652022b1d444a5c9e9630488e44e13, type: 3}
+  icon: {fileID: 21300000, guid: fa91237b5487541158165bfce6ebfa0c, type: 3}
   materials: {fileID: 11400000, guid: b4f6f2500450a7341bdb04b664fcfd6b, type: 2}
   factories: {fileID: 2200366559202453742, guid: 662d4e3711e43a447b1c23635ae593f2, type: 3}
