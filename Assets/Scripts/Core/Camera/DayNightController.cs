@@ -5,17 +5,20 @@ namespace Core.Camera
 {
     public class DayNightController : MonoBehaviour
     {
-        [Header("Components")] [SerializeField]
+        [Header("Components")]
+        [SerializeField]
         private Light sun;
 
         [SerializeField] private ParticleSystem dustParticles;
 
-        [Header("Cycle Settings")] [SerializeField]
+        [Header("Cycle Settings")]
+        [SerializeField]
         private float dayDuration;
 
-        [Range(0.1f, 0.9f)] [SerializeField] private float nightTransitionThreshold;
+        [Range(0.1f, 0.9f)][SerializeField] private float nightTransitionThreshold;
 
-        [Header("Lighting Settings")] [SerializeField]
+        [Header("Lighting Settings")]
+        [SerializeField]
         private Color nightColor;
 
         [SerializeField] private Color duskColor;
@@ -55,28 +58,33 @@ namespace Core.Camera
         private void UpdateLighting(float normalizedTime)
         {
             if (normalizedTime < nightTransitionThreshold)
-            {
-                float dayProgress = normalizedTime / nightTransitionThreshold;
+                ApplyDayLighting(normalizedTime);
+            else
+                ApplyNightLighting(normalizedTime);
+        }
 
-                sun.color = Color.Lerp(dayColor, duskColor, Mathf.SmoothStep(0, 1, dayProgress));
-                isDay = true;
+        private void ApplyDayLighting(float normalizedTime)
+        {
+            float dayProgress = normalizedTime / nightTransitionThreshold;
+
+            sun.color = Color.Lerp(dayColor, duskColor, Mathf.SmoothStep(0, 1, dayProgress));
+            isDay = true;
+        }
+
+        private void ApplyNightLighting(float normalizedTime)
+        {
+            float nightProgress = (normalizedTime - nightTransitionThreshold) / (1 - nightTransitionThreshold);
+
+            if (nightProgress < 0.5f)
+            {
+                float duskToNightProgress = nightProgress * 2f;
+                sun.color = Color.Lerp(duskColor, nightColor, Mathf.SmoothStep(0, 1, duskToNightProgress));
+                isDay = false;
             }
             else
             {
-                float nightProgress = (normalizedTime - nightTransitionThreshold) / (1 - nightTransitionThreshold);
-
-                if (nightProgress < 0.5f)
-                {
-                    float duskToNightProgress = nightProgress * 2f;
-                    sun.color = Color.Lerp(duskColor, nightColor, Mathf.SmoothStep(0, 1, duskToNightProgress));
-                }
-                else
-                {
-                    float nightToDawnProgress = (nightProgress - 0.5f) * 2f;
-                    sun.color = Color.Lerp(nightColor, duskColor, Mathf.SmoothStep(0, 1, nightToDawnProgress));
-                }
-
-                isDay = false;
+                float nightToDawnProgress = (nightProgress - 0.5f) * 2f; 
+                sun.color = Color.Lerp(nightColor, duskColor, Mathf.SmoothStep(0, 1, nightToDawnProgress));
             }
         }
 
