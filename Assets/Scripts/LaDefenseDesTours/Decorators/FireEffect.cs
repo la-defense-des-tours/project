@@ -8,5 +8,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         {
             tower.effectType = "Fire";
         }
+
+        protected override float DamageModifier()
+        {
+            return 1.25f;
+        }
     }
 }
