@@ -4186,7 +4186,7 @@ MonoBehaviour:
       - m_Target: {fileID: 114623870853810010}
         m_TargetAssemblyTypeName: Assets.Scripts.LaDefenseDesTours.UI.HUD.TowerUI,
           Assembly-CSharp
-        m_MethodName: LigthningEffect
+        m_MethodName: LightningEffect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
