@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using Assets.Scripts.LaDefenseDesTours.Level;
@@ -7,7 +8,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
     public abstract class Enemy : MonoBehaviour, Health
     {
-        protected State currentState;
+        private State currentState;
         protected NavMeshAgent agent;
         protected Animator animator;
         private AudioSource audioSource;
@@ -19,7 +20,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public virtual float maxHealth { get; set; }
         public event Action OnHealthChanged;
         private Vector3 attackPosition;
-        
+
         private void Awake()
         {
             animator = GetComponent<Animator>();
@@ -33,12 +34,13 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             HealthBar healthBar = FindFirstObjectByType<HealthBar>();
             if (healthBar != null)
                 healthBar.SetTarget(this);
-            
+
             health = maxHealth;
             TransitionTo(new Normal());
         }
 
-        protected void InitializeStats(float baseHealth, float healthFactor, float baseSpeed, float speedFactor, float baseAcceleration, float accelerationFactor, int currentLevel)
+        protected void InitializeStats(float baseHealth, float healthFactor, float baseSpeed, float speedFactor,
+            float baseAcceleration, float accelerationFactor, int currentLevel)
         {
             maxHealth = Mathf.RoundToInt(baseHealth * Mathf.Pow(healthFactor, currentLevel - 1));
             speed = baseSpeed + (speedFactor * (currentLevel - 1));
@@ -88,7 +90,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         protected virtual void SetupNavMeshAgent()
         {
-            agent = gameObject.GetComponent<NavMeshAgent>() == null ? gameObject.AddComponent<NavMeshAgent>() : gameObject.GetComponent<NavMeshAgent>();
+            agent = gameObject.GetComponent<NavMeshAgent>() == null
+                ? gameObject.AddComponent<NavMeshAgent>()
+                : gameObject.GetComponent<NavMeshAgent>();
             SetupSpeed();
         }
 
@@ -140,17 +144,14 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
             if (currentState != null && currentState.GetType() == state.GetType())
                 return;
-            if (state is Dead)
-            {
-                StartCoroutine(PlayDeathSound());
-            }
+
             currentState?.OnStateExit();
             currentState = state;
             currentState.SetContext(this);
             currentState.OnStateEnter();
         }
 
-        private System.Collections.IEnumerator PlayDeathSound()
+        public IEnumerator PlayDeathSound()
         {
             if (audioSource != null && audioSource.clip != null)
             {
@@ -158,6 +159,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
                 yield return new WaitForSeconds(audioSource.clip.length);
             }
         }
+
         private void UpdateState()
         {
             currentState?.ApplyEffect();
