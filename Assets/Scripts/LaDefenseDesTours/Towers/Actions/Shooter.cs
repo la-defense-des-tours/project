@@ -43,7 +43,7 @@ public abstract class Shooter : MonoBehaviour
         this.damage = damage;
         this.specialAbility = specialAbility;
         this.effectType = effectType;
-        this.strategy = strategy;
+        this.strategy = strategy ?? new NearestEnemy();
         this.fireRate = fireRate;
     }
 
@@ -80,9 +80,41 @@ public abstract class Shooter : MonoBehaviour
 
     protected virtual void UpdateTarget()
     {
+        Transform oldTarget = target;
         Enemy[] enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+
         if (strategy != null)
-            target = strategy.SelectTarget(enemies, transform.position, range);
+        {
+            Enemy selectedEnemy = strategy.SelectTarget(enemies, transform.position, range);
+            Transform newTarget = selectedEnemy != null ? selectedEnemy.transform : null;
+
+            if (newTarget != null || target == null || !IsTargetValid(target))
+            {
+                target = newTarget;
+                if (target != null && target != oldTarget)
+                    fireCountdown = 0f;
+            }
+        }
+        else if (target == null || !IsTargetValid(target))
+        {
+            target = null;
+        }
+    }
+
+    private bool IsTargetValid(Transform checkTarget)
+    {
+        if (checkTarget == null)
+            return false;
+
+        Enemy enemy = checkTarget.GetComponent<Enemy>();
+        if (enemy == null || enemy.tag != ENEMY_TAG)
+            return false;
+
+        float distance = Vector3.Distance(transform.position, checkTarget.position);
+        if (distance > range)
+            return false;
+
+        return true;
     }
 
     private void LockOnTarget()
@@ -100,11 +132,5 @@ public abstract class Shooter : MonoBehaviour
         Bullet spawnedBullet = BulletPool.Instance.GetBullet(bullet);
         spawnedBullet.transform.SetPositionAndRotation(firePoint.position, firePoint.rotation);
         return spawnedBullet;
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, range);
     }
 }
