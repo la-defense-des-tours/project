@@ -2593,8 +2593,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac7ea27c81d5504b8806ea3afc9f9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highQualityProfile: {fileID: 11400000, guid: b35b815a19e22754c9098593f4d995c9, type: 2}
-  lowQualityProfile: {fileID: 11400000, guid: 29b1a1e1383217a499041ffccd9d52c8, type: 2}
 --- !u!114 &486762794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4584,7 +4582,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3184737271828862335, guid: 11be649261b414f41b55ac232b9f350f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -0.22994216
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 3184737271828862335, guid: 11be649261b414f41b55ac232b9f350f, type: 3}
       propertyPath: m_SizeDelta.y
@@ -4827,7 +4825,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1351931452}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -6954,7 +6952,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 1
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
@@ -6999,8 +6997,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -21.31}
-  m_SizeDelta: {x: -17, y: -39.47}
+  m_AnchoredPosition: {x: 25, y: -21.31}
+  m_SizeDelta: {x: -42, y: -39.47}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2138093451
 MonoBehaviour:
