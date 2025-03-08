@@ -31,7 +31,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
         private IEnumerator SpawnWaveRoutine(Vector3 targetPosition)
         {
             totalEnemies = 4 * LevelManager.instance.GetLevel();
-            Debug.Log($"Wave 2: Spawning {totalEnemies} enemies {LevelManager.instance.GetLevel()}");
             int enemiesSpawned = 0;
 
             while (enemiesSpawned < totalEnemies)
@@ -51,7 +50,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
                 spawnedEnemies.Add(enemy);
                 enemiesSpawned++;
 
-                Debug.Log($"Wave 2: Spawned enemy {enemiesSpawned}/{totalEnemies}");
                 yield return new WaitForSeconds(timeBetweenSpawns);
             }
 

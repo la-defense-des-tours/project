@@ -68,9 +68,6 @@ namespace Assets.Scripts.LaDefenseDesTours
         {
             bool shouldBeVisible = target.health < target.maxHealth && target.health > 0;
 
-            Debug.Log("maxHealth " + target.maxHealth);
-            Debug.Log("health" + target.health);
-
             if (shouldBeVisible)
             {
                 gameObject.SetActive(true);

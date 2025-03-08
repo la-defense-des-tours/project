@@ -57,7 +57,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 
         protected virtual void Awake()
         {
-            Debug.Log($"TowerSpawnButton {gameObject.name} initialized");
 
             if (TowerManager.instance != null)
             {
@@ -103,7 +102,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         /// </summary>
         public void OnClick()
         {  
-            Debug.Log("m_Tower: " + m_Tower);
             buttonTapped(m_Tower);
 
         }

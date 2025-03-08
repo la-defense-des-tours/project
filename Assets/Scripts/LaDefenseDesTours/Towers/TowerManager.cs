@@ -51,7 +51,6 @@ public class TowerManager : MonoBehaviour
 
         if (EventSystem.current.IsPointerOverGameObject())
         {
-            Debug.Log("Impossible de placer une tour sur l'interface utilisateur !");
             return;
         }
 
@@ -87,7 +86,6 @@ public class TowerManager : MonoBehaviour
     {
         if (button == null)
         {
-            Debug.LogError("Trying to register a null button in TowerManager!");
             return;
         }
         spawnButtons.Add(button);
@@ -136,7 +134,6 @@ public class TowerManager : MonoBehaviour
             if (cell == cacheCell)
                 return;
             cacheCell = cell;
-            Debug.Log("[MoveGhostToMouse] Detected cell: " + cell.name);
             StartCoroutine(placementValidator.ValidatePlacement(cell, currentGhost, (isValid) =>
             {
                 isGhostPlacementValid = isValid;
@@ -146,7 +143,6 @@ public class TowerManager : MonoBehaviour
         else
         {
             isGhostPlacementValid = false;
-            Debug.Log("[MoveGhostToMouse] No cell detected.");
             placementValidator.UpdateGhostVisual(currentGhost, false);
         }
     }
@@ -176,7 +172,6 @@ public class TowerManager : MonoBehaviour
     {
         if (newState == GameUI.State.Paused || newState == GameUI.State.GameOver)
         {
-            Debug.Log("[TowerManager] Canceling ghost due to game state change.");
             CancelGhostPlacement();
         }
     }

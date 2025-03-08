@@ -35,17 +35,14 @@ public class Cell : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("Cell clicked");
 
         Tower detectedTower = FindTowerInCell(); 
 
         if (detectedTower != null)
         {
-            Debug.Log("Cell is occupied");
             towerManager.SelectCell(detectedTower);
             return;
         }
-        Debug.Log("Cell is not occupied");
         towerManager.TryPlaceTowerOnCell(this);
     }
     public bool IsOccupied()

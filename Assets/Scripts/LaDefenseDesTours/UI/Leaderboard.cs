@@ -38,7 +38,6 @@ public class Leaderboard
             LeaderboardDataWrapper dataWrapper = new LeaderboardDataWrapper(allEntries);
             string json = JsonUtility.ToJson(dataWrapper, true);
             File.WriteAllText(filePath, json);
-            Debug.Log("Leaderboard saved to file: " + filePath);
         }
         catch (Exception ex)
         {

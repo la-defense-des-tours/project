@@ -52,7 +52,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
                 spawnedEnemies.Add(enemy);
                 enemiesSpawned++;
 
-                Debug.Log($"Wave 1: Spawned enemy {enemiesSpawned}/{totalEnemies}");
                 yield return new WaitForSeconds(timeBetweenSpawns);
             }
 

@@ -120,13 +120,11 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
                 buildInfoUI.Hide();
             }
 
-            Debug.Log("Returning to Normal state");
             SetState(State.Normal);
         }
 
         public void SetState(State newState)
         {
-            Debug.Log(newState.ToString());
             if (state == newState)
             {
                 return;
@@ -189,7 +187,6 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
 
             if (state != State.Normal && state != State.BuildingWithDrag)
             {
-                Debug.Log($"Forcing state reset from {state} to Normal before entering Building");
                 SetState(State.Normal);
             }
 
