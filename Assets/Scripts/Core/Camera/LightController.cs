@@ -6,22 +6,9 @@ public class LightController : MonoBehaviour
     [SerializeField] private DayNightController dayNightController;
     [SerializeField] private Light[] lights;
 
-    void Start()
-    {
-        SetupLights();
-    }
-
     void Update()
     {
         UpdateLight();
-    }
-
-    private void SetupLights()
-    {
-        foreach (Light light in lights)
-        {
-            light.color = Color.white;
-        }
     }
     
     private void UpdateLight()
@@ -32,11 +19,9 @@ public class LightController : MonoBehaviour
         foreach (Light light in lights)
         {
             if (dayNightController.IsDay())
-                light.intensity = 250;
-            else
                 light.intensity = 0;
+            else
+                light.intensity = 250;
         }
     }
-    
-    
 }
