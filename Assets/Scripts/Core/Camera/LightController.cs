@@ -5,7 +5,7 @@ public class LightController : MonoBehaviour
 {
     [SerializeField] private DayNightController dayNightController;
     [SerializeField] private Light[] lights;
-
+    
     void Update()
     {
         UpdateLight();
