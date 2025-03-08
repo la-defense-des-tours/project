@@ -15,6 +15,7 @@ namespace LaDefenseDesTours.Strategy
         {
             float shortestDistance = Mathf.Infinity;
             Enemy selected = null;
+
             foreach (Enemy enemy in enemies)
             {
                 float distance = Vector3.Distance(towerPosition, enemy.transform.position);
@@ -24,7 +25,7 @@ namespace LaDefenseDesTours.Strategy
                     selected = enemy;
                 }
             }
-            
+
             return selected != null && selected.gameObject.CompareTag(ENEMY_TAG) ? selected.transform : null;
         }
     }
