@@ -328,7 +328,7 @@ MonoBehaviour:
   towerIcon: {fileID: 114379891500743206}
   buyButton: {fileID: 114286986025489450}
   energyIcon: {fileID: 114188670040651154}
-  energyDefaultColor: {r: 0.3647059, g: 0.7058824, b: 1, a: 1}
+  energyDefaultColor: {r: 1, g: 1, b: 1, a: 1}
   energyInvalidColor: {r: 1, g: 0.3647059, b: 0.3647059, a: 1}
 --- !u!1 &1648160208574754
 GameObject:
@@ -443,8 +443,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -17.7, y: -16.600002}
-  m_SizeDelta: {x: 15.3, y: 17.1}
+  m_AnchoredPosition: {x: -27.9, y: -16.600002}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &222362420361641886
 CanvasRenderer:
@@ -467,14 +467,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.92156863, g: 0.27450982, b: 0.019607844, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 10f6c8d03930b4a449f543633892e711, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e965c7fdf07879543a3cdc833ecae0ec, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
