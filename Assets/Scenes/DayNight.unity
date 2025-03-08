@@ -4325,10 +4325,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3451466858921933205, guid: 162e51569371fd741ac6f4990cc6538d, type: 3}
-      propertyPath: lightingGradient.m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3451466858921933205, guid: 162e51569371fd741ac6f4990cc6538d, type: 3}
       propertyPath: nightTransitionThreshold
       value: 0.7
       objectReference: {fileID: 0}
@@ -4470,9 +4466,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4931131365707798550, guid: 245b973f6685d61429d7c0ebc07bd783, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5372732949584366347}
-    - targetCorrespondingSourceObject: {fileID: 4931131365707798550, guid: 245b973f6685d61429d7c0ebc07bd783, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5372732949584366348}
   m_SourcePrefab: {fileID: 100100000, guid: 245b973f6685d61429d7c0ebc07bd783, type: 3}
 --- !u!1 &5372732949584366342 stripped
 GameObject:
@@ -4609,21 +4602,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5372732949584366348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5372732949584366342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc173d0628ea5f3418e21abb5cf62dce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  normalMusic: {fileID: 8300000, guid: 856a024e99bb7e849b1e4d2fa48d724a, type: 3}
-  bossMusic: {fileID: 8300000, guid: 624260d4d77cb234c921c8e82e843983, type: 3}
-  victoryMusic: {fileID: 8300000, guid: c4256d7b0022a4e628edc3721077fe30, type: 3}
 --- !u!1001 &5613255057236737548
 PrefabInstance:
   m_ObjectHideFlags: 0
