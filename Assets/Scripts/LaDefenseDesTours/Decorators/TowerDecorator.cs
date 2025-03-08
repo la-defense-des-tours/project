@@ -18,9 +18,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             float damageModifier = DamageModifier();
             float damage = tower.towerData.dps * damageModifier;
 
-            this.tower.effectType = effectType;
-            this.tower.InitialiseBullet(effectType, damage);
-            this.tower.ChangeMaterial(effectType);
+            tower.effectType = effectType;
+            tower.InitialiseBullet(effectType, damage);
+            tower.ChangeMaterial(effectType);
         }
 
         protected abstract float DamageModifier();
