@@ -9,7 +9,7 @@ public sealed class Player : MonoBehaviour, Health
     private static Player Instance { get; set; }
     public string Name { get; set; } 
     public float health { get; set; }
-    public float maxHealth { get; set; } = 1000;
+    public float maxHealth { get; set; } = 2000;
     public float score { get; set; } = 0;
     public float currency { get; set; } = 2000;
     public bool isDead { get; set; } = false;
@@ -63,6 +63,14 @@ public sealed class Player : MonoBehaviour, Health
         health -= damage;
         OnHealthChanged?.Invoke();
         CheckHeatlh();
+    }
+
+    public void UpgradeLife()
+    {
+        maxHealth += 100;
+        health = maxHealth;
+        OnHealthChanged?.Invoke();
+
     }
     private void CheckHeatlh()
     {

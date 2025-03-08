@@ -43,6 +43,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 
             currency = new Currency(startingCurrency);
             EnemyDeathEvent.OnEnemyDeath += HandleEnemyDeath;
+
             remainingEnemiesByLevel = GetTotalEnemies();
 
             if (intro != null)
@@ -75,6 +76,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
 
         public float GetRatio() => (float)remainingEnemiesByLevel / GetTotalEnemies();
 
+
         protected override void OnDestroy()
         {
             base.OnDestroy();
@@ -83,6 +85,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
             EnemyDeathEvent.OnEnemyDeath -= HandleEnemyDeath;
             waveManager.OnBossWaveStarted -= OnBossSpawned;
         }
+
 
         private void IntroCompleted() => ChangeLevelState(LevelState.Building);
 
@@ -126,6 +129,8 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
                 StartCoroutine(soundManager.PlayVictoryThenNormalMusic());
                 StartCoroutine(WaitAndStartWave());
                 NextLevel();
+                if (currentLevel % 5 == 0) 
+                    Player.GetInstance().UpgradeLife();
                 remainingEnemiesByLevel = GetTotalEnemies();
                 Debug.Log($"Niveau {currentLevel} atteint ! Nouveaux ennemis : {remainingEnemiesByLevel}");
             }

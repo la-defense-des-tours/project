@@ -21,29 +21,22 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         private Color defaultColor;
         private readonly Color hoverColor = new(0f, 0.8f, 0.8f, 0.35f);
         public TowerData towerData;
-        [SerializeField] public GameObject towerPrefabs;
         private IStrategy strategy;
 
-        public virtual void Start()
+        void Start()
         {
-            if (isGhost) return;
+            if (isGhost)
+                return;
 
             strategy = new NearestEnemy();
 
             m_shooter = GetComponent<Shooter>();
-            if (m_shooter != null)
-            {
-                m_shooter.Initialize(towerData.range, towerData.dps, specialAbility, effectType, strategy, towerData.fireRate);
-            }
+            m_shooter?.Initialize(towerData.range, towerData.dps, specialAbility, effectType, strategy, towerData.fireRate);
 
-            renderers = GetComponentsInChildren<Renderer>();
-            if (renderers.Length > 0 && renderers[0].material.HasProperty("_Color"))
-            {
-                defaultColor = renderers[0].material.color;
-            }
+            SetDefaultColor();
         }
 
-        public virtual void Update()
+        void Update()
         {
             TestDecorators();
         }
@@ -53,19 +46,20 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             Destroy(gameObject);
         }
 
+
+        public string GetStrategyType()
+        {
+            return strategy.GetStrategyName();
+        }
+
         public void Upgrade()
         {
             if (isAtMaxLevel) return;
 
-            GameObject nextPrefab = towerPrefabs;
-
-            if (nextPrefab == null) return;
-
             Cell parentCell = GetComponentInParent<Cell>();
             if (parentCell == null) return;
 
-            GameObject newTowerObj = Instantiate(nextPrefab, transform.position, transform.rotation);
-            Tower newTower = newTowerObj.GetComponent<Tower>();
+            Tower newTower = towerData.factories.CreateTower(transform.position, towerData.currentLevel + 1);
             newTower.transform.SetParent(parentCell.transform);
 
             if (newTower.towerData.currentLevel >= 3)
@@ -102,10 +96,12 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
                 }
             }
         }
+
         public void SetStrategy(IStrategy _strategy)
         {
             this.strategy = _strategy;
-            m_shooter.Initialize(towerData.range, towerData.dps, specialAbility, effectType, _strategy, towerData.fireRate);
+            m_shooter.Initialize(towerData.range, towerData.dps, specialAbility, effectType, _strategy,
+                towerData.fireRate);
         }
 
         private void TestDecorators()
@@ -131,8 +127,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         {
             if (towerData == null || towerData.materials == null)
                 return;
-
-            renderers = GetComponentsInChildren<Renderer>();
+            
             Material materialToApply = towerData.materials.GetMaterial(effectType);
 
             if (materialToApply != null)
@@ -144,6 +139,13 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
                         defaultColor = r.material.color;
                 }
             }
+        }
+
+        private void SetDefaultColor()
+        {
+            renderers = GetComponentsInChildren<Renderer>();
+            if (renderers.Length > 0 && renderers[0].material.HasProperty("_Color"))
+                defaultColor = renderers[0].material.color;
         }
     }
 }

@@ -90,7 +90,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         public event Action<Tower> selectionChanged;
         Camera m_Camera;
         public Tower currentSelectedTower { get; private set; }
-        private float gameTimer = 0f;
+        public float gameTimer = 0f;
         private bool isTimerRunning = false;
         [Header("Timer UI")]
         [SerializeField] private Text timerText;
@@ -197,14 +197,11 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
             SetState(State.Building);
         }
 
-
         public void SetupRadiusVisualizer(TowerData tower, Transform ghost = null)
         {
             radiusVisualizerController.SetupRadiusVisualizers(tower, ghost);
         }
 
-
-   
         public void SelectTower(Tower tower)
         {
             if (state != State.Normal)
@@ -293,7 +290,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         {
             if (LevelManager.instanceExists)
             {
-               // LevelManager.instance.currency.currencyChanged += OnCurrencyChanged;
+                // LevelManager.instance.currency.currencyChanged += OnCurrencyChanged;
             }
         }
 
@@ -301,7 +298,7 @@ namespace Assets.Scripts.LaDefenseDesTours.UI.HUD
         {
             if (LevelManager.instanceExists)
             {
-               // LevelManager.instance.currency.currencyChanged -= OnCurrencyChanged;
+                // LevelManager.instance.currency.currencyChanged -= OnCurrencyChanged;
             }
         }
         protected UIPointer WrapPointer(PointerInfo pointerInfo)
