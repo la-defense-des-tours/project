@@ -5,7 +5,12 @@ namespace LaDefenseDesTours.Strategy
 {
     public class NearestEnemy : IStrategy
     {
+        
         private readonly string ENEMY_TAG = "Enemy";
+        public string GetStrategyName()
+        {
+            return "Nearest Enemy";
+        }
         public Transform SelectTarget(Enemy[] enemies, Vector3 towerPosition, float range)
         {
             float shortestDistance = Mathf.Infinity;

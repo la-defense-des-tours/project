@@ -44,4 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc196f5c08a8aba48a28adc73947d4c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserTower: {fileID: 7860087309538003013, guid: 993a0d19472d7134e863930c11da5eb8, type: 3}
+  laserTower: {fileID: 7860087309538003013, guid: c65d1ab510ebeb34b955a31ae47b9191, type: 3}
+  laserTowerUpgrade: {fileID: 3508522599049903178, guid: 73ad0c0d1fb5fe049a73d81a3cc5d58e, type: 3}
+  laserTowerUpgrade2: {fileID: -7995590564768954988, guid: 5ff5b74a14d09b142a14bfd9a6d49cca, type: 3}

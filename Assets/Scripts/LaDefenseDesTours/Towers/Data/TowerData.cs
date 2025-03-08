@@ -24,6 +24,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers.Data
         public float fireRate;
         public Sprite icon;
         public TowerMaterial materials;
+        public TowerFactory factories;
     }
 
 }

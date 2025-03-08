@@ -64,6 +64,14 @@ public sealed class Player : MonoBehaviour, Health
         OnHealthChanged?.Invoke();
         CheckHeatlh();
     }
+
+    public void UpgradeLife()
+    {
+        maxHealth += 100;
+        health = maxHealth;
+        OnHealthChanged?.Invoke();
+
+    }
     private void CheckHeatlh()
     {
         if (health <= 0)

@@ -6,6 +6,10 @@ namespace LaDefenseDesTours.Strategy
     public class HighestSpeed : IStrategy
     {
         private readonly string ENEMY_TAG = "Enemy";
+        public string GetStrategyName()
+        {
+            return "Highest Speed";
+        }
 
         public Transform SelectTarget(Enemy[] enemies, Vector3 towerPosition, float range)
         {

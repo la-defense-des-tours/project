@@ -41,6 +41,7 @@ namespace Assets.Scripts.LaDefenseDesTours
         {
             if (target == null) return;
 
+            healthSlider.maxValue = target.maxHealth;
             UpdateHealthColor();
             healthSlider.value = target.health;
 

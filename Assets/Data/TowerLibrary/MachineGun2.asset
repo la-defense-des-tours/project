@@ -24,3 +24,4 @@ MonoBehaviour:
   fireRate: 4
   icon: {fileID: 21300000, guid: 3631244dc04164d079a3302a39dbc0c6, type: 3}
   materials: {fileID: 11400000, guid: e1727f29ce72a2045a34eb8b193a6792, type: 2}
+  factories: {fileID: 3500544216625767149, guid: 5bca7f7bbcf26904190ca6cdc131854f, type: 3}

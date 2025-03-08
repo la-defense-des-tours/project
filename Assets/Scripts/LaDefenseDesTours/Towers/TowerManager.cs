@@ -9,13 +9,6 @@ using UnityEngine.EventSystems;
 
 public class TowerManager : MonoBehaviour
 {
-    [SerializeField] private TowerFactory machineGunFactory;
-    [SerializeField] private TowerFactory laserFactory;
-    [SerializeField] private TowerFactory canonFactory;
-    [SerializeField] private GameObject machineGunGhostPrefab;
-    [SerializeField] private GameObject laserGhostPrefab;
-    [SerializeField] private GameObject canonGhostPrefab;
-
     private GameObject currentRangeIndicator;
     private TowerFactory selectedFactory;
     private GameObject currentGhost;
@@ -54,6 +47,13 @@ public class TowerManager : MonoBehaviour
 
     public void SelectCell(Tower tower)
     {
+
+
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            Debug.Log("Impossible de placer une tour sur l'interface utilisateur !");
+            return;
+        }
 
         GameUI.instance.towerUI.Show(tower);
     }
@@ -105,27 +105,11 @@ public class TowerManager : MonoBehaviour
             CancelGhostPlacement();
 
         selectedTower = tower;
-        switch (selectedTower.towerData.towerName)
-        {
-            case "Machine Gun":
-                selectedFactory = machineGunFactory;
-                currentGhost = Instantiate(machineGunGhostPrefab, Input.mousePosition, Quaternion.identity);
-                currentGhost.GetComponent<Tower>().isGhost = true;
-                break;
-            case "Laser":
-                selectedFactory = laserFactory;
-                currentGhost = Instantiate(laserGhostPrefab, Input.mousePosition, Quaternion.identity);
-                currentGhost.GetComponent<Tower>().isGhost = true;
-                break;
-            case "Canon":
-                selectedFactory = canonFactory;
-                currentGhost = Instantiate(canonGhostPrefab, Input.mousePosition, Quaternion.identity);
-                currentGhost.GetComponent<Tower>().isGhost = true;
-                break;
-            default:
-                Debug.LogError("Invalid tower name");
-                return;
-        }
+
+        selectedFactory = selectedTower.towerData.factories;
+        currentGhost = selectedTower.towerData.factories.CreateTower(Input.mousePosition, 1).gameObject;
+        currentGhost.GetComponent<Tower>().isGhost = true;
+
         if (currentGhost != null)
         {
             currentGhost.SetActive(true);

@@ -45,3 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canonTower: {fileID: -2066031236903285922, guid: c22b6379b55adaa48aa842b44781a98a, type: 3}
+  canonTowerUpgrade: {fileID: -807063599039976432, guid: 9f0b74c1b4673ee40affd13d5e83b92a, type: 3}
+  canonTowerUpgrade2: {fileID: -6725260411263244965, guid: 6c9dc11aeb36f7749855e75ea18ee34f, type: 3}
