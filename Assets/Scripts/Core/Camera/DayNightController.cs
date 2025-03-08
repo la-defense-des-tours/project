@@ -6,17 +6,14 @@ namespace Core.Camera
     public class DayNightController : MonoBehaviour
     {
         [Header("Components")]
-        [SerializeField]
-        private Light sun;
+        [SerializeField] private Light sun;
 
         [SerializeField] private ParticleSystem dustParticles;
 
         [Header("Cycle Settings")]
-        [SerializeField]
-        private float dayDuration = 300f;
+        [SerializeField] private float dayDuration = 300f;
 
         [Header("Lighting Settings")]
-
         private Gradient lightingGradient;
 
         private Quaternion startRotation;
@@ -67,7 +64,7 @@ namespace Core.Camera
             GradientAlphaKey[] alphaKeys = new GradientAlphaKey[2];
 
             colorKeys[0] = new GradientColorKey(sun.color, 0f);
-            colorKeys[1] = new GradientColorKey(new Color(1f, 0.5f, 0f), 0.3f);
+            colorKeys[1] = new GradientColorKey(new Color(1f, 0.6f, 0.3f), 0.3f);
             colorKeys[2] = new GradientColorKey(new Color(0f, 0f, 0.5f), 0.65f);
             colorKeys[3] = new GradientColorKey(sun.color, 1f);
 
