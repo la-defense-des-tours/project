@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using Assets.Scripts.LaDefenseDesTours.Towers;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Cell : MonoBehaviour
@@ -40,11 +41,18 @@ public class Cell : MonoBehaviour
 
         if (detectedTower != null)
         {
-            towerManager.SelectCell(detectedTower);
+            detectedTower.show();
             return;
         }
         towerManager.TryPlaceTowerOnCell(this);
     }
+
+
+    public void show(Tower detectedTower)
+    {
+
+    }
+
     public bool IsOccupied()
     {
         if (FindTowerInCell() != null)

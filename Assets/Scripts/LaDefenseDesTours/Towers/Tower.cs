@@ -75,6 +75,26 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             m_shooter.Initialize(towerData.range, towerData.dps, specialAbility, effect, strategy, towerData.fireRate);
         }
 
+        public void show()
+        {
+            TowerManager.instance.SelectCell(this);
+        }
+
+
+        private void OnMouseDown()
+        {
+            show();
+        }
+
+        private void OnMouseEnter()
+        {
+            ApplyHoverColor();
+        }
+
+        private void OnMouseExit()
+        {
+            ResetColor();
+        }
         public void ApplyHoverColor()
         {
             foreach (Renderer renderer in renderers)
