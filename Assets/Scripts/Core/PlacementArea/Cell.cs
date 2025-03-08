@@ -46,13 +46,6 @@ public class Cell : MonoBehaviour
         }
         towerManager.TryPlaceTowerOnCell(this);
     }
-
-
-    public void show(Tower detectedTower)
-    {
-
-    }
-
     public bool IsOccupied()
     {
         if (FindTowerInCell() != null)
