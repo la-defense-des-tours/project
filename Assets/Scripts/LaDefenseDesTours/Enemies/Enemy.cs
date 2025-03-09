@@ -39,11 +39,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             TransitionTo(new Normal());
         }
 
-        protected void InitializeStats(float baseHealth, float healthFactor, float baseSpeed, float speedFactor,
-            float baseAcceleration, float accelerationFactor, int currentLevel)
+        protected void InitializeStats(float baseHealth, float healthFactor, float baseSpeed, float speedFactor, float baseAcceleration, float accelerationFactor, int currentLevel)
         {
+            float maxSpeed = baseSpeed * 3;
             maxHealth = Mathf.RoundToInt(baseHealth * Mathf.Pow(healthFactor, currentLevel - 1));
-            speed = baseSpeed + (speedFactor * (currentLevel - 1));
+            speed = Mathf.Min(baseSpeed + (speedFactor * (currentLevel - 1)), maxSpeed);
             acceleration = baseAcceleration + (accelerationFactor * (currentLevel - 1));
             experiencePoints = (int)maxHealth;
         }
@@ -122,7 +122,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             if (health <= 0)
             {
                 EnemyDeathEvent.EnemyDied(experiencePoints);
-
                 TransitionTo(new Dead());
             }
         }
