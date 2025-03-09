@@ -1585,6 +1585,7 @@ MonoBehaviour:
   - {fileID: 840612460}
   - {fileID: 409422739}
   - {fileID: 195547003}
+  lightColor: {r: 0.0046279924, g: 0.18836974, b: 0.9811321, a: 0}
 --- !u!114 &761798558 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 759149035883011127, guid: a6cb4125b9d50d244841d65a25295d88, type: 3}
