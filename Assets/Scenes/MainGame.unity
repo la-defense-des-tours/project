@@ -2685,6 +2685,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
       objectReference: {fileID: 5372732949584366347}
+    - target: {fileID: 1080487222150651230, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: c8f6e9d096993b242a83f5b6f1fd3c92, type: 3}
+    - target: {fileID: 1080487222150651230, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 1272741486501038159, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2781,6 +2789,26 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6197681814584457057, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
+      propertyPath: m_Text
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6197681814584457057, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 7b689589575983e4c9cf47d56b3c2340, type: 3}
+    - target: {fileID: 6197681814584457057, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6197681814584457057, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6197681814584457057, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
+      propertyPath: m_FontData.m_HorizontalOverflow
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6261229378230372096, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
       propertyPath: m_FontData.m_Font
       value: 
@@ -2792,6 +2820,10 @@ PrefabInstance:
     - target: {fileID: 7452964265370934464, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
       propertyPath: m_Name
       value: Build Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8573815649966654349, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -2.4145699
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4630,7 +4662,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intro: {fileID: 5372732949584366344}
   towerLibrary: {fileID: 11400000, guid: b905b328055fdf545903865cde03118f, type: 2}
-  startingCurrency: 1500
+  startingCurrency: 500000
   homeBase: {fileID: 7130800125884514737}
   currentLevel: 1
 --- !u!114 &5372732949584366344
