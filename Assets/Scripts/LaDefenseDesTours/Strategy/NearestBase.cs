@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using Assets.Scripts.LaDefenseDesTours.Level;
+using LaDefenseDesTours.Enemies;
 using UnityEngine;
 
 namespace LaDefenseDesTours.Strategy

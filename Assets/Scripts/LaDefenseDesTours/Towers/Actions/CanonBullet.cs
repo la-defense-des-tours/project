@@ -1,5 +1,6 @@
 using UnityEngine;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using LaDefenseDesTours.Enemies;
 
 public class CanonBullet : Bullet
 {

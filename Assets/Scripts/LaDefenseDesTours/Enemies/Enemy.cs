@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
+using Assets.Scripts.LaDefenseDesTours;
+using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
-using Assets.Scripts.LaDefenseDesTours.Level;
 
-namespace Assets.Scripts.LaDefenseDesTours.Interfaces
+namespace LaDefenseDesTours.Enemies
 {
     public abstract class Enemy : MonoBehaviour, Health
     {

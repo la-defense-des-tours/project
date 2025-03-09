@@ -1,6 +1,5 @@
 using UnityEngine;
-using Assets.Scripts.LaDefenseDesTours.Interfaces;
-using Assets.Scripts.LaDefenseDesTours.Level;
+using LaDefenseDesTours.Enemies;
 using LaDefenseDesTours.Strategy;
 
 public abstract class Shooter : MonoBehaviour

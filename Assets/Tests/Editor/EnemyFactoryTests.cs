@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using Assets.Scripts.LaDefenseDesTours.Factories;
-using Assets.Scripts.LaDefenseDesTours.Enemies;
+using LaDefenseDesTours.Enemies;
 
 public class EnemyFactoryTests
 {

@@ -1,7 +1,6 @@
-using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using Assets.Scripts.LaDefenseDesTours.Level;
 
-namespace Assets.Scripts.LaDefenseDesTours.Enemies
+namespace LaDefenseDesTours.Enemies
 {
     public class FlyingEnemy : Enemy
     {
