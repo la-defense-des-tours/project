@@ -238,6 +238,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1784796371}
     m_Modifications:
+    - target: {fileID: 887043903689904433, guid: 4dc90de8bef48ef488fa3ce88104d252, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: c14156bd1dba83845b7195a91fa6bc26, type: 3}
+    - target: {fileID: 887043903689904433, guid: 4dc90de8bef48ef488fa3ce88104d252, type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2759224774102786811, guid: 4dc90de8bef48ef488fa3ce88104d252, type: 3}
       propertyPath: m_Name
       value: Timer
@@ -268,7 +276,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7594178005304286574, guid: 4dc90de8bef48ef488fa3ce88104d252, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100.900024
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 7594178005304286574, guid: 4dc90de8bef48ef488fa3ce88104d252, type: 3}
       propertyPath: m_SizeDelta.y
@@ -432,6 +440,10 @@ PrefabInstance:
     - target: {fileID: 1695329477412330, guid: 68efc9a9705510c4cb63b6e5a75b64c9, type: 3}
       propertyPath: m_Name
       value: TowerControllerUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695329477412330, guid: 68efc9a9705510c4cb63b6e5a75b64c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224176417992533086, guid: 68efc9a9705510c4cb63b6e5a75b64c9, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3188,6 +3200,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Over
       objectReference: {fileID: 0}
+    - target: {fileID: 114153078276121476, guid: 2eb1899defae34da2b354d8e1d91da35, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: c14156bd1dba83845b7195a91fa6bc26, type: 3}
+    - target: {fileID: 114444767888515022, guid: 2eb1899defae34da2b354d8e1d91da35, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: c8f6e9d096993b242a83f5b6f1fd3c92, type: 3}
+    - target: {fileID: 114444767888515022, guid: 2eb1899defae34da2b354d8e1d91da35, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114444767888515022, guid: 2eb1899defae34da2b354d8e1d91da35, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 114584836558504532, guid: 2eb1899defae34da2b354d8e1d91da35, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: c14156bd1dba83845b7195a91fa6bc26, type: 3}
     - target: {fileID: 224039727441621502, guid: 2eb1899defae34da2b354d8e1d91da35, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4662,7 +4694,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intro: {fileID: 5372732949584366344}
   towerLibrary: {fileID: 11400000, guid: b905b328055fdf545903865cde03118f, type: 2}
-  startingCurrency: 500000
+  startingCurrency: 1500
   homeBase: {fileID: 7130800125884514737}
   currentLevel: 1
 --- !u!114 &5372732949584366344
