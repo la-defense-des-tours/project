@@ -2765,10 +2765,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1347839066509108590, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 7b689589575983e4c9cf47d56b3c2340, type: 3}
+    - target: {fileID: 1347839066509108590, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433443794901879752, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 7b689589575983e4c9cf47d56b3c2340, type: 3}
     - target: {fileID: 5596233591522045832, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6261229378230372096, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: c8f6e9d096993b242a83f5b6f1fd3c92, type: 3}
+    - target: {fileID: 7212270804362715190, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: c14156bd1dba83845b7195a91fa6bc26, type: 3}
     - target: {fileID: 7452964265370934464, guid: 2b1ed9f9dfe469e41b3f239ab2573209, type: 3}
       propertyPath: m_Name
       value: Build Menu
