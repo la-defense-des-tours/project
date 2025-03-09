@@ -1,13 +1,12 @@
-﻿using Assets.Scripts.LaDefenseDesTours.Interfaces;
-using Assets.Scripts.LaDefenseDesTours.Level;
+﻿using Assets.Scripts.LaDefenseDesTours.Level;
 
-namespace Assets.Scripts.LaDefenseDesTours.Enemies
+namespace LaDefenseDesTours.Enemies
 {
     public class BossEnemy : Enemy
     {
         BossEnemy()
         {
-            InitializeStats(1500f, 1.5f, 1f, 0.2f, 3f, 0.5f,
+            InitializeStats(1500f, 1.5f, 2f, 0.2f, 4f, 0.5f,
                 LevelManager.instance != null ? LevelManager.instance.GetLevel() : 1);
         }
     }

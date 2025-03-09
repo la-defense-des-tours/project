@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using LaDefenseDesTours.Enemies;
 using UnityEngine;
 
 namespace LaDefenseDesTours.Strategy
@@ -11,10 +12,11 @@ namespace LaDefenseDesTours.Strategy
         {
             return "Nearest Enemy";
         }
-        public Transform SelectTarget(Enemy[] enemies, Vector3 towerPosition, float range)
+        public Enemy SelectTarget(Enemy[] enemies, Vector3 towerPosition, float range)
         {
             float shortestDistance = Mathf.Infinity;
             Enemy selected = null;
+
             foreach (Enemy enemy in enemies)
             {
                 float distance = Vector3.Distance(towerPosition, enemy.transform.position);
@@ -24,8 +26,8 @@ namespace LaDefenseDesTours.Strategy
                     selected = enemy;
                 }
             }
-            
-            return selected != null && selected.gameObject.CompareTag(ENEMY_TAG) ? selected.transform : null;
+
+            return selected != null && selected.gameObject.CompareTag(ENEMY_TAG) ? selected : null;
         }
     }
 }

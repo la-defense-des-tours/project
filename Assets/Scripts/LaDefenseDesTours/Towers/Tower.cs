@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using LaDefenseDesTours.Strategy;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro.EditorUtilities;
 
 namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
@@ -70,9 +71,9 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             Destroy(gameObject);
         }
 
-        public void InitialiseBullet(string effect)
+        public void InitialiseBullet(string effect, float modifiedDamage)
         {
-            m_shooter.Initialize(towerData.range, towerData.dps, specialAbility, effect, strategy, towerData.fireRate);
+            m_shooter?.Initialize(towerData.range, modifiedDamage, specialAbility, effect, strategy, towerData.fireRate);
         }
 
         public void show()
@@ -147,7 +148,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         {
             if (towerData == null || towerData.materials == null)
                 return;
-            
+
             Material materialToApply = towerData.materials.GetMaterial(effectType);
 
             if (materialToApply != null)

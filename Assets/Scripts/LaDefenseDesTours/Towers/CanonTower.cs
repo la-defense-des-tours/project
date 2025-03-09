@@ -5,7 +5,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Towers
 {
     public class CanonTower : Tower
     {
-        private float areaOfEffect { get; set; } = 5f;
+        private readonly float areaOfEffect = 5f;
 
         public CanonTower()
         {

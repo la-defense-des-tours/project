@@ -1,4 +1,5 @@
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using LaDefenseDesTours.Enemies;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.AI;

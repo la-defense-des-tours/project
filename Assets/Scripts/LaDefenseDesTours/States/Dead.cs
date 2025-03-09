@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.LaDefenseDesTours.Interfaces
@@ -13,9 +14,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         public override void OnStateEnter()
         {
             DisableEnemy();
+            PlaySound();
             base.OnStateEnter();
             effectStarted = true;
         }
+
         public override void ApplyEffect()
         {
             if (enemy == null)
@@ -29,6 +32,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             if (timeElapsed >= destroyDelay)
                 enemy.Die();
         }
+
         private void DisableEnemy()
         {
             enemy.gameObject.tag = "Untagged";
@@ -39,6 +43,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
             skinnedRenderers = enemy.GetComponentsInChildren<SkinnedMeshRenderer>();
             foreach (SkinnedMeshRenderer r in skinnedRenderers)
                 r.enabled = false;
+        }
+
+        private void PlaySound()
+        {
+            enemy?.StartCoroutine(enemy.PlayDeathSound());
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using LaDefenseDesTours.Enemies;
 using UnityEngine;
 
 namespace LaDefenseDesTours.Strategy
@@ -11,11 +12,11 @@ namespace LaDefenseDesTours.Strategy
             return "Highest Hp";
         }
 
-        public Transform SelectTarget(Enemy[] enemies, Vector3 towerPosition, float range)
+        public Enemy SelectTarget(Enemy[] enemies, Vector3 towerPosition, float range)
         {
             Enemy selected = null;
             float highestHP = 0;
-            
+
             foreach (Enemy enemy in enemies)
             {
                 float distance = Vector3.Distance(towerPosition, enemy.transform.position);
@@ -27,7 +28,7 @@ namespace LaDefenseDesTours.Strategy
                 }
             }
 
-            return selected != null && selected.gameObject.CompareTag(ENEMY_TAG) ? selected.transform : null;
+            return selected != null && selected.gameObject.CompareTag(ENEMY_TAG) ? selected : null;
         }
     }
 }

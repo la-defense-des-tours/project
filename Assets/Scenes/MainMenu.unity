@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 7aa8c644bb971d74a8ca2a01d66d8ddb, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -632,6 +632,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 536206359933093100, guid: e0123180cf553de43a582138e4c8d353, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: cced9bfde2b940d4a89b99c8e87ed342, type: 2}
+    - target: {fileID: 536206359933093100, guid: e0123180cf553de43a582138e4c8d353, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: cced9bfde2b940d4a89b99c8e87ed342, type: 2}
     - target: {fileID: 1023016178183179716, guid: e0123180cf553de43a582138e4c8d353, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.12
@@ -672,6 +680,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2107404110752168345, guid: e0123180cf553de43a582138e4c8d353, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: cced9bfde2b940d4a89b99c8e87ed342, type: 2}
     - target: {fileID: 2109004074952685622, guid: e0123180cf553de43a582138e4c8d353, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -696,6 +708,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5964267222012074047, guid: e0123180cf553de43a582138e4c8d353, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: cced9bfde2b940d4a89b99c8e87ed342, type: 2}
     - target: {fileID: 6997524312584748344, guid: e0123180cf553de43a582138e4c8d353, type: 3}
       propertyPath: ShapeModule.angle
       value: 27.19
@@ -716,6 +732,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8143973221441846067, guid: e0123180cf553de43a582138e4c8d353, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: cced9bfde2b940d4a89b99c8e87ed342, type: 2}
+    - target: {fileID: 8143973221441846067, guid: e0123180cf553de43a582138e4c8d353, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: cced9bfde2b940d4a89b99c8e87ed342, type: 2}
     - target: {fileID: 8276825245287970385, guid: e0123180cf553de43a582138e4c8d353, type: 3}
       propertyPath: m_Name
       value: FlyingEnemy
@@ -2430,7 +2454,6 @@ GameObject:
   - component: {fileID: 486762791}
   - component: {fileID: 486762790}
   - component: {fileID: 486762794}
-  - component: {fileID: 486762793}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2535,7 +2558,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -2582,18 +2605,6 @@ Behaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486762786}
   m_Enabled: 1
---- !u!114 &486762793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 486762786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ac7ea27c81d5504b8806ea3afc9f9cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &486762794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4708,7 +4719,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 975e6984ef21ce541a69627534c88a4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: {x: 0, y: 0.25, z: 0}
+  rotationSpeed: {x: 0, y: 25, z: 0}
+  clampRotation: 0
+  minRotationDelta: {x: 0, y: 0, z: 0}
+  maxRotationDelta: {x: 0, y: 0, z: 0}
 --- !u!1 &1337766575
 GameObject:
   m_ObjectHideFlags: 0
@@ -6910,7 +6924,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.0002746582}
+  m_AnchoredPosition: {x: 0, y: -0.00030517578}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2088904500

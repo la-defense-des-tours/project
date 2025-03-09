@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Pool;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using LaDefenseDesTours.Enemies;
 
 public abstract class Bullet : MonoBehaviour
 {
