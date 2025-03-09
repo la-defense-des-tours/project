@@ -813,6 +813,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 4182229393743622814, guid: 68efc9a9705510c4cb63b6e5a75b64c9, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 7b689589575983e4c9cf47d56b3c2340, type: 3}
+    - target: {fileID: 4182229393743622814, guid: 68efc9a9705510c4cb63b6e5a75b64c9, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182229393743622814, guid: 68efc9a9705510c4cb63b6e5a75b64c9, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4624474463345352125, guid: 68efc9a9705510c4cb63b6e5a75b64c9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -918,9 +930,25 @@ PrefabInstance:
       value: Highest Speed
       objectReference: {fileID: 0}
     - target: {fileID: 6547998198007951796, guid: 68efc9a9705510c4cb63b6e5a75b64c9, type: 3}
+      propertyPath: m_Color.b
+      value: 0.046102926
+      objectReference: {fileID: 0}
+    - target: {fileID: 6547998198007951796, guid: 68efc9a9705510c4cb63b6e5a75b64c9, type: 3}
+      propertyPath: m_Color.g
+      value: 0.3773585
+      objectReference: {fileID: 0}
+    - target: {fileID: 6547998198007951796, guid: 68efc9a9705510c4cb63b6e5a75b64c9, type: 3}
+      propertyPath: m_Color.r
+      value: 0.0017799971
+      objectReference: {fileID: 0}
+    - target: {fileID: 6547998198007951796, guid: 68efc9a9705510c4cb63b6e5a75b64c9, type: 3}
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: 7b689589575983e4c9cf47d56b3c2340, type: 3}
+    - target: {fileID: 6547998198007951796, guid: 68efc9a9705510c4cb63b6e5a75b64c9, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7302242134514908721, guid: 68efc9a9705510c4cb63b6e5a75b64c9, type: 3}
       propertyPath: m_SizeDelta.x
       value: 120
