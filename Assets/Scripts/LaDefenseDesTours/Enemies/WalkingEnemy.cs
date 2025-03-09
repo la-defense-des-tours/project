@@ -1,54 +1,25 @@
-using UnityEngine;
-using UnityEngine.AI;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using Assets.Scripts.LaDefenseDesTours.Level;
 
-namespace Assets.Scripts.LaDefenseDesTours.Enemies
+namespace LaDefenseDesTours.Enemies
 {
-    public class WalkingEnemy : MonoBehaviour, Enemy
-{
-    private NavMeshAgent agent;
-    private float health = 200f;
-    private float speed = 3f;
-    private float acceleration = 6f;
-
-    public void Awake()
+    public class WalkingEnemy : Enemy
     {
-        SetupNavMeshAgent();
-    }
-    public void SetupNavMeshAgent()
-    {
-        if (gameObject.GetComponent<NavMeshAgent>() == null)
+        WalkingEnemy()
         {
-            agent = gameObject.AddComponent<NavMeshAgent>();
+            InitializeStats(350f, 1.15f, 6f, 0.2f, 8f, 0.9f,
+                LevelManager.instance != null ? LevelManager.instance.GetLevel() : 1);
         }
-        else
+        public override void SetupSpeed()
         {
-            agent = gameObject.GetComponent<NavMeshAgent>();
+            agent.speed = speed;
+            agent.acceleration = acceleration;
+            animator.speed = speed / 3.5f;
         }
-        agent.speed = speed;
-        agent.acceleration = acceleration;
-    }
-    public void Move(Vector3 destination)
-    {
-        agent.SetDestination(destination);
-    }
-    public Enemy Clone() // Voir au niveau FPS, ou rajouter un check pour ne cloner (ATTENTION: chaque clone)
-    {
-        Enemy clone = Instantiate(this, Vector3.zero, Quaternion.identity); // A voir ici, par defaut il spawn a la position par defaut du prefab (tester)
-        clone.SetupNavMeshAgent();
-        return clone;
-    }
-    public void TakeDamage(float damage)
-    {
-        health -= damage;
-        if (health <= 0)
+        public override void SetSpeed(float _speed)
         {
-            Die();
+            agent.speed = _speed;
+            animator.speed = _speed / 3.5f;
         }
     }
-    public void Die()
-    {
-        Destroy(gameObject);
-    }
-}
 }

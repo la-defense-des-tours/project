@@ -1,0 +1,72 @@
+name: CI Defense des Tours 🚀
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Test 🧪
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        targetPlatform:
+          - WebGL
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - uses: actions/cache@v3
+        with:
+          path: Library
+          key: Library-LaDefenseDesTours-${{ matrix.targetPlatform }}
+          restore-keys: |
+            Library-LaDefenseDesTours-
+            Library-
+
+      - name: Run tests
+        uses: game-ci/unity-test-runner@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.CI_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.CI_PASSWORD }}
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          testMode: EditMode
+
+  build:
+    name: Build 🛠️
+    needs: test
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        targetPlatform:
+          - StandaloneWindows64
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - uses: actions/cache@v3
+        with:
+          path: Library
+          key: Library-LaDefenseDesTours-${{ matrix.targetPlatform }}
+          restore-keys: |
+            Library-LaDefenseDesTours-
+            Library-
+
+      - name: Build project
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.CI_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.CI_PASSWORD }}
+        with:
+          targetPlatform: ${{ matrix.targetPlatform }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Build-${{ matrix.targetPlatform }}
+          path: build

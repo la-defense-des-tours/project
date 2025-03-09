@@ -1,7 +1,8 @@
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using UnityEngine;
+using LaDefenseDesTours.Enemies;
 
-namespace Assets.Scripts.LaDefenseDesTours.Enemies
+namespace Assets.Scripts.LaDefenseDesTours.Factories
 {
     public class WalkingEnemyFactory : EnemyFactory
     {
@@ -9,7 +10,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
         public override Enemy CreateEnemy()
         {
             Notify();
-            GameObject instance = Instantiate(walkingEnemy.gameObject);
+            GameObject instance = Instantiate(walkingEnemy.gameObject, transform.position, Quaternion.Euler(0, -90, 0));
             return instance.GetComponent<WalkingEnemy>();
         }
         public override void Notify()

@@ -1,53 +1,14 @@
-using UnityEngine;
-using UnityEngine.AI;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
-namespace Assets.Scripts.LaDefenseDesTours.Enemies
-{
-    public class TankEnemy : MonoBehaviour, Enemy
-    {
-        private NavMeshAgent agent;
-        private float health = 350;
-        private float speed = 1.5f;
-        private float acceleration = 2.5f;
+using Assets.Scripts.LaDefenseDesTours.Level;
 
-        public void Awake()
+namespace LaDefenseDesTours.Enemies
+{
+    public class TankEnemy : Enemy
+    {
+        TankEnemy()
         {
-            SetupNavMeshAgent();
-        }
-        public void SetupNavMeshAgent()
-        {
-            if (gameObject.GetComponent<NavMeshAgent>() == null)
-            {
-                agent = gameObject.AddComponent<NavMeshAgent>();
-            }
-            else
-            {
-                agent = gameObject.GetComponent<NavMeshAgent>();
-            }
-            agent.speed = speed;
-            agent.acceleration = acceleration;
-        }
-        public void Move(Vector3 destination)
-        {
-            agent.SetDestination(destination);
-        }
-        public Enemy Clone()
-        {
-            Enemy clone = Instantiate(this, Vector3.zero, Quaternion.identity);
-            clone.SetupNavMeshAgent();
-            return clone;
-        }
-        public void TakeDamage(float damage)
-        {
-            health -= damage;
-            if (health <= 0)
-            {
-                Die();
-            }
-        }
-        public void Die()
-        {
-            Destroy(gameObject);
+            InitializeStats(650f, 1.25f, 2.5f, 0.2f, 5f, 0.3f,
+                LevelManager.instance != null ? LevelManager.instance.GetLevel() : 1);
         }
     }
 }

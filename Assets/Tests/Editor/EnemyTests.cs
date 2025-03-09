@@ -1,39 +1,48 @@
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using LaDefenseDesTours.Enemies;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyTests
 {
-    private class TestEnemy : MonoBehaviour, Enemy
+    private class TestEnemy : Enemy
     {
         public bool isDead = false;
-        public float health = 100f;
+        public TestEnemy()
+        {
+            health = 100;
+            speed = 5;
+            acceleration = 5;
+        }
 
-        public void Die()
+        public override void Die()
         {
             isDead = true;
             DestroyImmediate(gameObject);
         }
-        public void SetupNavMeshAgent()
+        protected override void SetupNavMeshAgent()
         {
-            // Implement interface method
         }
-        public void Move(Vector3 destination)
+        public override void Move(Vector3 destination)
         {
-            // Implement interface method
         }
-        public Enemy Clone()
+        protected override void CheckArrival()
         {
-            return (Enemy)this.MemberwiseClone();
         }
-        public void TakeDamage(float damage)
+        public override void TakeDamage(float damage)
         {
             health -= damage;
             if (health <= 0)
-            {
                 Die();
-            }
+        }
+        public override float GetSpeed()
+        {
+            return speed;
+        }
+        public override void SetSpeed(float newSpeed)
+        {
+            speed = newSpeed;
         }
     }
 
@@ -42,29 +51,80 @@ public class EnemyTests
     [SetUp]
     public void SetUp()
     {
-        GameObject enemyObject = new GameObject();
+        GameObject enemyObject = new("Enemy");
         enemyObject.AddComponent<NavMeshAgent>();
         enemy = enemyObject.AddComponent<TestEnemy>();
+    }
+
+    [TearDown]
+    public void TearDown()
+    {
+        if (enemy != null && enemy.gameObject != null)
+            Object.DestroyImmediate(enemy.gameObject);
     }
 
     [Test]
     public void TakeDamage_ReducesHealth()
     {
         enemy.TakeDamage(10f);
-        Assert.AreEqual(90f, enemy.health);
+        float expected = 90f;
+        float result = enemy.health;
+        Assert.AreEqual(expected, result);
     }
 
     [Test]
     public void HealthBelowZero_CallsDie()
     {
         enemy.TakeDamage(110f);
-        Assert.IsTrue(enemy.isDead);
+        bool expected = true;
+        bool result = enemy.isDead;
+        Assert.AreEqual(expected, result);
     }
 
     [Test]
     public void HealthZero_CallsDie()
     {
         enemy.TakeDamage(100f);
-        Assert.IsTrue(enemy.isDead);
+        bool expected = true;
+        bool result = enemy.isDead;
+        Assert.AreEqual(expected, result);
     }
+
+    [Test]
+    public void GetSpeed_ReturnsSpeed()
+    {
+        float expected = 5f;
+        float result = enemy.GetSpeed();
+        Assert.AreEqual(expected, result);
+    }
+
+    [Test]
+    public void SetSpeed_ChangesSpeed()
+    {
+        enemy.SetSpeed(10f);
+        float expected = 10f;
+        float result = enemy.GetSpeed();
+        Assert.AreEqual(expected, result);
+    }
+
+    [Test]
+    public void DealDamage_CallsPlayerTakeDamage()
+    {
+        enemy.DealDamage(100f);
+        double expectedPlayerHealth = 1900;
+        double resultPlayerHealth = Player.GetInstance().health;
+
+        Assert.AreEqual(expectedPlayerHealth, resultPlayerHealth);
+    }
+
+    [Test]
+    public void DealDamage_CallsPlayerTakeDamageWithCorrectValue()
+    {
+        enemy.DealDamage(200f);
+        double expectedPlayerHealth = 1700;
+        double resultPlayerHealth = Player.GetInstance().health;
+
+        Assert.AreEqual(expectedPlayerHealth, resultPlayerHealth);
+    }
+
 }
