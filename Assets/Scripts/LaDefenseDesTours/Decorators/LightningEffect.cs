@@ -8,5 +8,10 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
         {
             tower.effectType = "Lightning";
         }
+
+        protected override float DamageModifier()
+        {
+            return 0.5f;
+        }
     }
 }

@@ -12,7 +12,6 @@ public class TestWave : Wave
     public override void SpawnEnemies(Vector3 targetPosition)
     {
         isSpawning = true;
-        Debug.Log("Spawning enemies...");
     }
 
     protected override void OnWaveCompleted()

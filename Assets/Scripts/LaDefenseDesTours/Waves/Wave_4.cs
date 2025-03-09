@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using Assets.Scripts.LaDefenseDesTours.Level;
+using LaDefenseDesTours.Enemies;
 
 namespace Assets.Scripts.LaDefenseDesTours.Waves
 {
@@ -53,7 +54,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
                 spawnedEnemies.Add(enemy);
                 enemiesSpawned++;
 
-                Debug.Log($"Wave 4: Spawned enemy {enemiesSpawned}/{totalEnemies}");
                 yield return new WaitForSeconds(timeBetweenSpawns);
             }
             onBossWaveStarted?.Invoke();
@@ -61,7 +61,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
             Enemy boss = bossEnemyFactory.CreateEnemy();
             boss.Move(targetPosition);
             spawnedEnemies.Add(boss);
-            Debug.Log("Wave 4: Spawned Boss");
             yield return new WaitForSeconds(timeBetweenSpawns);
             isSpawning = false;
         }

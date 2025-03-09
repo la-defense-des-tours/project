@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using Assets.Scripts.LaDefenseDesTours.Level;
+using LaDefenseDesTours.Enemies;
 
 namespace Assets.Scripts.LaDefenseDesTours.Waves
 {
@@ -51,7 +52,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Waves
                 spawnedEnemies.Add(enemy);
                 enemiesSpawned++;
 
-                Debug.Log($"Wave 3: Spawned enemy {enemiesSpawned}/{totalEnemies}");
                 yield return new WaitForSeconds(timeBetweenSpawns);
             }
 

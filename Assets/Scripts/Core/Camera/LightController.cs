@@ -5,7 +5,13 @@ public class LightController : MonoBehaviour
 {
     [SerializeField] private DayNightController dayNightController;
     [SerializeField] private Light[] lights;
+    [SerializeField] private Color lightColor;
 
+    void Start()
+    {
+        foreach (Light light in lights)
+            light.color = lightColor;
+    }
     void Update()
     {
         UpdateLight();
@@ -17,11 +23,6 @@ public class LightController : MonoBehaviour
             return;
 
         foreach (Light light in lights)
-        {
-            if (dayNightController.IsDay())
-                light.intensity = 0;
-            else
-                light.intensity = 250;
-        }
+            light.intensity = dayNightController.IsDay() ? 0 : 500;
     }
 }

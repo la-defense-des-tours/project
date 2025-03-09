@@ -15,9 +15,14 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         public void ApplyEffect()
         {
-            this.tower.effectType = effectType;
-            this.tower.InitialiseBullet(effectType);
-            this.tower.ChangeMaterial(effectType);
+            float damageModifier = DamageModifier();
+            float damage = tower.towerData.dps * damageModifier;
+
+            tower.effectType = effectType;
+            tower.InitialiseBullet(effectType, damage);
+            tower.ChangeMaterial(effectType);
         }
+
+        protected abstract float DamageModifier();
     }
 }

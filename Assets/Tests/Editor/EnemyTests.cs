@@ -1,4 +1,5 @@
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
+using LaDefenseDesTours.Enemies;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.AI;
@@ -110,7 +111,7 @@ public class EnemyTests
     public void DealDamage_CallsPlayerTakeDamage()
     {
         enemy.DealDamage(100f);
-        double expectedPlayerHealth = 900;
+        double expectedPlayerHealth = 1900;
         double resultPlayerHealth = Player.GetInstance().health;
 
         Assert.AreEqual(expectedPlayerHealth, resultPlayerHealth);
@@ -120,7 +121,7 @@ public class EnemyTests
     public void DealDamage_CallsPlayerTakeDamageWithCorrectValue()
     {
         enemy.DealDamage(200f);
-        double expectedPlayerHealth = 700;
+        double expectedPlayerHealth = 1700;
         double resultPlayerHealth = Player.GetInstance().health;
 
         Assert.AreEqual(expectedPlayerHealth, resultPlayerHealth);

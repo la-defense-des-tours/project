@@ -1,6 +1,5 @@
 using UnityEngine;
-using Assets.Scripts.LaDefenseDesTours.Interfaces;
-using Assets.Scripts.LaDefenseDesTours.Level;
+using LaDefenseDesTours.Enemies;
 using LaDefenseDesTours.Strategy;
 
 public abstract class Shooter : MonoBehaviour
@@ -43,13 +42,13 @@ public abstract class Shooter : MonoBehaviour
         this.damage = damage;
         this.specialAbility = specialAbility;
         this.effectType = effectType;
-        this.strategy = strategy;
+        this.strategy = strategy ?? new NearestEnemy();
         this.fireRate = fireRate;
     }
 
     private void RotateTurret()
     {
-        if (target == null || !HasLineOfSight())
+        if (!target || !HasLineOfSight())
             return;
 
         LockOnTarget();
@@ -65,11 +64,11 @@ public abstract class Shooter : MonoBehaviour
 
     protected bool HasLineOfSight()
     {
-        if (target == null)
+        if (!target)
             return false;
 
         Collider targetCollider = target.GetComponent<Collider>();
-        if (targetCollider == null)
+        if (!targetCollider)
             return false;
 
         Vector3 targetPosition = targetCollider.bounds.center;
@@ -80,9 +79,41 @@ public abstract class Shooter : MonoBehaviour
 
     protected virtual void UpdateTarget()
     {
+        Transform oldTarget = target;
         Enemy[] enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+
         if (strategy != null)
-            target = strategy.SelectTarget(enemies, transform.position, range);
+        {
+            Enemy selectedEnemy = strategy.SelectTarget(enemies, transform.position, range);
+            Transform newTarget = selectedEnemy ? selectedEnemy.transform : null;
+
+            if (newTarget || !target || !IsTargetValid(target))
+            {
+                target = newTarget;
+                if (target && target != oldTarget)
+                    fireCountdown = 0f;
+            }
+        }
+        else if (!target || !IsTargetValid(target))
+        {
+            target = null;
+        }
+    }
+
+    private bool IsTargetValid(Transform checkTarget)
+    {
+        if (!checkTarget)
+            return false;
+
+        Enemy enemy = checkTarget.GetComponent<Enemy>();
+        if (!enemy || !enemy.CompareTag(ENEMY_TAG))
+            return false;
+
+        float distance = Vector3.Distance(transform.position, checkTarget.position);
+        if (distance > range)
+            return false;
+
+        return true;
     }
 
     private void LockOnTarget()
@@ -100,11 +131,5 @@ public abstract class Shooter : MonoBehaviour
         Bullet spawnedBullet = BulletPool.Instance.GetBullet(bullet);
         spawnedBullet.transform.SetPositionAndRotation(firePoint.position, firePoint.rotation);
         return spawnedBullet;
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, range);
     }
 }

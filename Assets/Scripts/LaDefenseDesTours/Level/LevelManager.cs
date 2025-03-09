@@ -4,6 +4,7 @@ using Assets.Scripts.Core;
 using Assets.Scripts.Core.Utilities;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
 using Assets.Scripts.LaDefenseDesTours.Towers.Data;
+using LaDefenseDesTours.Enemies;
 using TowerDefense.Level;
 using UnityEngine;
 
@@ -120,7 +121,6 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
         private void HandleEnemyDeath(int rewardAmount)
         {
             currency.AddCurrency(rewardAmount);
-            Debug.Log($"Gagné {rewardAmount} currency ! Total: {currency.currentCurrency}");
 
             remainingEnemiesByLevel--;
 
@@ -132,22 +132,18 @@ namespace Assets.Scripts.LaDefenseDesTours.Level
                 if (currentLevel % 5 == 0) 
                     Player.GetInstance().UpgradeLife();
                 remainingEnemiesByLevel = GetTotalEnemies();
-                Debug.Log($"Niveau {currentLevel} atteint ! Nouveaux ennemis : {remainingEnemiesByLevel}");
             }
         }
 
         private void OnBossSpawned()
         {
-            Debug.Log("Boss wave started !");
             soundManager.PlayBossMusic();
         }
 
         private IEnumerator WaitAndStartWave()
         {
-            Debug.Log("Attente avant la prochaine vague...");
             yield return new WaitForSeconds(5f);
             waveManager.StartWave();
-            Debug.Log($"Niveau {currentLevel} atteint ! Nouveaux ennemis : {remainingEnemiesByLevel}");
         }
 
         private void SafelyCallLevelFailed() => levelFailed?.Invoke();

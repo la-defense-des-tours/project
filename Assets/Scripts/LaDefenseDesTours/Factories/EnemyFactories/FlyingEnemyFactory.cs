@@ -1,6 +1,6 @@
 using UnityEngine;
 using Assets.Scripts.LaDefenseDesTours.Interfaces;
-using Assets.Scripts.LaDefenseDesTours.Enemies;
+using LaDefenseDesTours.Enemies;
 
 namespace Assets.Scripts.LaDefenseDesTours.Factories
 {

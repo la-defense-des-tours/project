@@ -35279,10 +35279,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243447184697584560, guid: 252fca26258eff44eb4b493dbabb8621, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 908bb12ff4ae4a943becb81eeeb78a20, type: 3}
-  m_Resource: {fileID: 8300000, guid: 908bb12ff4ae4a943becb81eeeb78a20, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 051cc2377a82d1b44996beb60d4cc591, type: 3}
+  m_Resource: {fileID: 8300000, guid: 051cc2377a82d1b44996beb60d4cc591, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.744
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -45402,6 +45402,10 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3338882126241348024, guid: 19e772b21bc172d4fb949e435d2bfe74, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0b1b6a2d22d96564f9037ae143ea84cf, type: 2}
     - target: {fileID: 3726815839502855918, guid: 19e772b21bc172d4fb949e435d2bfe74, type: 3}
       propertyPath: m_Name
       value: LigthingEffect
