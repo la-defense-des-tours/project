@@ -1,9 +1,6 @@
 using Assets.Scripts.LaDefenseDesTours.Towers.Data;
-using System.Collections.Generic;
 using LaDefenseDesTours.Strategy;
-using Unity.VisualScripting;
 using UnityEngine;
-using TMPro.EditorUtilities;
 
 namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 {
