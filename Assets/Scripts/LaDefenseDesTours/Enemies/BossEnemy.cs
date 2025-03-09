@@ -7,7 +7,7 @@ namespace Assets.Scripts.LaDefenseDesTours.Enemies
     {
         BossEnemy()
         {
-            InitializeStats(1500f, 1.5f, 2f, 0.2f, 3f, 0.5f,
+            InitializeStats(1500f, 1.5f, 2f, 0.2f, 4f, 0.5f,
                 LevelManager.instance != null ? LevelManager.instance.GetLevel() : 1);
         }
     }
