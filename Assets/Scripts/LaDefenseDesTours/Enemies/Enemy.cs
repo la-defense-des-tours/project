@@ -41,10 +41,11 @@ namespace Assets.Scripts.LaDefenseDesTours.Interfaces
 
         protected void InitializeStats(float baseHealth, float healthFactor, float baseSpeed, float speedFactor, float baseAcceleration, float accelerationFactor, int currentLevel)
         {
-            float maxSpeed = baseSpeed * 3;
+            float maxSpeed = baseSpeed * 2;
+            float maxAcceleration = baseAcceleration * 2;
             maxHealth = Mathf.RoundToInt(baseHealth * Mathf.Pow(healthFactor, currentLevel - 1));
             speed = Mathf.Min(baseSpeed + (speedFactor * (currentLevel - 1)), maxSpeed);
-            acceleration = baseAcceleration + (accelerationFactor * (currentLevel - 1));
+            acceleration = Mathf.Min(baseAcceleration + (accelerationFactor * (currentLevel - 1)), maxAcceleration);
             experiencePoints = (int)maxHealth;
         }
 
