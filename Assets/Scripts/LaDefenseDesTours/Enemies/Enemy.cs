@@ -47,7 +47,7 @@ namespace LaDefenseDesTours.Enemies
             maxHealth = Mathf.RoundToInt(baseHealth * Mathf.Pow(healthFactor, currentLevel - 1));
             speed = Mathf.Min(baseSpeed + (speedFactor * (currentLevel - 1)), maxSpeed);
             acceleration = Mathf.Min(baseAcceleration + (accelerationFactor * (currentLevel - 1)), maxAcceleration);
-            experiencePoints = (int)maxHealth / 2;
+            experiencePoints = (int)maxHealth / 3;
         }
 
         void Update()
