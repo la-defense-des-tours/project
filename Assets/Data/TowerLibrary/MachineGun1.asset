@@ -15,8 +15,8 @@ MonoBehaviour:
   towerName: Machine Gun
   description: "Une pluie de plomb ininterrompue qui d\xE9chiquette tout ce qui bouge."
   upgradeDescription: Range +3, Damage +50
-  upgradeCost: 400
-  cost: 150
+  upgradeCost: 800
+  cost: 500
   dps: 30
   sellCost: 50
   currentLevel: 1
