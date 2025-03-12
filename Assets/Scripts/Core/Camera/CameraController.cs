@@ -16,6 +16,10 @@ public class CameraController : MonoBehaviour
     private readonly Vector3 back = new(-1, 0, 0);
     private readonly Vector3 left = new(0, 0, 1);
     private readonly Vector3 right = new(0, 0, -1);
+    private Vector3 touchDelta;  
+    private Vector3 velocity = Vector3.zero;  
+    private float damping = 5f;
+
 
     void Start()
     {
@@ -42,7 +46,60 @@ public class CameraController : MonoBehaviour
 
         HandleCameraMovement();
         HandleCameraZoom();
+        HandleTouchInput();
     }
+    void HandleTouchInput()
+    {
+        if (Input.touchCount == 1) // Glissement avec un doigt
+        {
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Moved)
+            {
+                // Calcul du mouvement dans la direction opposée pour le drag
+                touchDelta = new Vector3(-touch.deltaPosition.x, 0, -touch.deltaPosition.y) * 0.02f;
+                MoveCamera(touchDelta);
+                velocity = touchDelta; // Sauvegarde pour l'inertie
+            }
+            else if (touch.phase == TouchPhase.Ended)
+            {
+                // Appliquer l’inertie quand on lève le doigt
+                velocity = touchDelta;
+            }
+        }
+        else if (Input.touchCount == 2) // Zoom avec deux doigts
+        {
+            Touch touch0 = Input.GetTouch(0);
+            Touch touch1 = Input.GetTouch(1);
+
+            // Distance précédente
+            float prevDistance = (touch0.position - touch0.deltaPosition - (touch1.position - touch1.deltaPosition)).magnitude;
+            // Distance actuelle
+            float currentDistance = (touch0.position - touch1.position).magnitude;
+
+            float difference = (currentDistance - prevDistance) * 0.1f; // Ajuste la sensibilité
+            HandlePinchZoom(difference);
+        }
+
+        if (velocity.magnitude > 0.01f)
+        {
+            MoveCamera(velocity);
+            velocity = Vector3.Lerp(velocity, Vector3.zero, Time.deltaTime * damping);
+        }
+    }
+
+
+    void HandlePinchZoom(float delta)
+    {
+        Vector3 pos = transform.position;
+
+        pos.y -= delta * scrollSpeed * 2f;
+
+        pos.y = Mathf.Clamp(pos.y, minZoom, maxZoom);
+
+        transform.position = ClampCameraPosition(pos);
+    }
+
 
     void HandleCameraMovement()
     {
